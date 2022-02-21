@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       AppPresser Pro
- * Description:       AppPresser Pro block builder
+ * Description:       Functionality for custom AppPresser Apps.
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           1.0.0
