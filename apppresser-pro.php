@@ -13,119 +13,35 @@
  * @package           apppresser
  */
 
+define( 'APPPRESSER_VERSION', '1.0.0' );
+define( 'APPPRESSER_PLUGIN_NAME', 'AppPresser Pro' );
+define( 'APPPRESSER_DIR', plugin_dir_path( __FILE__ ) );
+define( 'APPPRESSER_URL', plugins_url( basename( __DIR__ ) ) );
+define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
+define( 'APPPRESSER_FILE', __FILE__ );
 
-function appp_add_blocks_data_rest_api() {
+require dirname( __FILE__ ) . '/gutenberg.php';
 
-	if ( ! function_exists( 'use_block_editor_for_post_type' ) ) {
-		require ABSPATH . 'wp-admin/includes/post.php';
-	}
+add_action(
+	'rest_api_init',
+	function() {
 
-	// Surface all core Gutenberg blocks in the WordPress REST API.
-	$post_types = get_post_types_by_support( array( 'editor' ) );
+		remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
 
-	foreach ( $post_types as $post_type ) {
+		add_filter( 'rest_pre_serve_request', 'initCors' );
+	},
+	15
+);
 
-		if ( use_block_editor_for_post_type( $post_type ) ) {
 
-			register_rest_field(
-				$post_type,
-				'appp_settings',
-				array(
-					'get_callback' => function ( array $post ) {
+function initCors( $value ) {
+	$origin_url = '*';
 
-						return get_editor_settingss();
-					},
-				)
-			);
-
-			register_rest_field(
-				$post_type,
-				'appp_blocks',
-				array(
-					'get_callback' => function ( array $post ) {
-
-						$core_blocks = appp_get_allowed_blocks();
-
-						$blocks = parse_blocks( $post['content']['raw'] );
-
-						$blks = array();
-
-						foreach ( $blocks as $block ) {
-
-							if ( null !== $block['blockName'] && in_array( $block['blockName'], $core_blocks, true ) ) {
-
-								$block = appp_proccess_block( $block );
-
-								$blks[] = $block;
-							}
-						}
-
-						return $blks;
-					},
-				)
-			);
-		}
-	}
-}
-add_action( 'rest_api_init', 'appp_add_blocks_data_rest_api' );
-
-function appp_proccess_block( $block ) {
-
-	switch ( $block['blockName'] ) {
-		case 'core/embed':
-			$block['embed'] = wp_oembed_get( $block['attrs']['url'] );
-
-			break;
-		case 'core/archives':
-			 $block['links'] = wp_get_archives(['echo' => false, 'format' => 'anchor']);
-			break;
-
-	}
-
-	return $block;
-
+	header( 'Access-Control-Allow-Origin: ' . $origin_url );
+	header( 'Access-Control-Allow-Methods: GET,DELETE,POST,PUT,PATCH,OPTIONS' );
+	header( 'Access-Control-Allow-Credentials: true' );
+	return $value;
 }
 
-function get_editor_settingss() {
-
-	$settings = wp_get_global_settings();
-
-	return $settings;
-
-}
-
-
-function appp_get_allowed_blocks() {
-	return array(
-		'core/heading',
-		'core/list',
-		'core/paragraph',
-		'core/cover',
-		'core/image',
-		'core/gallery',
-		'core/quote',
-		'core/pullquote',
-		'core/verse',
-		'core/buttons',
-		'core/button',
-		'core/separator',
-		'core/social-links',
-		'core/text-columns',
-		'core/columns',
-		'core/column',
-		'core/audio',
-		'core/video',
-		'core/code',
-		'core/page-list',
-		'core/latest-posts',
-		'core/categories',
-		'core/table',
-		'core/embed',
-		'core/group',
-		'core/file',
-		'core/media-text',
-		'core/spacer',
-		'core/archives',
-		'core/preformatted',
-	);
-}
+// Fixes broken routing on directly linked content.
+remove_filter( 'template_redirect', 'redirect_canonical' );
