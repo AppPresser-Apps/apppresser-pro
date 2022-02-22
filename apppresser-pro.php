@@ -29,6 +29,17 @@ function appp_add_blocks_data_rest_api() {
 
 			register_rest_field(
 				$post_type,
+				'appp_settings',
+				array(
+					'get_callback' => function ( array $post ) {
+
+						return get_editor_settingss();
+					},
+				)
+			);
+
+			register_rest_field(
+				$post_type,
 				'appp_blocks',
 				array(
 					'get_callback' => function ( array $post ) {
@@ -72,6 +83,14 @@ function appp_proccess_block( $block ) {
 	}
 
 	return $block;
+
+}
+
+function get_editor_settingss() {
+
+	$settings = wp_get_global_settings();
+
+	return $settings;
 
 }
 
