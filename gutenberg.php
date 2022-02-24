@@ -1,4 +1,4 @@
-<?php 
+<?php
 
  /**
   * Register AppPresser post fields.
@@ -7,7 +7,7 @@
   *
   * @return void
   */
-  function appp_add_blocks_data_rest_api() {
+function appp_add_blocks_data_rest_api() {
 
 	if ( ! function_exists( 'use_block_editor_for_post_type' ) ) {
 		require ABSPATH . 'wp-admin/includes/post.php';
@@ -64,7 +64,7 @@ add_action( 'rest_api_init', 'appp_add_blocks_data_rest_api' );
 
 /**
  * Modify blocks during parse.
- * 
+ *
  * Some blocks dont have any api data as its all done via php on front end.
  * We add the extra data needed to display content in AppPresser.
  *
@@ -79,7 +79,12 @@ function appp_proccess_block( $block ) {
 
 			break;
 		case 'core/archives':
-			 $block['links'] = wp_get_archives(['echo' => false, 'format' => 'anchor']);
+			$block['links'] = wp_get_archives(
+				array(
+					'echo'   => false,
+					'format' => 'anchor',
+				)
+			);
 			break;
 
 	}
@@ -103,7 +108,7 @@ function get_editor_settings() {
 
 /**
  * White listed blocks that can be consumed by AppPresser.
- * 
+ *
  * This prevents blocks loading that could break app.
  *
  * @return array
@@ -142,3 +147,79 @@ function appp_get_allowed_blocks() {
 		'core/preformatted',
 	);
 }
+
+
+
+function my_acf_init_block_types() {
+
+	// Check function exists.
+	if ( function_exists( 'acf_register_block_type' ) ) {
+
+		// register a testimonial block.
+		acf_register_block_type(
+			array(
+				'name'            => 'app',
+				'title'           => __( 'App' ),
+				'description'     => __( 'App block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/app/app.php',
+				'category'        => 'formatting',
+				'icon'            => 'smartphone',
+				'keywords'        => array( 'app', 'view' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
+		// register a testimonial block.
+		acf_register_block_type(
+			array(
+				'name'            => 'view',
+				'title'           => __( 'View' ),
+				'description'     => __( 'A custom view block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/app/view.php',
+				'category'        => 'formatting',
+				'icon'            => 'smartphone',
+				'keywords'        => array( 'app', 'view' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+	}
+}
+add_action( 'acf/init', 'my_acf_init_block_types' );
+
+
+function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
+
+	if ( 'app' === $editor_context->post->post_type ) {
+		return array(
+			'core/paragraph',
+			'core/list',
+			'core/image',
+			'core/buttons',
+			'acf/view',
+		);
+	}
+
+	return $blocks;
+}
+
+add_filter( 'allowed_block_types_all', 'appp_allowed_post_type_blocks', 10, 2 );

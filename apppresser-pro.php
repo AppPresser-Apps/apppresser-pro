@@ -20,7 +20,10 @@ define( 'APPPRESSER_URL', plugins_url( basename( __DIR__ ) ) );
 define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
 define( 'APPPRESSER_FILE', __FILE__ );
 
+require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
+
+require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
 
 add_action(
 	'rest_api_init',
@@ -45,3 +48,22 @@ function initCors( $value ) {
 
 // Fixes broken routing on directly linked content.
 remove_filter( 'template_redirect', 'redirect_canonical' );
+
+/**
+ * Hack to stop the notice of mismatched template because guttenberg will
+ * no allow you to lock the parent template and then allow child blocks to be unlocked.
+ * If you read this then go to WP git forums and complain about it so its fixed!!!!
+ *
+ * @return void
+ */
+function appp_remove_template_notice_css() {
+
+	echo "
+    <style type='text/css'>
+	div.editor-template-validation-notice.components-notice.is-warning {
+		display: none !important;
+	}
+    </style>
+    ";
+}
+add_action( 'admin_head', 'appp_remove_template_notice_css' );
