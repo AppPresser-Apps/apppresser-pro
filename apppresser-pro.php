@@ -67,3 +67,33 @@ function appp_remove_template_notice_css() {
     ";
 }
 add_action( 'admin_head', 'appp_remove_template_notice_css' );
+
+/**
+ * Register editor scripts
+ *
+ * @return void
+ */
+function appp_gutenberg_register_files() {
+	wp_register_script(
+		'appp-block-script',
+		APPPRESSER_URL . '/js/block-script.js',
+		array( 'wp-blocks', 'wp-edit-post' ),
+	);
+
+	register_block_type(
+		'appp/app-block-files',
+		array(
+			'editor_script' => 'appp-block-script',
+		)
+	);
+
+}
+add_action( 'init', 'appp_gutenberg_register_files' );
+
+function appp_admin_enqueue_scripts() {
+
+	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.0', true );
+
+}
+
+add_action('acf/input/admin_enqueue_scripts', 'appp_admin_enqueue_scripts');

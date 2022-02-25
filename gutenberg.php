@@ -155,15 +155,41 @@ function my_acf_init_block_types() {
 	// Check function exists.
 	if ( function_exists( 'acf_register_block_type' ) ) {
 
-		// register a testimonial block.
+		// register a app block.
 		acf_register_block_type(
 			array(
 				'name'            => 'app',
 				'title'           => __( 'App' ),
-				'description'     => __( 'App block.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/app/app.php',
-				'category'        => 'formatting',
+				'description'     => __( 'App settings.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/app.php',
+				'category'        => 'appp_view',
 				'icon'            => 'smartphone',
+				'keywords'        => array( 'app', 'view' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
+		// register a view block.
+		acf_register_block_type(
+			array(
+				'name'            => 'view',
+				'title'           => __( 'View' ),
+				'description'     => __( 'A custom view block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/view.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -179,16 +205,16 @@ function my_acf_init_block_types() {
 			)
 		);
 
-		// register a testimonial block.
+		// register a button block.
 		acf_register_block_type(
 			array(
-				'name'            => 'view',
-				'title'           => __( 'View' ),
-				'description'     => __( 'A custom view block.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/app/view.php',
-				'category'        => 'formatting',
-				'icon'            => 'smartphone',
-				'keywords'        => array( 'app', 'view' ),
+				'name'            => 'button',
+				'title'           => __( 'Button' ),
+				'description'     => __( 'A custom button block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/button.php',
+				'category'        => 'appp_component',
+				'icon'            => 'button',
+				'keywords'        => array( 'component', 'button' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
@@ -212,10 +238,11 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 	if ( 'app' === $editor_context->post->post_type ) {
 		return array(
 			'core/paragraph',
-			'core/list',
 			'core/image',
 			'core/buttons',
+			'core/spacer',
 			'acf/view',
+			'acf/button',
 		);
 	}
 
@@ -223,3 +250,27 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 }
 
 add_filter( 'allowed_block_types_all', 'appp_allowed_post_type_blocks', 10, 2 );
+
+/**
+ * Undocumented function
+ *
+ * @param [type] $categories
+ * @param [type] $post
+ * @return void
+ */
+function appp_block_category( $categories, $post ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug'  => 'appp_view',
+				'title' => __( 'Views', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_component',
+				'title' => __( 'Components', 'apppresser' ),
+			),
+		)
+	);
+}
+add_filter( 'block_categories', 'appp_block_category', 10, 2 );

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * App Block Template.
+ * Button Block Template.
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
@@ -10,17 +10,15 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = 'app-' . $block['id'];
+$id = 'appview-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$className = 'app';
+$className = 'appbutton';
 if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
-$allowed_blocks = array( 'acf/view' );
-
 ?>
-<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>" />
+<div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
+	<ion-button>Menu</ion-button>
 </div>
