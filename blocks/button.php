@@ -10,15 +10,34 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = 'appview-' . $block['id'];
+$block_id = 'button-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$className = 'appbutton';
+$class_name = 'appp-button';
 if ( ! empty( $block['className'] ) ) {
-	$className .= ' ' . $block['className'];
+	$class_name .= ' ' . $block['className'];
 }
 
+$color = get_field( 'color' );
+$fill  = get_field( 'fill' );
+$size  = get_field( 'size' );
+$expand  = get_field( 'expand' );
+
 ?>
-<div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-	<ion-button>Menu</ion-button>
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
+	<ion-button 
+		color="<?php echo $color ? $color : 'primary'; ?>"
+		fill="<?php echo $fill ? $fill : 'solid'; ?>"
+		size="<?php echo $size ? $size : 'default'; ?>"
+		expand="<?php echo $expand ? $expand : 'expand'; ?>"
+	>Menu</ion-button>
 </div>
+
+<script>
+	// We need this because ion-button has a class 
+	// .button and WordPress editor styles is screwing up the design
+	setTimeout(() => {
+		const btn = document.querySelector('#<?php echo esc_attr( $block_id ); ?> ion-button');
+		btn.classList.remove('button')
+	}, 200);
+</script>

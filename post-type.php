@@ -58,9 +58,9 @@ function app_post_type() {
 		'capabilities'        => $capabilities,
 		'show_in_rest'        => true,
 		'template'            => array(
-			array( 'acf/app', '', array( array( 'acf/view' ) ) ),
+			array( 'acf/view' ),
 		),
-		'template_lock'       => 'all',
+		'template_lock'       => false,
 	);
 	register_post_type( 'app', $args );
 

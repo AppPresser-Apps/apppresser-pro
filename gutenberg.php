@@ -155,15 +155,15 @@ function my_acf_init_block_types() {
 	// Check function exists.
 	if ( function_exists( 'acf_register_block_type' ) ) {
 
-		// register a app block.
+		// register a view block.
 		acf_register_block_type(
 			array(
-				'name'            => 'app',
-				'title'           => __( 'App' ),
-				'description'     => __( 'App settings.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/app.php',
+				'name'            => 'view',
+				'title'           => __( 'View (empty)' ),
+				'description'     => __( 'A custom view block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/view.php',
 				'category'        => 'appp_view',
-				'icon'            => 'smartphone',
+				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -181,30 +181,6 @@ function my_acf_init_block_types() {
 			)
 		);
 
-		// register a view block.
-		acf_register_block_type(
-			array(
-				'name'            => 'view',
-				'title'           => __( 'View' ),
-				'description'     => __( 'A custom view block.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/view.php',
-				'category'        => 'appp_view',
-				'icon'            => 'admin-page',
-				'keywords'        => array( 'app', 'view' ),
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'supports'        => array(
-					'mode'          => false,
-					'align'         => false,
-					'align_text'    => false,
-					'align_content' => false,
-					'full_height'   => false,
-					'jsx'           => true,
-				),
-			)
-		);
-
 		// register a button block.
 		acf_register_block_type(
 			array(
@@ -217,6 +193,7 @@ function my_acf_init_block_types() {
 				'keywords'        => array( 'component', 'button' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
+				'parent'          => 'acf/view',
 				'align'           => 'center',
 				'supports'        => array(
 					'mode'          => false,
@@ -239,7 +216,6 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 		return array(
 			'core/paragraph',
 			'core/image',
-			'core/buttons',
 			'core/spacer',
 			'acf/view',
 			'acf/button',
@@ -273,4 +249,15 @@ function appp_block_category( $categories, $post ) {
 		)
 	);
 }
-add_filter( 'block_categories', 'appp_block_category', 10, 2 );
+add_filter( 'block_categories_all', 'appp_block_category', 10, 2 );
+
+function remove_wp_block_library_css() {
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+}
+add_filter( 'wp_enqueue_scripts', 'remove_wp_block_library_css', 100 );
+
+function appp_acf_show_admin( $show ) {
+	return current_user_can( 'manage_options' );
+}
+add_filter( 'acf/settings/show_admin', 'appp_acf_show_admin' );

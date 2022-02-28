@@ -18,37 +18,22 @@ if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
-// Load values and assing defaults.
-$visibility = get_field( 'visibility' );
+$title = get_field( 'title' );
 
-$allowed_blocks = array( 'core/image', 'core/paragraph', 'core/spacer' );
-$toolbar_blocks = array( 'core/paragraph' );
-
-$template = array(
-	array(
-		'acf/button',
-		array(
-			'placeholder' => 'Add a root-level paragraph',
-		),
-	),
-);
+$allowed_blocks = array( 'core/image', 'core/paragraph', 'core/spacer', 'acf/button' );
 
 ?>
 <div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-
 	<ion-header>
 		<ion-toolbar color="primary">
 			<ion-buttons slot="start">
-				
 			</ion-buttons>
-			<ion-title><?php echo $title ? $title : 'View'; ?></ion-title>
+			<ion-title><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
 		</ion-toolbar>
 	</ion-header>
-
 	<ion-content>
 		<InnerBlocks templateInsertUpdatesSelection="false" templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>" />
 	</ion-content>
-
 </div>
 
 
