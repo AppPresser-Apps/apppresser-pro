@@ -194,13 +194,16 @@ add_action( 'acf/init', 'appp_init_block_types' );
 function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
 
 	if ( 'app' === $editor_context->post->post_type ) {
-		return array_merge(
+
+		$blocks = array_merge(
 			appp_get_allowed_blocks(),
 			array(
 				'acf/view',
 			)
 		);
 	}
+
+	error_log( print_r( $blocks, true ) );
 
 	return $blocks;
 }

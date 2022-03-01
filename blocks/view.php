@@ -22,6 +22,7 @@ $title = get_field( 'title' );
 
 $allowed_blocks = appp_get_allowed_blocks();
 
+
 ?>
 <div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
 	<ion-header>

@@ -15,15 +15,15 @@ function apppFilterBlockRegister( settings, name ) {
 
     switch (name) {
         case 'core/paragraph':
-            settings.category = 'appp_component';
+            //settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/image':
-            settings.category = 'appp_component';
+            //settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/spacer':
-            settings.category = 'appp_component';
+            //settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'acf/button':
@@ -39,14 +39,4 @@ wp.hooks.addFilter(
     'blocks.registerBlockType',
     'apppresser/blocks-filter',
     apppFilterBlockRegister
-);
-
-function addActionBlockEdit( BlockEdit ) {
-    console.log('dddddddddddd')
-}
-
-wp.hooks.addAction(
-    'all',
-    'apppresser/edit-blocks',
-    addActionBlockEdit
 );

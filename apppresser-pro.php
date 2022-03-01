@@ -76,7 +76,7 @@ function appp_custom_editor_css() {
 		padding: 0 20px;
 		font-size: 0.8rem;
 	}
-	.block-list-appender {
+	.block-editor-inserter {
 		position: absolute;
 		right: 20px;
 		top: -50px;
@@ -113,8 +113,8 @@ function appp_gutenberg_register_files() {
 		'appp-block-script',
 		APPPRESSER_URL . '/js/block-script.js',
 		array( 'wp-blocks', 'wp-edit-post' ),
-		'1.0.7',
-		true,
+		'1.0.9',
+		false,
 	);
 
 	register_block_type(
