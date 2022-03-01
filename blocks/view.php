@@ -20,7 +20,7 @@ if ( ! empty( $block['className'] ) ) {
 
 $title = get_field( 'title' );
 
-$allowed_blocks = array( 'core/image', 'core/paragraph', 'core/spacer', 'acf/button' );
+$allowed_blocks = appp_get_allowed_blocks();
 
 ?>
 <div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
@@ -42,7 +42,7 @@ $allowed_blocks = array( 'core/image', 'core/paragraph', 'core/spacer', 'acf/but
 		border: 1px solid #e0e0e0;
 		height: 640px;
 		width: 320px;
-		margin-bottom: 40px;
+		margin: 10px !important;
 	}
 	ion-content {
 		height: calc(100% - 44px);

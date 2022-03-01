@@ -108,49 +108,25 @@ function get_editor_settings() {
 
 /**
  * White listed blocks that can be consumed by AppPresser.
- *
  * This prevents blocks loading that could break app.
  *
  * @return array
  */
 function appp_get_allowed_blocks() {
 	return array(
-		'core/heading',
-		'core/list',
-		'core/paragraph',
-		'core/cover',
 		'core/image',
-		'core/gallery',
-		'core/quote',
-		'core/pullquote',
-		'core/verse',
-		'core/buttons',
-		'core/button',
-		'core/separator',
-		'core/social-links',
-		'core/text-columns',
-		'core/columns',
-		'core/column',
-		'core/audio',
-		'core/video',
-		'core/code',
-		'core/page-list',
-		'core/latest-posts',
-		'core/categories',
-		'core/table',
-		'core/embed',
-		'core/group',
-		'core/file',
-		'core/media-text',
+		'core/paragraph',
 		'core/spacer',
-		'core/archives',
-		'core/preformatted',
+		'acf/button',
 	);
 }
 
-
-
-function my_acf_init_block_types() {
+/**
+ * Register ACF blocks
+ *
+ * @return void
+ */
+function appp_init_block_types() {
 
 	// Check function exists.
 	if ( function_exists( 'acf_register_block_type' ) ) {
@@ -193,7 +169,6 @@ function my_acf_init_block_types() {
 				'keywords'        => array( 'component', 'button' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
-				'parent'          => 'acf/view',
 				'align'           => 'center',
 				'supports'        => array(
 					'mode'          => false,
@@ -207,18 +182,23 @@ function my_acf_init_block_types() {
 		);
 	}
 }
-add_action( 'acf/init', 'my_acf_init_block_types' );
+add_action( 'acf/init', 'appp_init_block_types' );
 
-
+/**
+ * Whitelist of blocks available to Gutenberg editor.
+ *
+ * @param array  $allowed_block_types
+ * @param object $editor_context
+ * @return array
+ */
 function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
 
 	if ( 'app' === $editor_context->post->post_type ) {
-		return array(
-			'core/paragraph',
-			'core/image',
-			'core/spacer',
-			'acf/view',
-			'acf/button',
+		return array_merge(
+			appp_get_allowed_blocks(),
+			array(
+				'acf/view',
+			)
 		);
 	}
 

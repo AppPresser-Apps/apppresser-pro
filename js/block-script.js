@@ -10,22 +10,26 @@ wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'template' ); // Template
 wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'post-status' ); // Status
 
 
-function addListBlockClassName( settings, name ) {
-    //console.log(settings, name);
+function apppFilterBlockRegister( settings, name ) {
+    console.log(settings, name);
 
     switch (name) {
         case 'core/paragraph':
+            settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/image':
+            settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/spacer':
+            settings.category = 'appp_component';
+            settings.parent = ['acf/view'];
+            break;
+        case 'acf/button':
             settings.parent = ['acf/view'];
             break;
     }
-
-    
 
     return settings;
  
@@ -33,8 +37,8 @@ function addListBlockClassName( settings, name ) {
  
 wp.hooks.addFilter(
     'blocks.registerBlockType',
-    'apppresser/core-blocks',
-    addListBlockClassName
+    'apppresser/blocks-filter',
+    apppFilterBlockRegister
 );
 
 function addActionBlockEdit( BlockEdit ) {

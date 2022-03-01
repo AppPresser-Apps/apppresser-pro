@@ -56,18 +56,52 @@ remove_filter( 'template_redirect', 'redirect_canonical' );
  *
  * @return void
  */
-function appp_remove_template_notice_css() {
+function appp_custom_editor_css() {
 
 	echo "
     <style type='text/css'>
 	div.editor-template-validation-notice.components-notice.is-warning,
-	div.block-editor-block-inspector__advanced {
+	div.block-editor-block-inspector__advanced,
+	div.block-editor-post-preview__dropdown,
+	div.interface-more-menu-dropdown {
 		display: none !important;
 	}
+	.is-root-container.block-editor-block-list__layout {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+	.edit-post-visual-editor__post-title-wrapper {
+		padding: 0 20px;
+		font-size: 0.8rem;
+	}
+	.block-list-appender {
+		position: absolute;
+		right: 20px;
+		top: -50px;
+	}
+	.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
+		margin-left: 0px !important;
+		margin-right: 0px !important;
+		margin: 0px !important;
+	}
+	.edit-post-visual-editor__post-title-wrapper {
+		margin-top: 1.5rem;
     </style>
     ";
 }
-add_action( 'admin_head', 'appp_remove_template_notice_css' );
+add_action( 'admin_footer', 'appp_custom_editor_css', 999 );
+
+if( is_admin() ) {
+    add_filter( 'enter_title_here', function( $input ) {
+        if( 'app' === get_post_type() ) {
+            return __( 'App Name', 'appppresser' );
+        } else {
+            return $input;
+        }
+    } );
+}
 
 /**
  * Register editor scripts
