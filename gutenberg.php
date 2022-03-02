@@ -118,6 +118,7 @@ function appp_get_allowed_blocks() {
 		'core/paragraph',
 		'core/spacer',
 		'acf/button',
+		'acf/list',
 	);
 }
 
@@ -180,6 +181,30 @@ function appp_init_block_types() {
 				),
 			)
 		);
+
+		// register a button block.
+		acf_register_block_type(
+			array(
+				'name'            => 'list',
+				'title'           => __( 'List' ),
+				'description'     => __( 'A custom list block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/list.php',
+				'category'        => 'appp_component',
+				'icon'            => 'editor-ul',
+				'keywords'        => array( 'component', 'list' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
 	}
 }
 add_action( 'acf/init', 'appp_init_block_types' );
@@ -202,8 +227,6 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 			)
 		);
 	}
-
-	error_log( print_r( $blocks, true ) );
 
 	return $blocks;
 }

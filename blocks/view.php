@@ -19,6 +19,7 @@ if ( ! empty( $block['className'] ) ) {
 }
 
 $title = get_field( 'title' );
+$toolbar_color = get_field( 'toolbar_color' );
 
 $allowed_blocks = appp_get_allowed_blocks();
 
@@ -26,7 +27,7 @@ $allowed_blocks = appp_get_allowed_blocks();
 ?>
 <div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
 	<ion-header>
-		<ion-toolbar color="primary">
+		<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
 			<ion-buttons slot="start">
 			</ion-buttons>
 			<ion-title><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>

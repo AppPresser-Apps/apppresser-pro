@@ -11,22 +11,25 @@ wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'post-status' ); // Statu
 
 
 function apppFilterBlockRegister( settings, name ) {
-    console.log(settings, name);
+    //console.log(settings, name);
 
     switch (name) {
         case 'core/paragraph':
-            //settings.category = 'appp_component';
+            settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/image':
-            //settings.category = 'appp_component';
+            settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'core/spacer':
-            //settings.category = 'appp_component';
+            settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'acf/button':
+            settings.parent = ['acf/view'];
+            break;
+        case 'acf/list':
             settings.parent = ['acf/view'];
             break;
     }
