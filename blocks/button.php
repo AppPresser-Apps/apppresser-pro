@@ -32,12 +32,3 @@ $expand  = get_field( 'expand' );
 		expand="<?php echo $expand ? $expand : 'expand'; ?>"
 	>Menu</ion-button>
 </div>
-
-<script>
-	// We need this because ion-button has a class 
-	// .button and WordPress editor styles is screwing up the design
-	setTimeout(() => {
-		const btn = document.querySelector('#<?php echo esc_attr( $block_id ); ?> ion-button');
-		btn.classList.remove('button')
-	}, 200);
-</script>

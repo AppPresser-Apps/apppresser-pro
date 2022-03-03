@@ -20,17 +20,19 @@ if ( ! empty( $block['className'] ) ) {
 
 $title = get_field( 'title' );
 $toolbar_color = get_field( 'toolbar_color' );
+$content_padding = get_field( 'padding' );
 
 $allowed_blocks = appp_get_allowed_blocks();
 
 
 ?>
-<div mode="ios" id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
+<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
 	<ion-header>
 		<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
 			<ion-buttons slot="start">
+				<ion-button style="color: inherit;">Menu</ion-button>
 			</ion-buttons>
-			<ion-title><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
+			<ion-title style="width:140px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
 		</ion-toolbar>
 	</ion-header>
 	<ion-content>
@@ -53,3 +55,27 @@ $allowed_blocks = appp_get_allowed_blocks();
 		width: 150px;
 	}
 </style>
+
+
+<script>
+
+	// We need this because ion-button has a class 
+	// .button and WordPress editor styles is screwing up the design
+	setTimeout(() => {
+		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
+
+		var content = view.querySelector('ion-content');
+		<?php if ( $content_padding ) : ?>
+			content.classList.add('ion-padding');
+		<? endif; ?>
+
+		var btns = view.querySelectorAll('ion-button'), i;
+
+		for (i = 0; i < btns.length; ++i) {
+			btns[i].classList.remove('button')
+		}
+
+	}, 500);
+
+
+</script>

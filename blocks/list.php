@@ -27,7 +27,7 @@ error_log( print_r( $list_items, true ) );
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
-	<ion-list>
+	<ion-list style="overflow: hidden;">
 	<?php if ( $list_header ) : ?>
 		<ion-list-header color="<?php echo esc_attr( $color ); ?>">
 			<?php echo esc_attr( $list_header ); ?>

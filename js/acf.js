@@ -1,3 +1,7 @@
+const html = document.querySelector('html');
+html.setAttribute( 'mode', 'ios');
+
+
 acf.add_filter('color_picker_args', function( args, field ){
 
     // do something to args
@@ -17,3 +21,8 @@ acf.add_filter('color_picker_args', function( args, field ){
     return args;
 
 });
+
+
+  acf.add_action('ready append', function(e){
+    window.jQuery('a.acf-icon.-duplicate').remove();
+  });
