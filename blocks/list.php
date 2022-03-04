@@ -22,14 +22,14 @@ $color       = get_field( 'color' );
 $list_header = get_field( 'list_header' );
 $list_items  = get_field( 'list_items' );
 
-error_log( print_r( $list_items, true ) );
+//error_log( print_r( $list_items, true ) );
 
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<ion-list style="overflow: hidden;">
 	<?php if ( $list_header ) : ?>
-		<ion-list-header color="<?php echo esc_attr( $color ); ?>">
+		<ion-list-header color="<?php echo esc_attr( $color ); ?>" style="padding-top:16px;">
 			<?php echo esc_attr( $list_header ); ?>
 		</ion-list-header>
 	<?php endif; ?>

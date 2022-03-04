@@ -20,10 +20,13 @@ define( 'APPPRESSER_URL', plugins_url( basename( __DIR__ ) ) );
 define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
 define( 'APPPRESSER_FILE', __FILE__ );
 
+require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
+
 require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
+require dirname( __FILE__ ) . '/acf.php';
 
-require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
+
 
 add_action(
 	'rest_api_init',
@@ -88,6 +91,10 @@ function appp_custom_editor_css() {
 	}
 	.edit-post-visual-editor__post-title-wrapper {
 		margin-top: 1.5rem;
+	}
+	.wp-picker-input-wrap label {
+		display: none;
+	}
     </style>
     ";
 }
@@ -136,6 +143,7 @@ function appp_admin_enqueue_scripts( $hook_suffix ) {
 	if ( ( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) && $typenow === 'app' ) {
 		wp_enqueue_style( 'ionic-css', 'https://cdn.jsdelivr.net/npm/@ionic/core@6.0.10/css/ionic.bundle.css', array(), '1.0.0' );
 		wp_enqueue_script( 'ionic-js', 'https://cdn.jsdelivr.net/npm/@ionic/core@6.0.10/dist/ionic/ionic.js', array(), '1.0.0', false );
+		wp_enqueue_script( 'ionicons-js', 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js', array(), '1.0.0', false );
 	}
 }
 
@@ -145,4 +153,4 @@ function appp_acf_admin_enqueue_scripts() {
 	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.1', true );
 }
 
-add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts', 999 );
+add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts' );
