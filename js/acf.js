@@ -34,4 +34,31 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 acf.add_action('ready append', function(e){
     window.jQuery('a.acf-icon.-duplicate').remove();
+
 });
+
+acf.add_action('ready_field/type=color_picker', function(field){
+
+    //console.log(field);
+
+    const name = field[0].getAttribute('data-name');
+    const key = field[0].getAttribute('data-key');
+
+    jQuery('.acf-color-picker').on( 'change', (event) => {
+        if ( `acf[${key}]` === event.target.name ) {
+            console.log(key);
+            console.log(event.target.name);
+            appp_api_colors(name, event.target.value);
+        }        
+    });
+
+});
+
+function appp_api_colors(name, hex) {
+    wp.apiFetch({
+        path: 'apppresser/v1/colors/?name=' + name + '&hex=' + encodeURIComponent(hex),
+        method: 'GET',
+    }).then(data => {
+        console.log('response from apifetch: ', data);
+    });
+}

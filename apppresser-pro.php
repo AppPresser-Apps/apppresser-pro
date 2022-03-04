@@ -22,6 +22,7 @@ define( 'APPPRESSER_FILE', __FILE__ );
 
 require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
 
+require dirname( __FILE__ ) . '/helpers/colors.php';
 require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
 require dirname( __FILE__ ) . '/acf.php';
@@ -204,7 +205,7 @@ function appp_admin_enqueue_scripts( $hook_suffix ) {
 add_action( 'admin_enqueue_scripts', 'appp_admin_enqueue_scripts' );
 
 function appp_acf_admin_enqueue_scripts() {
-	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.1', true );
+	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.3', true );
 }
 
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts' );

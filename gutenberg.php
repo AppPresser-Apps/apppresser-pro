@@ -267,3 +267,35 @@ function appp_acf_show_admin( $show ) {
 	return current_user_can( 'manage_options' );
 }
 add_filter( 'acf/settings/show_admin', 'appp_acf_show_admin' );
+
+
+add_action(
+	'rest_api_init',
+	function() {
+		register_rest_route(
+			'apppresser/v1',
+			'/colors',
+			array(
+				'method'              => WP_REST_Server::READABLE,
+				'callback'            => 'appp_rest_route_colors',
+				'permission_callback' => '__return_true',
+				'args'                => array(
+					'hex' => array(
+						'required'          => false,
+						'type'              => 'string',
+						'validate_callback' => '__return_true',
+					),
+				),
+			)
+		);
+	}
+);
+
+function appp_rest_route_colors( $data ) {
+	$hex  = $data->get_param( 'hex' );
+	$name = $data->get_param( 'name' );
+
+	$colors = appp_process_colors( '--ion-color-' . $name, $hex );
+
+	return rest_ensure_response( $colors );
+}

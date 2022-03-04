@@ -26,7 +26,7 @@ $right_buttons   = get_field( 'right_buttons' );
 
 $allowed_blocks = appp_get_allowed_blocks();
 
-error_log( print_r( appp_get_theme_colors($post_id), true ) );
+//error_log( print_r( appp_get_theme_colors($post_id), true ) );
 
 $key = array_search( $toolbar_color, appp_get_theme_colors($post_id) );
 
