@@ -92,8 +92,62 @@ function appp_custom_editor_css() {
 	.edit-post-visual-editor__post-title-wrapper {
 		margin-top: 1.5rem;
 	}
-	.wp-picker-input-wrap label {
+
+	.no-iris-picker .wp-picker-input-wrap {
+		display: none !important;
+	}
+
+	.no-iris-picker .wp-picker-clear {
+		display: none !important;
+	}
+	
+	.no-iris-picker.wp-picker-container {
+		display: block;
+	}
+	
+	.no-iris-picker .wp-picker-container input[type=text].wp-color-picker {
+		outline: 0 !important;
+		border: 1px solid #dddddd !important;
+		box-shadow: none !important;
+		pointer-events: none;
+	}
+	
+	.no-iris-picker .wp-picker-container:active {
+		display: block;
+	}
+	
+	.no-iris-picker .iris-picker.iris-border {
+		width: 100% !important;
+		height: auto !important;
+		padding-bottom: 0 !important;
+		border: 0;
+	}
+	
+	.no-iris-picker .iris-border .iris-picker-inner {
 		display: none;
+	}
+	
+	.no-iris-picker .iris-palette-container {
+		position: static !important;
+		font-size: 0;
+		line-height: 1;
+		padding: 3px;
+	}
+	
+	.no-iris-picker .iris-palette {
+		border: 3px solid white;
+		border-radius: 5px !important;
+		box-shadow: inset 0 0 1px black !important;
+		display: inline-block;
+		float: none !important;
+		height: 36.9px !important;
+		margin: 0 !important;
+		margin-left: 0 !important;
+		width: 36.9px !important;
+	}
+	
+	.no-iris-picker .wp-picker-clear {
+		display: inline-block !important;
 	}
     </style>
     ";
