@@ -85,9 +85,9 @@ $allowed_blocks = appp_get_allowed_blocks();
 		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
 
 		var content = view.querySelector('ion-content');
-		<?php if ( $content_padding ) :; ?>
+		<?php if ( $content_padding ) : ?>
 			content.classList.add('ion-padding');
-		<? endif; ?>
+		<?php endif; ?>
 
 		var menubtns = view.querySelectorAll('ion-menu-button'), i;
 
