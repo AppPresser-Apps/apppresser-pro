@@ -115,7 +115,7 @@ add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp
 
 function appp_localize_scripts() {
 
-	$palette = appp_get_theme_colors(0);
+	$palette = appp_get_theme_colors( 0 );
 
 	wp_localize_script( 'appp-block-script', 'appp_data', array( 'color_palettes' => json_encode( $palette ) ) );
 }
@@ -139,7 +139,11 @@ function appp_get_theme_colors( $post_id ) {
 	$palette = array();
 
 	foreach ( $fields as $field ) {
-		$palette[ $field ] = get_field( $field, $post_id );
+		$color = get_field( $field, $post_id );
+
+		$colors = appp_process_colors( '--ion-color-' . $field, $color );
+
+		$palette[ $field ] = $colors;
 	}
 
 	return $palette;

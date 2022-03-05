@@ -28,12 +28,12 @@ $allowed_blocks = appp_get_allowed_blocks();
 
 //error_log( print_r( appp_get_theme_colors($post_id), true ) );
 
-$key = array_search( $toolbar_color, appp_get_theme_colors($post_id) );
+//$key = array_search( $toolbar_color, appp_get_theme_colors($post_id) );
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
 	<ion-header>
-		<ion-toolbar color="<?php echo $key ? esc_attr( $key ) : 'primary'; ?>">
+		<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
 			<ion-buttons slot="start">
 				<?php
 				if ( $left_buttons ) {

@@ -19,7 +19,7 @@ function app_post_type() {
 		'update_item'            => __( 'Update app', 'apppresser' ),
 		'view_item'              => __( 'View App', 'apppresser' ),
 		'view_items'             => __( 'View Apps', 'apppresser' ),
-		'search_items'           => __( 'Search App', 'apppresser' ),
+		'search_items'           => __( 'Search Apps', 'apppresser' ),
 		'not_found'              => __( 'Not found', 'apppresser' ),
 		'not_found_in_trash'     => __( 'Not found in Trash', 'apppresser' ),
 		'featured_image'         => __( 'Featured Image', 'apppresser' ),
@@ -70,3 +70,49 @@ function app_post_type() {
 
 }
 add_action( 'init', 'app_post_type', 0 );
+
+
+add_filter(
+	'manage_app_posts_columns',
+	function( $columns ) {
+		unset( $columns['date'] );
+		unset( $columns['title'] );
+		return array_merge(
+			array(
+				'cb'  => '<input type="checkbox" />',
+				'app' => __( 'App', 'apppresser' ),
+			),
+			$columns
+		);
+	}
+);
+
+add_action(
+	'manage_app_posts_custom_column',
+	function( $column_key, $post_id ) {
+
+		if ( 'app' === $column_key ) {
+			$icon = get_field( 'icon', $post_id );
+			$title = get_the_title( $post_id );
+			echo '<div style="display:flex; align-items: center;">';
+				echo '<a href="' . esc_attr( get_edit_post_link( $post_id ) ) . '">';
+					if ( $icon ) {
+						echo '<img src="' . esc_url( $icon ) . '" style="width:40px; border-radius:6px;"/>';
+					} else {
+						echo '<img src="' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . '" style="width:40px; border-radius:6px;"/>';
+					}
+				echo '<a/>';
+
+				echo '<div style="padding: 0 15px">';
+					echo '<a href="' . esc_attr( get_edit_post_link( $post_id ) ) . '">';
+						echo '<strong>' . esc_attr( '' === $title ? '(No Name)' : $title ) . '</strong>';
+					echo '<a/>';
+				echo '</div>';
+
+			echo '</div>';
+		}
+
+	},
+	10,
+	2
+);
