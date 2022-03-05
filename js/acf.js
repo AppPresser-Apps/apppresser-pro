@@ -37,7 +37,7 @@ acf.add_action('ready append', function(e){
     window.jQuery('a.acf-icon.-duplicate').remove();
 
     // Load root theme styles
-    if(appp_data !== undefined && appp_data !== null) {
+    if(window.appp_data !== undefined && window.appp_data !== null) {
         const data = JSON.parse(appp_data.color_palettes);
         for (const key in data ) {
             for (const color in data[key] ) {
