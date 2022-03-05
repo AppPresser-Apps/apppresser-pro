@@ -36,12 +36,15 @@ acf.add_action('ready append', function(e){
     window.jQuery('a.acf-icon.-duplicate').remove();
 
     // Load root theme styles
-    const data = JSON.parse(appp_data.color_palettes);
-    for (const key in data ) {
-        for (const color in data[key] ) {
-            document.documentElement.style.setProperty(color, data[key][color]);
+    if(appp_data !== undefined && appp_data !== null) {
+        const data = JSON.parse(appp_data.color_palettes);
+        for (const key in data ) {
+            for (const color in data[key] ) {
+                document.documentElement.style.setProperty(color, data[key][color]);
+            }
         }
     }
+
 });
 
 acf.add_action('ready_field/type=color_picker', function(field){
