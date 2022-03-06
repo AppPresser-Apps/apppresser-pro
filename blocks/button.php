@@ -22,13 +22,31 @@ $color = get_field( 'color' );
 $fill  = get_field( 'fill' );
 $size  = get_field( 'size' );
 $expand  = get_field( 'expand' );
+$margin  = get_field( 'margin' );
+$alignment  = get_field( 'alignment' );
+
+$style = '';
+
+if( $margin ) {
+	$style .= 'margin-left:' . $margin . 'px; ';
+	$style .= 'margin-right:' . $margin . 'px; ';
+	$style .= 'margin-top:' . $margin . 'px; ';
+	$style .= 'margin-bottom:' . $margin . 'px; ';
+}
+
+if( 'inline' === $expand && $alignment ) {
+	$style .= 'display: flex; ';
+	$style .= 'justify-content:' . $alignment . '; ';
+}
 
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-	<ion-button 
-		color="<?php echo $color ? $color : 'primary'; ?>"
-		fill="<?php echo $fill ? $fill : 'solid'; ?>"
-		size="<?php echo $size ? $size : 'default'; ?>"
-		expand="<?php echo $expand ? $expand : 'expand'; ?>"
-	>Menu</ion-button>
+	<div style="<?php echo $style; ?>">
+		<ion-button 
+			color="<?php echo $color ? $color : 'primary'; ?>"
+			fill="<?php echo $fill ? $fill : 'solid'; ?>"
+			size="<?php echo $size ? $size : 'default'; ?>"
+			expand="<?php echo $expand ? $expand : 'inline'; ?>"
+		>Menu</ion-button>
+	</div>
 </div>

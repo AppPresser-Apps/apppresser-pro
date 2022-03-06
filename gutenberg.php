@@ -115,10 +115,11 @@ function get_editor_settings() {
 function appp_get_allowed_blocks() {
 	return array(
 		'core/image',
-		'core/paragraph',
+		//'core/paragraph',
 		'core/spacer',
 		'acf/button',
 		'acf/list',
+		'acf/text',
 	);
 }
 
@@ -182,7 +183,7 @@ function appp_init_block_types() {
 			)
 		);
 
-		// register a button block.
+		// register a list block.
 		acf_register_block_type(
 			array(
 				'name'            => 'list',
@@ -205,6 +206,32 @@ function appp_init_block_types() {
 				),
 			)
 		);
+
+		// register a text block.
+		acf_register_block_type(
+			array(
+				'name'            => 'text',
+				'title'           => __( 'Text' ),
+				'description'     => __( 'A custom text block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/text.php',
+				'category'        => 'appp_component',
+				'icon'            => 'editor-ul',
+				'keywords'        => array( 'component', 'text' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
+		
 	}
 }
 add_action( 'acf/init', 'appp_init_block_types' );
