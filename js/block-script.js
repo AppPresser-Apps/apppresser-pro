@@ -32,6 +32,9 @@ function apppFilterBlockRegister( settings, name ) {
         case 'acf/list':
             settings.parent = ['acf/view'];
             break;
+        case 'acf/text':
+            settings.parent = ['acf/view'];
+            break;
     }
 
     return settings;
