@@ -115,7 +115,7 @@ function get_editor_settings() {
 function appp_get_allowed_blocks() {
 	return array(
 		'core/image',
-		//'core/paragraph',
+		'core/paragraph',
 		'core/spacer',
 		'acf/button',
 		'acf/list',
