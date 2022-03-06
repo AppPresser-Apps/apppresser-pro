@@ -178,7 +178,7 @@ function appp_set_root_theme_styles() {
 
 	if ( ( $pagenow == 'post.php' ) || ( get_post_type() == 'app' ) ) {
 
-		error_log( print_r( $post, true, ) );
+		//error_log( print_r( $post, true, ) );
 
 		$fields = array(
 			'primary',
@@ -198,7 +198,7 @@ function appp_set_root_theme_styles() {
 			$palette[ $field ] = get_field( $field, $post->ID );
 		}
 
-		error_log(print_r($palette, true,));
+		//error_log(print_r($palette, true,));
 
 	}
 

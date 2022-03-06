@@ -57,7 +57,18 @@ function appp_process_left_button( $button ) {
 
 	switch ( $button['acf_fc_layout'] ) {
 		case 'menu_button':
-			echo '<ion-menu-button style="color: inherit;"><ion-icon name="menu-outline"></ion-icon></ion-menu-button>';
+			if ( 'none' === $button['icon'] ) {
+				echo '<ion-button style="color: inherit;">' . $button['label'] . '</ion-button>';
+			} else {
+				echo '<ion-menu-button style="color: inherit;"><ion-icon name="menu-outline"></ion-icon></ion-menu-button>';
+			}
+			break;
+		case 'button':
+			if ( 'none' === $button['icon'] ) {
+				echo '<ion-button style="color: inherit;">' . $button['label'] . '</ion-button>';
+			} else {
+				echo '<ion-button style="color: inherit;"><ion-icon name="menu-outline"></ion-icon></ion-button>';
+			}
 			break;
 
 	}

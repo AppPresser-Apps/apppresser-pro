@@ -23,12 +23,14 @@ $toolbar_color   = get_field( 'toolbar_color' );
 $content_padding = get_field( 'padding' );
 $left_buttons    = get_field( 'left_buttons' );
 $right_buttons   = get_field( 'right_buttons' );
+$background   = get_field( 'background' );
 
 $allowed_blocks = appp_get_allowed_blocks();
 
-// error_log( print_r( appp_get_theme_colors($post_id), true ) );
-
-// $key = array_search( $toolbar_color, appp_get_theme_colors($post_id) );
+$style = '';
+if ( 'default' !== $background ) {
+    $style .= '--background: var(--ion-color-' . $background . '); ';
+}
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
@@ -55,7 +57,7 @@ $allowed_blocks = appp_get_allowed_blocks();
 			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
-	<ion-content>
+	<ion-content style="<?php echo $style; ?>">
 		<InnerBlocks templateInsertUpdatesSelection="false" templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>" />
 	</ion-content>
 </div>
