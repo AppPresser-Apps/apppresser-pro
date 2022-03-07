@@ -53,7 +53,7 @@ function appp_remove_menu_items() {
 		remove_submenu_page( 'options-general.php', 'options-discussion.php' );
 		remove_submenu_page( 'options-general.php', 'akismet-key-config' );
 
-		remove_submenu_page( 'index.php', 'update-apppe.php' );
+		remove_submenu_page( 'index.php', 'update-core.php' );
 
 }
 add_action( 'admin_menu', 'appp_remove_menu_items', 999 );
