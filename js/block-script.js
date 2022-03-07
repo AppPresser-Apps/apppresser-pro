@@ -38,6 +38,9 @@ function apppFilterBlockRegister( settings, name ) {
         case 'acf/card':
             settings.parent = ['acf/view'];
             break;
+        case 'acf/view': 
+            console.log('view', settings);
+            break;
     }
 
     return settings;

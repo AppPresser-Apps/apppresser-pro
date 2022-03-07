@@ -67,7 +67,12 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		</ion-toolbar>
 	</ion-header>
 	<ion-content style="<?php echo $style; ?>">
-		<InnerBlocks templateInsertUpdatesSelection="false" templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>" />
+		<InnerBlocks 
+			templateInsertUpdatesSelection="false" 
+			templateLock="false" 
+			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+			renderAppender="InnerBlocks.ButtonBlockAppender" 
+		/>
 	</ion-content>
 </div>
 
