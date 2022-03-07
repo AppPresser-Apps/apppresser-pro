@@ -28,8 +28,6 @@ $right_buttons   = get_field( 'right_buttons' );
 $background      = get_field( 'background' );
 $padding         = get_field( 'padding' );
 
-error_log(print_r($padding,true));
-
 $style = '';
 
 if ( 'default' !== $background ) {

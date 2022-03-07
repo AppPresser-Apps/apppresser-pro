@@ -22,9 +22,10 @@ $sub_title = get_field( 'sub_title' );
 $title     = get_field( 'title' );
 $content   = get_field( 'content' );
 $image     = get_field( 'header_image' );
+$image_height  = get_field( 'image_height' ) ?? 300;
 
 
-// error_log(print_r(get_field( 'padding' ),true));
+error_log(print_r(get_field( 'image_height' ),true));
 
 $style = '';
 
@@ -45,13 +46,15 @@ $style = '';
 // 	$style .= 'color: var(--ion-color-' . $color . '); ';
 // }
 
-$style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 300; ';
+$style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 170; ';
 
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
 		<ion-card>
-			<img src="<?php echo esc_url( $image ); ?>"></img>
+			<?php if( ! empty($image)   ) : ?>
+				<div style="background-image: url(<?php echo esc_url( $image ); ?>); height: <?php echo esc_attr( $image_height ); ?>px; background-size: cover; background-position: center; "></div>
+			<?php endif; ?>
 			<ion-card-header>
 			    <ion-card-subtitle><?php echo esc_attr( $sub_title ); ?></ion-card-subtitle>
 			    <ion-card-title><?php echo esc_attr( $title ); ?></ion-card-title>

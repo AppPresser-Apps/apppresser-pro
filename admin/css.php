@@ -32,10 +32,13 @@ function appp_custom_editor_css() {
 		right: 20px;
 		top: -50px;
 	}
-	.block-editor-inner-blocks 	.block-editor-inserter {
-		position: absolute;
+	.block-editor-inner-blocks .block-editor-inserter {
 		right: 20px;
 		top: 20px;
+	}
+	.block-editor-block-list__insertion-point-inserter .block-editor-inserter {
+		right: -24px;
+		top: 0px;
 	}
 	.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
 		margin-left: 0px !important;
