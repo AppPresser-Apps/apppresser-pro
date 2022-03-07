@@ -32,9 +32,9 @@ $alignment  = get_field( 'alignment' );
 $style = '';
 
 $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
-$style .= 'padding_top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
-$style .= 'padding_right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
-$style .= 'padding_bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
+$style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
+$style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
+$style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
 
 if ( $margin ) {
 	$style .= 'margin-left:' . $margin . 'px; ';
@@ -53,15 +53,11 @@ if ( 'default' === $color ) {
 	$style .= 'color: var(--ion-color-' . $color . '); ';
 }
 
-if ( $alignment ) {
-	$style .= 'align-text:' . $alignment . '; ';
-}
-
 $style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 300; ';
 
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
-		<p style="padding: 0px; margin: 0px; font-size:<?php echo $size; ?>px; font-weight: <?php echo $weight; ?>; line-height:<?php echo $size; ?>px; "><?php echo $text ? $text : 'add text...'; ?></p>
+		<p style="padding: 0px; margin: 0px; font-size:<?php echo $size; ?>px; font-weight: <?php echo $weight; ?>; line-height:<?php echo $size; ?>px; text-align:<?php echo $alignment; ?>; "><?php echo $text ? $text : 'add text...'; ?></p>
 	</div>
 </div>

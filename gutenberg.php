@@ -115,11 +115,12 @@ function get_editor_settings() {
 function appp_get_allowed_blocks() {
 	return array(
 		'core/image',
-		'core/paragraph',
+		//'core/paragraph',
 		'core/spacer',
 		'acf/button',
 		'acf/list',
 		'acf/text',
+		'acf/card',
 	);
 }
 
@@ -215,8 +216,32 @@ function appp_init_block_types() {
 				'description'     => __( 'A custom text block.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/text.php',
 				'category'        => 'appp_component',
-				'icon'            => 'editor-ul',
+				'icon'            => 'editor-paragraph',
 				'keywords'        => array( 'component', 'text' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
+		// register a text block.
+		acf_register_block_type(
+			array(
+				'name'            => 'card',
+				'title'           => __( 'Card' ),
+				'description'     => __( 'A custom card block.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/card.php',
+				'category'        => 'appp_component',
+				'icon'            => 'excerpt-view',
+				'keywords'        => array( 'component', 'card' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',

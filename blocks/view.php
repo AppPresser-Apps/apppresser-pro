@@ -18,19 +18,28 @@ if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
+$allowed_blocks = appp_get_allowed_blocks();
+
 $title           = get_field( 'title' );
 $toolbar_color   = get_field( 'toolbar_color' );
 $content_padding = get_field( 'padding' );
 $left_buttons    = get_field( 'left_buttons' );
 $right_buttons   = get_field( 'right_buttons' );
-$background   = get_field( 'background' );
+$background      = get_field( 'background' );
+$padding         = get_field( 'padding' );
 
-$allowed_blocks = appp_get_allowed_blocks();
+error_log(print_r($padding,true));
 
 $style = '';
+
 if ( 'default' !== $background ) {
-    $style .= '--background: var(--ion-color-' . $background . '); ';
+	$style .= '--background: var(--ion-color-' . $background . '); ';
 }
+
+$style .= '--padding-start:' . ( $padding['padding_left'] ?? '0' ) . 'px; ';
+$style .= '--padding-top:' . ( $padding['padding_top'] ?? '0' ) . 'px; ';
+$style .= '--padding-end:' . ( $padding['padding_right'] ?? '0' ) . 'px; ';
+$style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">

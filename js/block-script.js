@@ -14,10 +14,10 @@ function apppFilterBlockRegister( settings, name ) {
     //console.log(settings, name);
 
     switch (name) {
-        case 'core/paragraph':
-            settings.category = 'appp_component';
-            settings.parent = ['acf/view'];
-            break;
+        // case 'core/paragraph':
+        //     settings.category = 'appp_component';
+        //     settings.parent = ['acf/view'];
+        //     break;
         case 'core/image':
             settings.category = 'appp_component';
             settings.parent = ['acf/view'];
@@ -33,6 +33,9 @@ function apppFilterBlockRegister( settings, name ) {
             settings.parent = ['acf/view'];
             break;
         case 'acf/text':
+            settings.parent = ['acf/view'];
+            break;
+        case 'acf/card':
             settings.parent = ['acf/view'];
             break;
     }
