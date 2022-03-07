@@ -22,12 +22,12 @@ $text       = get_field( 'text' );
 $color      = get_field( 'color' );
 $background = get_field( 'background' );
 $size       = get_field( 'font_size' );
-$weight       = get_field( 'font_weight' );
+$weight     = get_field( 'font_weight' );
 $margin     = get_field( 'margin' );
-$padding   = get_field( 'padding' );
+$padding    = get_field( 'padding' );
 $alignment  = get_field( 'alignment' );
 
-//error_log(print_r(get_field( 'padding' ),true));
+// error_log(print_r(get_field( 'padding' ),true));
 
 $style = '';
 

@@ -135,9 +135,10 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
 function appp_get_theme_colors( $post_id ) {
 
+	global $post, $pagenow;
 
-	if (! $post_id or 0 === $post_id) {
-		return array();
+	if ( ( $pagenow !== 'post.php' ) || ( get_post_type() !== 'app' ) ) {
+		return [];
 	}
 
 	$fields = array(
