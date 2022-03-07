@@ -135,6 +135,11 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
 function appp_get_theme_colors( $post_id ) {
 
+
+	if (! $post_id or 0 === $post_id) {
+		return array();
+	}
+
 	$fields = array(
 		'primary',
 		'secondary',

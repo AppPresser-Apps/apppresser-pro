@@ -22,6 +22,7 @@ define( 'APPPRESSER_FILE', __FILE__ );
 
 require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
 
+require dirname( __FILE__ ) . '/admin/admin.php';
 require dirname( __FILE__ ) . '/admin/css.php';
 require dirname( __FILE__ ) . '/admin/media.php';
 require dirname( __FILE__ ) . '/helpers/colors.php';
