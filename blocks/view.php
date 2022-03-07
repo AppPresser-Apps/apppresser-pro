@@ -71,7 +71,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 			templateInsertUpdatesSelection="false" 
 			templateLock="false" 
 			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
-			renderAppender="InnerBlocks.ButtonBlockAppender" 
 		/>
 	</ion-content>
 </div>
