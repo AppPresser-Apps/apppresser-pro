@@ -115,7 +115,6 @@ function get_editor_settings() {
 function appp_get_allowed_blocks() {
 	return array(
 		'core/image',
-		//'core/paragraph',
 		'core/spacer',
 		'acf/button',
 		'acf/list',
@@ -144,6 +143,32 @@ function appp_init_block_types() {
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
+		// register a onboard view.
+		acf_register_block_type(
+			array(
+				'name'            => 'onboard',
+				'title'           => __( 'OnBoarding' ),
+				'description'     => __( 'A custom onboard view.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/onboard.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
+				'keywords'        => array( 'component', 'onboard' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
@@ -232,7 +257,7 @@ function appp_init_block_types() {
 			)
 		);
 
-		// register a text block.
+		// register a card block.
 		acf_register_block_type(
 			array(
 				'name'            => 'card',
@@ -256,7 +281,6 @@ function appp_init_block_types() {
 			)
 		);
 
-		
 	}
 }
 add_action( 'acf/init', 'appp_init_block_types' );
@@ -276,6 +300,7 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 			appp_get_allowed_blocks(),
 			array(
 				'acf/view',
+				'acf/onboard',
 			)
 		);
 	}

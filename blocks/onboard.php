@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Blank View Block Template.
+ * Onboard View Block Template.
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
@@ -10,22 +10,22 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$id = 'appview-' . $block['id'];
+$id = 'appview-onboard' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$className = 'appview';
+$className = 'onboard';
 if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
-$allowed_blocks = appp_get_allowed_blocks();
+$allowed_blocks = array(
+    'core/image',
+    //'core/spacer',
+    'acf/button',
+    'acf/text',
+);;
 
 $title           = get_field( 'title' );
-$hide_toolbar    = get_field( 'hide_toolbar' );
-$toolbar_color   = get_field( 'toolbar_color' );
-$content_padding = get_field( 'padding' );
-$left_buttons    = get_field( 'left_buttons' );
-$right_buttons   = get_field( 'right_buttons' );
 $background      = get_field( 'background' );
 $padding         = get_field( 'padding' );
 
@@ -37,39 +37,15 @@ if ( 'default' !== $background ) {
 	$style .= '--background: var(--ion-color-' . $background . '); ';
 }
 
-$style .= '--padding-start:' . ( $padding['padding_left'] ?? '0' ) . 'px; ';
-$style .= '--padding-top:' . ( $padding['padding_top'] ?? '0' ) . 'px; ';
-$style .= '--padding-end:' . ( $padding['padding_right'] ?? '0' ) . 'px; ';
-$style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
+$style .= '--padding-start: 16px; ';
+$style .= '--padding-top: 16px; ';
+$style .= '--padding-end: 16px; ';
+$style .= '--padding-bottom: 16px; ';
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-<?php if ( ! $hide_toolbar ) : ?>
-	<ion-header>
-		<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
-			<ion-buttons slot="start">
-				<?php
-				if ( $left_buttons ) {
-					foreach ( $left_buttons as $button ) {
-						appp_process_left_button( $button );
-					};
-				};
-				?>
-			</ion-buttons>
-			<ion-title style="width:140px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
-			<ion-buttons slot="end">
-				<?php
-				if ( $right_buttons ) {
-					foreach ( $right_buttons as $button ) {
-						appp_process_right_button( $button );
-					};
-				};
-				?>
-			</ion-buttons>
-		</ion-toolbar>
-	</ion-header>
-<?php endif; ?>
-	<ion-content style="<?php echo $style; ?>" fullscreen="<?php echo $fullscreen; ?>">
+
+	<ion-content style="<?php echo $style; ?>" fullscreen="true">
 		<InnerBlocks 
 			templateInsertUpdatesSelection="false" 
 			templateLock="false" 
@@ -87,18 +63,21 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		margin: 10px !important;
 	}
 	#<?php echo $id; ?> ion-content {
-		<?php if( ! $hide_toolbar ) : ?>
-			height: calc(100% - 44px) !important;
-		<?php else : ?>
-			height: 100% !important;
-			--offset-top: 0px !important;
-			--offset-bottom: 0px !important;
-		<?php endif; ?>
+        height: 100% !important;
+		--offset-top: 0px !important;
+		--offset-bottom: 0px !important;
 	
 	}
-	ion-title {
-		width: 150px;
-	}
+    #<?php echo $id; ?> .block-editor-block-list__layout {
+        height: 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #<?php echo $id; ?> .block-editor-block-list__layout .wp-block {
+        width: 100%;
+    }
 </style>
 
 

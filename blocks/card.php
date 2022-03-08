@@ -10,10 +10,10 @@
  */
 
 // Create id attribute allowing for custom "anchor" value.
-$block_id = 'text-' . $block['id'];
+$block_id = 'card-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$class_name = 'appp-text';
+$class_name = 'appp-card';
 if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
@@ -23,9 +23,6 @@ $title     = get_field( 'title' );
 $content   = get_field( 'content' );
 $image     = get_field( 'header_image' );
 $image_height  = get_field( 'image_height' ) ?? 300;
-
-
-error_log(print_r(get_field( 'image_height' ),true));
 
 $style = '';
 
@@ -51,7 +48,7 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-w
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
-		<ion-card>
+		<ion-card href="#">
 			<?php if( ! empty($image)   ) : ?>
 				<div style="background-image: url(<?php echo esc_url( $image ); ?>); height: <?php echo esc_attr( $image_height ); ?>px; background-size: cover; background-position: center; "></div>
 			<?php endif; ?>

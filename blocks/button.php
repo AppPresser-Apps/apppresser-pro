@@ -18,6 +18,7 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
+$title = get_field( 'title' );
 $color = get_field( 'color' );
 $fill  = get_field( 'fill' );
 $size  = get_field( 'size' );
@@ -47,6 +48,6 @@ if( 'inline' === $expand && $alignment ) {
 			fill="<?php echo $fill ? $fill : 'solid'; ?>"
 			size="<?php echo $size ? $size : 'default'; ?>"
 			expand="<?php echo $expand ? $expand : 'inline'; ?>"
-		>Menu</ion-button>
+		><?php echo $title ? $title : 'Button'; ?></ion-button>
 	</div>
 </div>

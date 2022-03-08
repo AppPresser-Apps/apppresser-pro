@@ -20,26 +20,23 @@ function apppFilterBlockRegister( settings, name ) {
         //     break;
         case 'core/image':
             settings.category = 'appp_component';
-            settings.parent = ['acf/view'];
+            settings.parent = ['acf/view', 'acf/onboard'];
             break;
         case 'core/spacer':
             settings.category = 'appp_component';
             settings.parent = ['acf/view'];
             break;
         case 'acf/button':
-            settings.parent = ['acf/view'];
+            settings.parent = ['acf/view', 'acf/onboard'];
             break;
         case 'acf/list':
             settings.parent = ['acf/view'];
             break;
         case 'acf/text':
-            settings.parent = ['acf/view'];
+            settings.parent = ['acf/view', 'acf/onboard'];
             break;
         case 'acf/card':
             settings.parent = ['acf/view'];
-            break;
-        case 'acf/view': 
-            console.log('view', settings);
             break;
     }
 
