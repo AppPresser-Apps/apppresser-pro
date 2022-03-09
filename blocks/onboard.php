@@ -9,6 +9,8 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
+error_log( print_r( $block, true ) );
+
 // Create id attribute allowing for custom "anchor" value.
 $id = 'appview-onboard' . $block['id'];
 
@@ -18,18 +20,52 @@ if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
+$template = array(
+	array(
+		'core/image',
+		array(
+			'url' => 'http://plugin-dev.local/wp-content/uploads/2021/08/icon.png',
+		),
+	),
+	array(
+		'acf/text',
+		array(
+			'data' => array(
+				'text'      => 'Onboard Heading here',
+				'font_size' => 32,
+			),
+		),
+	),
+	array(
+		'acf/text',
+		array(
+			'data' => array(
+				'text'      => 'Onboard message here.',
+			),
+		),
+	),
+	array(
+		'acf/button',
+		array(
+			'data' => array(
+				'title' => 'Next',
+				'expand'  => 'block',
+			),
+		),
+	),
+);
+
 $allowed_blocks = array(
-    'core/image',
-    //'core/spacer',
-    'acf/button',
-    'acf/text',
-);;
+	'core/image',
+	// 'core/spacer',
+	'acf/button',
+	'acf/text',
+);
 
-$title           = get_field( 'title' );
-$background      = get_field( 'background' );
-$padding         = get_field( 'padding' );
 
-$fullscreen = ! $hide_toolbar ? 'false' : 'true';
+$title      = get_field( 'title' );
+$background = get_field( 'background' );
+$padding    = get_field( 'padding' );
 
 $style = '';
 
@@ -48,7 +84,8 @@ $style .= '--padding-bottom: 16px; ';
 	<ion-content style="<?php echo $style; ?>" fullscreen="true">
 		<InnerBlocks 
 			templateInsertUpdatesSelection="false" 
-			templateLock="false" 
+			template="<?php echo esc_attr( wp_json_encode( $template ) ); ?>"
+			templateLock="all" 
 			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 		/>
 	</ion-content>
@@ -63,21 +100,27 @@ $style .= '--padding-bottom: 16px; ';
 		margin: 10px !important;
 	}
 	#<?php echo $id; ?> ion-content {
-        height: 100% !important;
+		height: 640px !important;
 		--offset-top: 0px !important;
 		--offset-bottom: 0px !important;
 	
 	}
-    #<?php echo $id; ?> .block-editor-block-list__layout {
-        height: 640px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    #<?php echo $id; ?> .block-editor-block-list__layout .wp-block {
-        width: 100%;
-    }
+	#<?php echo $id; ?> .block-editor-block-list__layout {
+		height: 605px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	#<?php echo $id; ?> .block-editor-block-list__layout .wp-block {
+		width: 100%;
+	}
+	#<?php echo $id; ?> .wp-block-image {
+		margin-top: auto;
+	}
+	#<?php echo $id; ?> .wp-block-acf-button {
+		margin-top: auto;
+	}
 </style>
 
 
@@ -87,11 +130,6 @@ $style .= '--padding-bottom: 16px; ';
 	// .button and WordPress editor styles is screwing up the design
 	setTimeout(() => {
 		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
-
-		var content = view.querySelector('ion-content');
-		<?php if ( $content_padding ) : ?>
-			content.classList.add('ion-padding');
-		<?php endif; ?>
 
 		var menubtns = view.querySelectorAll('ion-menu-button'), i;
 

@@ -9,6 +9,8 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
+error_log(print_r($block,true));
+
 // Create id attribute allowing for custom "anchor" value.
 $block_id = 'text-' . $block['id'];
 
@@ -58,6 +60,6 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-w
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
-		<p style="padding: 0px; margin: 0px; font-size:<?php echo $size; ?>px; font-weight: <?php echo $weight; ?>; line-height:<?php echo $size; ?>px; text-align:<?php echo $alignment; ?>; "><?php echo $text ? $text : 'add text...'; ?></p>
+		<p style="padding: 0px; margin: 0px; font-size:<?php echo $size; ?>px; font-weight: <?php echo $weight; ?>; line-height:<?php echo $size; ?>px; text-align:<?php echo $alignment; ?>; "><?php echo $text ? $text : ''; ?></p>
 	</div>
 </div>
