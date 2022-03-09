@@ -1,0 +1,20 @@
+{
+  "name": "apppresser-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "acf": "create-acf-block",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppPresser-Apps/apppresser-pro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AppPresser-Apps/apppresser-pro/issues"
+  },
+  "homepage": "https://github.com/AppPresser-Apps/apppresser-pro#readme"
+}

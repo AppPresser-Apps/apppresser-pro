@@ -108,6 +108,12 @@ function appp_custom_editor_css() {
 	.post-type-app .row-actions {
 		display: none;
 	}
+	.components-tip {
+		display: none;
+	}
+	.edit-post-header-toolbar__left .components-dropdown {
+		display: none;
+	}
 
 	:root {
 		--ion-color-white: #ffffff;

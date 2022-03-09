@@ -114,8 +114,8 @@ function get_editor_settings() {
  */
 function appp_get_allowed_blocks() {
 	return array(
-		'core/image',
 		'core/spacer',
+		'acf/image',
 		'acf/button',
 		'acf/list',
 		'acf/text',
@@ -280,6 +280,32 @@ function appp_init_block_types() {
 				),
 			)
 		);
+
+		// Begin Create-ACF-Block
+		acf_register_block_type(
+			array(
+				'name'            => 'image',
+				'title'           => __( 'Image' ),
+				'description'     => __( 'custom image block' ),
+				'category'        => 'appp_component',
+				'icon'            => 'format-image',
+				'keywords'        => array( 'component', 'image' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'className' => 'appp-image',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/image/block.php',
+			)
+		);
+		// End Create-ACF-Block
 
 	}
 }

@@ -9,6 +9,11 @@ wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'discussion-panel' ); // 
 wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'template' ); // Template
 wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'post-status' ); // Status
 
+const isfixedToolbar = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fixedToolbar' );
+
+if ( !isfixedToolbar ) {
+    wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
+}
 
 function apppFilterBlockRegister( settings, name ) {
     //console.log(settings, name);
@@ -37,6 +42,9 @@ function apppFilterBlockRegister( settings, name ) {
             break;
         case 'acf/card':
             settings.parent = ['acf/view'];
+            break;
+        case 'acf/image':
+            settings.parent = ['acf/view', 'acf/onboard'];
             break;
     }
 

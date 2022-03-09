@@ -9,8 +9,6 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
-error_log( print_r( $block, true ) );
-
 // Create id attribute allowing for custom "anchor" value.
 $id = 'appview-onboard' . $block['id'];
 
@@ -22,9 +20,12 @@ if ( ! empty( $block['className'] ) ) {
 
 $template = array(
 	array(
-		'core/image',
+		'acf/image',
 		array(
-			'url' => 'http://plugin-dev.local/wp-content/uploads/2021/08/icon.png',
+			'data' => array(
+				'image'         => 'http://plugin-dev.local/wp-content/uploads/2022/03/image-placeholder.png',
+				'border_radius' => 0,
+			),
 		),
 	),
 	array(
@@ -40,7 +41,7 @@ $template = array(
 		'acf/text',
 		array(
 			'data' => array(
-				'text'      => 'Onboard message here.',
+				'text' => 'Onboard message here.',
 			),
 		),
 	),
@@ -48,8 +49,8 @@ $template = array(
 		'acf/button',
 		array(
 			'data' => array(
-				'title' => 'Next',
-				'expand'  => 'block',
+				'title'  => 'Next',
+				'expand' => 'block',
 			),
 		),
 	),
@@ -57,7 +58,6 @@ $template = array(
 
 $allowed_blocks = array(
 	'core/image',
-	// 'core/spacer',
 	'acf/button',
 	'acf/text',
 );
@@ -115,7 +115,7 @@ $style .= '--padding-bottom: 16px; ';
 	#<?php echo $id; ?> .block-editor-block-list__layout .wp-block {
 		width: 100%;
 	}
-	#<?php echo $id; ?> .wp-block-image {
+	#<?php echo $id; ?> .wp-block-acf-image {
 		margin-top: auto;
 	}
 	#<?php echo $id; ?> .wp-block-acf-button {
