@@ -81,7 +81,7 @@ function appp_gutenberg_register_files() {
 		'appp-block-script',
 		APPPRESSER_URL . '/js/block-script.js',
 		array( 'wp-blocks', 'wp-edit-post' ),
-		'1.1.2',
+		'1.1.3',
 		true,
 	);
 
@@ -107,7 +107,7 @@ function appp_admin_enqueue_scripts( $hook_suffix ) {
 add_action( 'admin_enqueue_scripts', 'appp_admin_enqueue_scripts' );
 
 function appp_acf_admin_enqueue_scripts() {
-	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.3', true );
+	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array(), '1.0.5\6', true );
 }
 
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts' );

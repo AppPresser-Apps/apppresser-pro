@@ -32,8 +32,37 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
+var instance = new acf.Model({
+    events: {
+        'change': 'onChange',
+    },
+    onChange: function(e, $el){
+        e.preventDefault();
+        const block = wp.data.select('core/block-editor').getSelectedBlock(); 
+        const parent = wp.data.select("core/block-editor").getBlockRootClientId(block.clientId);
+        const parentblock = wp.data.select('core/block-editor').getBlock(parent); 
+
+        var $fields = acf.findFields({
+            name: 'per_page'
+        });
+
+
+        if( parentblock && parentblock.name === 'acf/repeater' ) {
+            console.log($fields);
+            appp_update_repeater(parentblock.attributes.id, parentblock.attributes.data.per_page);
+        }
+
+        if( block && block.name === 'acf/repeater' ) {
+            console.log($fields);
+            appp_update_repeater(block.attributes.id, block.attributes.data.per_page);
+        }
+
+    }
+});
+
 
 acf.add_action('ready append', function(e){
+
     window.jQuery('a.acf-icon.-duplicate').remove();
 
     // Load root theme styles
@@ -70,4 +99,37 @@ function appp_api_colors(name, hex) {
             document.documentElement.style.setProperty(key, data[key]);
         }
     });
+}
+
+function appp_update_repeater(id, per_page) {
+
+	setTimeout(() => {
+
+        const amount = (per_page - 1);
+
+
+        const repeater = document.querySelector('#repeater-' + id);
+
+        const items = document.querySelector('.items-repeat');
+      
+        while (items.lastChild) {
+            items.removeChild(items.lastChild);
+        }
+    
+        const preview = repeater.querySelector('.acf-block-preview');
+    
+    
+        var i;
+    
+        for (i = 0; i < amount; i++) {
+            const clonedTarget = preview.cloneNode(true);
+            clonedTarget.classList.remove( 'acf-block-preview' );
+            clonedTarget.firstChild.removeAttribute( 'id' );
+            console.log('clone');
+            items.appendChild(clonedTarget);
+        }
+
+	}, 500);
+
+
 }

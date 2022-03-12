@@ -5,22 +5,22 @@
  * Description: custom image block
  */
 
-error_log( print_r( $block, true ) );
 
 // Dynamic block ID.
 $block_id = 'image-' . $block['id'];
 
 $blockClasses = implode( ' ', array( $block['className'] ) );
 
-$image         = get_field( 'image' );
+$card_image    = get_field( 'image' );
+$image         = ! empty( $card_image ) ? $card_image : APPPRESSER_URL . '/images/image-placeholder.png';
 $caption       = get_field( 'caption' );
 $border_radius = get_field( 'border_radius' );
 
 $style = '';
 
 if ( $border_radius > 0 ) {
-  $style .= 'overflow:hidden; ';
-  $style .= 'border-radius:' . $border_radius . '%; ';
+	$style .= 'overflow:hidden; ';
+	$style .= 'border-radius:' . $border_radius . '%; ';
 }
 
 ?>

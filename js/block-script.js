@@ -41,10 +41,13 @@ function apppFilterBlockRegister( settings, name ) {
             settings.parent = ['acf/view', 'acf/onboard'];
             break;
         case 'acf/card':
-            settings.parent = ['acf/view'];
+            settings.parent = ['acf/view', 'acf/repeater'];
             break;
         case 'acf/image':
             settings.parent = ['acf/view', 'acf/onboard'];
+            break;
+        case 'acf/repeater':
+            settings.parent = ['acf/view'];
             break;
     }
 
@@ -56,4 +59,36 @@ wp.hooks.addFilter(
     'blocks.registerBlockType',
     'apppresser/blocks-filter',
     apppFilterBlockRegister
+);
+
+var el = wp.element.createElement;
+ 
+var apppFilterBlockEdit = wp.compose.createHigherOrderComponent( function ( BlockListBlock ) {
+    return function ( props ) {
+
+       
+        const parent = wp.data.select("core/block-editor").getBlockRootClientId(props.clientId);
+
+        
+
+        const parentAttributes = wp.data.select('core/block-editor').getBlocksByClientId(parent)[0];
+
+        //console.log(parentAttributes);
+
+        if( parentAttributes && parentAttributes.name === 'acf/repeater' ) {
+            //console.log(parentAttributes);
+            //wp.data.dispatch( 'core/block-editor' ).updateBlockAttributes([parent], { content: 'content to update' });
+            //appp_update_repeater(parentAttributes.attributes.id, parentAttributes.attributes.data.per_page);
+        }
+    
+
+        return el( BlockListBlock, props );
+    };
+},
+'apppFilterBlockEdit' );
+
+wp.hooks.addFilter(
+    'editor.BlockEdit',
+    'apppresser/blocks-edit-filter',
+    apppFilterBlockEdit
 );

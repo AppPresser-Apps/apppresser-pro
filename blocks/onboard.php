@@ -23,7 +23,7 @@ $template = array(
 		'acf/image',
 		array(
 			'data' => array(
-				'image'         => 'http://plugin-dev.local/wp-content/uploads/2022/03/image-placeholder.png',
+				'image'         => APPPRESSER_URL . 'images/image-placeholder.png',
 				'border_radius' => 0,
 			),
 		),

@@ -120,6 +120,7 @@ function appp_get_allowed_blocks() {
 		'acf/list',
 		'acf/text',
 		'acf/card',
+		'acf/repeater',
 	);
 }
 
@@ -293,7 +294,7 @@ function appp_init_block_types() {
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
-				'className' => 'appp-image',
+				'className'       => 'appp-image',
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
@@ -303,6 +304,29 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/image/block.php',
+			)
+		);
+		acf_register_block_type(
+			array(
+				'name'            => __( 'repeater' ),
+				'title'           => __( 'Repeater' ),
+				'description'     => __( 'repeats a child block' ),
+				'category'        => 'appp_component',
+				'icon'            => 'format-image',
+				'keywords'        => array( 'component', 'repeater', 'data' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'className'       => 'appp-repeater',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/repeater/block.php',
 			)
 		);
 		// End Create-ACF-Block
