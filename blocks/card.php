@@ -9,6 +9,8 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
+error_log(print_r($block,true));
+
 // Create id attribute allowing for custom "anchor" value.
 $block_id = 'card-' . $block['id'];
 

@@ -29,16 +29,16 @@ function apppFilterBlockRegister( settings, name ) {
             break;
         case 'core/spacer':
             settings.category = 'appp_component';
-            settings.parent = ['acf/view'];
+            settings.parent = ['acf/view', 'acf/repeater'];
             break;
         case 'acf/button':
-            settings.parent = ['acf/view', 'acf/onboard'];
+            settings.parent = ['acf/view', 'acf/onboard', 'acf/repeater'];
             break;
         case 'acf/list':
             settings.parent = ['acf/view'];
             break;
         case 'acf/text':
-            settings.parent = ['acf/view', 'acf/onboard'];
+            settings.parent = ['acf/view', 'acf/onboard', 'acf/repeater'];
             break;
         case 'acf/card':
             settings.parent = ['acf/view', 'acf/repeater'];
@@ -61,34 +61,3 @@ wp.hooks.addFilter(
     apppFilterBlockRegister
 );
 
-var el = wp.element.createElement;
- 
-var apppFilterBlockEdit = wp.compose.createHigherOrderComponent( function ( BlockListBlock ) {
-    return function ( props ) {
-
-       
-        const parent = wp.data.select("core/block-editor").getBlockRootClientId(props.clientId);
-
-        
-
-        const parentAttributes = wp.data.select('core/block-editor').getBlocksByClientId(parent)[0];
-
-        //console.log(parentAttributes);
-
-        if( parentAttributes && parentAttributes.name === 'acf/repeater' ) {
-            //console.log(parentAttributes);
-            //wp.data.dispatch( 'core/block-editor' ).updateBlockAttributes([parent], { content: 'content to update' });
-            //appp_update_repeater(parentAttributes.attributes.id, parentAttributes.attributes.data.per_page);
-        }
-    
-
-        return el( BlockListBlock, props );
-    };
-},
-'apppFilterBlockEdit' );
-
-wp.hooks.addFilter(
-    'editor.BlockEdit',
-    'apppresser/blocks-edit-filter',
-    apppFilterBlockEdit
-);

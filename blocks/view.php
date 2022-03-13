@@ -9,6 +9,7 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
+
 // Create id attribute allowing for custom "anchor" value.
 $id = 'appview-' . $block['id'];
 
@@ -87,7 +88,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		margin: 10px !important;
 	}
 	#<?php echo $id; ?> ion-content {
-		<?php if( ! $hide_toolbar ) : ?>
+		<?php if ( ! $hide_toolbar ) : ?>
 			height: calc(100% - 44px) !important;
 		<?php else : ?>
 			height: 100% !important;

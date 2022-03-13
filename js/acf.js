@@ -32,33 +32,43 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
+const editor = wp.data.select("core/block-editor");
+
 var instance = new acf.Model({
     events: {
         'change': 'onChange',
     },
     onChange: function(e, $el){
         e.preventDefault();
-        const block = wp.data.select('core/block-editor').getSelectedBlock(); 
-        const parent = wp.data.select("core/block-editor").getBlockRootClientId(block.clientId);
-        const parentblock = wp.data.select('core/block-editor').getBlock(parent); 
 
-        var $fields = acf.findFields({
-            name: 'per_page'
-        });
+        const block = editor.getSelectedBlock(); 
 
+        if (!block || !block.clientId) {
+            return;
+        }
+
+        const parent = editor.getBlockRootClientId(block.clientId);
+        const parentblock = editor.getBlock(parent);
 
         if( parentblock && parentblock.name === 'acf/repeater' ) {
-            console.log($fields);
-            appp_update_repeater(parentblock.attributes.id, parentblock.attributes.data.per_page);
+            //console.log(parentblock.attributes.data);
+            if(window[parentblock.attributes.id] !== undefined && window[parentblock.attributes.id] !== null) {
+                //console.log(window[parentblock.attributes.id].per_page);
+                appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
+            }
         }
 
         if( block && block.name === 'acf/repeater' ) {
-            console.log($fields);
-            appp_update_repeater(block.attributes.id, block.attributes.data.per_page);
+            //console.log(block.attributes.data);
+            if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
+                //console.log(window[block.attributes.id].per_page);
+                appp_update_repeater(block.attributes.id, window[block.attributes.id].per_page);
+            }
         }
 
     }
 });
+
 
 
 acf.add_action('ready append', function(e){
@@ -105,28 +115,26 @@ function appp_update_repeater(id, per_page) {
 
 	setTimeout(() => {
 
-        const amount = (per_page - 1);
+        const amount = per_page;
 
+        console.log(amount)
 
         const repeater = document.querySelector('#repeater-' + id);
+        const items = document.querySelector('.items-repeat-' + id);
 
-        const items = document.querySelector('.items-repeat');
+        items.innerHTML = '';
       
-        while (items.lastChild) {
-            items.removeChild(items.lastChild);
-        }
+        // while (items.lastChild) {
+        //     items.removeChild(items.lastChild);
+        // }
     
-        const preview = repeater.querySelector('.acf-block-preview');
-    
+        //const preview = repeater.querySelector('.acf-block-preview');
     
         var i;
     
         for (i = 0; i < amount; i++) {
-            const clonedTarget = preview.cloneNode(true);
-            clonedTarget.classList.remove( 'acf-block-preview' );
-            clonedTarget.firstChild.removeAttribute( 'id' );
-            console.log('clone');
-            items.appendChild(clonedTarget);
+            const clonedTarget = repeater.cloneNode(true);
+            //items.appendChild(clonedTarget);
         }
 
 	}, 500);

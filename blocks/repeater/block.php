@@ -18,16 +18,22 @@ $blockClasses = implode( ' ', array( $block['className'] ) );
 
 $per_page = get_field( 'per_page' );
 
-$allowed_blocks = array( 'acf/card' );
+
+$allowed_blocks = array( 'acf/card', 'acf/button' );
+
+$block['custom'] = 'sssssss';
 
 ?>
 
 <div id="<?php echo $block_id; ?>" class="<?php echo $blockClasses; ?>">
 	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"/>
 </div>
-<div class="items-repeat"></div>
+<!-- <div style="text-align:center; font-size: 12px;">Example Items</div> -->
+<div style="opacity: 0.4;" class="items-repeat-<?php echo $block['id']; ?>"></div>
 
 <script>
-	console.log('Repeater field cdcdcdcdccd');
+	var <?php echo $block['id']; ?> = {
+		'per_page': <?php echo $per_page; ?>
+	}
 	appp_update_repeater('<?php echo $block['id']; ?>', <?php echo $per_page; ?>);
 </script>

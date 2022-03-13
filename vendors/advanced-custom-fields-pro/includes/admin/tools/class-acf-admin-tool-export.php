@@ -36,7 +36,7 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 
 			// active
 			if ( $this->is_active() ) {
-				$this->title .= ' - ' . __( '', 'acf' );
+				$this->title .= ' - ' . __( 'Generate PHP', 'acf' );
 			}
 
 		}
@@ -433,7 +433,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 		</textarea>
 		<p class="acf-submit">
 			<a class="button" id="acf-export-copy"><?php _e( 'Copy to clipboard', 'acf' ); ?></a>
-			<a class="button" id="acf-export-file"><?php _e( 'Save File', 'acf' ); ?></a>
 		</p>
 		<script type="text/javascript">
 		(function($){
