@@ -38,8 +38,10 @@ var instance = new acf.Model({
     events: {
         'change': 'onChange',
     },
-    onChange: function(e, $el){
+    onChange: async function(e, $el){
         e.preventDefault();
+
+   
 
         const block = editor.getSelectedBlock(); 
 
@@ -50,19 +52,88 @@ var instance = new acf.Model({
         const parent = editor.getBlockRootClientId(block.clientId);
         const parentblock = editor.getBlock(parent);
 
+        // let sync = {}
+        // sync[parentblock.attributes.attributes.id] = { per_page: parentblock.attributes.data.per_page }
+
+        // wp.data.dispatch('core/editor').editPost({meta: {acf_sync: JSON.stringify(sync)}});
+
+        // const meta = wp.data.select('core/editor').getEditedPostAttribute('meta').acf_sync;
+
+        // //wp.data.dispatch('core/editor').savePost();
+
+        // console.log(JSON.parse(meta));
+
+    
+
         if( parentblock && parentblock.name === 'acf/repeater' ) {
             //console.log(parentblock.attributes.data);
             if(window[parentblock.attributes.id] !== undefined && window[parentblock.attributes.id] !== null) {
                 //console.log(window[parentblock.attributes.id].per_page);
-                appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
+                //appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
             }
         }
 
         if( block && block.name === 'acf/repeater' ) {
+
+            let repeaterData = {...block.attributes.data}
+
+            if ( '' !== repeaterData.data_source) {
+                console.log(repeaterData.data_source);
+
+                // wp.apiFetch( {
+                //     url: repeaterData.data_source,
+                //     method: 'GET',
+                // } ).then( res => {
+                //     console.log( res );
+                // } );
+
+                const response = await fetch( repeaterData.data_source, {
+                    headers: {
+                        'content-type': 'application/json'
+                      },
+                    method: 'GET'
+                })
+                .then(
+                    returned => {
+                        if (returned.ok) return returned;
+                        throw new Error('Network response was not ok.');
+                    }
+                );
+
+                const data = await response.json();
+
+                console.log(data);
+            }
+
+
+            var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
+            //console.log(children);
+            children.forEach(function(child){
+
+                let data = {...child.attributes.data}
+
+                Object.keys(data).forEach(element => {
+            
+                    const f = data[element].slice(0,2);
+                    const l = data[element].slice(-2);
+
+                    if ( '{{' === f && '}}' === l ) {
+                        const token = data[element].slice(2, -2);
+                        data[element] = token;
+                    }
+                    
+                });
+
+
+                //data.title = 'hhhh';
+                //console.log(data);
+                wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data})
+            });
+
             //console.log(block.attributes.data);
             if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
                 //console.log(window[block.attributes.id].per_page);
-                appp_update_repeater(block.attributes.id, window[block.attributes.id].per_page);
+                //appp_update_repeater(block.attributes.id, window[block.attributes.id].per_page);
             }
         }
 
@@ -86,6 +157,11 @@ acf.add_action('ready append', function(e){
     }
 
 });
+
+acf.addAction('remount', function ($el) {
+    console.log($el);
+});
+
 
 acf.add_action('ready_field/type=color_picker', function(field){
 

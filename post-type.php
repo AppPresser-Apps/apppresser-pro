@@ -46,7 +46,7 @@ function app_post_type() {
 		'label'               => __( 'App', 'apppresser' ),
 		'description'         => __( 'App Builder', 'apppresser' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor' ),
+		'supports'            => array( 'title', 'editor', 'custom-fields' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -67,6 +67,20 @@ function app_post_type() {
 		'template_lock'       => false,
 	);
 	register_post_type( 'app', $args );
+
+	register_post_meta(
+		'app',
+		'acf_sync',
+		array(
+			'auth_callback'     => function() {
+				return current_user_can( 'edit_posts' );
+			},
+			'sanitize_callback' => 'sanitize_text_field',
+			'show_in_rest'      => true,
+			'single'            => true,
+			'type'              => 'string',
+		)
+	);
 
 }
 add_action( 'init', 'app_post_type', 0 );
@@ -92,15 +106,15 @@ add_action(
 	function( $column_key, $post_id ) {
 
 		if ( 'app' === $column_key ) {
-			$icon = get_field( 'icon', $post_id );
+			$icon  = get_field( 'icon', $post_id );
 			$title = get_the_title( $post_id );
 			echo '<div style="display:flex; align-items: center;">';
 				echo '<a href="' . esc_attr( get_edit_post_link( $post_id ) ) . '">';
-					if ( $icon ) {
-						echo '<img src="' . esc_url( $icon ) . '" style="width:40px; border-radius:6px;"/>';
-					} else {
-						echo '<img src="' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . '" style="width:40px; border-radius:6px;"/>';
-					}
+			if ( $icon ) {
+				echo '<img src="' . esc_url( $icon ) . '" style="width:40px; border-radius:6px;"/>';
+			} else {
+				echo '<img src="' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . '" style="width:40px; border-radius:6px;"/>';
+			}
 				echo '<a/>';
 
 				echo '<div style="padding: 0 15px">';

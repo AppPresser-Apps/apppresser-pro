@@ -9,7 +9,11 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
-// error_log(print_r($content,true));
+if ( ! empty( $block['data']['_is_preview'] ) ) {
+	?>
+		<img src="<?php echo APPPRESSER_URL; ?>/images/image-placeholder.png" alt="Preview of the repeater block">
+	<?php
+} else {
 
 // Dynamic block ID.
 $block_id = 'repeater-' . $block['id'];
@@ -24,16 +28,32 @@ $allowed_blocks = array( 'acf/card', 'acf/button' );
 $block['custom'] = 'sssssss';
 
 ?>
+<style>
+	.block-tag {
+		font-size: 12px;
+		padding: 4px;
+		color: #ffffff;
+		background: var(--wp-admin-theme-color);
+		display: none;
+
+	}
+	.is-selected.wp-block-acf-repeater .block-tag {
+		display: block;
+	}
+</style>
+
 
 <div id="<?php echo $block_id; ?>" class="<?php echo $blockClasses; ?>">
+	<div class="block-tag">Repeater</div>
 	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"/>
 </div>
-<!-- <div style="text-align:center; font-size: 12px;">Example Items</div> -->
+
 <div style="opacity: 0.4;" class="items-repeat-<?php echo $block['id']; ?>"></div>
 
 <script>
 	var <?php echo $block['id']; ?> = {
 		'per_page': <?php echo $per_page; ?>
 	}
-	appp_update_repeater('<?php echo $block['id']; ?>', <?php echo $per_page; ?>);
+	// appp_update_repeater('<?php echo $block['id']; ?>', <?php echo $per_page; ?>);
 </script>
+<? }

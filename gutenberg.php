@@ -312,7 +312,7 @@ function appp_init_block_types() {
 				'title'           => __( 'Repeater' ),
 				'description'     => __( 'repeats a child block' ),
 				'category'        => 'appp_component',
-				'icon'            => 'format-image',
+				'icon'            => 'update',
 				'keywords'        => array( 'component', 'repeater', 'data' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -327,6 +327,14 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/repeater/block.php',
+				'example'         => array(
+					'attributes' => array(
+						'mode' => 'preview',
+						'data' => array(
+							'_is_preview' => 'true',
+						),
+					),
+				),
 			)
 		);
 		// End Create-ACF-Block
