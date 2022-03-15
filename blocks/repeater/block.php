@@ -20,40 +20,89 @@ $block_id = 'repeater-' . $block['id'];
 
 $blockClasses = implode( ' ', array( $block['className'] ) );
 
-$per_page = get_field( 'per_page' );
-
+$per_page    = get_field( 'per_page' );
+$data_source = get_field( 'data_source' );
 
 $allowed_blocks = array( 'acf/card', 'acf/button' );
-
-$block['custom'] = 'sssssss';
 
 ?>
 <style>
 	.block-tag {
 		font-size: 12px;
 		padding: 4px;
-		color: #ffffff;
-		background: var(--wp-admin-theme-color);
-		display: none;
+		color: #555555;
+		background: #e0e0e0;
+		display: flex;
 
 	}
-	.is-selected.wp-block-acf-repeater .block-tag {
-		display: block;
+	.block-tag-actions {
+		display: none;
+		
 	}
+	.block-tag > * {
+		flex: 1 100%;
+	}
+	.is-selected.wp-block-acf-repeater .block-tag {
+		color: #ffffff;
+		background: var(--wp-admin-theme-color);
+	}
+	.is-selected.wp-block-acf-repeater .block-tag-actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.load-repeater.spin .spinr.dashicons {
+		animation: 1.5s linear infinite spinner;
+		/* transform: translate3d(-50%, -50%, 0); */
+		will-change: transform;
+		/* position: absolute;
+		left: 50%;
+		top: 50%; */
+	}
+
+
+
+	@keyframes spinner {
+		0% {
+		  transform: rotate(0deg);
+		}
+		100% {
+		  transform: rotate(360deg);
+		}
+	  }
 </style>
 
 
 <div id="<?php echo $block_id; ?>" class="<?php echo $blockClasses; ?>">
-	<div class="block-tag">Repeater</div>
+	<div class="block-tag">
+		<div>Repeater</div>
+		<div class="block-tag-actions">
+			<div class="load-repeater" style="cursor:pointer;">
+			<div class="spinr dashicons dashicons-update"></div>
+		</div>
+		</div>
+		
+	</div>
 	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"/>
 </div>
 
-<div style="opacity: 0.4;" class="items-repeat-<?php echo $block['id']; ?>"></div>
+<div style="opacity: 0.5;" class="items-repeat-<?php echo $block['id']; ?>"></div>
 
 <script>
 	var <?php echo $block['id']; ?> = {
-		'per_page': <?php echo $per_page; ?>
+		'per_page': <?php echo $per_page; ?>,
+		'data_source': "<?php echo $data_source; ?>"
 	}
-	// appp_update_repeater('<?php echo $block['id']; ?>', <?php echo $per_page; ?>);
+	jQuery(document).ready(function() {
+
+		jQuery('.load-repeater').click(function(e) {
+			jQuery(this).toggleClass("spin");
+			appp_load_repeater();
+		});
+
+		jQuery(document).on("stopSpinner", ()=> {
+			jQuery('.load-repeater').toggleClass("spin");
+		});
+	});
 </script>
 <? }

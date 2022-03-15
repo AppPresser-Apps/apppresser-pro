@@ -10,9 +10,13 @@ wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'template' ); // Template
 wp.data.dispatch( 'core/edit-post').removeEditorPanel( 'post-status' ); // Status
 
 const isfixedToolbar = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fixedToolbar' );
-
 if ( !isfixedToolbar ) {
     wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fixedToolbar' );
+}
+
+const isEditorSidebarOpened = wp.data.select( 'core/edit-post' ).isEditorSidebarOpened();
+if ( ! isEditorSidebarOpened ) {
+  wp.data.dispatch( 'core/edit-post' ).openGeneralSidebar('edit-post/document');
 }
 
 function apppFilterBlockRegister( settings, name ) {

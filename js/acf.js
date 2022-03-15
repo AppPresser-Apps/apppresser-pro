@@ -63,7 +63,34 @@ var instance = new acf.Model({
 
         // console.log(JSON.parse(meta));
 
-    
+        var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
+        //console.log(children);
+
+        let tokens = [];
+
+        children.forEach(function(child){
+
+            let data = {...child.attributes.data}
+
+            Object.keys(data).forEach(element => {
+        
+                const f = data[element].slice(0,2);
+                const l = data[element].slice(-2);
+
+                if ( '{{' === f && '}}' === l ) {
+                    const token = data[element].slice(2, -2);
+                    tokens.push(token);
+                }
+                
+            });
+
+            //data.title = 'hhhh';
+            //console.log(data);
+            //wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data});
+
+        });
+
+         console.log(tokens);
 
         if( parentblock && parentblock.name === 'acf/repeater' ) {
             //console.log(parentblock.attributes.data);
@@ -78,14 +105,7 @@ var instance = new acf.Model({
             let repeaterData = {...block.attributes.data}
 
             if ( '' !== repeaterData.data_source) {
-                console.log(repeaterData.data_source);
-
-                // wp.apiFetch( {
-                //     url: repeaterData.data_source,
-                //     method: 'GET',
-                // } ).then( res => {
-                //     console.log( res );
-                // } );
+                //console.log(repeaterData.data_source);
 
                 const response = await fetch( repeaterData.data_source, {
                     headers: {
@@ -102,39 +122,20 @@ var instance = new acf.Model({
 
                 const data = await response.json();
 
-                console.log(data);
-            }
+                //console.log(block.attributes.data);
+                if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
+                    //console.log(window[block.attributes.id].per_page);
+                    appp_update_repeater(block.attributes.id, data, tokens);
+                }
 
-
-            var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
-            //console.log(children);
-            children.forEach(function(child){
-
-                let data = {...child.attributes.data}
-
-                Object.keys(data).forEach(element => {
-            
-                    const f = data[element].slice(0,2);
-                    const l = data[element].slice(-2);
-
-                    if ( '{{' === f && '}}' === l ) {
-                        const token = data[element].slice(2, -2);
-                        data[element] = token;
-                    }
-                    
-                });
-
-
-                //data.title = 'hhhh';
                 //console.log(data);
-                wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data})
-            });
 
-            //console.log(block.attributes.data);
-            if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
-                //console.log(window[block.attributes.id].per_page);
-                //appp_update_repeater(block.attributes.id, window[block.attributes.id].per_page);
             }
+
+
+ 
+
+       
         }
 
     }
@@ -187,18 +188,87 @@ function appp_api_colors(name, hex) {
     });
 }
 
-function appp_update_repeater(id, per_page) {
+async function appp_load_repeater() {
+
+    console.log('load repeater');
+
+    const block = editor.getSelectedBlock(); 
+
+    if (!block || !block.clientId) {
+        return;
+    }
+
+    let tokens = [];
+
+    var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
+    console.log(children);
+
+    children.forEach(function(child){
+
+        let data = {...child.attributes.data};
+
+        Object.keys(data).forEach(element => {
+    
+            const f = data[element].slice(0,2);
+            const l = data[element].slice(-2);
+
+            if ( '{{' === f && '}}' === l ) {
+                const token = data[element].slice(2, -2);
+                tokens.push(token);
+            }
+            
+        });
+
+    });
+
+;
+    let repeaterData = {...block.attributes.data};
+
+    if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
+        console.log(window[block.attributes.id]);
+
+        const response = await fetch( window[block.attributes.id].data_source, {
+            headers: {
+                'content-type': 'application/json'
+              },
+            method: 'GET'
+        })
+        .then(
+            returned => {
+                if (returned.ok) return returned;
+                throw new Error('Network response was not ok.');
+            }
+        );
+
+        const data = await response.json();
+
+        //console.log(block.attributes.data);
+        if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
+            //console.log(window[block.attributes.id].per_page);
+            appp_update_repeater(block.attributes.id, data, tokens);
+        }
+
+        //console.log(data);
+
+    }
+
+
+}
+
+function appp_update_repeater(id, data, tokens) {
+
+    console.log(tokens);
+
+    const repeater = document.querySelector('#repeater-' + id);
+    const items = document.querySelector('.items-repeat-' + id);
+
+    items.innerHTML = '';
 
 	setTimeout(() => {
 
-        const amount = per_page;
+        //console.log(data)
 
-        console.log(amount)
-
-        const repeater = document.querySelector('#repeater-' + id);
-        const items = document.querySelector('.items-repeat-' + id);
-
-        items.innerHTML = '';
+        
       
         // while (items.lastChild) {
         //     items.removeChild(items.lastChild);
@@ -207,11 +277,33 @@ function appp_update_repeater(id, per_page) {
         //const preview = repeater.querySelector('.acf-block-preview');
     
         var i;
-    
-        for (i = 0; i < amount; i++) {
+
+        data.forEach(function(post){
             const clonedTarget = repeater.cloneNode(true);
-            //items.appendChild(clonedTarget);
-        }
+            const preview = clonedTarget.querySelector('.acf-block-preview');
+
+            tokens.forEach(function(token){
+
+                let value = lodash.get(post, token);
+
+                if ( !value ) {
+                    value = '{{' + token + '}}';
+                }
+
+                 //console.log(value);
+
+                const html = preview.innerHTML.replace("{{" + token + "}}", value);
+                preview.innerHTML = html;
+            })
+
+            items.appendChild(preview);
+        });
+
+        jQuery.event.trigger({
+			type: "stopSpinner",
+			message: 'ffff',
+			time: new Date()
+		});
 
 	}, 500);
 
