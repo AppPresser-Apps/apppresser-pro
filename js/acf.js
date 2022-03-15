@@ -32,7 +32,7 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
-const editor = wp.data.select("core/block-editor");
+
 
 var instance = new acf.Model({
     events: {
@@ -41,7 +41,7 @@ var instance = new acf.Model({
     onChange: async function(e, $el){
         e.preventDefault();
 
-   
+        const editor = wp.data.select("core/block-editor");
 
         const block = editor.getSelectedBlock(); 
 
@@ -190,6 +190,8 @@ function appp_api_colors(name, hex) {
 
 async function appp_load_repeater() {
 
+    const editor = wp.data.select("core/block-editor");
+
     console.log('load repeater');
 
     const block = editor.getSelectedBlock(); 
@@ -201,7 +203,10 @@ async function appp_load_repeater() {
     let tokens = [];
 
     var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
-    console.log(children);
+ 
+    if(!children) {
+        return;
+    }
 
     children.forEach(function(child){
 
@@ -221,12 +226,10 @@ async function appp_load_repeater() {
 
     });
 
-;
     let repeaterData = {...block.attributes.data};
 
     if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
-        console.log(window[block.attributes.id]);
-
+    
         const response = await fetch( window[block.attributes.id].data_source, {
             headers: {
                 'content-type': 'application/json'
@@ -257,7 +260,7 @@ async function appp_load_repeater() {
 
 function appp_update_repeater(id, data, tokens) {
 
-    console.log(tokens);
+    console.log('update repeater');
 
     const repeater = document.querySelector('#repeater-' + id);
     const items = document.querySelector('.items-repeat-' + id);
@@ -266,37 +269,29 @@ function appp_update_repeater(id, data, tokens) {
 
 	setTimeout(() => {
 
-        //console.log(data)
-
-        
-      
-        // while (items.lastChild) {
-        //     items.removeChild(items.lastChild);
-        // }
-    
-        //const preview = repeater.querySelector('.acf-block-preview');
-    
-        var i;
-
         data.forEach(function(post){
             const clonedTarget = repeater.cloneNode(true);
-            const preview = clonedTarget.querySelector('.acf-block-preview');
 
             tokens.forEach(function(token){
 
                 let value = lodash.get(post, token);
 
-                if ( !value ) {
+                if ( ! value ) {
                     value = '{{' + token + '}}';
                 }
 
-                 //console.log(value);
+                clonedTarget.innerHTML = clonedTarget.innerHTML.replace("{{" + token + "}}", value);
+                
+            });
 
-                const html = preview.innerHTML.replace("{{" + token + "}}", value);
-                preview.innerHTML = html;
-            })
+            const preview = clonedTarget.querySelector('.block-editor-inner-blocks');
+            const children = preview.querySelectorAll('.acf-block-preview');
 
-            items.appendChild(preview);
+            children.forEach(node => {
+                node.classList.remove('acf-block-preview');
+                items.appendChild(node);
+            });
+
         });
 
         jQuery.event.trigger({
@@ -305,7 +300,7 @@ function appp_update_repeater(id, data, tokens) {
 			time: new Date()
 		});
 
-	}, 500);
+	}, 100);
 
 
 }

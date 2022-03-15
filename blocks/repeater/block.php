@@ -9,11 +9,6 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
-if ( ! empty( $block['data']['_is_preview'] ) ) {
-	?>
-		<img src="<?php echo APPPRESSER_URL; ?>/images/image-placeholder.png" alt="Preview of the repeater block">
-	<?php
-} else {
 
 // Dynamic block ID.
 $block_id = 'repeater-' . $block['id'];
@@ -51,7 +46,7 @@ $allowed_blocks = array( 'acf/card', 'acf/button' );
 		justify-content: flex-end;
 	}
 
-	.load-repeater.spin .spinr.dashicons {
+	.load-repeater-<?php echo $block['id']; ?>.spin .spinr.dashicons {
 		animation: 1.5s linear infinite spinner;
 		/* transform: translate3d(-50%, -50%, 0); */
 		will-change: transform;
@@ -77,7 +72,7 @@ $allowed_blocks = array( 'acf/card', 'acf/button' );
 	<div class="block-tag">
 		<div>Repeater</div>
 		<div class="block-tag-actions">
-			<div class="load-repeater" style="cursor:pointer;">
+			<div class="load-repeater-<?php echo $block['id']; ?>" style="cursor:pointer;">
 			<div class="spinr dashicons dashicons-update"></div>
 		</div>
 		</div>
@@ -95,14 +90,13 @@ $allowed_blocks = array( 'acf/card', 'acf/button' );
 	}
 	jQuery(document).ready(function() {
 
-		jQuery('.load-repeater').click(function(e) {
+		jQuery('.load-repeater-<?php echo $block['id']; ?>').click( function(e) {
 			jQuery(this).toggleClass("spin");
 			appp_load_repeater();
 		});
 
 		jQuery(document).on("stopSpinner", ()=> {
-			jQuery('.load-repeater').toggleClass("spin");
+			jQuery('.load-repeater-<?php echo $block['id']; ?>').removeClass("spin");
 		});
 	});
 </script>
-<? }
