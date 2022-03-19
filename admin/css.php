@@ -15,7 +15,7 @@ function appp_custom_editor_css() {
 	div.block-editor-block-inspector__advanced,
 	div.block-editor-post-preview__dropdown,
 	div.interface-more-menu-dropdown {
-		// display: none !important;
+		display: none !important;
 	}
 	.is-root-container.block-editor-block-list__layout {
 		display: flex;

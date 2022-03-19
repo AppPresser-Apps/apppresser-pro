@@ -18,7 +18,7 @@ $blockClasses = implode( ' ', array( $block['className'] ) );
 $per_page    = get_field( 'per_page' );
 $data_source = get_field( 'data_source' );
 
-$allowed_blocks = array( 'acf/card', 'acf/button' );
+$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather' );
 
 ?>
 <style>

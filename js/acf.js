@@ -232,7 +232,7 @@ async function appp_load_repeater() {
     
         const response = await fetch( window[block.attributes.id].data_source, {
             headers: {
-                'content-type': 'application/json'
+                //'content-type': 'application/json'
               },
             method: 'GET'
         })
@@ -268,6 +268,10 @@ function appp_update_repeater(id, data, tokens) {
     items.innerHTML = '';
 
 	setTimeout(() => {
+
+        if ( !Array.isArray(data) ) {
+            data = [data];
+        }
 
         data.forEach(function(post){
             const clonedTarget = repeater.cloneNode(true);

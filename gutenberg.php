@@ -121,6 +121,7 @@ function appp_get_allowed_blocks() {
 		'acf/text',
 		'acf/card',
 		'acf/repeater',
+		'acf/openweather',
 	);
 }
 
@@ -335,6 +336,29 @@ function appp_init_block_types() {
 						),
 					),
 				),
+			)
+		);
+		acf_register_block_type(
+			array(
+				'name'            => 'openweather',
+				'title'           => 'OpenWeather',
+				'description'     => 'OpenWeather Api Block',
+				'category'        => 'appp_component',
+				'keywords'        => array( 'component', 'openweather' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'className'       => 'appp-openweather',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/openweather/block.php',
 			)
 		);
 		// End Create-ACF-Block
