@@ -28,7 +28,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	.opw-small-header {
 		font-size: 12px;
 		font-weight: 800;
-		padding: 10px 0 0 20px;
+		padding: 20px 0 10px 20px;
 	}
 
 	.opw-item-flex {
@@ -37,21 +37,19 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	}
 
 	.list-5-day .weather-day {
-		min-width: 70px;
+		min-width: 50px;
 	}
 
 	.list-5-day .weather-icon {
 		color: <?php echo $color; ?>;
-	}
-
-	.list-5-day .weather-icon svg {
-		height: 22px;
+		font-size: 22px;
+		line-height: 22px;
 		display: block;
 		margin: 0 auto;
 	}
 
-	.list-5-day .weather-icon svg path {
-		fill: <?php echo $color; ?>;
+	.list-5-day ion-item:last-child {
+		--inner-border-width: 0px !important;
 	}
 
 	#<?php echo $block_id; ?> {
@@ -111,6 +109,43 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		--border-color: <?php echo $color; ?>;
 	}
 
+	#<?php echo $block_id; ?> .slider-hourly {
+		margin-left: auto;
+		margin-right: auto;
+		color: <?php echo $color; ?>;
+		background: <?php echo $background; ?>;
+		border-radius: <?php echo $border_radius; ?><?php echo 'auto' === $aspect_ratio ? 'px' : '%' ?>;
+	}
+
+	.slider-hourly .slider-items {
+		display: flex;
+		overflow: auto;
+		scroll-snap-type: x mandatory;
+		-ms-overflow-style: none;  /* IE and Edge */
+  		scrollbar-width: none;  /* Firefox */
+	}
+
+	.slider-hourly .slider-items::-webkit-scrollbar {
+		display:none !important;
+	}
+
+	.slider-items > div {
+		min-width: 35px;
+		height: 90px;
+		padding: 10px;
+		scroll-snap-align: start;
+	}
+
+	.slider-hourly .hourly-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.slider-hourly .hourly-time {
+		font-size: 14px;
+	}
 
 
 </style>
@@ -122,7 +157,11 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 </div>
 
 <script>
-
+	/**
+	 * Current day weather widget.
+	 *
+	 * @return void
+	 */
 	async function appp_load_opw_current() {
 
 		const $geo_location = await fetch('<?php echo $geo; ?>');
@@ -153,6 +192,11 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 
 	};
 
+	/**
+	 * 5 day forecst list.
+	 *
+	 * @return void
+	 */
 	async function appp_load_opw_list() {
 		const block = document.querySelector('#<?php echo $block_id; ?>');
 		block.innerHTML = '';
@@ -179,13 +223,19 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 			<ion-item>
 				<ion-label>
 				<div class="opw-item-flex">
-				<div class="weather-day">${ 0 === index ? 'Today' : dayName.substring(0,3)}</div>
-				<div class="weather-icon">
-					${opw_icons[item.weather[0].icon]}
-				</div>
+					<div class="weather-day">${ 0 === index ? 'Today' : dayName.substring(0,3)}</div>
+					<div class="weather-icon">
+					<i class="wi wi-${wiToOWM[getDayNight(item.sunrise*1000,item.sunset*1000)+item.weather[0].id]}"></i>
+					</div>
+
+					<div>
+					${parseInt(item.temp.min)}º
+					-------
+					${parseInt(item.temp.max)}º
+					</div>
 				</div>
 				</ion-label>
-				${parseInt(item.temp.max)}º
+		
 			</ion-item>
 			`;
 		});
@@ -198,18 +248,65 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 					</div>
 					${items}
 				</ion-list>
-			<ion-card>
+			</ion-card>
 		`;
 
 		block.innerHTML = template;
 	}
 
+	/**
+	 * Hourly weather slider.
+	 *
+	 * @return void
+	 */
 	async function appp_load_opw_slider() {
+
 		const block = document.querySelector('#<?php echo $block_id; ?>');
 		block.innerHTML = '';
+
+		const $geo_location = await fetch('<?php echo $geo; ?>');
+		const $rsp_geo_location = await $geo_location.json();
+
+		//console.log($rsp_geo_location[0]);
+
+		const $api = `http://api.openweathermap.org/data/2.5/onecall?lat=${$rsp_geo_location[0].lat}&lon=${$rsp_geo_location[0].lon}&appid=<?php echo $api_key; ?>&cnt=5&units=imperial&exclude=current,minutely,alerts,daily`;
+
+		const response = await fetch($api);
+		const data = await response.json();
+
+		//console.log('slider', data);
+
+		let items = '';
+
+		data.hourly.slice(0, -2).map( (item, index) => {
+			console.log(item);
+			items += `
+				<div class="hourly-item">
+					<div class="hourly-time">${ 0 === index ? 'Now' : formatTime(item.dt)}</div>
+					<div class="weather-icon-slider">
+						<i class="wi wi-${wiToOWM[getDayNight(item.sunrise*1000,item.sunset*1000)+item.weather[0].id]}"></i>
+					</div>
+					<div>
+						${parseInt(item.temp)}º
+					</div>
+				</div>
+			`;
+		});
+
+		var template = `
+			<div class="slider-hourly">
+				<div class="opw-small-header">
+					HOURLY FORECAST
+				</div>
+				<div class="slider-items">
+					${items}
+				</div>
+			</div>
+		`;
+
+		block.innerHTML = template;
+
 	}
-
-
 
 	<?php if ( 'current' === $type ) : ?>
 		appp_load_opw_current();
@@ -222,26 +319,6 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	<?php if ( 'list-5-day' === $type ) : ?>
 		appp_load_opw_list();
 	<?php endif; ?>
-
-var opw_icons = {
-	'01d' : `
-	<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-		<g id="Page-1" stroke="currentColor" stroke-width="1" fill="currentColor" fill-rule="evenodd">
-			<g id="01d" transform="translate(-0.000387, -0.002881)" fill-rule="nonzero">
-				<path d="M40.0003872,16.6698814 C27.1163872,16.6698814 16.6673872,27.1188814 16.6673872,40.0028814 C16.6673872,52.8908814 27.1163872,63.3358814 40.0003872,63.3358814 C52.8843872,63.3358814 63.3333872,52.8908814 63.3333872,40.0028814 C63.3333872,27.1188814 52.8843872,16.6698814 40.0003872,16.6698814 Z M40.0003872,56.6698814 C30.7943872,56.6698814 23.3333872,49.2088814 23.3333872,40.0028814 C23.3333872,30.7968814 30.7943872,23.3358814 40.0003872,23.3358814 C49.2023872,23.3358814 56.6673872,30.7958814 56.6673872,40.0028814 C56.6673872,49.2098814 49.2023872,56.6698814 40.0003872,56.6698814 Z" id="Shape"></path>
-				<rect id="Rectangle" x="36.6673872" y="0.0028814" width="6.666" height="10"></rect>
-				<rect id="Rectangle" x="36.6673872" y="70.0028814" width="6.666" height="10"></rect>
-				<rect id="Rectangle" x="0.0003872" y="36.6698814" width="10" height="6.666"></rect>
-				<rect id="Rectangle" x="70.0003872" y="36.6698814" width="10" height="6.666"></rect>
-				<rect id="Rectangle" transform="translate(10.572941, 10.573034) rotate(-134.991897) translate(-10.572941, -10.573034) " x="-1.04294812" y="7.23756565" width="23.2317774" height="6.67093609"></rect>
-				<rect id="Rectangle" transform="translate(69.428673, 69.431204) rotate(-135.000000) translate(-69.428673, -69.431204) " x="57.8117844" y="66.0972358" width="23.2337772" height="6.66793605"></rect>
-				<rect id="Rectangle" transform="translate(10.573034, 69.428536) rotate(135.008103) translate(-10.573034, -69.428536) " x="-1.04285502" y="66.0930682" width="23.2317774" height="6.67093609"></rect>
-				<rect id="Rectangle" transform="translate(69.428101, 10.572759) rotate(135.000000) translate(-69.428101, -10.572759) " x="57.8112128" y="7.23879097" width="23.2337772" height="6.66793605"></rect>
-			</g>
-		</g>
-	</svg>
-	`,
-};
 
 </script>
 
