@@ -9,17 +9,17 @@
 $block_id     = 'openweather-' . $block['id'];
 $blockClasses = implode( ' ', array( $block['className'] ) );
 
-$type          = get_field( 'type' );
-$location      = get_field( 'location' );
-$data_source   = get_field( 'data_source' );
-$color         = get_field( 'color' );
-$background    = get_field( 'background' );
-$border_radius = get_field( 'border_radius' );
-$aspect_ratio  = get_field( 'aspect_ratio' );
-$max_width     = get_field( 'max_width' );
+$type             = get_field( 'type' );
+$location         = get_field( 'location' );
+$current_location = get_field( 'geo_location' );
+$api_key          = get_field( 'api_key' );
+$color            = get_field( 'color' );
+$background       = get_field( 'background' );
+$border_radius    = get_field( 'border_radius' );
+$aspect_ratio     = get_field( 'aspect_ratio' );
+$max_width        = get_field( 'max_width' );
 
-$api_key = '9b72b80de02d0ff764d56a6c2e594bd7';
-$geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&limit=5&appid=9b72b80de02d0ff764d56a6c2e594bd7';
+$geo_url = 'https://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&limit=5&appid=' . $api_key;
 
 ?>
 
@@ -28,7 +28,14 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	.opw-small-header {
 		font-size: 12px;
 		font-weight: 800;
-		padding: 20px 0 10px 20px;
+		padding: 20px 10px;
+	}
+
+	.opw-city {
+		font-weight: 400;
+		font-size: 16px;
+		float: right;
+		line-height: 14px;
 	}
 
 	.opw-item-flex {
@@ -61,7 +68,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		padding: 16px;
 		color: <?php echo $color; ?>;
 		background: <?php echo $background; ?>;
-		border-radius: <?php echo $border_radius; ?><?php echo 'auto' === $aspect_ratio ? 'px' : '%' ?>;
+		border-radius: <?php echo $border_radius; ?><?php echo 'auto' === $aspect_ratio ? 'px' : '%'; ?>;
 		aspect-ratio: <?php echo $aspect_ratio; ?>;
 		max-width: <?php echo $max_width; ?>px;
 		display: flex;
@@ -97,7 +104,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		box-shadow: none;
 
 		background: <?php echo $background; ?>;
-		border-radius: <?php echo $border_radius; ?><?php echo 'auto' === $aspect_ratio ? 'px' : '%' ?>;
+		border-radius: <?php echo $border_radius; ?>px;
 		max-width: <?php echo $max_width; ?>px;
 	}
 	#<?php echo $block_id; ?> .list-5-day ion-list,
@@ -114,7 +121,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		margin-right: auto;
 		color: <?php echo $color; ?>;
 		background: <?php echo $background; ?>;
-		border-radius: <?php echo $border_radius; ?><?php echo 'auto' === $aspect_ratio ? 'px' : '%' ?>;
+		border-radius: <?php echo $border_radius; ?>px;
 	}
 
 	.slider-hourly .slider-items {
@@ -122,7 +129,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		overflow: auto;
 		scroll-snap-type: x mandatory;
 		-ms-overflow-style: none;  /* IE and Edge */
-  		scrollbar-width: none;  /* Firefox */
+		  scrollbar-width: none;  /* Firefox */
 	}
 
 	.slider-hourly .slider-items::-webkit-scrollbar {
@@ -132,7 +139,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	.slider-items > div {
 		min-width: 35px;
 		height: 90px;
-		padding: 10px;
+		padding: 0 10px;
 		scroll-snap-align: start;
 	}
 
@@ -147,6 +154,10 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		font-size: 14px;
 	}
 
+	.slider-hourly .weather-icon-slider {
+		padding: 6px 0;
+	}
+
 
 </style>
 
@@ -157,6 +168,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 </div>
 
 <script>
+
 	/**
 	 * Current day weather widget.
 	 *
@@ -164,15 +176,39 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	 */
 	async function appp_load_opw_current() {
 
-		const $geo_location = await fetch('<?php echo $geo; ?>');
-		const $rsp_geo_location = await $geo_location.json();
+		var latitude = '';
+		var longitude = '';
 
-		//console.log($rsp_geo_location[0]);
+		const geo = '<?php echo $current_location; ?>';
 
-		const $api = `http://api.openweathermap.org/data/2.5/weather?lat=${$rsp_geo_location[0].lat}&lon=${$rsp_geo_location[0].lon}&appid=<?php echo $api_key; ?>&units=imperial`;
+		console.log(geo);
+
+		if ('1' !== geo) {
+
+			const $geo_location = await fetch('<?php echo $geo_url; ?>');
+			const $rsp_geo_location = await $geo_location.json();
+
+			console.log($rsp_geo_location[0]);
+
+			latitude = $rsp_geo_location[0].lat;
+			longitude = $rsp_geo_location[0].lon;
+
+		} else {
+
+			const position = await getLongAndLat();
+			console.log(position);
+
+			latitude = position.coords.latitude;
+			longitude = position.coords.longitude;
+
+		}
+
+		const $api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=<?php echo $api_key; ?>&units=imperial`;
 
 		const response = await fetch($api);
 		const data = await response.json();
+
+		//console.log(data);
 
 		var template = `
 			<div class="opw-today">
@@ -198,15 +234,38 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	 * @return void
 	 */
 	async function appp_load_opw_list() {
+
 		const block = document.querySelector('#<?php echo $block_id; ?>');
 		block.innerHTML = '';
 
-		const $geo_location = await fetch('<?php echo $geo; ?>');
-		const $rsp_geo_location = await $geo_location.json();
+		var latitude = '';
+		var longitude = '';
 
-		//console.log($rsp_geo_location[0]);
+		const geo = '<?php echo $current_location; ?>';
 
-		const $api = `http://api.openweathermap.org/data/2.5/onecall?lat=${$rsp_geo_location[0].lat}&lon=${$rsp_geo_location[0].lon}&appid=<?php echo $api_key; ?>&cnt=5&units=imperial&exclude=current,hourly,minutely,alerts`;
+		console.log(geo);
+
+		if ('1' !== geo) {
+
+			const $geo_location = await fetch('<?php echo $geo_url; ?>');
+			const $rsp_geo_location = await $geo_location.json();
+
+			console.log($rsp_geo_location[0]);
+
+			latitude = $rsp_geo_location[0].lat;
+			longitude = $rsp_geo_location[0].lon;
+
+		} else {
+
+			const position = await getLongAndLat();
+			console.log(position);
+
+			latitude = position.coords.latitude;
+			longitude = position.coords.longitude;
+
+		}
+
+		const $api = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=<?php echo $api_key; ?>&cnt=5&units=imperial&exclude=current,hourly,minutely,alerts`;
 
 		const response = await fetch($api);
 		const data = await response.json();
@@ -244,7 +303,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 			<ion-card class="list-5-day">
 				<ion-list>
 					<div class="opw-small-header">
-						5-DAY FORECAST
+						5-DAY FORECAST <span class="opw-city">${formatTimezone(data.timezone).city}</span>
 					</div>
 					${items}
 				</ion-list>
@@ -264,27 +323,45 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		const block = document.querySelector('#<?php echo $block_id; ?>');
 		block.innerHTML = '';
 
-		const $geo_location = await fetch('<?php echo $geo; ?>');
-		const $rsp_geo_location = await $geo_location.json();
+		var latitude = '';
+		var longitude = '';
 
-		//console.log($rsp_geo_location[0]);
+		const geo = '<?php echo $current_location; ?>';
 
-		const $api = `http://api.openweathermap.org/data/2.5/onecall?lat=${$rsp_geo_location[0].lat}&lon=${$rsp_geo_location[0].lon}&appid=<?php echo $api_key; ?>&cnt=5&units=imperial&exclude=current,minutely,alerts,daily`;
+		if ('1' !== geo) {
+
+			const $geo_location = await fetch('<?php echo $geo_url; ?>');
+			const $rsp_geo_location = await $geo_location.json();
+
+			latitude = $rsp_geo_location[0].lat;
+			longitude = $rsp_geo_location[0].lon;
+
+		} else {
+
+			const position = await getLongAndLat();
+			console.log(position);
+
+			latitude = position.coords.latitude;
+			longitude = position.coords.longitude;
+
+		}
+
+		const $api = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=<?php echo $api_key; ?>&cnt=5&units=imperial&exclude=minutely,alerts,daily`;
 
 		const response = await fetch($api);
 		const data = await response.json();
 
-		//console.log('slider', data);
+		console.log('slider', data);
 
 		let items = '';
 
 		data.hourly.slice(0, -2).map( (item, index) => {
-			console.log(item);
+			//console.log(item);
 			items += `
 				<div class="hourly-item">
 					<div class="hourly-time">${ 0 === index ? 'Now' : formatTime(item.dt)}</div>
 					<div class="weather-icon-slider">
-						<i class="wi wi-${wiToOWM[getDayNight(item.sunrise*1000,item.sunset*1000)+item.weather[0].id]}"></i>
+						<i class="wi wi-${wiToOWM[getDayNight(item.sunrise*1000, item.sunset*1000)+item.weather[0].id]}"></i>
 					</div>
 					<div>
 						${parseInt(item.temp)}º
@@ -296,7 +373,7 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 		var template = `
 			<div class="slider-hourly">
 				<div class="opw-small-header">
-					HOURLY FORECAST
+					HOURLY FORECAST <span class="opw-city">${formatTimezone(data.timezone).city}</span>
 				</div>
 				<div class="slider-items">
 					${items}
@@ -321,4 +398,3 @@ $geo     = 'http://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&lim
 	<?php endif; ?>
 
 </script>
-

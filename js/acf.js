@@ -34,112 +34,112 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 
 
-var instance = new acf.Model({
-    events: {
-        'change': 'onChange',
-    },
-    onChange: async function(e, $el){
-        e.preventDefault();
+// var instance = new acf.Model({
+//     events: {
+//         'change': 'onChange',
+//     },
+//     onChange: async function(e, $el){
+//         e.preventDefault();
 
-        const editor = wp.data.select("core/block-editor");
+//         const editor = wp.data.select("core/block-editor");
 
-        const block = editor.getSelectedBlock(); 
+//         const block = editor.getSelectedBlock(); 
 
-        if (!block || !block.clientId) {
-            return;
-        }
+//         if (!block || !block.clientId) {
+//             return;
+//         }
 
-        const parent = editor.getBlockRootClientId(block.clientId);
-        const parentblock = editor.getBlock(parent);
+//         const parent = editor.getBlockRootClientId(block.clientId);
+//         const parentblock = editor.getBlock(parent);
 
-        // let sync = {}
-        // sync[parentblock.attributes.attributes.id] = { per_page: parentblock.attributes.data.per_page }
+//         // let sync = {}
+//         // sync[parentblock.attributes.attributes.id] = { per_page: parentblock.attributes.data.per_page }
 
-        // wp.data.dispatch('core/editor').editPost({meta: {acf_sync: JSON.stringify(sync)}});
+//         // wp.data.dispatch('core/editor').editPost({meta: {acf_sync: JSON.stringify(sync)}});
 
-        // const meta = wp.data.select('core/editor').getEditedPostAttribute('meta').acf_sync;
+//         // const meta = wp.data.select('core/editor').getEditedPostAttribute('meta').acf_sync;
 
-        // //wp.data.dispatch('core/editor').savePost();
+//         // //wp.data.dispatch('core/editor').savePost();
 
-        // console.log(JSON.parse(meta));
+//         // console.log(JSON.parse(meta));
 
-        var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
-        //console.log(children);
+//         var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
+//         //console.log(children);
 
-        let tokens = [];
+//         let tokens = [];
 
-        children.forEach(function(child){
+//         children.forEach(function(child){
 
-            let data = {...child.attributes.data}
+//             let data = {...child.attributes.data}
 
-            Object.keys(data).forEach(element => {
+//             Object.keys(data).forEach(element => {
         
-                const f = data[element].slice(0,2);
-                const l = data[element].slice(-2);
+//                 const f = data[element].slice(0,2);
+//                 const l = data[element].slice(-2);
 
-                if ( '{{' === f && '}}' === l ) {
-                    const token = data[element].slice(2, -2);
-                    tokens.push(token);
-                }
+//                 if ( '{{' === f && '}}' === l ) {
+//                     const token = data[element].slice(2, -2);
+//                     tokens.push(token);
+//                 }
                 
-            });
+//             });
 
-            //data.title = 'hhhh';
-            //console.log(data);
-            //wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data});
+//             //data.title = 'hhhh';
+//             //console.log(data);
+//             //wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data});
 
-        });
+//         });
 
-         console.log(tokens);
+//          console.log(tokens);
 
-        if( parentblock && parentblock.name === 'acf/repeater' ) {
-            //console.log(parentblock.attributes.data);
-            if(window[parentblock.attributes.id] !== undefined && window[parentblock.attributes.id] !== null) {
-                //console.log(window[parentblock.attributes.id].per_page);
-                //appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
-            }
-        }
+//         if( parentblock && parentblock.name === 'acf/repeater' ) {
+//             //console.log(parentblock.attributes.data);
+//             if(window[parentblock.attributes.id] !== undefined && window[parentblock.attributes.id] !== null) {
+//                 //console.log(window[parentblock.attributes.id].per_page);
+//                 //appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
+//             }
+//         }
 
-        if( block && block.name === 'acf/repeater' ) {
+//         if( block && block.name === 'acf/repeater' ) {
 
-            let repeaterData = {...block.attributes.data}
+//             let repeaterData = {...block.attributes.data}
 
-            if ( '' !== repeaterData.data_source) {
-                //console.log(repeaterData.data_source);
+//             if ( '' !== repeaterData.data_source) {
+//                 //console.log(repeaterData.data_source);
 
-                const response = await fetch( repeaterData.data_source, {
-                    headers: {
-                        'content-type': 'application/json'
-                      },
-                    method: 'GET'
-                })
-                .then(
-                    returned => {
-                        if (returned.ok) return returned;
-                        throw new Error('Network response was not ok.');
-                    }
-                );
+//                 const response = await fetch( repeaterData.data_source, {
+//                     headers: {
+//                         'content-type': 'application/json'
+//                       },
+//                     method: 'GET'
+//                 })
+//                 .then(
+//                     returned => {
+//                         if (returned.ok) return returned;
+//                         throw new Error('Network response was not ok.');
+//                     }
+//                 );
 
-                const data = await response.json();
+//                 const data = await response.json();
 
-                //console.log(block.attributes.data);
-                if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
-                    //console.log(window[block.attributes.id].per_page);
-                    appp_update_repeater(block.attributes.id, data, tokens);
-                }
+//                 //console.log(block.attributes.data);
+//                 if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
+//                     //console.log(window[block.attributes.id].per_page);
+//                     appp_update_repeater(block.attributes.id, data, tokens);
+//                 }
 
-                //console.log(data);
+//                 //console.log(data);
 
-            }
+//             }
 
 
  
 
        
-        }
+//         }
 
-    }
-});
+//     }
+// });
 
 
 
@@ -329,4 +329,21 @@ const formatTime = (timestamp) => {
     var _time = (h > 12) ? (h-12 +'PM') : (h + 'AM');
 
     return _time;
+}
+
+const formatTimezone = (tinmezone) => {
+
+    const parts = tinmezone.split('/');
+
+    return {
+        country: parts[0],
+        city: parts[1].replace( '_', ' ' )
+    }
+
+}
+
+function getLongAndLat() {
+    return new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
 }
