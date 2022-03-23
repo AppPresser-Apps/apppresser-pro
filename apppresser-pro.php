@@ -28,7 +28,11 @@ require dirname( __FILE__ ) . '/admin/media.php';
 require dirname( __FILE__ ) . '/helpers/colors.php';
 require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
-require dirname( __FILE__ ) . '/acf.php';
+
+require dirname( __FILE__ ) . '/acf/acf.php';
+require dirname( __FILE__ ) . '/acf/filters.php';
+
+require dirname( __FILE__ ) . '/higgins/higgins.php';
 
 
 

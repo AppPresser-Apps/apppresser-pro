@@ -113,15 +113,22 @@ function get_editor_settings() {
  * @return array
  */
 function appp_get_allowed_blocks() {
-	return array(
-		'core/spacer',
-		'acf/image',
-		'acf/button',
-		'acf/list',
-		'acf/text',
-		'acf/card',
-		'acf/repeater',
-		'acf/openweather',
+
+	$blocks = acf_get_store( 'block-types' );
+
+	$arr = array();
+
+	foreach ( $blocks->data as $block => $value ) {
+		if ( ! empty( $value['parent'] ) ) {
+			$arr[] = $block;
+		}
+	}
+
+	return array_merge(
+		array(
+			'core/spacer',
+		),
+		$arr
 	);
 }
 
@@ -343,6 +350,7 @@ function appp_init_block_types() {
 				'name'            => 'openweather',
 				'title'           => 'OpenWeather',
 				'description'     => 'OpenWeather Api Block',
+				'icon'            => 'cloud',
 				'category'        => 'appp_component',
 				'keywords'        => array( 'component', 'openweather' ),
 				'post_types'      => array( 'app' ),
@@ -378,12 +386,20 @@ function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) 
 
 	if ( 'app' === $editor_context->post->post_type ) {
 
+
+		$blocks = acf_get_store( 'block-types' );
+
+		$arr = array();
+
+		foreach ( $blocks->data as $block => $value ) {
+			if ( empty( $value['parent'] ) ) {
+				$arr[] = $block;
+			}
+		}
+
 		$blocks = array_merge(
 			appp_get_allowed_blocks(),
-			array(
-				'acf/view',
-				'acf/onboard',
-			)
+			$arr
 		);
 	}
 
@@ -400,6 +416,9 @@ add_filter( 'allowed_block_types_all', 'appp_allowed_post_type_blocks', 10, 2 );
  * @return void
  */
 function appp_block_category( $categories, $post ) {
+
+	$categories = apply_filters( 'appp_filter_block_categories', $categories );
+
 	return array_merge(
 		$categories,
 		array(
@@ -421,12 +440,6 @@ function remove_wp_block_library_css() {
 	wp_dequeue_style( 'wp-block-library-theme' );
 }
 add_filter( 'wp_enqueue_scripts', 'remove_wp_block_library_css', 100 );
-
-function appp_acf_show_admin( $show ) {
-	return current_user_can( 'manage_options' );
-}
-add_filter( 'acf/settings/show_admin', 'appp_acf_show_admin' );
-
 
 add_action(
 	'rest_api_init',

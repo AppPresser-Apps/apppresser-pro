@@ -181,7 +181,7 @@ $geo_url = 'https://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&li
 
 		const geo = '<?php echo $current_location; ?>';
 
-		console.log(geo);
+		//console.log(geo);
 
 		if ('1' !== geo) {
 
@@ -208,7 +208,7 @@ $geo_url = 'https://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&li
 		const response = await fetch($api);
 		const data = await response.json();
 
-		//console.log(data);
+		console.log('current', data);
 
 		var template = `
 			<div class="opw-today">
@@ -398,3 +398,9 @@ $geo_url = 'https://api.openweathermap.org/geo/1.0/direct?q=' . $location . '&li
 	<?php endif; ?>
 
 </script>
+
+<?php
+	if ( 'custom' === $type ) {
+		do_action( 'opw_custom_block', $block_id, $location, $geo_location, $api_key, $geo_url );
+	}
+?>

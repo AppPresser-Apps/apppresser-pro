@@ -44,7 +44,30 @@ $style .= '--padding-end:' . ( $padding['padding_right'] ?? '0' ) . 'px; ';
 $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 ?>
-<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
+
+<style type="text/css">
+	.<?php echo $className; ?> {
+		border: 1px solid #e0e0e0;
+		height: 640px;
+		width: 320px;
+		margin: 10px !important;
+	}
+	#<?php echo $id; ?> ion-content {
+		<?php if ( ! $hide_toolbar ) : ?>
+			height: calc(100% - 44px) !important;
+		<?php else : ?>
+			height: 100% !important;
+			--offset-top: 0px !important;
+			--offset-bottom: 0px !important;
+		<?php endif; ?>
+	
+	}
+	ion-title {
+		width: 150px;
+	}
+</style>
+
+<div id="<?php echo esc_attr( $id ); ?>" class="view <?php echo esc_attr( $className ); ?>">
 <?php if ( ! $hide_toolbar ) : ?>
 	<ion-header>
 		<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
@@ -78,29 +101,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		/>
 	</ion-content>
 </div>
-
-
-<style type="text/css">
-	.<?php echo $className; ?> {
-		border: 1px solid #e0e0e0;
-		height: 640px;
-		width: 320px;
-		margin: 10px !important;
-	}
-	#<?php echo $id; ?> ion-content {
-		<?php if ( ! $hide_toolbar ) : ?>
-			height: calc(100% - 44px) !important;
-		<?php else : ?>
-			height: 100% !important;
-			--offset-top: 0px !important;
-			--offset-bottom: 0px !important;
-		<?php endif; ?>
-	
-	}
-	ion-title {
-		width: 150px;
-	}
-</style>
 
 
 <script>

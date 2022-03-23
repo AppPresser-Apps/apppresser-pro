@@ -165,3 +165,9 @@ function appp_get_theme_colors( $post_id ) {
 
 	return $palette;
 }
+
+function appp_allow_acf_block( $block ) {
+
+	return $block;
+}
+//add_filter( 'acf/register_block_type_args', 'appp_allow_acf_block' );
