@@ -115,6 +115,10 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
+	.button {
+		all: revert;
+	}
+
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;

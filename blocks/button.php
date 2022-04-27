@@ -54,14 +54,4 @@ if( 'inline' === $expand && $alignment ) {
 
 <script>
 
-	// setTimeout(() => {
-	// 	const view = document.querySelector('#<?php echo esc_attr( $block_id ); ?>');
-
-	// 	var btn = view.querySelector('ion-button');
-
-	// 	btn.onclick = () => { alert('sssss') };
-
-	// }, 100);
-
-
 </script>

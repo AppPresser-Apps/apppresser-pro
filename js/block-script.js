@@ -68,12 +68,10 @@ wp.hooks.addFilter(
 
 function appp_remove_button_class(block_id) {
 
-    console.log(block_id);
-
     // We need this because ion-button has a class 
     // .button and WordPress editor styles is screwing up the design
     setTimeout(() => {
-        const view = document.querySelector('#' + block_id);
+        const view = document.querySelector(block_id);
 
         var menubtns = view.querySelectorAll('ion-menu-button'), i;
 

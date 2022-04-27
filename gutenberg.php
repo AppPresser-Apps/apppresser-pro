@@ -369,6 +369,78 @@ function appp_init_block_types() {
 				'render_template' => APPPRESSER_DIR . 'blocks/openweather/block.php',
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-image',
+				'title'           => 'Image',
+				'description'     => 'ionic image component',
+				'category'        => 'appp_component',
+				'keywords'        => array( 'component', 'image', 'photo' ),
+				'icon'            => 'format-image',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/ion-image/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-thumbnail',
+				'title'           => 'Thumbnail',
+				'description'     => 'Image thumbnail',
+				'category'        => 'appp_component',
+				'keywords'        => array( 'component', 'image', 'photo' ),
+				'icon'            => 'format-image',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/ion-thumbnail/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-item',
+				'title'           => 'Item',
+				'description'     => 'List item',
+				'category'        => 'appp_component',
+				'keywords'        => array( 'component', 'list', 'item' ),
+				'icon'            => 'editor-ul',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/ion-item/block.php',
+			)
+		);
 		// End Create-ACF-Block
 
 	}
@@ -385,7 +457,6 @@ add_action( 'acf/init', 'appp_init_block_types' );
 function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
 
 	if ( 'app' === $editor_context->post->post_type ) {
-
 
 		$blocks = acf_get_store( 'block-types' );
 

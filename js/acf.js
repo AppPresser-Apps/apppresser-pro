@@ -32,116 +32,29 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
+var instance = new acf.Model({
+    wait: 'ready',
+    initialize: function(){
+        // runs during the 'ready' action when all elements have been rendered
+    }
+});
 
 
 // var instance = new acf.Model({
 //     events: {
-//         'change': 'onChange',
+//         'change input[type=url]': 'onChange',
 //     },
 //     onChange: async function(e, $el){
 //         e.preventDefault();
-
-//         const editor = wp.data.select("core/block-editor");
-
-//         const block = editor.getSelectedBlock(); 
-
-//         if (!block || !block.clientId) {
-//             return;
-//         }
-
-//         const parent = editor.getBlockRootClientId(block.clientId);
-//         const parentblock = editor.getBlock(parent);
-
-//         // let sync = {}
-//         // sync[parentblock.attributes.attributes.id] = { per_page: parentblock.attributes.data.per_page }
-
-//         // wp.data.dispatch('core/editor').editPost({meta: {acf_sync: JSON.stringify(sync)}});
-
-//         // const meta = wp.data.select('core/editor').getEditedPostAttribute('meta').acf_sync;
-
-//         // //wp.data.dispatch('core/editor').savePost();
-
-//         // console.log(JSON.parse(meta));
-
-//         var children = wp.data.select('core/block-editor').getBlocksByClientId(block.clientId)[0].innerBlocks;
-//         //console.log(children);
-
-//         let tokens = [];
-
-//         children.forEach(function(child){
-
-//             let data = {...child.attributes.data}
-
-//             Object.keys(data).forEach(element => {
-        
-//                 const f = data[element].slice(0,2);
-//                 const l = data[element].slice(-2);
-
-//                 if ( '{{' === f && '}}' === l ) {
-//                     const token = data[element].slice(2, -2);
-//                     tokens.push(token);
-//                 }
-                
-//             });
-
-//             //data.title = 'hhhh';
-//             //console.log(data);
-//             //wp.data.dispatch('core/block-editor').updateBlockAttributes(child.clientId, {data: data});
-
-//         });
-
-//          console.log(tokens);
-
-//         if( parentblock && parentblock.name === 'acf/repeater' ) {
-//             //console.log(parentblock.attributes.data);
-//             if(window[parentblock.attributes.id] !== undefined && window[parentblock.attributes.id] !== null) {
-//                 //console.log(window[parentblock.attributes.id].per_page);
-//                 //appp_update_repeater(parentblock.attributes.id, window[parentblock.attributes.id].per_page);
-//             }
-//         }
-
-//         if( block && block.name === 'acf/repeater' ) {
-
-//             let repeaterData = {...block.attributes.data}
-
-//             if ( '' !== repeaterData.data_source) {
-//                 //console.log(repeaterData.data_source);
-
-//                 const response = await fetch( repeaterData.data_source, {
-//                     headers: {
-//                         'content-type': 'application/json'
-//                       },
-//                     method: 'GET'
-//                 })
-//                 .then(
-//                     returned => {
-//                         if (returned.ok) return returned;
-//                         throw new Error('Network response was not ok.');
-//                     }
-//                 );
-
-//                 const data = await response.json();
-
-//                 //console.log(block.attributes.data);
-//                 if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
-//                     //console.log(window[block.attributes.id].per_page);
-//                     appp_update_repeater(block.attributes.id, data, tokens);
-//                 }
-
-//                 //console.log(data);
-
-//             }
-
-
  
-
+//         console.log(e);
        
-//         }
-
-//     }
+//     },
+//     initialize: function(){
+//         var foo = instance.get('data_source');
+//         console.log(foo);
+//     },
 // });
-
-
 
 acf.add_action('ready append', function(e){
 
@@ -162,6 +75,57 @@ acf.add_action('ready append', function(e){
 acf.addAction('remount', function ($el) {
     console.log($el);
 });
+
+acf.addAction('append_field/name=data_source', function( field ){
+    //const name = field.$el.attr('data-name');
+    displayTokens(field);
+});
+
+/**
+ * Flatten object to dot notaion path.
+ * @param {*} obj 
+ * @param {*} path 
+ * @returns 
+ */
+const flattenKeys = (obj, path = []) =>
+    !lodash.isObject(obj)
+        ? { [path.join('.')]: obj }
+        : lodash.reduce(obj, (cum, next, key) => lodash.merge(cum, flattenKeys(next, [...path, key])), {});
+
+/**
+ * Get data_source url and create data tokens html from object.
+ * @param {*} field 
+ */
+async function displayTokens(field) {
+
+    const url = field.$input().val();
+
+    if ( url !== '' ) {
+       
+        const rsp = await fetch(url);
+        const data = await rsp.json();
+
+        let html = '';
+
+        if (data.length) {
+
+            html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>'
+            delete data[0]['_links'];
+            delete data[0]['appp_settings'];
+
+            const result = flattenKeys(data[0]);
+
+            Object.keys(result).map(item => {
+                html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{${item}}</span>`;
+            });
+
+            field.$el.append(html);
+
+        }
+        
+    }
+
+}
 
 
 acf.add_action('ready_field/type=color_picker', function(field){
@@ -213,12 +177,12 @@ async function appp_load_repeater() {
         let data = {...child.attributes.data};
 
         Object.keys(data).forEach(element => {
-    
-            const f = data[element].slice(0,2);
-            const l = data[element].slice(-2);
 
-            if ( '{{' === f && '}}' === l ) {
-                const token = data[element].slice(2, -2);
+            const f = data[element].slice(0,1);
+            const l = data[element].slice(-1);
+
+            if ( '{' === f && '}' === l ) {
+                const token = data[element].slice(1, -1);
                 tokens.push(token);
             }
             
@@ -234,7 +198,7 @@ async function appp_load_repeater() {
             headers: {
                 //'content-type': 'application/json'
               },
-            method: 'GET'
+            method: window[block.attributes.id].request_method 
         })
         .then(
             returned => {
@@ -245,20 +209,19 @@ async function appp_load_repeater() {
 
         const data = await response.json();
 
-        //console.log(block.attributes.data);
+        //console.log(data);
         if(window[block.attributes.id] !== undefined && window[block.attributes.id] !== null) {
             //console.log(window[block.attributes.id].per_page);
             appp_update_repeater(block.attributes.id, data, tokens);
         }
 
-        //console.log(data);
 
     }
 
 
 }
 
-function appp_update_repeater(id, data, tokens) {
+function appp_update_repeater(id, data, _tokens) {
 
     console.log('update repeater');
 
@@ -274,17 +237,25 @@ function appp_update_repeater(id, data, tokens) {
         }
 
         data.forEach(function(post){
+
             const clonedTarget = repeater.cloneNode(true);
+
+            //console.log(clonedTarget.innerHTML);
+
+
+            const tokens = clonedTarget.innerHTML.match(/\{.*?\}/g);
 
             tokens.forEach(function(token){
 
-                let value = lodash.get(post, token);
+                let value = lodash.get(post, token.slice(1,-1));
 
-                if ( ! value ) {
-                    value = '{{' + token + '}}';
+                if (typeof value === 'string' || value instanceof String) {
+                   
+                } else {
+                    //value = value ? `{${token}=true}` : `{${token}=false}`;
                 }
 
-                clonedTarget.innerHTML = clonedTarget.innerHTML.replace("{{" + token + "}}", value);
+                clonedTarget.innerHTML = clonedTarget.innerHTML.replace(token, value);
                 
             });
 
@@ -293,6 +264,46 @@ function appp_update_repeater(id, data, tokens) {
 
             children.forEach(node => {
                 node.classList.remove('acf-block-preview');
+
+                const src = node.querySelectorAll('[data-src]');
+                if (src.length) {
+
+                    [...src].forEach( el => {
+                        //console.log(el);
+                        const data_src = el.getAttribute('data-src');
+                        el.setAttribute('src', data_src.trim() );
+                    });
+           
+                }
+
+                const href = node.querySelectorAll('[data-href]');
+                if (href.length) {
+
+                    [...href].forEach( el => {
+                        //console.log(el);
+                        const data_href = el.getAttribute('data-href');
+                        el.setAttribute('src', data_href.trim() );
+                    });
+           
+                }
+
+                const image = node.querySelectorAll('[data-bg-image]');
+                if (image.length) {
+
+                    [...image].forEach( async el => {
+                        //console.log(el);
+                        const data_bg_image = el.getAttribute('data-bg-image');
+                        //el.setAttribute('src', data_bg_image.trim() );
+
+                        const url = isValidHttpUrl(data_bg_image);
+
+                        if ( url ) {
+                            el.style.backgroundImage = `url(${data_bg_image.trim()})`;
+                        }
+                    });
+           
+                }
+
                 items.appendChild(node);
             });
 
@@ -304,10 +315,37 @@ function appp_update_repeater(id, data, tokens) {
 			time: new Date()
 		});
 
+        setTimeout(() => {
+            appp_remove_button_class('.items-repeat-' + id);
+    
+        }, 50);
+
 	}, 100);
 
 
 }
+
+function isValidHttpUrl(string) {
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
+
+const isImage = async (url) =>
+  new Promise((resolve) => {
+    const img = new Image();
+
+    img.src = url;
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+  });
 
 /**
  * Open weather api icons data

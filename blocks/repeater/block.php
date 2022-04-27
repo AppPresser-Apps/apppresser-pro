@@ -17,8 +17,9 @@ $blockClasses = implode( ' ', array( $block['className'] ) );
 
 $per_page    = get_field( 'per_page' );
 $data_source = get_field( 'data_source' );
+$request_method = get_field( 'request_method' );
 
-$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather' );
+$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item'  );
 
 ?>
 <style>
@@ -86,7 +87,8 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather' );
 <script>
 	var <?php echo $block['id']; ?> = {
 		'per_page': <?php echo $per_page; ?>,
-		'data_source': "<?php echo $data_source; ?>"
+		'data_source': "<?php echo $data_source; ?>",
+		'request_method': "<?php echo $request_method; ?>"
 	}
 	jQuery(document).ready(function() {
 

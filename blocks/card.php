@@ -24,7 +24,6 @@ $sub_title    = get_field( 'sub_title' );
 $title        = get_field( 'title' );
 $content      = get_field( 'content' );
 $header_image = get_field( 'header_image' );
-$image        = ! empty( $header_image ) ? $header_image : APPPRESSER_URL . '/images/image-placeholder.png';
 $image_height = get_field( 'image_height' ) ?? 300;
 
 $per_page = get_field( 'per_page' );
@@ -39,7 +38,7 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-w
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
 		<ion-card href="#">
-			<div style="background-image: url(<?php echo esc_url( $image ); ?>); height: <?php echo esc_attr( $image_height ); ?>px; background-size: cover; background-position: center; "></div>
+			<div style="background-image: url(<?php echo esc_url( APPPRESSER_URL . '/images/image-placeholder.png' ); ?>); height: <?php echo esc_attr( $image_height ); ?>px; background-size: cover; background-position: center; " data-bg-image=" <?php echo esc_attr( $header_image ); ?> "></div>
 			<ion-card-header>
 				<ion-card-subtitle><?php echo esc_attr( $sub_title ); ?></ion-card-subtitle>
 				<ion-card-title><?php echo esc_attr( $title ); ?></ion-card-title>
