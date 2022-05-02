@@ -56,7 +56,7 @@ var instance = new acf.Model({
 //     },
 // });
 
-acf.add_action('ready append', function(e){
+acf.add_action('ready append', (e)=> {
 
     window.jQuery('a.acf-icon.-duplicate').remove();
 
@@ -72,6 +72,25 @@ acf.add_action('ready append', function(e){
 
 });
 
+acf.addAction('load', ()=> {
+
+    console.log('sssssss');
+
+    if (wp.data) {
+
+        let data = wp.data.select( 'core/block-editor' );
+
+        // Get the currently selected block.
+        //const selected = data.getSelectedBlock();
+    
+        // Get a list of all blocks with their ID, content and attributes
+        const blocks = data.getBlocks();
+        wp.data.dispatch("core/block-editor").selectBlock(blocks[0].clientId);
+    }
+
+
+});
+
 acf.addAction('remount', function ($el) {
     console.log($el);
 });
@@ -80,6 +99,7 @@ acf.addAction('append_field/name=data_source', function( field ){
     //const name = field.$el.attr('data-name');
     displayTokens(field);
 });
+
 
 /**
  * Flatten object to dot notaion path.
@@ -128,17 +148,19 @@ async function displayTokens(field) {
 }
 
 
-acf.add_action('ready_field/type=color_picker', function(field){
+acf.addAction('ready_field/name=light_mode', function(field){
 
-    const name = field[0].getAttribute('data-name');
-    const key = field[0].getAttribute('data-key');
+    const fields = acf.findFields({parent:field.$el});
 
-    jQuery('.acf-color-picker').on( 'change', (event) => {
-        if ( `acf[${key}]` === event.target.name ) {
-            appp_api_colors(name, event.target.value);
-        }        
+    [...fields].forEach( item => {
+        const color = acf.getField(item.getAttribute('data-key'));
+        appp_api_colors(item.getAttribute('data-name'), color.val());
+
+        jQuery(`[data-key=${color.data.key}] .acf-color-picker`).on( 'change', (event) => {
+            appp_api_colors(color.data.name, event.target.value);
+        });
     });
-
+   
 });
 
 function appp_api_colors(name, hex) {

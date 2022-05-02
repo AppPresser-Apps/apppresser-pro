@@ -2,7 +2,7 @@
 
 add_filter( 'screen_options_show_screen', '__return_false' );
 add_filter( 'wp_is_application_passwords_available', '__return_false' );
-remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+// remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 
 add_filter(
 	'site_status_tests',

@@ -23,7 +23,7 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-i
 
 ?>
 <style>
-	.block-tag {
+	#<?php echo $block_id; ?> .block-tag {
 		font-size: 12px;
 		padding: 4px;
 		color: #555555;
@@ -31,11 +31,11 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-i
 		display: flex;
 
 	}
-	.block-tag-actions {
+	#<?php echo $block_id; ?> .block-tag-actions {
 		display: none;
 		
 	}
-	.block-tag > * {
+	#<?php echo $block_id; ?> .block-tag > * {
 		flex: 1 100%;
 	}
 	.is-selected.wp-block-acf-repeater .block-tag {
@@ -73,7 +73,7 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-i
 	<div class="block-tag">
 		<div>Repeater</div>
 		<div class="block-tag-actions">
-			<div class="load-repeater-<?php echo $block['id']; ?>" style="cursor:pointer;">
+			<div class="load-repeater-<?php echo $block_id; ?>" style="cursor:pointer;">
 			<div class="spinr dashicons dashicons-update"></div>
 		</div>
 		</div>

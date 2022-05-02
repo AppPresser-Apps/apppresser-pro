@@ -15,9 +15,17 @@ if ( !isfixedToolbar ) {
 }
 
 const isEditorSidebarOpened = wp.data.select( 'core/edit-post' ).isEditorSidebarOpened();
+const isListViewOpened = wp.data.select( 'core/edit-post' ).isListViewOpened();
+
 if ( ! isEditorSidebarOpened ) {
+console.log('open sidebar', isEditorSidebarOpened);
   wp.data.dispatch( 'core/edit-post' ).openGeneralSidebar('edit-post/document');
+  wp.data.dispatch("core/edit-post").openGeneralSidebar( 'edit-post/block' );
 }
+if ( ! isListViewOpened ) {
+    console.log('open list view', wp.data.dispatch( 'core/edit-post' ));
+    wp.data.dispatch( 'core/edit-post' ).setIsListViewOpened(true);
+  }
 
 function apppFilterBlockRegister( settings, name ) {
     //console.log(settings, name);
@@ -64,7 +72,6 @@ wp.hooks.addFilter(
     'apppresser/blocks-filter',
     apppFilterBlockRegister
 );
-
 
 function appp_remove_button_class(block_id) {
 

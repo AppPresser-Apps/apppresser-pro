@@ -147,7 +147,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'view',
 				'title'           => __( 'View (empty)' ),
-				'description'     => __( 'A custom view block.' ),
+				'description'     => __( 'View' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/view.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
@@ -173,7 +173,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'onboard',
 				'title'           => __( 'OnBoarding' ),
-				'description'     => __( 'A custom onboard view.' ),
+				'description'     => __( 'Onboard view' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/onboard.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
@@ -199,7 +199,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'button',
 				'title'           => __( 'Button' ),
-				'description'     => __( 'A custom button block.' ),
+				'description'     => __( 'Button' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/button.php',
 				'category'        => 'appp_component',
 				'icon'            => 'button',
@@ -223,7 +223,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'list',
 				'title'           => __( 'List' ),
-				'description'     => __( 'A custom list block.' ),
+				'description'     => __( 'List.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/list.php',
 				'category'        => 'appp_component',
 				'icon'            => 'editor-ul',
@@ -247,7 +247,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'text',
 				'title'           => __( 'Text' ),
-				'description'     => __( 'A custom text block.' ),
+				'description'     => __( 'Text' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/text.php',
 				'category'        => 'appp_component',
 				'icon'            => 'editor-paragraph',
@@ -271,7 +271,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'card',
 				'title'           => __( 'Card' ),
-				'description'     => __( 'A custom card block.' ),
+				'description'     => __( 'Card' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/card.php',
 				'category'        => 'appp_component',
 				'icon'            => 'excerpt-view',
@@ -291,34 +291,12 @@ function appp_init_block_types() {
 		);
 
 		// Begin Create-ACF-Block
-		acf_register_block_type(
-			array(
-				'name'            => 'image',
-				'title'           => __( 'Image' ),
-				'description'     => __( 'custom image block' ),
-				'category'        => 'appp_component',
-				'icon'            => 'format-image',
-				'keywords'        => array( 'component', 'image' ),
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'className'       => 'appp-image',
-				'supports'        => array(
-					'mode'          => false,
-					'align'         => false,
-					'align_text'    => false,
-					'align_content' => false,
-					'full_height'   => false,
-					'jsx'           => true,
-				),
-				'render_template' => APPPRESSER_DIR . 'blocks/image/block.php',
-			)
-		);
+
 		acf_register_block_type(
 			array(
 				'name'            => __( 'repeater' ),
 				'title'           => __( 'Repeater' ),
-				'description'     => __( 'repeats a child block' ),
+				'description'     => __( 'Repeats a child block' ),
 				'category'        => 'appp_component',
 				'icon'            => 'update',
 				'keywords'        => array( 'component', 'repeater', 'data' ),
@@ -349,7 +327,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'openweather',
 				'title'           => 'OpenWeather',
-				'description'     => 'OpenWeather Api Block',
+				'description'     => 'OpenWeather Api',
 				'icon'            => 'cloud',
 				'category'        => 'appp_component',
 				'keywords'        => array( 'component', 'openweather' ),
@@ -374,7 +352,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'ion-image',
 				'title'           => 'Image',
-				'description'     => 'ionic image component',
+				'description'     => 'Image',
 				'category'        => 'appp_component',
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
@@ -425,7 +403,7 @@ function appp_init_block_types() {
 				'description'     => 'List item',
 				'category'        => 'appp_component',
 				'keywords'        => array( 'component', 'list', 'item' ),
-				'icon'            => 'editor-ul',
+				'icon'            => 'list-view',
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
@@ -439,6 +417,29 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/ion-item/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'fetch',
+				'title'           => 'Fetch',
+				'description'     => 'Fetches data from api endpoints and is available to the view and blocks.',
+				'category'        => 'appp_component',
+				'icon'            => 'database',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/fetch/block.php',
 			)
 		);
 		// End Create-ACF-Block

@@ -1,5 +1,18 @@
 <?php
 
+
+function appp_acf_op_init() {
+	if ( function_exists( 'acf_add_options_page' ) ) {
+		$args = array(
+			'page_title'  => 'Integrations',
+			'menu_title'  => 'Integrations',
+			'parent_slug' => 'edit.php?post_type=app',
+		);
+		$option_page = acf_add_options_page( $args );
+	}
+}
+add_action('acf/init', 'appp_acf_op_init');
+
 /**
  * Load action route select with route entered on each view.
  *
@@ -138,20 +151,22 @@ function appp_get_theme_colors( $post_id ) {
 	global $post, $pagenow;
 
 	if ( ( $pagenow !== 'post.php' ) || ( get_post_type() !== 'app' ) ) {
-		return [];
+		return array();
 	}
 
-	$fields = array(
-		'primary',
-		'secondary',
-		'tertiary',
-		'success',
-		'warning',
-		'danger',
-		'dark',
-		'medium',
-		'light',
-	);
+	// $fields = array(
+	// 	'primary',
+	// 	'secondary',
+	// 	'tertiary',
+	// 	'success',
+	// 	'warning',
+	// 	'danger',
+	// 	'dark',
+	// 	'medium',
+	// 	'light',
+	// );
+
+	$fields = get_field( 'light_mode', $post_id );
 
 	$palette = array();
 
@@ -170,4 +185,4 @@ function appp_allow_acf_block( $block ) {
 
 	return $block;
 }
-//add_filter( 'acf/register_block_type_args', 'appp_allow_acf_block' );
+// add_filter( 'acf/register_block_type_args', 'appp_allow_acf_block' );

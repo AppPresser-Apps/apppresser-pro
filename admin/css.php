@@ -19,13 +19,14 @@ function appp_custom_editor_css() {
 	}
 	.is-root-container.block-editor-block-list__layout {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: center;
 	}
 	.edit-post-visual-editor__post-title-wrapper {
 		padding: 0 20px;
-		font-size: 0.8rem;
+		font-size: 0.6rem;
+		font-family: Arial;
 	}
 	.block-editor-inserter {
 		position: absolute;
@@ -115,10 +116,6 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
-	.button {
-		all: revert;
-	}
-
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;
@@ -196,7 +193,9 @@ function appp_set_root_theme_styles() {
 
 	if ( ( $pagenow == 'post.php' ) || ( get_post_type() == 'app' ) ) {
 
-		//error_log( print_r( $post, true, ) );
+		$light_mode = get_field( 'light_mode', $post->ID );
+
+		//error_log( print_r( $light_mode, true ) );
 
 		$fields = array(
 			'primary',
@@ -216,7 +215,7 @@ function appp_set_root_theme_styles() {
 			$palette[ $field ] = get_field( $field, $post->ID );
 		}
 
-		//error_log(print_r($palette, true,));
+		// error_log(print_r($palette, true,));
 
 	}
 
