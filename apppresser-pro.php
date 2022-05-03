@@ -21,6 +21,7 @@ define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
 define( 'APPPRESSER_FILE', __FILE__ );
 
 require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
+require dirname( __FILE__ ) . '/vendors/acf-code-field/acf-code-field.php';
 
 require dirname( __FILE__ ) . '/admin/admin.php';
 require dirname( __FILE__ ) . '/admin/css.php';

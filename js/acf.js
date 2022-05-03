@@ -74,8 +74,6 @@ acf.add_action('ready append', (e)=> {
 
 acf.addAction('load', ()=> {
 
-    console.log('sssssss');
-
     if (wp.data) {
 
         let data = wp.data.select( 'core/block-editor' );
@@ -161,6 +159,73 @@ acf.addAction('ready_field/name=light_mode', function(field){
         });
     });
    
+});
+
+/**
+ * Loads up a test button for API data for each base_url endpoint field.
+ */
+acf.addAction('ready_field/name=base_url', function(field){
+
+    const base_url = field.val();
+    const next = jQuery(field.$el).next();
+    const paths = acf.findFields({parent:next, name:'endpoint_path'});
+
+ 
+    [...paths].forEach( item => {
+
+        const headers_el = jQuery(item).next().next();
+
+        const header_obj = acf.findFields({parent:jQuery(item).next().next()});
+        let newHeaderArray = [];
+        
+        for (var i = header_obj.length; i >= 0; i--) {
+            const first2 = header_obj.splice(0, 2);
+
+            //console.log(first2);
+
+            const key = jQuery(first2[0]).find('input').val();
+            const value = jQuery(first2[1]).find('input').val();
+
+            if ( typeof key != 'undefined'|| typeof value != 'undefined' ) {
+                newHeaderArray.push({ key: key, value: value });
+            }
+            
+
+        }
+
+        //console.log(newHeaderArray);
+
+        const parameter_obj = acf.findFields({parent:jQuery(item).next().next().next()});
+        let newParameterArray = [];
+
+        //console.log(parameter_obj);
+        
+        for (var i = parameter_obj.length; i >= 0; i--) {
+            const first2 = parameter_obj.splice(0, 2);
+
+            const key = jQuery(first2[0]).find('input').val();
+            const value = jQuery(first2[1]).find('input').val();
+
+            if ( typeof key != 'undefined'|| typeof value != 'undefined' ) {
+                newParameterArray.push({ key: key, value: value });
+            }
+
+        }
+
+        //console.log(newParameterArray);
+
+        var d = document.createElement("div");
+        d.addEventListener('click', (e)=> { 
+            const url = base_url + jQuery(item).find('input').val();
+            console.log(url);
+            console.log(newParameterArray);
+            console.log(newHeaderArray);
+        }, false);
+        d.innerHTML = "test";
+
+        const prev = jQuery(item).prev().find('.acf-label').append(d);
+    });
+    
 });
 
 function appp_api_colors(name, hex) {
