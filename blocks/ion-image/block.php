@@ -55,8 +55,6 @@ switch ( $select_source ) {
 
 	</style>
 
-		<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-
-			<ion-img src="<?php echo esc_attr( $image ); ?>"/>
-
-		</div>
+	<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
+		<ion-img src="<?php echo esc_attr( $image ); ?>"/>
+	</div>

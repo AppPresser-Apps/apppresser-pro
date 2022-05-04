@@ -242,6 +242,11 @@ acf.addAction('ready_field/name=base_url', function(field){
     
         d.innerHTML = "test";
         d.className = 'button button-primary';
+        d.style.height = '20px';
+        d.style.lineHeight = '27px';
+        d.style.position = 'absolute';
+        d.style.right = '0px';
+        d.style.top = '-9px';
 
         const prev = jQuery(item).prev().find('.acf-label').append(d);
     });
@@ -249,11 +254,40 @@ acf.addAction('ready_field/name=base_url', function(field){
 });
 
 acf.addAction('prepare_field/name=fetch_result', (field)=> {
-    console.log(field)
-    field.on('validField', function(){
-        console.log('sdsdsddsd');
+    //console.log(field);
+});
+
+/**
+ * Begin to set the rest api base_url on the flexible layout label.
+ */
+acf.addAction('hide', function( field ){
+    console.log(field);
+
+    jQuery(document).ajaxSuccess( (event, xhr, settings)=> {
+        const params = Object.fromEntries(new URLSearchParams(settings.data));
+        if ( params.layout === 'rest_api' && params.action === 'acf/fields/flexible_content/layout_title' ) {
+            const layout = jQuery(`[data-id=row-${params.i}]`);
+            appp_set_layout_title(layout[0]);
+        }
     });
-}); 
+});
+
+acf.addAction('ready_field/name=integration', (field)=> {
+    const layouts = jQuery('[data-layout=rest_api]:not(.acf-clone)');
+
+    [...layouts].forEach( item => {
+        appp_set_layout_title(item);
+    });
+});
+
+function appp_set_layout_title(layout) {
+    const url = jQuery(layout).find('[data-name=base_url]').find('input').val();
+    const handle = jQuery(layout).find('.acf-fc-layout-handle');
+    const span = jQuery(handle[0]).find('span');
+
+    jQuery(layout).find('.acf-fc-layout-handle').html( span.outerHTML() + ' Rest API - ' + url); 
+}
+/** END the label madness!*/
 
 function appp_api_colors(name, hex) {
     wp.apiFetch({
