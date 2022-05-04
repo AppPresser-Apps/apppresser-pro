@@ -99,17 +99,25 @@ add_action( 'init', 'appp_gutenberg_register_files' );
 function appp_admin_enqueue_scripts( $hook_suffix ) {
 	global $typenow;
 	if ( ( 'post.php' == $hook_suffix || 'post-new.php' == $hook_suffix ) && $typenow === 'app' ) {
+
 		wp_enqueue_style( 'ionic-css', 'https://cdn.jsdelivr.net/npm/@ionic/core@6.0.10/css/ionic.bundle.css', array(), '1.0.0' );
 		wp_enqueue_script( 'ionic-js', 'https://cdn.jsdelivr.net/npm/@ionic/core@6.0.10/dist/ionic/ionic.js', array(), '1.0.0', false );
 		wp_enqueue_script( 'ionicons-js', 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js', array(), '1.0.0', false );
 
 		wp_enqueue_style( 'owm-icon-css', APPPRESSER_URL . '/images/opw-icons/css/weather-icons.min.css', array(), '1.0.0' );
+
 	}
+
 }
 
 add_action( 'admin_enqueue_scripts', 'appp_admin_enqueue_scripts' );
 
 function appp_acf_admin_enqueue_scripts() {
+
+	wp_enqueue_script( 'beautify-js', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify.min.js', array(), '1.0.0', false );
+	wp_enqueue_script( 'beautify-css', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-css.min.js', array(), '1.0.0', false );
+	wp_enqueue_script( 'beautify-html', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-html.min.js', array(), '1.0.0', false );
+
 	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array( 'lodash', 'jquery' ), '1.0.9', true );
 }
 

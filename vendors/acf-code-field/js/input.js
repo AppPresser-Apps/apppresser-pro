@@ -11,6 +11,8 @@
         var editor = window.CodeMirror.fromTextArea( $textarea[ 0 ], {
             lineNumbers: true,
             fixedGutter: false,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
             mode: $textarea.attr( "mode" ),
             theme: $textarea.attr( "theme" ),
             extraKeys: { "Ctrl-Space": "autocomplete" },
@@ -24,6 +26,8 @@
         editor.on('change', function(){
             editor.save();
         });
+
+        window['codemirror'] = editor;
     }
 
     if ( typeof acf.add_action !== 'undefined' ) {

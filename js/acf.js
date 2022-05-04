@@ -215,18 +215,45 @@ acf.addAction('ready_field/name=base_url', function(field){
         //console.log(newParameterArray);
 
         var d = document.createElement("div");
-        d.addEventListener('click', (e)=> { 
+        d.addEventListener('click', async (e)=> { 
             const url = base_url + jQuery(item).find('input').val();
-            console.log(url);
-            console.log(newParameterArray);
-            console.log(newHeaderArray);
+ 
+            let data = {};
+
+            try {
+
+                const response = await fetch( url, {
+                    headers: {
+                        //'content-type': 'application/json'
+                      },
+                    method: 'GET' 
+                });
+
+                data = await response.json();
+
+            } catch (error) {
+                data = {error: error};
+            }
+     
+            document.querySelector('.CodeMirror').CodeMirror.setValue(js_beautify(JSON.stringify(data), {brace_style: 'expand'}))
+
+
         }, false);
+    
         d.innerHTML = "test";
+        d.className = 'button button-primary';
 
         const prev = jQuery(item).prev().find('.acf-label').append(d);
     });
     
 });
+
+acf.addAction('prepare_field/name=fetch_result', (field)=> {
+    console.log(field)
+    field.on('validField', function(){
+        console.log('sdsdsddsd');
+    });
+}); 
 
 function appp_api_colors(name, hex) {
     wp.apiFetch({

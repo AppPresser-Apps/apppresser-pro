@@ -25,3 +25,14 @@ function appp_acf_dynamic_icons( $field ) {
 	return $field;
 }
 add_filter( 'acf/load_field', 'appp_acf_dynamic_icons' );
+
+
+function appp_acf_update_value( $value, $post_id, $field, $original ) {
+
+	if ( 'fetch_result' === $field['name'] ) {
+		$value = '';
+	}
+
+	return $value;
+}
+  add_filter( 'acf/update_value', 'appp_acf_update_value', 10, 4 );
