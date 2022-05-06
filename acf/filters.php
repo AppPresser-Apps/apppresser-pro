@@ -36,3 +36,56 @@ function appp_acf_update_value( $value, $post_id, $field, $original ) {
 	return $value;
 }
   add_filter( 'acf/update_value', 'appp_acf_update_value', 10, 4 );
+
+
+function appp_filter_rest_api_layout_label( $title, $field, $layout, $i ) {
+
+	if ( 'rest_api' === $layout['name'] ) {
+
+		$key   = $layout['sub_fields'][0]['key'];
+		$value = get_sub_field( $key );
+
+		// error_log( print_r( $key, true ) );
+		// error_log( print_r( $value, true ) );
+
+		return $title . ' - ' . $value;
+
+	}
+
+	return $title;
+
+}
+add_filter( 'acf/fields/flexible_content/layout_title/name=integration', 'appp_filter_rest_api_layout_label', 10, 4 );
+
+function appp_filter_rest_api_select( $field ) {
+
+	$urls = array();
+
+	// Check value exists.
+	if ( have_rows( 'integration', 'options' ) ) :
+
+		// Loop through rows.
+		while ( have_rows( 'integration', 'options' ) ) :
+			the_row();
+
+			// Case: Paragraph layout.
+			if ( get_row_layout() == 'rest_api' ) :
+				$url          = get_sub_field( 'base_url' );
+				$field['choices'][ $url ] = $url;
+			endif;
+
+			// End loop.
+		endwhile;
+
+		// No value.
+	else :
+		// Do something...
+	endif;
+
+	// error_log( print_r( $integration, true ) );
+	error_log( print_r( $urls, true ) );
+	error_log( print_r( $field, true ) );
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=rest_api_source', 'appp_filter_rest_api_select', 10, 1 );
