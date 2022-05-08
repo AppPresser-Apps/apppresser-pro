@@ -1,8 +1,8 @@
 <?php
 /**
- * Block Name: Ion-Image
+ * Block Name: Fetch
  *
- * Description: ionic image component
+ * Description: fetch component
  *
  * @package AppPresser
  */
@@ -18,12 +18,14 @@ if ( ! empty( $block['className'] ) ) {
 
 $allowed_blocks = appp_get_allowed_blocks();
 
+error_log(print_r($block['data'], true));
+
 ?>
 
-		<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-			<InnerBlocks 
-			templateInsertUpdatesSelection="false" 
-			templateLock="false" 
-			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
-			/>
-		</div>
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
+	<InnerBlocks 
+	templateInsertUpdatesSelection="false" 
+	templateLock="false" 
+	allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+	/>
+</div>

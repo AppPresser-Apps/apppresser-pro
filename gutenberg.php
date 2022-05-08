@@ -422,16 +422,16 @@ function appp_init_block_types() {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'fetch',
-				'title'           => 'Fetch',
-				'description'     => 'Fetches data from api endpoints and is available to the view and blocks.',
-				'category'        => 'appp_component',
-				'icon'            => 'database',
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'parent'          => array( 'acf/view' ),
-				'supports'        => array(
+				'name'        => 'fetch',
+				'title'       => 'Fetch',
+				'description' => 'Fetches data from api endpoints and is available to the view and blocks.',
+				'category'    => 'appp_component',
+				'icon'        => 'database',
+				'post_types'  => array( 'app' ),
+				'mode'        => 'preview',
+				'align'       => 'center',
+				'parent'      => array( 'acf/view' ),
+				'supports'    => array(
 					'mode'          => false,
 					'align'         => false,
 					'align_text'    => false,

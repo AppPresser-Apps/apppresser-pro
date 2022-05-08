@@ -59,8 +59,6 @@ add_filter( 'acf/fields/flexible_content/layout_title/name=integration', 'appp_f
 
 function appp_filter_rest_api_select( $field ) {
 
-	$urls = array();
-
 	// Check value exists.
 	if ( have_rows( 'integration', 'options' ) ) :
 
@@ -70,7 +68,8 @@ function appp_filter_rest_api_select( $field ) {
 
 			// Case: Paragraph layout.
 			if ( get_row_layout() == 'rest_api' ) :
-				$url          = get_sub_field( 'base_url' );
+				$url                      = get_sub_field( 'base_url' );
+				$field['endpoints'][]     = get_sub_field( 'rest_api_endpoints' );
 				$field['choices'][ $url ] = $url;
 			endif;
 
@@ -83,9 +82,20 @@ function appp_filter_rest_api_select( $field ) {
 	endif;
 
 	// error_log( print_r( $integration, true ) );
-	error_log( print_r( $urls, true ) );
-	error_log( print_r( $field, true ) );
+	// error_log( print_r( $field, true ) );
 
 	return $field;
 }
-add_filter( 'acf/load_field/name=rest_api_source', 'appp_filter_rest_api_select', 10, 1 );
+add_filter( 'acf/load_field/name=rest_api_source', 'appp_filter_rest_api_select', 0, 1 );
+
+
+function wporg_block_wrapper( $block_content, $block ) {
+	if ( $block['blockName'] === 'acf/fetch' ) {
+
+		$block['attrs']['data']['endpoints'] = appp_get_endpoints_data();
+		error_log( print_r( $block, true ) );
+	}
+	return $block_content;
+}
+
+add_filter( 'render_block', 'wporg_block_wrapper', 10, 2 );

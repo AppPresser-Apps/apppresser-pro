@@ -179,7 +179,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	<?php endif; ?>
 		<ion-content style="<?php echo $style; ?>" fullscreen="<?php echo $fullscreen; ?>">
 			<InnerBlocks 
-				templateInsertUpdatesSelection="false" 
+				templateInsertUpdatesSelection="true" 
 				templateLock="false" 
 				allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 			/>

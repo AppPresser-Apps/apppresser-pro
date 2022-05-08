@@ -90,7 +90,7 @@ acf.addAction('load', ()=> {
 });
 
 acf.addAction('remount', function ($el) {
-    console.log($el);
+    //console.log($el);
 });
 
 acf.addAction('append_field/name=data_source', function( field ){
@@ -101,43 +101,65 @@ acf.addAction('append_field/name=data_source', function( field ){
 
 /**
  * Flatten object to dot notaion path.
- * @param {*} obj 
- * @param {*} path 
+ * @param {*} o obj. 
  * @returns 
  */
-const flattenKeys = (obj, path = []) =>
-    !lodash.isObject(obj)
-        ? { [path.join('.')]: obj }
-        : lodash.reduce(obj, (cum, next, key) => lodash.merge(cum, flattenKeys(next, [...path, key])), {});
+function flattenObject(o, prefix = '', result = {}, keepNull = true) {
+    if (lodash.isString(o) || lodash.isNumber(o) || lodash.isBoolean(o) || (keepNull && lodash.isNull(o))) {
+        result[prefix] = o;
+        return result;
+    }
+    
+    if (lodash.isArray(o) || lodash.isPlainObject(o)) {
+        for (let i in o) {
+        let pref = prefix;
+        if (lodash.isArray(o)) {
+            pref = pref + `[${i}]`;
+        } else {
+            if (lodash.isEmpty(prefix)) {
+            pref = i;
+            } else {
+            pref = prefix + '.' + i;
+            }
+        }
+        flattenObject(o[i], pref, result, keepNull);
+        }
+        return result;
+    }
+    return result;
+}
 
 /**
  * Get data_source url and create data tokens html from object.
  * @param {*} field 
  */
-async function displayTokens(field) {
+async function displayTokens(url) {
 
-    const url = field.$input().val();
+    const field = jQuery('[data-name="data"] .acf-accordion-content');
 
     if ( url !== '' ) {
        
         const rsp = await fetch(url);
         const data = await rsp.json();
 
-        let html = '';
+        let html = '<div id="data-tokens-wrap" style="padding: 16px;">';
 
-        if (data.length) {
+        if (data) {
 
-            html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>'
-            delete data[0]['_links'];
-            delete data[0]['appp_settings'];
+            html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>';
 
-            const result = flattenKeys(data[0]);
+            const obj = lodash.isArray(data) ? data.shift() : data;
+     
+            const result = flattenObject(obj);
 
             Object.keys(result).map(item => {
+                
                 html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{${item}}</span>`;
             });
 
-            field.$el.append(html);
+            html += '</div>';
+
+            field.append(html);
 
         }
         
@@ -253,18 +275,58 @@ acf.addAction('ready_field/name=base_url', function(field){
     
 });
 
-acf.addAction('prepare_field/name=fetch_result', (field)=> {
+acf.addAction('render_block_preview/type=fetch', (field)=> {
     //console.log(field);
 });
 
-acf.addAction('append_field/name=rest_api_source', (field)=> {
+acf.addAction('append_field/name=rest_api_source', async (field)=> {
 
-    console.log(field);
 
-    field.$el.find('select').on( 'change', (e) => {
-        console.log(e.target.value)
+    const base_url = field.val();
+    const selected = wp.data.select( 'core/block-editor' ).getSelectedBlock();
+
+    const data = await appp_get_endpoints_select(base_url);
+  
+    if ( 'none' !== base_url ) {
+        appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
+    }
+
+    field.$el.find('select').on( 'change', async (e) => {
+        jQuery('#data-tokens-wrap').remove();
+        if ( 'none' !== e.target.value ) {
+            appp_set_endpoints_select(data[e.target.value], 'none');
+        }
     })    
 });
+
+async function appp_set_endpoints_select(data, selected) {
+
+    console.log(selected);
+
+    const $el = jQuery('[data-name=rest_api_endpoints]').find('select');
+  
+    $el.empty(); // remove old options
+
+    $el.append(jQuery('<option></option>').attr('value', 'none').text('None'));
+
+    jQuery.each(data, function(key, value) {
+        const $option = jQuery('<option></option>');
+
+        $option.attr('value', value.endpoint_path).text(value.endpoint_name);
+        if ( selected == value.endpoint_path ) {
+            $option.attr('selected', 'selected')
+        }
+
+        $el.append($option);
+    });
+
+}
+
+async function appp_get_endpoints_select(base_url) {
+    var postID = acf.get('post_id');
+    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/endpoints?base_url=${base_url}&post_id=${postID}` });
+    return data;
+}
 
 function appp_api_colors(name, hex) {
     wp.apiFetch({
@@ -281,7 +343,7 @@ async function appp_load_repeater() {
 
     const editor = wp.data.select("core/block-editor");
 
-    console.log('load repeater');
+    //console.log('load repeater');
 
     const block = editor.getSelectedBlock(); 
 
@@ -348,7 +410,7 @@ async function appp_load_repeater() {
 
 function appp_update_repeater(id, data, _tokens) {
 
-    console.log('update repeater');
+    //console.log('update repeater');
 
     const repeater = document.querySelector('#repeater-' + id);
     const items = document.querySelector('.items-repeat-' + id);
