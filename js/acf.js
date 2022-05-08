@@ -289,6 +289,7 @@ acf.addAction('append_field/name=rest_api_source', async (field)=> {
   
     if ( 'none' !== base_url ) {
         appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
+        displayTokens( base_url + selected.attributes.data.rest_api_endpoints );
     }
 
     field.$el.find('select').on( 'change', async (e) => {
@@ -297,11 +298,19 @@ acf.addAction('append_field/name=rest_api_source', async (field)=> {
             appp_set_endpoints_select(data[e.target.value], 'none');
         }
     })    
+
+    jQuery('[data-name=rest_api_endpoints]').find('select').on( 'change', async (e) => {
+        const base_url = jQuery('[data-name=rest_api_source]').find('select').val();
+        console.log(base_url, e.target.value);
+        jQuery('#data-tokens-wrap').remove();
+        if ( 'none' !== e.target.value ) {
+            displayTokens( base_url + e.target.value );
+        }
+        
+    });
 });
 
 async function appp_set_endpoints_select(data, selected) {
-
-    console.log(selected);
 
     const $el = jQuery('[data-name=rest_api_endpoints]').find('select');
   
