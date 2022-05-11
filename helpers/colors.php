@@ -3,6 +3,9 @@
 // $primary_colors = appp_process_colors( '--ion-color-primary', $primary );
 function appp_process_colors( $rule, $hex ) {
 
+	//error_log(print_r($rule,true));
+	//error_log(print_r($hex,true));
+
 	$rgb      = appp_rgb2hex( $hex );
 	$contrast = appp_contrast( $hex );
 

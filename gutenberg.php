@@ -124,6 +124,8 @@ function appp_get_allowed_blocks() {
 		}
 	}
 
+	error_log( print_r( $arr, true ) );
+
 	return array_merge(
 		array(
 			'core/spacer',
@@ -131,6 +133,52 @@ function appp_get_allowed_blocks() {
 		$arr
 	);
 }
+
+function appp_get_allowed_innerblocks() {
+
+	return array(
+		'acf/card',
+		'acf/button',
+		'acf/openweather',
+		'acf/ion-image',
+		'acf/ion-thumbnail',
+		'acf/ion-item',
+		'acf/text',
+	);
+}
+
+
+/**
+ * Whitelist of blocks available to Gutenberg editor.
+ *
+ * @param array  $allowed_block_types
+ * @param object $editor_context
+ * @return array
+ */
+function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
+
+	if ( 'app' === $editor_context->post->post_type ) {
+
+		$blocks = acf_get_store( 'block-types' );
+
+		$arr = array();
+
+		foreach ( $blocks->data as $block => $value ) {
+			if ( empty( $value['parent'] ) ) {
+				$arr[] = $block;
+			}
+		}
+
+		$blocks = array_merge(
+			appp_get_allowed_blocks(),
+			$arr
+		);
+	}
+
+	return $blocks;
+}
+
+add_filter( 'allowed_block_types_all', 'appp_allowed_post_type_blocks', 10, 2 );
 
 /**
  * Register ACF blocks
@@ -246,8 +294,8 @@ function appp_init_block_types() {
 		acf_register_block_type(
 			array(
 				'name'            => 'text',
-				'title'           => __( 'Text' ),
-				'description'     => __( 'Text' ),
+				'title'           => __( 'Paragraph' ),
+				'description'     => __( 'Multi-line paragraph of text' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/text.php',
 				'category'        => 'appp_component',
 				'icon'            => 'editor-paragraph',
@@ -422,16 +470,16 @@ function appp_init_block_types() {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'fetch',
-				'title'       => 'Fetch',
-				'description' => 'Fetches data from api endpoints and is available to the view and blocks.',
-				'category'    => 'appp_component',
-				'icon'        => 'database',
-				'post_types'  => array( 'app' ),
-				'mode'        => 'preview',
-				'align'       => 'center',
-				'parent'      => array( 'acf/view' ),
-				'supports'    => array(
+				'name'            => 'fetch',
+				'title'           => 'Fetch',
+				'description'     => 'Fetches data from api endpoints and is available to the view and blocks.',
+				'category'        => 'appp_component',
+				'icon'            => 'database',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
 					'align_text'    => false,
@@ -442,43 +490,80 @@ function appp_init_block_types() {
 				'render_template' => APPPRESSER_DIR . 'blocks/fetch/block.php',
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'container',
+				'title'           => 'Container',
+				'description'     => 'Container block wraps an element to provide different layouts and design options',
+				'category'        => 'appp_layout',
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'icon'            => 'layout',
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/container/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'columns',
+				'title'           => 'Columns',
+				'description'     => 'Wrapper block to allow inner blocks to be formatted into columns.',
+				'category'        => 'appp_layout',
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'icon'            => 'columns',
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/columns/block.php',
+			)
+		);
+		acf_register_block_type(
+			array(
+				'name'            => 'inner-column',
+				'title'           => 'Inner Column',
+				'description'     => 'inner column for columns block.',
+				'category'        => 'appp_layout',
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'icon'            => 'columns',
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/columns' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/inner-column/block.php',
+			)
+		);
 		// End Create-ACF-Block
 
 	}
 }
 add_action( 'acf/init', 'appp_init_block_types' );
 
-/**
- * Whitelist of blocks available to Gutenberg editor.
- *
- * @param array  $allowed_block_types
- * @param object $editor_context
- * @return array
- */
-function appp_allowed_post_type_blocks( $allowed_block_types, $editor_context ) {
-
-	if ( 'app' === $editor_context->post->post_type ) {
-
-		$blocks = acf_get_store( 'block-types' );
-
-		$arr = array();
-
-		foreach ( $blocks->data as $block => $value ) {
-			if ( empty( $value['parent'] ) ) {
-				$arr[] = $block;
-			}
-		}
-
-		$blocks = array_merge(
-			appp_get_allowed_blocks(),
-			$arr
-		);
-	}
-
-	return $blocks;
-}
-
-add_filter( 'allowed_block_types_all', 'appp_allowed_post_type_blocks', 10, 2 );
 
 /**
  * Undocumented function
@@ -501,6 +586,10 @@ function appp_block_category( $categories, $post ) {
 			array(
 				'slug'  => 'appp_component',
 				'title' => __( 'Components', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_layout',
+				'title' => __( 'Layouts', 'apppresser' ),
 			),
 		)
 	);
@@ -530,12 +619,20 @@ add_action(
 						'validate_callback' => '__return_true',
 					),
 				),
+				'args'                => array(
+					'name' => array(
+						'required'          => false,
+						'type'              => 'string',
+						'validate_callback' => '__return_true',
+					),
+				),
 			)
 		);
 	}
 );
 
 function appp_rest_route_colors( $data ) {
+
 	$hex  = $data->get_param( 'hex' );
 	$name = $data->get_param( 'name' );
 

@@ -139,7 +139,13 @@ add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp
 
 function appp_localize_scripts() {
 
-	$palette = appp_get_theme_colors( 0 );
+	global $post, $pagenow;
+
+	if ( ( $pagenow !== 'post.php' ) || ( get_post_type() !== 'app' ) ) {
+		return array();
+	}
+
+	$palette = appp_get_theme_colors( $post->ID );
 
 	wp_localize_script( 'appp-block-script', 'appp_data', array( 'color_palettes' => json_encode( $palette ) ) );
 }
@@ -147,12 +153,6 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
 
 function appp_get_theme_colors( $post_id ) {
-
-	global $post, $pagenow;
-
-	if ( ( $pagenow !== 'post.php' ) || ( get_post_type() !== 'app' ) ) {
-		return array();
-	}
 
 	// $fields = array(
 	// 	'primary',
@@ -170,10 +170,9 @@ function appp_get_theme_colors( $post_id ) {
 
 	$palette = array();
 
-	foreach ( $fields as $field ) {
-		$color = get_field( $field, $post_id );
-
-		$colors = appp_process_colors( '--ion-color-' . $field, $color );
+	foreach ( $fields as $field => $value ) {
+	
+		$colors = appp_process_colors( '--ion-color-' . $field, $value );
 
 		$palette[ $field ] = $colors;
 	}

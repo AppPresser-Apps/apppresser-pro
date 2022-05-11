@@ -48,6 +48,10 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 <style type="text/css">
 
+	#<?php echo esc_attr( $id ); ?> *, #<?php echo esc_attr( $id ); ?> *:before, #<?php echo esc_attr( $id ); ?> *:after {
+	box-sizing: border-box;
+	}
+
 	#<?php echo esc_attr( $id ); ?> {
 		display: none;
 	}

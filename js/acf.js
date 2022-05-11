@@ -114,7 +114,8 @@ function flattenObject(o, prefix = '', result = {}, keepNull = true) {
         for (let i in o) {
         let pref = prefix;
         if (lodash.isArray(o)) {
-            pref = pref + `[${i}]`;
+            pref = pref + `[]`;
+            //pref = pref + `[${i}]`;
         } else {
             if (lodash.isEmpty(prefix)) {
             pref = i;
@@ -154,7 +155,7 @@ async function displayTokens(url) {
 
             Object.keys(result).map(item => {
                 
-                html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{${item}}</span>`;
+                html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{{${item}}}</span>`;
             });
 
             html += '</div>';
@@ -174,7 +175,7 @@ acf.addAction('ready_field/name=light_mode', function(field){
 
     [...fields].forEach( item => {
         const color = acf.getField(item.getAttribute('data-key'));
-        appp_api_colors(item.getAttribute('data-name'), color.val());
+        //appp_api_colors(item.getAttribute('data-name'), color.val());
 
         jQuery(`[data-key=${color.data.key}] .acf-color-picker`).on( 'change', (event) => {
             appp_api_colors(color.data.name, event.target.value);
@@ -338,6 +339,9 @@ async function appp_get_endpoints_select(base_url) {
 }
 
 function appp_api_colors(name, hex) {
+
+    console.log(name,hex);
+
     wp.apiFetch({
         path: 'apppresser/v1/colors/?name=' + name + '&hex=' + encodeURIComponent(hex),
         method: 'GET',

@@ -23,11 +23,11 @@ $color      = get_field( 'color' );
 $background = get_field( 'background' );
 $size       = get_field( 'font_size' );
 $weight     = get_field( 'font_weight' );
-$margin     = get_field( 'margin' );
+$margin     = get_field( 'margin' ) ?? 0;
 $padding    = get_field( 'padding' );
 $alignment  = get_field( 'alignment' );
 
-// error_log(print_r(get_field( 'padding' ),true));
+error_log(print_r($margin,true));
 
 $style = '';
 
@@ -53,11 +53,14 @@ if ( 'default' === $color ) {
 	$style .= 'color: var(--ion-color-' . $color . '); ';
 }
 
-$style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 300; ';
+$style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 300; box-sizing: border-box; margin: 0px;';
 
 ?>
+<style>
+	#<?php echo esc_attr( $block_id ); ?> {
+	
+	}
+</style>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-	<div style="<?php echo $style; ?>">
-		<p style="padding: 0px; margin: 0px; font-size:<?php echo $size; ?>px; font-weight: <?php echo $weight; ?>; line-height:<?php echo $size; ?>px; text-align:<?php echo $alignment; ?>; "><?php echo $text ? $text : ''; ?></p>
-	</div>
+	<p style="<?php echo $style; ?>"><?php echo $text ? $text : ''; ?></p>
 </div>

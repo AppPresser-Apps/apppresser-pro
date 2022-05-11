@@ -22,10 +22,6 @@ function appp_get_endpoints_field( $request ) {
 	$url    = $request->get_param( 'base_url' );
 	$postID = $request->get_param( 'post_id' );
 
-	// error_log( print_r( $url, true ) );
-
-	// return $url;
-
 	$data = array();
 
 	if ( have_rows( 'integration', 'options' ) ) :
