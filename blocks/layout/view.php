@@ -19,7 +19,7 @@ if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
-$allowed_blocks = appp_get_allowed_blocks();
+$allowed_blocks = appp_get_allowed_view_blocks();
 
 $title           = get_field( 'title' );
 $hide_toolbar    = get_field( 'hide_toolbar' );
@@ -47,10 +47,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 ?>
 
 <style type="text/css">
-
-	#<?php echo esc_attr( $id ); ?> *, #<?php echo esc_attr( $id ); ?> *:before, #<?php echo esc_attr( $id ); ?> *:after {
-	box-sizing: border-box;
-	}
 
 	#<?php echo esc_attr( $id ); ?> {
 		display: none;
@@ -168,7 +164,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					};
 					?>
 				</ion-buttons>
-				<ion-title style="width:140px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
+				<ion-title style="width:318px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {

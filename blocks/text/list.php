@@ -22,8 +22,6 @@ $color       = get_field( 'color' );
 $list_header = get_field( 'list_header' );
 $list_items  = get_field( 'list_items' );
 
-//error_log( print_r( $list_items, true ) );
-
 ?>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 

@@ -124,7 +124,28 @@ function appp_get_allowed_blocks() {
 		}
 	}
 
-	error_log( print_r( $arr, true ) );
+	return array_merge(
+		array(
+			'core/spacer',
+		),
+		$arr
+	);
+}
+
+function appp_get_allowed_view_blocks() {
+
+	$blocks = acf_get_store( 'block-types' );
+
+	$arr = $blocks->data;
+
+	// foreach ( $blocks->data as $block => $value ) {
+	// if ( ! empty( $value['parent'] ) ) {
+	// $arr[] = $block;
+	// }
+	// }
+
+	unset( $arr['acf/view'] );
+	unset( $arr['acf/inner-column'] );
 
 	return array_merge(
 		array(
@@ -144,6 +165,9 @@ function appp_get_allowed_innerblocks() {
 		'acf/ion-thumbnail',
 		'acf/ion-item',
 		'acf/text',
+		'acf/ion-chip',
+		'acf/ion-avatar',
+		'acf/ion-icon',
 	);
 }
 
@@ -196,7 +220,7 @@ function appp_init_block_types() {
 				'name'            => 'view',
 				'title'           => __( 'View (empty)' ),
 				'description'     => __( 'View' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/view.php',
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/view.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
@@ -222,7 +246,7 @@ function appp_init_block_types() {
 				'name'            => 'onboard',
 				'title'           => __( 'OnBoarding' ),
 				'description'     => __( 'Onboard view' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/onboard.php',
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'component', 'onboard' ),
@@ -248,8 +272,8 @@ function appp_init_block_types() {
 				'name'            => 'button',
 				'title'           => __( 'Button' ),
 				'description'     => __( 'Button' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/button.php',
-				'category'        => 'appp_component',
+				'render_template' => APPPRESSER_DIR . '/blocks/text/button.php',
+				'category'        => 'appp_text',
 				'icon'            => 'button',
 				'keywords'        => array( 'component', 'button' ),
 				'post_types'      => array( 'app' ),
@@ -272,8 +296,8 @@ function appp_init_block_types() {
 				'name'            => 'list',
 				'title'           => __( 'List' ),
 				'description'     => __( 'List.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/list.php',
-				'category'        => 'appp_component',
+				'render_template' => APPPRESSER_DIR . '/blocks/text/list.php',
+				'category'        => 'appp_text',
 				'icon'            => 'editor-ul',
 				'keywords'        => array( 'component', 'list' ),
 				'post_types'      => array( 'app' ),
@@ -296,8 +320,8 @@ function appp_init_block_types() {
 				'name'            => 'text',
 				'title'           => __( 'Paragraph' ),
 				'description'     => __( 'Multi-line paragraph of text' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/text.php',
-				'category'        => 'appp_component',
+				'render_template' => APPPRESSER_DIR . '/blocks/text/text.php',
+				'category'        => 'appp_text',
 				'icon'            => 'editor-paragraph',
 				'keywords'        => array( 'component', 'text' ),
 				'post_types'      => array( 'app' ),
@@ -320,9 +344,9 @@ function appp_init_block_types() {
 				'name'            => 'card',
 				'title'           => __( 'Card' ),
 				'description'     => __( 'Card' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/card.php',
-				'category'        => 'appp_component',
-				'icon'            => 'excerpt-view',
+				'render_template' => APPPRESSER_DIR . '/blocks/patterns/card.php',
+				'category'        => 'appp_patterns',
+				'icon'            => 'feedback',
 				'keywords'        => array( 'component', 'card' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -345,7 +369,7 @@ function appp_init_block_types() {
 				'name'            => __( 'repeater' ),
 				'title'           => __( 'Repeater' ),
 				'description'     => __( 'Repeats a child block' ),
-				'category'        => 'appp_component',
+				'category'        => 'appp_data',
 				'icon'            => 'update',
 				'keywords'        => array( 'component', 'repeater', 'data' ),
 				'post_types'      => array( 'app' ),
@@ -360,7 +384,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/repeater/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
 				'example'         => array(
 					'attributes' => array(
 						'mode' => 'preview',
@@ -377,7 +401,7 @@ function appp_init_block_types() {
 				'title'           => 'OpenWeather',
 				'description'     => 'OpenWeather Api',
 				'icon'            => 'cloud',
-				'category'        => 'appp_component',
+				'category'        => 'appp_third_party',
 				'keywords'        => array( 'component', 'openweather' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -392,7 +416,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/openweather/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/third-party/openweather/block.php',
 			)
 		);
 
@@ -401,7 +425,7 @@ function appp_init_block_types() {
 				'name'            => 'ion-image',
 				'title'           => 'Image',
 				'description'     => 'Image',
-				'category'        => 'appp_component',
+				'category'        => 'appp_media',
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
 				'post_types'      => array( 'app' ),
@@ -416,7 +440,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/ion-image/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/media/ion-image/block.php',
 			)
 		);
 
@@ -425,7 +449,7 @@ function appp_init_block_types() {
 				'name'            => 'ion-thumbnail',
 				'title'           => 'Thumbnail',
 				'description'     => 'Image thumbnail',
-				'category'        => 'appp_component',
+				'category'        => 'appp_media',
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
 				'post_types'      => array( 'app' ),
@@ -440,7 +464,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/ion-thumbnail/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/media/ion-thumbnail/block.php',
 			)
 		);
 
@@ -449,7 +473,7 @@ function appp_init_block_types() {
 				'name'            => 'ion-item',
 				'title'           => 'Item',
 				'description'     => 'List item',
-				'category'        => 'appp_component',
+				'category'        => 'appp_text',
 				'keywords'        => array( 'component', 'list', 'item' ),
 				'icon'            => 'list-view',
 				'post_types'      => array( 'app' ),
@@ -464,7 +488,103 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/ion-item/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/text/ion-item/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-chip',
+				'title'           => 'Chip',
+				'description'     => 'Chips represent complex entities in small blocks, such as a contact. A chip can contain several different elements such as avatars, text, and icons.',
+				'category'        => 'appp_text',
+				'keywords'        => array( 'component', 'text', 'chip', 'item' ),
+				'icon'            => 'tag',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/text/ion-chip/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-avatar',
+				'title'           => 'Avatar',
+				'description'     => 'Avatars are circular components that usually wrap an image. They can be used to represent a person or an object',
+				'category'        => 'appp_media',
+				'keywords'        => array( 'component', 'avatar', 'image', 'media' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/media/ion-avatar/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-icon',
+				'title'           => 'Icon',
+				'description'     => 'lazily loaded svg icons.',
+				'category'        => 'appp_media',
+				'keywords'        => array( 'component', 'icon', 'image', 'media' ),
+				'icon'            => 'admin-generic',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/media/ion-icon/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-fab',
+				'title'           => 'Floating Action Button',
+				'description'     => 'Fabs are container elements that contain one or more fab buttons. They should be placed in a fixed position that does not scroll with the content. Fab should have one main fab-button.',
+				'category'        => 'appp_text',
+				'keywords'        => array( 'component', 'text', 'fab', 'item' ),
+				'icon'            => 'button',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/text/ion-fab/block.php',
 			)
 		);
 
@@ -473,7 +593,7 @@ function appp_init_block_types() {
 				'name'            => 'fetch',
 				'title'           => 'Fetch',
 				'description'     => 'Fetches data from api endpoints and is available to the view and blocks.',
-				'category'        => 'appp_component',
+				'category'        => 'appp_data',
 				'icon'            => 'database',
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
@@ -487,7 +607,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/fetch/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/data/fetch/block.php',
 			)
 		);
 
@@ -510,7 +630,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/container/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/container/block.php',
 			)
 		);
 
@@ -533,7 +653,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/columns/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/columns/block.php',
 			)
 		);
 		acf_register_block_type(
@@ -555,7 +675,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/inner-column/block.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/inner-column/block.php',
 			)
 		);
 		// End Create-ACF-Block
@@ -588,8 +708,28 @@ function appp_block_category( $categories, $post ) {
 				'title' => __( 'Components', 'apppresser' ),
 			),
 			array(
+				'slug'  => 'appp_media',
+				'title' => __( 'Media', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_text',
+				'title' => __( 'Text', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_patterns',
+				'title' => __( 'Patterns', 'apppresser' ),
+			),
+			array(
 				'slug'  => 'appp_layout',
-				'title' => __( 'Layouts', 'apppresser' ),
+				'title' => __( 'Layout', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_data',
+				'title' => __( 'Data', 'apppresser' ),
+			),
+			array(
+				'slug'  => 'appp_third_party',
+				'title' => __( 'Third Party', 'apppresser' ),
 			),
 		)
 	);

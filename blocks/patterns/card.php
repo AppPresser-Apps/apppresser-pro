@@ -9,8 +9,6 @@
  * @param   (int|string) $post_id The post ID this block is saved to.
  */
 
-error_log(print_r($block,true));
-
 // Create id attribute allowing for custom "anchor" value.
 $block_id = 'card-' . $block['id'];
 
@@ -27,8 +25,6 @@ $header_image = get_field( 'header_image' );
 $image_height = get_field( 'image_height' ) ?? 300;
 
 $per_page = get_field( 'per_page' );
-
-//error_log( print_r( $image, true ) );
 
 $style = '';
 

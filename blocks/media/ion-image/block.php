@@ -1,8 +1,8 @@
 <?php
 /**
- * Block Name: Ion-Image
+ * Block Name: Ion Img.
  *
- * Description: ionic image component
+ * Description: Img is a tag that will lazily load an image when ever the tag is in the viewport.
  *
  * @package AppPresser
  */

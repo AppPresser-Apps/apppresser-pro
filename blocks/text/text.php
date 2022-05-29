@@ -27,8 +27,6 @@ $margin     = get_field( 'margin' ) ?? 0;
 $padding    = get_field( 'padding' );
 $alignment  = get_field( 'alignment' );
 
-error_log(print_r($margin,true));
-
 $style = '';
 
 $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';

@@ -40,7 +40,7 @@ function apppFilterBlockRegister( settings, name ) {
             settings.parent = ['acf/view', 'acf/onboard'];
             break;
         case 'core/spacer':
-            settings.category = 'appp_component';
+            settings.category = 'appp_layout';
             settings.parent = ['acf/view', 'acf/repeater'];
             break;
         case 'acf/button':
