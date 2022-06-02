@@ -1,9 +1,12 @@
 <?php
+/**
+ * Custom css for Gutenberg editor to frmat it for an app builder.
+ *
+ * @package AppPresser
+ */
 
 /**
- * Hack to stop the notice of mismatched template because guttenberg will
- * no allow you to lock the parent template and then allow child blocks to be unlocked.
- * If you read this then go to WP git forums and complain about it so its fixed!!!!
+ * CSS hacks for Gutenberg
  *
  * @return void
  */
@@ -154,7 +157,34 @@ function appp_custom_editor_css() {
 }
 add_action( 'admin_footer', 'appp_custom_editor_css', 999 );
 
-function dashboard_logo() {
+/**
+ * Remove button class styles from ionic components.
+ * WP core css was leaking into the web components.
+ *
+ * @return void
+ */
+function appp_remove_core_button_styles() {
+
+	$screen = get_current_screen();
+	if ( 'app' === $screen->post_type ) {
+		echo "
+		<style type='text/css'>
+		.wp-core-ui .button:not(.acf-button):not(.wp-color-result), .wp-core-ui .button:not(.acf-button):not(.wp-color-result):hover {
+			all: unset;
+		}
+		</style>
+		";
+	}
+
+}
+add_action( 'admin_head', 'appp_remove_core_button_styles', 999 );
+
+/**
+ * Custom dashboard icon / logo.
+ *
+ * @return void
+ */
+function appp_dashboard_logo() {
 	echo '
         <style type="text/css">
 			#wpadminbar #wp-admin-bar-wp-logo>.ab-item {
@@ -182,42 +212,8 @@ function dashboard_logo() {
 			.edit-post-fullscreen-mode-close.has-icon:hover:before {
 				box-shadow: none;
 			}
+
         </style>
     ';
 }
-add_action( 'wp_before_admin_bar_render', 'dashboard_logo' );
-
-function appp_set_root_theme_styles() {
-
-	global $post, $pagenow;
-
-	if ( ( $pagenow == 'post.php' ) || ( get_post_type() == 'app' ) ) {
-
-		$light_mode = get_field( 'light_mode', $post->ID );
-
-		//error_log( print_r( $light_mode, true ) );
-
-		$fields = array(
-			'primary',
-			'secondary',
-			'tertiary',
-			'success',
-			'warning',
-			'danger',
-			'dark',
-			'medium',
-			'light',
-		);
-
-		$palette = array();
-
-		foreach ( $fields as $field ) {
-			$palette[ $field ] = get_field( $field, $post->ID );
-		}
-
-		// error_log(print_r($palette, true,));
-
-	}
-
-}
-add_action( 'admin_head', 'appp_set_root_theme_styles' );
+add_action( 'wp_before_admin_bar_render', 'appp_dashboard_logo' );

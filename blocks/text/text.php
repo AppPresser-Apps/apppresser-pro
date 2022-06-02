@@ -51,7 +51,7 @@ if ( 'default' === $color ) {
 	$style .= 'color: var(--ion-color-' . $color . '); ';
 }
 
-$style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-weight: 300; box-sizing: border-box; margin: 0px;';
+$style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 'px; font-weight: ' . $weight .'; box-sizing: border-box; margin: 0px;';
 
 ?>
 <style>

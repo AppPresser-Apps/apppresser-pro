@@ -1,39 +1,65 @@
 <?php
 
-// $primary_colors = appp_process_colors( '--ion-color-primary', $primary );
+/**
+ * Process a hex color into ionic theme variables.
+ * EXAMPLE Usage: $primary_colors = appp_process_colors( '--ion-color-primary', '#ffffff' );
+ *
+ * @param string $rule
+ * @param string $hex
+ * @return array ths required css variable for custom ionic theme colors
+ */
 function appp_process_colors( $rule, $hex ) {
-
-	//error_log(print_r($rule,true));
-	//error_log(print_r($hex,true));
 
 	$rgb      = appp_rgb2hex( $hex );
 	$contrast = appp_contrast( $hex );
 
-	$colors = [
+	$colors = array(
 		$rule                   => $hex,
 		$rule . '-rgb'          => implode( ',', $rgb ),
 		$rule . '-shade'        => appp_rgb2hex( appp_mix_colors( $rgb, 'shade', 0.88 ) ),
 		$rule . '-tint'         => appp_rgb2hex( appp_mix_colors( $rgb, 'tint', 0.90 ) ),
 		$rule . '-contrast'     => $contrast,
 		$rule . '-contrast-rgb' => implode( ',', appp_rgb2hex( $contrast ) ),
-	];
+	);
 
 	return $colors;
 }
 
+/**
+ * Calculates and returns a threshold of color.
+ *
+ * @param array $rgb
+ * @return integar
+ */
 function appp_rgbToYIQ( $rgb ) {
 	$threshhold = ( ( $rgb['r'] * 299 ) + ( $rgb['g'] * 587 ) + ( $rgb['b'] * 114 ) ) / 1000;
 	return $threshhold;
 }
 
+/**
+ * Returns a contrast color for supplied hex.
+ * TODO: make this return a darker or lighter color based on hex if requested instead of just black or white.
+ *
+ * @param string  $hex
+ * @param integer $threshold
+ * @return string
+ */
 function appp_contrast( $hex, $threshold = 128 ) {
 	$rgb = appp_rgb2hex( $hex );
 	return appp_rgbToYIQ( $rgb ) >= $threshold ? '#000000' : '#ffffff';
 }
 
+/**
+ * Mixes color to produce a tint or shade from supplied hex.
+ *
+ * @param array  $rgb
+ * @param string $type
+ * @param float  $weight
+ * @return array
+ */
 function appp_mix_colors( $rgb, $type = 'tint', $weight = 0.88 ) {
 
-	$mixed = [];
+	$mixed = array();
 
 	$type = 'tint' === $type ? 255 : 0;
 
@@ -46,6 +72,12 @@ function appp_mix_colors( $rgb, $type = 'tint', $weight = 0.88 ) {
 	return $colors;
 }
 
+/**
+ * Converts rgb to hex color.
+ *
+ * @param array $c Color to convert.
+ * @return string
+ */
 function appp_rgb2hex( $c ) {
 	if ( ! $c ) {
 		return false;
@@ -87,6 +119,12 @@ function appp_rgb2hex( $c ) {
 	return $out;
 }
 
+/**
+ * Converts hex to hue, saturation and lightness.
+ *
+ * @param string $hex Color to convert
+ * @return array
+ */
 function hexToHsl( $hex ) {
 	$red   = hexdec( substr( $hex, 0, 2 ) ) / 255;
 	$green = hexdec( substr( $hex, 2, 2 ) ) / 255;
@@ -120,6 +158,5 @@ function hexToHsl( $hex ) {
 	$lightness  = round( $lightness );
 	$saturation = round( $saturation );
 
-	// return "hsl(${hue}, ${saturation}%, ${lightness}%)";
 	return array( $hue, $saturation, $lightness );
 }

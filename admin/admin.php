@@ -1,8 +1,11 @@
 <?php
 
+/**
+ * Remove un-needed admin screens and functionality.
+ */
 add_filter( 'screen_options_show_screen', '__return_false' );
 add_filter( 'wp_is_application_passwords_available', '__return_false' );
-// remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 
 add_filter(
 	'site_status_tests',
@@ -18,6 +21,11 @@ add_filter(
 	1
 );
 
+/**
+ * Remove un-needed dashboard widgets.
+ *
+ * @return void
+ */
 function appp_wp_dashboard_setup() {
 
 	remove_action( 'welcome_panel', 'wp_welcome_panel' );
@@ -41,7 +49,11 @@ function appp_wp_dashboard_setup() {
 }
 add_action( 'wp_dashboard_setup', 'appp_wp_dashboard_setup' );
 
-
+/**
+ * Remove un-needed menu items.
+ *
+ * @return void
+ */
 function appp_remove_menu_items() {
 
 	remove_menu_page( 'edit.php' );
@@ -58,7 +70,13 @@ function appp_remove_menu_items() {
 }
 add_action( 'admin_menu', 'appp_remove_menu_items', 999 );
 
-
+/**
+ * Remove the ability for admininistrator to change a user to an administrator.
+ * This needs blocked becasue the app administrators will be a custom role with limited admin capabilities.
+ *
+ * @param array $all_roles WordPress user roles.
+ * @return array
+ */
 function appp_filter_editable_roles( $all_roles ) {
 
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -69,38 +87,90 @@ function appp_filter_editable_roles( $all_roles ) {
 }
 add_filter( 'editable_roles', 'appp_filter_editable_roles' );
 
-add_action( 'admin_head', 'mytheme_remove_help_tabs' );
-function mytheme_remove_help_tabs() {
+/**
+ * Remove help tabs on edit screens.
+ *
+ * @return void
+ */
+function appp_remove_help_tabs() {
 	$screen = get_current_screen();
 	$screen->remove_help_tabs();
 }
-
+add_action( 'admin_head', 'appp_remove_help_tabs' );
 
 
 if ( ! function_exists( 'appp_remove_personal_options' ) ) {
+
+	/**
+	 * Remove sections of user profile edit.
+	 * No hooks for this so it's string replace hacking :P
+	 *
+	 * @param string $subject page php output html.
+	 * @return string
+	 */
 	function appp_remove_personal_options( $subject ) {
-		$subject = preg_replace( '#<h2>' . __( 'Personal Options' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Personal Options" title
-		$subject = preg_replace( '#<tr class="user-rich-editing-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Visual Editor" field
-		$subject = preg_replace( '#<tr class="user-syntax-highlighting-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Syntax Highting" field
-		$subject = preg_replace( '#<tr class="user-comment-shortcuts-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Keyboard Shortcuts" field
-		$subject = preg_replace( '#<tr class="show-admin-bar(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Toolbar" field
-		$subject = preg_replace( '#<h2>' . __( 'Name' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Name" title
-		$subject = preg_replace( '#<tr class="user-display-name-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Display name publicly as" field
-		$subject = preg_replace( '#<h2>' . __( 'Contact Info' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Contact Info" title
-		$subject = preg_replace( '#<tr class="user-url-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Website" field
-		$subject = preg_replace( '#<h2>' . __( 'About Yourself' ) . '</h2>#s', '', $subject, 1 ); // Remove the "About Yourself" title
-		$subject = preg_replace( '#<tr class="user-description-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Biographical Info" field
-		$subject = preg_replace( '#<tr class="user-profile-picture(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Profile Picture" field
+		$subject = preg_replace( '#<h2>' . __( 'Personal Options' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Personal Options" title.
+		$subject = preg_replace( '#<tr class="user-rich-editing-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Visual Editor" field.
+		$subject = preg_replace( '#<tr class="user-syntax-highlighting-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Syntax Highting" field.
+		$subject = preg_replace( '#<tr class="user-comment-shortcuts-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Keyboard Shortcuts" field.
+		$subject = preg_replace( '#<tr class="show-admin-bar(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Toolbar" field.
+		$subject = preg_replace( '#<h2>' . __( 'Name' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Name" title.
+		$subject = preg_replace( '#<tr class="user-display-name-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Display name publicly as" field.
+		$subject = preg_replace( '#<h2>' . __( 'Contact Info' ) . '</h2>#s', '', $subject, 1 ); // Remove the "Contact Info" title.
+		$subject = preg_replace( '#<tr class="user-url-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Website" field.
+		$subject = preg_replace( '#<h2>' . __( 'About Yourself' ) . '</h2>#s', '', $subject, 1 ); // Remove the "About Yourself" title.
+		$subject = preg_replace( '#<tr class="user-description-wrap(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Biographical Info" field.
+		$subject = preg_replace( '#<tr class="user-profile-picture(.*?)</tr>#s', '', $subject, 1 ); // Remove the "Profile Picture" field.
 		return $subject;
 	}
 
+	/**
+	 * Start removal
+	 *
+	 * @return void
+	 */
 	function appp_profile_subject_start() {
-		ob_start( 'appp_remove_personal_options' );
-	}
 
-	function appp_profile_subject_end() {
-		ob_end_flush();
+		$screen = get_current_screen();
+
+		if ( 'profile' === $screen->id ) {
+			ob_start( 'appp_remove_personal_options' );
+		}
+
 	}
+	add_action( 'admin_head', 'appp_profile_subject_start' );
+
+	/**
+	 * End removal
+	 *
+	 * @return void
+	 */
+	function appp_profile_subject_end() {
+
+		$screen = get_current_screen();
+
+		if ( 'profile' === $screen->id ) {
+			ob_end_flush();
+		}
+
+	}
+	add_action( 'admin_footer', 'appp_profile_subject_end' );
 }
-add_action( 'admin_head', 'appp_profile_subject_start' );
-add_action( 'admin_footer', 'appp_profile_subject_end' );
+
+
+
+/**
+ * Filter new post title placeholder.
+ */
+if ( is_admin() ) {
+	add_filter(
+		'enter_title_here',
+		function( $input ) {
+			if ( 'app' === get_post_type() ) {
+				return __( 'App Name', 'appppresser' );
+			} else {
+				return $input;
+			}
+		}
+	);
+}

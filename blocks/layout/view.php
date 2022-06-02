@@ -200,19 +200,25 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 			content.classList.add('ion-padding');
 		<?php endif; ?>
 
-		var menubtns = view.querySelectorAll('ion-menu-button'), i;
+		// var menubtns = view.querySelectorAll('ion-menu-button'), i;
 
-		for (i = 0; i < menubtns.length; ++i) {
-			menubtns[i].classList.remove('button');
-			menubtns[i].setAttribute('auto-hide', false);
-			menubtns[i].classList.remove('menu-button-hidden');
-		}
+		// for (i = 0; i < menubtns.length; ++i) {
+		// 	menubtns[i].classList.remove('button');
+		// 	menubtns[i].setAttribute('auto-hide', false);
+		// 	menubtns[i].classList.remove('menu-button-hidden');
+		// }
 
-		var btns = view.querySelectorAll('ion-button'), i;
+		// var backbtns = view.querySelectorAll('ion-back-button'), i;
 
-		for (i = 0; i < btns.length; ++i) {
-			btns[i].classList.remove('button');
-		}
+		// for (i = 0; i < backbtns.length; ++i) {
+		// 	backbtns[i].classList.remove('button');
+		// }
+
+		// var btns = view.querySelectorAll('ion-button'), i;
+
+		// for (i = 0; i < btns.length; ++i) {
+		// 	btns[i].classList.remove('button');
+		// }
 
 	}, 500);
 

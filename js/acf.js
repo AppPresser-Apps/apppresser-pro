@@ -32,29 +32,6 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
-var instance = new acf.Model({
-    wait: 'ready',
-    initialize: function(){
-        // runs during the 'ready' action when all elements have been rendered
-    }
-});
-
-
-// var instance = new acf.Model({
-//     events: {
-//         'change input[type=url]': 'onChange',
-//     },
-//     onChange: async function(e, $el){
-//         e.preventDefault();
- 
-//         console.log(e);
-       
-//     },
-//     initialize: function(){
-//         var foo = instance.get('data_source');
-//         console.log(foo);
-//     },
-// });
 
 acf.add_action('ready append', (e)=> {
 
@@ -90,11 +67,9 @@ acf.addAction('load', ()=> {
 });
 
 acf.addAction('remount', function ($el) {
-    //console.log($el);
 });
 
 acf.addAction('append_field/name=data_source', function( field ){
-    //const name = field.$el.attr('data-name');
     displayTokens(field);
 });
 
@@ -514,11 +489,6 @@ function appp_update_repeater(id, data, _tokens) {
 			message: 'ffff',
 			time: new Date()
 		});
-
-        setTimeout(() => {
-            appp_remove_button_class('.items-repeat-' + id);
-    
-        }, 50);
 
 	}, 100);
 

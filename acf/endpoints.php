@@ -2,6 +2,9 @@
 
 add_action(
 	'rest_api_init',
+	/**
+	 * Register acf feilds endpoint.
+	 */
 	function () {
 
 		register_rest_route(
@@ -17,6 +20,12 @@ add_action(
 	}
 );
 
+/**
+ * Returns app data endpoints.
+ *
+ * @param WP_Rest_Request $request
+ * @return void
+ */
 function appp_get_endpoints_field( $request ) {
 
 	$url    = $request->get_param( 'base_url' );
@@ -56,7 +65,11 @@ function appp_get_endpoints_field( $request ) {
 
 }
 
-
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
 function appp_get_endpoints_data() {
 
 	$data = array();
