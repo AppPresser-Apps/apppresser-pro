@@ -17,12 +17,18 @@ if ( ! empty( $block['className'] ) ) {
 	$block_classes .= ' ' . $block['className'];
 }
 
-$image = get_field( 'image' ) ?? APPPRESSER_URL . '/images/avatar-placeholder.png';
+$image      = get_field( 'image_url' ) ? get_field( 'image_url' ) : APPPRESSER_URL . '/images/avatar-placeholder.png';
+$image_size = get_field( 'image_size' );
+$alt_text = get_field( 'alt_text' );
 
+$styles = '';
+
+$styles .= 'width: ' . $image_size . 'px; ';
+$styles .= 'height: ' . $image_size . 'px; ';
 ?>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
-	<ion-avatar>
-		<img src="<?php echo esc_attr( $image ); ?>"/>
+	<ion-avatar style="<?php echo $styles; ?>">
+		<ion-img src="<?php echo esc_attr( $image ); ?>" alt="<?php echo esc_attr( $alt_text ); ?>"/>
 	</ion-avatar>
 </div>

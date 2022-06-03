@@ -269,7 +269,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'ion-image',
 				'title'           => 'Image',
-				'description'     => 'Image',
+				'description'     => 'Image is a block that will lazily load an image when ever the tag is in the viewport',
 				'category'        => 'appp_media',
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
