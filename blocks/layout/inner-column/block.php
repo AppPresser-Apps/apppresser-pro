@@ -17,19 +17,27 @@ if ( ! empty( $block['className'] ) ) {
 
 $allowed_blocks = appp_get_allowed_innerblocks();
 
+$alignment = get_field( 'alignment' );
+
+$style = '';
+
+if ( $alignment ) {
+	$style .= 'display: flex; ';
+	$style .= 'justify-content: ' . $alignment . '; ';
+}
+
 ?>
 
 <style>
-  #<?php echo esc_attr( $block_id ); ?> {
-  	word-break: break-all;
-  }
-
+	#<?php echo esc_attr( $block_id ); ?> {
+		word-break: break-all;
+	}
 </style>
-  
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-  <InnerBlocks 
-    templateInsertUpdatesSelection="false" 
-    templateLock="false" 
-    allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
-    />
+
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo $style; ?>">
+	<InnerBlocks 
+	templateInsertUpdatesSelection="true" 
+	templateLock="false" 
+	allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+	/>
 </div>

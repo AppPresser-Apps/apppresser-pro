@@ -30,7 +30,7 @@ $allowed_blocks = array( 'acf/inner-columns' );
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<InnerBlocks 
-		templateInsertUpdatesSelection="false" 
+		templateInsertUpdatesSelection="true" 
 		templateLock="false" 
 		allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 		/>

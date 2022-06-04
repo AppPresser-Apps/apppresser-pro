@@ -23,6 +23,7 @@ $color      = get_field( 'color' );
 $background = get_field( 'background' );
 $size       = get_field( 'font_size' );
 $weight     = get_field( 'font_weight' );
+$font_style = get_field( 'font_style' );
 $margin     = get_field( 'margin' ) ?? 0;
 $padding    = get_field( 'padding' );
 $alignment  = get_field( 'alignment' );
@@ -33,6 +34,10 @@ $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
 $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
 $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
+
+if ( $font_style ) {
+	$style .= 'font-style:' . $font_style . '; ';
+}
 
 if ( $margin ) {
 	$style .= 'margin-left:' . $margin . 'px; ';
@@ -45,13 +50,17 @@ if ( $background ) {
 	$style .= 'background-color: var(--ion-color-' . $background . '); ';
 }
 
+if ( $alignment ) {
+	$style .= 'text-align: ' . $alignment . '; ';
+}
+
 if ( 'default' === $color ) {
 	$style .= 'color: var(--ion-color-' . $background . '-contrast); ';
 } else {
 	$style .= 'color: var(--ion-color-' . $color . '); ';
 }
 
-$style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 'px; font-weight: ' . $weight .'; box-sizing: border-box; margin: 0px;';
+$style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 'px; font-weight: ' . $weight . '; box-sizing: border-box; margin: 0px;';
 
 ?>
 <style>
