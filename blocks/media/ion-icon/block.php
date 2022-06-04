@@ -18,11 +18,15 @@ if ( ! empty( $block['className'] ) ) {
 }
 
 $icon = get_field( 'icon' ) ?? 'heart-outline';
-$size = get_field( 'size' ) ?? 'large';
+$size = get_field( 'size' ) ?? '16';
 $color = get_field( 'color' ) ?? 'primary';
+
+$styles = '';
+
+$styles .= 'font-size: ' . $size . 'px; ';
 
 ?>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
-	<ion-icon name="<?php echo esc_attr( $icon ); ?>" size="<?php echo esc_attr( $size ); ?>" color="<?php echo esc_attr( $color ); ?>"></ion-icon>
+	<ion-icon name="<?php echo esc_attr( $icon ); ?>" color="<?php echo esc_attr( $color ); ?>" style="<?php echo $styles; ?>"></ion-icon>
 </div>
