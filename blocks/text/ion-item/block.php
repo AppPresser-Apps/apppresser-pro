@@ -10,27 +10,49 @@
  */
 
 // Dynamic block ID.
-$block_id = 'repeater-' . $block['id'];
+$block_id = 'item-' . $block['id'];
 
-$block_classes = implode( ' ', array( $block['className'] ) );
+if ( ! empty( $block['className'] ) ) {
+	$class_name .= ' ' . $block['className'];
+}
 
-$image = get_field( 'image_url' );
-$label = get_field( 'label' );
-$description = get_field( 'description' );
+$icon_type      = get_field( 'item_icon_type' );
+$icon           = get_field( 'icon' );
+$icon_thumbnail = get_field( 'icon_thumbnail' );
+$label          = get_field( 'label' );
+$description    = get_field( 'description' );
+$detail         = get_field( 'detail' ) ? 'true' : 'false';
 
 ?>
 
+<style>
+	.clickable {
+		z-index: 999;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+</style>
+
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
 
-	<ion-item>
-		<ion-avatar slot="start">
-			<img src="/wp-content/plugins/apppresser-pro/images/avatar-placeholder.png" data-src=" <?php echo esc_attr( $image ); ?> ">
-		</ion-avatar>
+	<div class="clickable"></div>
+
+	<ion-item href="#" detail="<?php echo esc_attr( $detail ); ?>">
+		<?php if ( 'icon' === $icon_type ) : ?>
+			<ion-icon size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
+		<?php endif; ?>
+		<?php if ( 'thumbnail' === $icon_type ) : ?>
+			<ion-thumbnail slot="start">
+				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
+			</ion-thumbnail>
+		<?php endif; ?>
 		<ion-label>
-		<?php echo esc_attr( $label ); ?>
-		<p> <?php echo esc_attr( $description ); ?> </p>
+			<?php echo esc_attr( $label ); ?>
+			<p> <?php echo esc_attr( $description ); ?> </p>
 		</ion-label>
-		
 	</ion-item>
 
 </div>
