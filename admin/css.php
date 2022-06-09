@@ -169,7 +169,8 @@ function appp_remove_core_button_styles() {
 	if ( 'app' === $screen->post_type ) {
 		echo "
 		<style type='text/css'>
-		.wp-core-ui .button:not(.acf-button):not(.wp-color-result), .wp-core-ui .button:not(.acf-button):not(.wp-color-result):hover {
+		.wp-core-ui .button:not(.acf-button):not(.wp-color-result), 
+		.wp-core-ui .button:not(.acf-button):not(.wp-color-result):hover {
 			all: unset;
 		}
 		</style>

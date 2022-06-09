@@ -48,9 +48,6 @@ function apppFilterBlockRegister(settings, name) {
     case "acf/button":
       settings.parent = ["acf/view", "acf/onboard", "acf/repeater"];
       break;
-    case "acf/list":
-      settings.parent = ["acf/view"];
-      break;
     case "acf/text":
       settings.parent = ["acf/view", "acf/onboard", "acf/repeater"];
       break;

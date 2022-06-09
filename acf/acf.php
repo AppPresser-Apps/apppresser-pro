@@ -189,3 +189,41 @@ function appp_allow_acf_block( $block ) {
 	return $block;
 }
 add_filter( 'acf/register_block_type_args', 'appp_allow_acf_block' );
+
+
+/**
+ * Save acf json to plugin folder
+ *
+ * @param string $path
+ * @return string
+ */
+function appp_acf_json_save_point( $path ) {
+
+	// update path.
+	$path = APPPRESSER_DIR . '/acf-json';
+
+	// return.
+	return $path;
+
+}
+add_filter( 'acf/settings/save_json', 'appp_acf_json_save_point' );
+
+/**
+ * Get acf json from plugin folder
+ *
+ * @param array $path
+ * @return array
+ */
+function appp_acf_json_load_point( $paths ) {
+
+	// remove original path (optional).
+	unset( $paths[0] );
+
+	// append path.
+	$paths[] = APPPRESSER_DIR . '/acf-json';
+
+	// return.
+	return $paths;
+
+}
+add_filter( 'acf/settings/load_json', 'appp_acf_json_load_point' );

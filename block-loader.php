@@ -89,10 +89,10 @@ function appp_init_block_types() {
 		// register a list block.
 		acf_register_block_type(
 			array(
-				'name'            => 'list',
-				'title'           => __( 'List' ),
-				'description'     => __( 'List.' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/text/list.php',
+				'name'            => 'list_header',
+				'title'           => __( 'List Header' ),
+				'description'     => __( 'List Header a header component for a list. Unlike Item Divider, List Headers are styled to be stand-out from the rest of the list items.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/text/list-header/block.php',
 				'category'        => 'appp_text',
 				'icon'            => 'editor-ul',
 				'keywords'        => array( 'component', 'list' ),

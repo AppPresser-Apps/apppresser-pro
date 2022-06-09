@@ -1,0 +1,314 @@
+{
+    "key": "group_6231fb5917bcf",
+    "title": "OpenWeather",
+    "fields": [
+        {
+            "key": "field_6231fde8a0259",
+            "label": "Type",
+            "name": "type",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "current": "Current",
+                "slider-hourly": "Hourly Slider",
+                "list-5-day": "5 Day List",
+                "custom": "Custom"
+            },
+            "default_value": "current",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6231fb5f34c0b",
+            "label": "Location",
+            "name": "location",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Brisbane",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_623a02ee55c20",
+            "label": "Geo Location",
+            "name": "geo_location",
+            "type": "true_false",
+            "instructions": "Ask user to use current location for weather.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_62320b41906db",
+            "label": "API Key",
+            "name": "api_key",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_623216871a35d",
+            "label": "Color",
+            "name": "color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "current"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "slider-hourly"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "list-5-day"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string",
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary",
+                "tertiary": "Tertiary",
+                "warning": "Warning",
+                "success": "Success",
+                "danger": "Danger",
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            }
+        },
+        {
+            "key": "field_623214f2f6cb9",
+            "label": "Background",
+            "name": "background",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "current"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "slider-hourly"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "list-5-day"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 1,
+            "return_format": "string"
+        },
+        {
+            "key": "field_623215b18349c",
+            "label": "Border Radius",
+            "name": "border_radius",
+            "type": "range",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "current"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "slider-hourly"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "list-5-day"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "min": "",
+            "max": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_623344c83f98d",
+            "label": "Aspect Ratio",
+            "name": "aspect_ratio",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "current"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "auto": "Auto",
+                "1\/1": "Square"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "auto",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_62334ac453b41",
+            "label": "Max Width",
+            "name": "max_width",
+            "type": "range",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "current"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "slider-hourly"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6231fde8a0259",
+                        "operator": "==",
+                        "value": "list-5-day"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 320,
+            "min": 150,
+            "max": 640,
+            "step": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/openweather"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1654813020
+}

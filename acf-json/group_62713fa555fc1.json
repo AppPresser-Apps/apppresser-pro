@@ -1,0 +1,43 @@
+{
+    "key": "group_62713fa555fc1",
+    "title": "Endpoint Test",
+    "fields": [
+        {
+            "key": "field_62713faf87025",
+            "label": "Fetch Result",
+            "name": "fetch_result",
+            "type": "acf_code_field",
+            "instructions": "Click test button for each endpoint. Endpoint fetch results will appear here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "cobalt"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-integrations"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1654813053
+}
