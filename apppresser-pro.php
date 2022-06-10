@@ -20,6 +20,8 @@ define( 'APPPRESSER_URL', plugins_url( basename( __DIR__ ) ) );
 define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
 define( 'APPPRESSER_FILE', __FILE__ );
 
+//define( 'APPPRESSER_API', get_rest_url() );
+
 require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
 require dirname( __FILE__ ) . '/vendors/acf-code-field/acf-code-field.php';
 

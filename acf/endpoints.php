@@ -1,24 +1,40 @@
 <?php
 
-add_action(
-	'rest_api_init',
-	/**
-	 * Register acf feilds endpoint.
-	 */
-	function () {
 
-		register_rest_route(
-			'apppresser/v1',
-			'/fields/endpoints',
-			array(
-				'methods'             => 'GET',
-				'permission_callback' => '__return_true',
-				'callback'            => 'appp_get_endpoints_data',
-			)
-		);
+/**
+ * Register acf feilds endpoint.
+ */
+function appp_app_endpoints() {
 
-	}
-);
+	register_rest_route(
+		'apppresser/v1',
+		'/fields/endpoints',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'appp_get_endpoints_data',
+		)
+	);
+
+	register_rest_route(
+		'apppresser/v1',
+		'/app/(?P<id>\d+)',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'appp_get_app_data',
+			'args'                => array(
+				'id' => array(
+					'validate_callback' => function( $param, $request, $key ) {
+						return is_numeric( $param );
+					},
+				),
+			),
+		),
+	);
+
+}
+add_action( 'rest_api_init', 'appp_app_endpoints' );
 
 /**
  * Returns app data endpoints.
@@ -98,4 +114,23 @@ function appp_get_endpoints_data() {
 	endif;
 
 	return $data;
+}
+
+function appp_get_app_data( $request ) {
+
+	$param  = $request->get_param( 'id' );
+	$post   = get_post( $param );
+	$blocks = parse_blocks( $post->post_content );
+
+	foreach ( $blocks as $index => $block ) {
+		unset( $blocks[$index]['innerHTML'] );
+		unset( $blocks[$index]['innerContent'] );
+	}
+
+	$app = array(
+		'theme_colors' => appp_get_theme_colors( $param ),
+		'blocks' => $blocks
+	);
+
+	return $app;
 }
