@@ -12,6 +12,7 @@
 // Dynamic block ID.
 $block_id = 'item-' . $block['id'];
 
+$class_name = '';
 if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
@@ -36,7 +37,7 @@ $detail         = get_field( 'detail' ) ? 'true' : 'false';
 	}
 </style>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<div class="clickable"></div>
 

@@ -157,8 +157,6 @@ if ( ! function_exists( 'appp_remove_personal_options' ) ) {
 	add_action( 'admin_footer', 'appp_profile_subject_end' );
 }
 
-
-
 /**
  * Filter new post title placeholder.
  */
@@ -174,3 +172,15 @@ if ( is_admin() ) {
 		}
 	);
 }
+
+
+function appp_filter_preview_link( $preview_link, $post  ) {
+
+	error_log( print_r($preview_link,true));
+	error_log( print_r($post,true));
+
+
+	return $preview_link;
+
+}
+add_filter( 'preview_post_link', 'appp_filter_preview_link' );

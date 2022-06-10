@@ -12,6 +12,7 @@
 // Dynamic block ID.
 $block_id = 'list-header-' . $block['id'];
 
+$class_name = '';
 if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
@@ -28,7 +29,7 @@ $color_button = get_field( 'color_button' );
 
 </style>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<ion-list-header lines="<?php echo esc_attr( $label_border ); ?>">
 		<ion-label color="<?php echo esc_attr( $color_label ); ?>"><?php echo esc_attr( $label ); ?></ion-label>

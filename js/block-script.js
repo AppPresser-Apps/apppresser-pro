@@ -30,6 +30,43 @@ if (!isListViewOpened) {
   wp.data.dispatch("core/edit-post").setIsListViewOpened(true);
 }
 
+ /**
+  * Add custom link to right toolbar to preview app
+  */
+( function ( wp ) {
+
+  // check if gutenberg's editor root element is present.
+  var editorEl = document.getElementById( 'editor' );
+  if( !editorEl ){ // do nothing if there's no gutenberg root element on page.
+      return;
+  }
+
+  var unsubscribe = wp.data.subscribe( function () {
+
+      const post = wp.data.select( 'core/editor' ).getCurrentPost();
+
+      if ( Object.entries(post).length === 0 ) {
+        return;
+      }
+
+      console.log(post);
+      var link_id = 'app-preview-link';
+
+      // prepare our custom link's html.
+      var link_html = '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
+
+      setTimeout( function () {
+          if ( !document.getElementById( link_id ) ) {
+              var toolbalEl = editorEl.querySelector( '.edit-post-header__toolbar' );
+              if( toolbalEl instanceof HTMLElement ){
+                  toolbalEl.insertAdjacentHTML( 'beforeend', link_html );
+              }
+          }
+      }, 1 )
+  } );
+} )( window.wp );
+
+
 /**
  * Filtering the block data.
  * Assigning blocks to specific parents.
