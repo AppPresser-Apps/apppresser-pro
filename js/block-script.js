@@ -114,7 +114,7 @@ wp.hooks.addFilter(
 );
 
 /**
- * DEPRECATED: Removed class from buttons.
+ * DEPRECATED DO NOT DELETE: Removed class from buttons.
  * We are using css for this now.
  * @param {*} block_id
  */

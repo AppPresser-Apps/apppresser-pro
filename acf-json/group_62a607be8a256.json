@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_62a607f88b9f2",
-            "label": "Attributes",
+            "label": "Advanced",
             "name": "",
             "type": "accordion",
             "instructions": "",
@@ -21,9 +21,9 @@
         },
         {
             "key": "field_62a607c98b9f1",
-            "label": "Classes",
-            "name": "classes",
-            "type": "text",
+            "label": "CSS Properties",
+            "name": "css",
+            "type": "acf_code_field",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -34,9 +34,8 @@
             },
             "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "mode": "css",
+            "theme": "material"
         }
     ],
     "location": [
@@ -44,7 +43,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
+                "value": "acf\/button"
             }
         ]
     ],
@@ -57,5 +56,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1655048230
+    "modified": 1655062582
 }

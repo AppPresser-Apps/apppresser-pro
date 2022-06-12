@@ -18,7 +18,7 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$class_name .= ' ' . get_field( 'classes' );
+
 
 $title = get_field( 'title' );
 $color = get_field( 'color' );
@@ -27,6 +27,7 @@ $size  = get_field( 'size' );
 $expand  = get_field( 'expand' );
 $margin  = get_field( 'margin' );
 $alignment  = get_field( 'alignment' );
+$css = get_field( 'css' );
 
 $style = '';
 
@@ -43,6 +44,13 @@ if( 'inline' === $expand && $alignment ) {
 }
 
 ?>
+
+<style>
+	#<?php echo esc_attr( $block_id ); ?> ion-button::part(native) {
+		<?php echo ( $css ); ?>
+	}
+</style>
+
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
 		<ion-button 
