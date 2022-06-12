@@ -178,7 +178,7 @@ function appp_remove_core_button_styles() {
 	}
 
 }
-add_action( 'admin_head', 'appp_remove_core_button_styles', 999 );
+add_action( 'admin_head', 'appp_remove_core_button_styles' );
 
 /**
  * Custom dashboard icon / logo.

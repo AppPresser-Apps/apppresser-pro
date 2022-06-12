@@ -11094,6 +11094,34 @@ function appp_acf_dynamic_colors( $field ) {
 add_filter( 'acf/load_field', 'appp_acf_dynamic_colors' );
 
 /**
+ * Filters the action acf field with dynamic choices.
+ * The value should be the naem of the function to run when the button is clicked.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_acf_dynamic_action( $field ) {
+
+	if ( 0 !== strpos( $field['name'], 'action' ) ) {
+		return $field;
+	}
+
+	$actions = array(
+		'none'   	  => 'None',
+		'router_push' => 'Navigate to Route',
+	);
+
+	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );
+
+	foreach ( $actions as $action => $value ) {
+		$field['choices'][ $action ] = $value;
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
+
+/**
  * Undocumented function
  *
  * @param [type] $value

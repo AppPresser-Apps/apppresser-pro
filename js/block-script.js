@@ -49,7 +49,6 @@ if (!isListViewOpened) {
         return;
       }
 
-      console.log(post);
       var link_id = 'app-preview-link';
 
       // prepare our custom link's html.

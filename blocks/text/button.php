@@ -18,6 +18,8 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
+$class_name .= ' ' . get_field( 'classes' );
+
 $title = get_field( 'title' );
 $color = get_field( 'color' );
 $fill  = get_field( 'fill' );
@@ -53,5 +55,5 @@ if( 'inline' === $expand && $alignment ) {
 </div>
 
 <script>
-
+	appp_remove_button_class("#<?php echo esc_attr( $block_id ); ?>");
 </script>
