@@ -34,7 +34,9 @@
             },
             "choices": {
                 "none": "None",
-                "router_push": "Navigate to Route"
+                "router_push": "Navigate to Route",
+                "router_back": "Navigate Back",
+                "alert": "Alert Message"
             },
             "default_value": "none",
             "allow_null": 0,
@@ -73,6 +75,33 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_62aa269904b49",
+            "label": "Alert Message",
+            "name": "alert_message",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "alert"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
         }
     ],
     "location": [
@@ -100,5 +129,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1655048083
+    "modified": 1655318189
 }
