@@ -4348,6 +4348,33 @@
                             "return_format": "value",
                             "ajax": 0,
                             "placeholder": ""
+                        },
+                        {
+                            "key": "field_62aa01a1a886d",
+                            "label": "Alert Message",
+                            "name": "alert_message",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6221108f07584",
+                                        "operator": "==",
+                                        "value": "alert"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 4,
+                            "new_lines": ""
                         }
                     ],
                     "min": "",
@@ -4632,5 +4659,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1655308500
+    "modified": 1655308736
 }
