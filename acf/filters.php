@@ -11109,6 +11109,8 @@ function appp_acf_dynamic_action( $field ) {
 	$actions = array(
 		'none'   	  => 'None',
 		'router_push' => 'Navigate to Route',
+		'router_back' => 'Navigate Back',
+		'alert' => 'Alert Message'
 	);
 
 	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );

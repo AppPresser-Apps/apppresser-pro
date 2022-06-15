@@ -4306,9 +4306,10 @@
                                 "id": ""
                             },
                             "choices": {
-                                "route": "Navigate to View",
-                                "signin": "Sign In",
-                                "signout": "Sign Out"
+                                "none": "None",
+                                "router_push": "Navigate to Route",
+                                "router_back": "Navigate Back",
+                                "alert": "Alert Message"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -4330,7 +4331,7 @@
                                     {
                                         "field": "field_6221108f07584",
                                         "operator": "==contains",
-                                        "value": "route"
+                                        "value": "push"
                                     }
                                 ]
                             ],
@@ -4631,5 +4632,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1654813043
+    "modified": 1655308500
 }

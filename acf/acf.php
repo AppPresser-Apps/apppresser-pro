@@ -28,7 +28,13 @@ function appp_load_route_field_choices( $field ) {
 
 	$data = appp_get_block_data( $post );
 
-	$field['choices'] = $data;
+	$choices = array();
+
+	foreach ( $data as $key => $value ) {
+		$choices[ $value ] = $value;
+	}
+
+	$field['choices'] = $choices;
 
 	return $field;
 
@@ -120,9 +126,9 @@ function appp_process_right_button( $button ) {
 /**
  * Swap menu button flexible content title with label entered.
  *
- * @param string $title
- * @param array  $field
- * @param string $layout
+ * @param string  $title
+ * @param array   $field
+ * @param string  $layout
  * @param integer $i
  * @return string
  */

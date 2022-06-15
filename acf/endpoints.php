@@ -122,14 +122,20 @@ function appp_get_app_data( $request ) {
 	$post   = get_post( $param );
 	$blocks = parse_blocks( $post->post_content );
 
+	$arr = array();
+
 	foreach ( $blocks as $index => $block ) {
-		unset( $blocks[$index]['innerHTML'] );
-		unset( $blocks[$index]['innerContent'] );
+	
+		if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
+			unset( $block['innerHTML'] );
+			unset( $block['innerContent'] );
+			$arr[] = $block;
+		}
 	}
 
 	$app = array(
 		'theme_colors' => appp_get_theme_colors( $param ),
-		'blocks' => $blocks
+		'blocks'       => (array) $arr,
 	);
 
 	return $app;

@@ -68,8 +68,8 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 	.<?php echo $className; ?> .view-wrap {
 		border: 1px solid #e0e0e0;
-		height: 640px;
-		width: 320px;
+		height: 667px;
+		width: 375px;
 		margin:  10px auto !important;
 		font-family: var(--ion-font-family, inherit);
 	}
@@ -164,7 +164,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					};
 					?>
 				</ion-buttons>
-				<ion-title style="width:318px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
+				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {
