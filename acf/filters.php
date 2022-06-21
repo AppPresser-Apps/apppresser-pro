@@ -20,7 +20,6 @@ function appp_acf_dynamic_icons( $field ) {
 
 	if ( 0 === strpos( $field['name'], 'icon' ) || 0 === strpos( $field['name'], 'separator' ) ) {
 
-
 		$a = '{
 			"icons": [
 			  {
@@ -6574,7 +6573,7 @@ function appp_acf_dynamic_icons( $field ) {
 				"name": "logo-wordpress",
 				"tags": [
 				  "logo",
-				  "wordpress"
+                  "WordPress"
 				]
 			  },
 			  {
@@ -11107,10 +11106,12 @@ function appp_acf_dynamic_action( $field ) {
 	}
 
 	$actions = array(
-		'none'   	  => 'None',
+		'none'        => 'None',
 		'router_push' => 'Navigate to Route',
 		'router_back' => 'Navigate Back',
-		'alert' => 'Alert Message'
+		'alert'       => 'Alert Message',
+		'popover'     => 'Popover',
+		'action_sheet'     => 'Action Sheet',
 	);
 
 	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );

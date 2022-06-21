@@ -32,10 +32,10 @@ $css = get_field( 'css' );
 $style = '';
 
 if( $margin ) {
-	$style .= 'margin-left:' . $margin . 'px; ';
-	$style .= 'margin-right:' . $margin . 'px; ';
-	$style .= 'margin-top:' . $margin . 'px; ';
-	$style .= 'margin-bottom:' . $margin . 'px; ';
+	$style .= 'margin-left:' . $margin['margin_left'] . 'px; ';
+	$style .= 'margin-right:' . $margin['margin_right'] . 'px; ';
+	$style .= 'margin-top:' . $margin['margin_top'] . 'px; ';
+	$style .= 'margin-bottom:' . $margin['margin_right'] . 'px; ';
 }
 
 if( 'inline' === $expand && $alignment ) {
