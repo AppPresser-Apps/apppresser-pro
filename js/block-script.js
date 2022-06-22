@@ -73,35 +73,55 @@ if (!isListViewOpened) {
  */
 function apppFilterBlockRegister(settings, name) {
   switch (name) {
-    case "core/image":
-      settings.category = "appp_component";
-      settings.parent = ["acf/view", "acf/onboard"];
+    case "acf/view":
+      settings.parent = [];
+      break;
+    case "acf/modal":
+      settings.parent = [];
+      break;
+    case "acf/onboard":
+      settings.parent = [];
       break;
     case "core/spacer":
       settings.category = "appp_layout";
-      settings.parent = ["acf/view", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/repeater"];
       break;
     case "acf/button":
-      settings.parent = ["acf/view", "acf/onboard", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/repeater"];
       break;
     case "acf/text":
-      settings.parent = ["acf/view", "acf/onboard", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/repeater"];
       break;
     case "acf/card":
-      settings.parent = ["acf/view", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/repeater"];
       break;
-    case "acf/image":
-      settings.parent = ["acf/view", "acf/onboard"];
+    case "acf/ion-image":
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard"];
+      break;
+    case "acf/ion-thumbnail":
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard"];
+      break;
+    case "acf/ion-avatar":
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard"];
+      break;
+    case "acf/ion-chip":
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard"];
+      break;
+    case "acf/ion-icon":
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard"];
       break;
     case "acf/repeater":
-      settings.parent = ["acf/view"];
+      settings.parent = ["acf/view", "acf/modal"];
       break;
     case "acf/breadcrumbs":
-      settings.parent = ["acf/view"];
+      settings.parent = ["acf/view", "acf/modal"];
       break;
     case "acf/segment":
-      settings.parent = ["acf/view"];
+      settings.parent = ["acf/view", "acf/modal"];
       break;
+      case "acf/list-header":
+        settings.parent = ["acf/view", "acf/modal"];
+        break;
   }
 
   return settings;

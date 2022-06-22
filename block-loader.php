@@ -14,12 +14,38 @@ function appp_init_block_types() {
 		acf_register_block_type(
 			array(
 				'name'            => 'view',
-				'title'           => __( 'View (empty)' ),
-				'description'     => __( 'View' ),
+				'title'           => __( 'View' ),
+				'description'     => __( 'The most simple layout available consists of a toolbar and content. Most views in an app generally have both of these, but a toobar is not required in order to use content.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/layout/view.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
+		// register a modal block.
+		acf_register_block_type(
+			array(
+				'name'            => 'modal',
+				'title'           => __( 'Modal' ),
+				'description'     => __( 'A Modal is a dialog that appears on top of the app\'s content, and must be dismissed by the app before interaction can resume.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/modal/block.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
+				'keywords'        => array( 'app', 'modal' ),
 				'post_types'      => array( 'app' ),
 				'mode'            => 'preview',
 				'align'           => 'center',

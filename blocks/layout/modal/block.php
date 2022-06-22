@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Blank View Block Template.
+ * Blank Modal Block Template.
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
@@ -11,10 +11,10 @@
 
 
 // Create id attribute allowing for custom "anchor" value.
-$id = 'appview-' . $block['id'];
+$id = 'modal-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$className = 'appview';
+$className = 'modal';
 if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
@@ -57,16 +57,16 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		display: block;
 	}
 
-	.wp-block-acf-view.is-highlighted::after,
-	.block-editor-block-list__layout .block-editor-block-list__block.wp-block-acf-view:after {
+	.wp-block-acf-modal.is-highlighted::after,
+	.block-editor-block-list__layout .block-editor-block-list__block.wp-block-acf-modal:after {
 		box-shadow: none !important;
 	}
 
-	.wp-block-acf-view.is-selected {
+	.wp-block-acf-modal.is-selected {
 		width: 100%;
 	}
 
-	.<?php echo $className; ?> .view-wrap {
+	.<?php echo $className; ?> .modal-wrap {
 		border: 1px solid #e0e0e0;
 		height: 667px;
 		width: 375px;
@@ -103,13 +103,13 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	}
 	.block-tag > * {
 		flex: 1 100%;
-		height: 0px;
+		height: 20px;
 	}
-	.is-selected.wp-block-acf-view .block-tag {
+	.is-selected.wp-block-acf-modal .block-tag {
 		/* color: #ffffff;
 		background: var(--wp-admin-theme-color); */
 	}
-	.is-selected.wp-block-acf-view .block-tag-actions {
+	.is-selected.wp-block-acf-modal .block-tag-actions {
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -135,7 +135,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	  }
 </style>
 
-<div id="<?php echo esc_attr( $id ); ?>" class="view <?php echo esc_attr( $className ); ?>">
+<div id="<?php echo esc_attr( $id ); ?>" class="modal <?php echo esc_attr( $className ); ?>">
 
 	<!-- <div class="block-tag">
 		<div></div>
@@ -149,7 +149,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		</div>
 	</div> -->
 
-	<div class="view-wrap">
+	<div class="modal-wrap">
 
 
 	<?php if ( ! $hide_toolbar ) : ?>
@@ -164,7 +164,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					};
 					?>
 				</ion-buttons>
-				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
+				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : 'Modal'; ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {

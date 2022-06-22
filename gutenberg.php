@@ -144,6 +144,8 @@ function appp_get_allowed_view_blocks() {
 	$arr = $blocks->data;
 
 	unset( $arr['acf/view'] );
+	unset( $arr['acf/modal'] );
+	unset( $arr['acf/onboard'] );
 	unset( $arr['acf/inner-column'] );
 
 	return array_merge(

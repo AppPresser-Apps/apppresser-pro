@@ -26,7 +26,7 @@ add_action( 'acf/init', 'appp_acf_op_init' );
 function appp_load_route_field_choices( $field ) {
 	global $post;
 
-	$data = appp_get_block_data( $post );
+	$data = appp_get_block_data( $post, 'acf/view', 'view_route' );
 
 	$choices = array();
 
@@ -42,6 +42,30 @@ function appp_load_route_field_choices( $field ) {
 add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
 
 /**
+ * Load action route select with route entered on each view.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_load_modal_field_choices( $field ) {
+	global $post;
+
+	$data = appp_get_block_data( $post, 'acf/modal', 'modal_name' );
+
+	$choices = array();
+
+	foreach ( $data  as $key => $value ) {
+		$choices[ $value['attrs']['id'] ] = $value['attrs']['data']['modal_name'];
+	}
+
+	$field['choices'] = $choices;
+
+	return $field;
+
+}
+add_filter( 'acf/load_field/name=modal', 'appp_load_modal_field_choices' );
+
+/**
  * Parse Block data helper function
  *
  * @param WP_Post $post
@@ -49,7 +73,7 @@ add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
  * @param string  $field_name
  * @return array
  */
-function appp_get_block_data( $post, $block_name = 'acf/view', $field_name = 'view_route' ) {
+function appp_get_block_data( $post, $block_name, $field_name ) {
 
 	if ( ! $post ) {
 		return;
@@ -62,7 +86,15 @@ function appp_get_block_data( $post, $block_name = 'acf/view', $field_name = 'vi
 		foreach ( $blocks as $block ) {
 			if ( $block['blockName'] === $block_name ) {
 				if ( isset( $block['attrs']['data'][ $field_name ] ) ) {
-					$content[] = $block['attrs']['data'][ $field_name ];
+
+					switch ( $block['blockName'] ) {
+						case 'acf/view':
+							$content[] = $block['attrs']['data'][ $field_name ];
+							break;
+						case 'acf/modal':
+							$content[] = $block;
+							break;
+					}
 				}
 			}
 		}

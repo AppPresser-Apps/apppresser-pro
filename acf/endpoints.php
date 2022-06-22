@@ -125,8 +125,9 @@ function appp_get_app_data( $request ) {
 	$arr = array();
 
 	foreach ( $blocks as $index => $block ) {
-	
+
 		if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
+			$block = appp_format_block_data( $block );
 			unset( $block['innerHTML'] );
 			unset( $block['innerContent'] );
 			$arr[] = $block;
@@ -139,4 +140,22 @@ function appp_get_app_data( $request ) {
 	);
 
 	return $app;
+}
+
+function appp_format_block_data( $block ) {
+
+	foreach ( $block['innerBlocks'] as $index => $inner_block ) {
+		switch ( $inner_block['blockName'] ) {
+			case 'acf/ion-image':
+				$block['innerBlocks'][$index]['attrs']['data']['image_id'] = $block['innerBlocks'][$index]['attrs']['data']['image_url'];
+				$block['innerBlocks'][$index]['attrs']['data']['image_url'] = wp_get_attachment_image_src( $block['innerBlocks'][$index]['attrs']['data']['image_url'], 'original_image' )[0];
+				error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	return $block;
 }

@@ -11112,6 +11112,7 @@ function appp_acf_dynamic_action( $field ) {
 		'alert'       => 'Alert Message',
 		'popover'     => 'Popover',
 		'action_sheet'     => 'Action Sheet',
+		'modal'     => 'Modal',
 	);
 
 	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );
@@ -11220,7 +11221,7 @@ function appp_block_wrapper( $block_content, $block ) {
 	if ( $block['blockName'] === 'acf/fetch' ) {
 
 		$block['attrs']['data']['endpoints'] = appp_get_endpoints_data();
-		error_log( print_r( $block, true ) );
+		//error_log( print_r( $block, true ) );
 	}
 	return $block_content;
 }
