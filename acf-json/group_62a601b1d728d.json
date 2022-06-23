@@ -1688,6 +1688,13 @@
                 "operator": "==",
                 "value": "acf\/button"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/ion-item"
+            }
         ]
     ],
     "menu_order": 1,
@@ -1699,5 +1706,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1655911271
+    "modified": 1656018816
 }
