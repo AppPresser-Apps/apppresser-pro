@@ -147,9 +147,41 @@ function appp_format_block_data( $block ) {
 	foreach ( $block['innerBlocks'] as $index => $inner_block ) {
 		switch ( $inner_block['blockName'] ) {
 			case 'acf/ion-image':
-				$block['innerBlocks'][$index]['attrs']['data']['image_id'] = $block['innerBlocks'][$index]['attrs']['data']['image_url'];
-				$block['innerBlocks'][$index]['attrs']['data']['image_url'] = wp_get_attachment_image_src( $block['innerBlocks'][$index]['attrs']['data']['image_url'], 'original_image' )[0];
-				error_log( print_r( $block['innerBlocks'][$index], true ) );
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
+				$image = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
+			case 'acf/ion-avatar':
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
+				$avatar = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $avatar ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
+			case 'acf/ion-thumbnail':
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
+				$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
+			case 'acf/breadcrumbs':
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+
+				$bcrumbs     = range( 0, ( $block['innerBlocks'][ $index ]['attrs']['data']['breadcrumb'] - 1 ) );
+				$breadcrumbs = array();
+
+				foreach ( $bcrumbs as $breadcrumb ) {
+
+					$breadcrumbs[] = array(
+						'title' => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_title' ],
+						'link'  => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_link' ],
+						'icon'  => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_icon' ],
+					);
+
+				}
+
+				$block['innerBlocks'][ $index ]['attrs']['data']['breadcrumbs'] = $breadcrumbs;
+
 				break;
 
 			default:

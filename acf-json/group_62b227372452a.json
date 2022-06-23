@@ -132,7 +132,7 @@
             "label": "Left Buttons",
             "name": "left_buttons",
             "type": "flexible_content",
-            "instructions": "",
+            "instructions": "Current modal will close when this button is clicked.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -143,8 +143,8 @@
             "layouts": {
                 "layout_6220f4296fa2e": {
                     "key": "layout_6220f4296fa2e",
-                    "name": "button",
-                    "label": "Cancel Button",
+                    "name": "close_button",
+                    "label": "Close Button",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -160,7 +160,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "Cancel",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
@@ -1514,7 +1514,7 @@
                                 "woman-outline": "Woman Outline",
                                 "woman-sharp": "Woman Sharp"
                             },
-                            "default_value": "menu-outline",
+                            "default_value": 0,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -1529,7 +1529,7 @@
             },
             "button_label": "Add Button",
             "min": "",
-            "max": ""
+            "max": 1
         },
         {
             "key": "field_62b2273726855",
@@ -3314,5 +3314,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1655848536
+    "modified": 1655936963
 }
