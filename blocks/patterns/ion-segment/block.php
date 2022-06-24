@@ -17,21 +17,38 @@ if ( ! empty( $block['className'] ) ) {
 	$block_classes .= ' ' . $block['className'];
 }
 
-$text  = get_field( 'text' );
-$color = get_field( 'color' );
+$segments = get_field( 'segments' );
 
 ?>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+<div style="padding:16px;" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
 
-<ion-segment>
-	<ion-segment-button value="friends">
-		<ion-label>Friends</ion-label>
-	</ion-segment-button>
-	<ion-segment-button value="enemies">
-		<ion-label>Enemies</ion-label>
-	</ion-segment-button>
-</ion-segment>
+	<ion-segment value="<?php echo str_replace( ' ', '_', $segments[0]['label'] ); ?>">
 
+	<?php foreach ( $segments as $segment ) : ?>
+		<ion-segment-button value="<?php echo str_replace( ' ', '_', $segment['label'] ); ?>">
+			<ion-label><?php echo $segment['label']; ?></ion-label>
+		</ion-segment-button>
+	<?php endforeach; ?>
+	</ion-segment>
+
+	<InnerBlocks 
+		templateInsertUpdatesSelection="false" 
+		templateLock="false" 
+		allowedBlocks="<?php echo esc_attr( wp_json_encode( array( 'acf/segment' ) ) ); ?>"
+		/>
 
 </div>
+
+
+<script>
+	const block = document.querySelectorAll('#<?php echo esc_attr( $block_id ); ?>');
+
+	const segments = block[0].querySelectorAll('ion-segment');
+
+	for (let i = 0; i < segments.length; i++) {
+		segments[i].addEventListener('ionChange', (ev) => {
+			console.log('Segment changed', ev.detail.value);
+		});
+	}
+</script>

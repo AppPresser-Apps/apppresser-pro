@@ -184,6 +184,30 @@ function appp_init_block_types() {
 			)
 		);
 
+		// register segemnt block.
+		acf_register_block_type(
+			array(
+				'name'            => 'inner-segment',
+				'title'           => __( 'Inner Segment' ),
+				'description'     => __( 'Segments are useful for toggling between different views inside of the content.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/patterns/inner-segment/block.php',
+				'category'        => 'appp_patterns',
+				'icon'            => 'ellipsis',
+				'keywords'        => array( 'component', 'segment' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
 
 		// register a text block.
 		acf_register_block_type(

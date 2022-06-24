@@ -122,6 +122,9 @@ function apppFilterBlockRegister(settings, name) {
       case "acf/list-header":
         settings.parent = ["acf/view", "acf/modal"];
         break;
+      case "acf/inner-segment":
+        settings.parent = ["acf/segment"];
+        break;
   }
 
   return settings;
