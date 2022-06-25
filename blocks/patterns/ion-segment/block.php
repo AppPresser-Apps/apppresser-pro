@@ -46,9 +46,33 @@ $segments = get_field( 'segments' );
 
 	const segments = block[0].querySelectorAll('ion-segment');
 
+	setTimeout(() => {
+		apppSelectSegement(block, segments[0].getAttribute('value'));
+	}, 100);
+	
+
 	for (let i = 0; i < segments.length; i++) {
 		segments[i].addEventListener('ionChange', (ev) => {
 			console.log('Segment changed', ev.detail.value);
+			apppSelectSegement(block, ev.detail.value);
 		});
+	}
+
+	function apppSelectSegement(block, segment) {
+
+		//console.log(block);
+		//console.log(segment);
+
+		const segents = document.querySelectorAll('[data-segment]');
+		for (let i = 0; i < segents.length; i++) {
+			segents[i].classList.add('hidden');
+		}
+
+		const el1 = block[0].querySelector('[data-segment="' + segment + '"]');
+
+		el1.classList.toggle('hidden');
+
+		//console.log('seg el', el1);
+
 	}
 </script>

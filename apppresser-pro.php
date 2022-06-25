@@ -31,6 +31,7 @@ require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/block-loader.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
 
+require dirname( __FILE__ ) . '/acf/icons.php';
 require dirname( __FILE__ ) . '/acf/endpoints.php';
 require dirname( __FILE__ ) . '/acf/acf.php';
 require dirname( __FILE__ ) . '/acf/filters.php';

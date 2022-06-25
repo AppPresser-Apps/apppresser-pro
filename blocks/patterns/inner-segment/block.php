@@ -12,7 +12,7 @@
 // Dynamic block ID.
 $block_id = 'inner-segment-' . $block['id'];
 
-$block_classes = '';
+$block_classes = 'hidden';
 if ( ! empty( $block['className'] ) ) {
 	$block_classes .= ' ' . $block['className'];
 }
@@ -23,7 +23,13 @@ $segment = get_field( 'segment' );
 
 ?>
 
-<div data-segement="<?php echo $segment; ?>" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+<style>
+	.wp-block-acf-inner-segment .acf-block-body .acf-block-preview {
+		min-height: 0px !important;
+	}
+</style>
+
+<div data-segment="<?php echo $segment; ?>" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
 
 	<InnerBlocks 
 		templateInsertUpdatesSelection="false" 
