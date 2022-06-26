@@ -164,12 +164,12 @@ function appp_format_block_data( $block ) {
 				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 				break;
-				case 'acf/ion-item':
-					$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'];
-					$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'], 'original_image' )[0];
-					$block['innerBlocks'][ $index ]['attrs']['data']['thumbnail_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
-					// error_log( print_r( $block['innerBlocks'][$index], true ) );
-					break;
+			case 'acf/ion-item':
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'];
+				$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'], 'original_image' )[0];
+				$block['innerBlocks'][ $index ]['attrs']['data']['thumbnail_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
 			case 'acf/breadcrumbs':
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 
@@ -188,6 +188,22 @@ function appp_format_block_data( $block ) {
 				}
 
 				$block['innerBlocks'][ $index ]['attrs']['data']['breadcrumbs'] = $breadcrumbs;
+
+				break;
+			case 'acf/segment':
+				// Creates an array from integer so we can loop through ACF data that isnt an array. 
+				$segs     = range( 0, ( $block['innerBlocks'][ $index ]['attrs']['data']['segments'] - 1 ) );
+				$segments = array();
+
+				foreach ( $segs as $segment ) {
+
+					$segments[] = array(
+						'label' => $block['innerBlocks'][ $index ]['attrs']['data'][ 'segments_' . $segment . '_label' ],
+					);
+
+				}
+
+				$block['innerBlocks'][ $index ]['attrs']['data'] = array( 'segments' => $segments );
 
 				break;
 
