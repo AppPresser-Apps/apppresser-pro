@@ -28,13 +28,15 @@ function appp_load_route_field_choices( $field ) {
 
 	$data = appp_get_block_data( $post, 'acf/view', 'view_route' );
 
-	$choices = array();
+	if ( $data ) {
+		$choices = array();
 
-	foreach ( $data as $key => $value ) {
-		$choices[ $value ] = $value;
+		foreach ( $data as $key => $value ) {
+			$choices[ $value ] = $value;
+		}
+	
+		$field['choices'] = $choices;
 	}
-
-	$field['choices'] = $choices;
 
 	return $field;
 

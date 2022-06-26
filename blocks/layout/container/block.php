@@ -23,10 +23,16 @@ $background_image    = get_field( 'background_image' );
 $background_position = get_field( 'background_position' );
 $background_size     = get_field( 'background_size' );
 $background_repeat   = get_field( 'background_repeat' );
+$margin             = get_field( 'margin' );
 $padding             = get_field( 'padding' );
 $border_radius       = get_field( 'border_radius' );
 
 $style = '';
+
+$style .= 'margin-left:' . ( $margin['margin'] ?? '16' ) . 'px; ';
+$style .= 'margin-top:' . ( $margin['margin'] ?? '16' ) . 'px; ';
+$style .= 'margin-right:' . ( $margin['margin'] ?? '16' ) . 'px; ';
+$style .= 'margin-bottom:' . ( $margin['margin'] ?? '16' ) . 'px; ';
 
 $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
 $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';

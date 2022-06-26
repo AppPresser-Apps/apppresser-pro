@@ -44,7 +44,7 @@ function appp_rgbToYIQ( $rgb ) {
  * @param integer $threshold
  * @return string
  */
-function appp_contrast( $hex, $threshold = 128 ) {
+function appp_contrast( $hex, $threshold = 168 ) {
 	$rgb = appp_rgb2hex( $hex );
 	return appp_rgbToYIQ( $rgb ) >= $threshold ? '#000000' : '#ffffff';
 }

@@ -18,15 +18,17 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$text       = get_field( 'text' );
-$color      = get_field( 'color' );
-$background = get_field( 'background' );
-$size       = get_field( 'font_size' );
-$weight     = get_field( 'font_weight' );
-$font_style = get_field( 'font_style' );
-$margin     = get_field( 'margin' ) ?? 0;
-$padding    = get_field( 'padding' );
-$alignment  = get_field( 'alignment' );
+$text        = get_field( 'text' );
+$color       = get_field( 'color' );
+$background  = get_field( 'background' );
+$size        = get_field( 'font_size' );
+$weight      = get_field( 'font_weight' );
+$font_style  = get_field( 'font_style' );
+$margin      = get_field( 'margin' ) ?? 0;
+$padding     = get_field( 'padding' );
+$alignment   = get_field( 'alignment' );
+$shadow      = get_field( 'text_shadow' );
+$alpha_color = $shadow['text_shadow_color'];
 
 $style = '';
 
@@ -34,6 +36,19 @@ $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
 $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
 $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
+
+if ( $shadow ) {
+	$x_coord           = $shadow['x_coord'] . 'px';
+	$y_coord           = $shadow['y_coord'] . 'px';
+	$blur              = $shadow['blur'] . 'px';
+	$red               = $alpha_color['red'];
+	$green             = $alpha_color['green'];
+	$blue              = $alpha_color['blue'];
+	$alpha             = $alpha_color['alpha'];
+	$text_shadow_color = "rgba( $red, $green, $blue, $alpha )";
+
+	$style .= "text-shadow: $x_coord $y_coord $blur $text_shadow_color ; ";
+}
 
 if ( $font_style ) {
 	$style .= 'font-style:' . $font_style . '; ';

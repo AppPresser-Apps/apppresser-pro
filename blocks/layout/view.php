@@ -164,7 +164,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					};
 					?>
 				</ion-buttons>
-				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : 'View'; ?></ion-title>
+				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {

@@ -164,6 +164,12 @@ function appp_format_block_data( $block ) {
 				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 				break;
+			case 'acf/container':
+				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['background_image'];
+				$image = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['background_image'], 'original_image' )[0];
+				$block['innerBlocks'][ $index ]['attrs']['data']['background_image_url'] = empty( $image ) ? '' : $image;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				break;
 			case 'acf/ion-item':
 				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'];
 				$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'], 'original_image' )[0];

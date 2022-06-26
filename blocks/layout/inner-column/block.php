@@ -18,12 +18,23 @@ if ( ! empty( $block['className'] ) ) {
 $allowed_blocks = appp_get_allowed_innerblocks();
 
 $alignment = get_field( 'alignment' );
+$vertical  = get_field( 'alignment_vertical' );
+$padding  = get_field( 'padding' );
 
 $style = '';
 
 if ( $alignment ) {
 	$style .= 'display: flex; ';
 	$style .= 'justify-content: ' . $alignment . '; ';
+	$style .= 'align-items: ' . $vertical . '; ';
+	$style .= 'height: 100%; ';
+}
+
+if ( $padding ) {
+	$style .= 'padding-top: ' . $padding['padding_top'] . 'px; ';
+	$style .= 'padding-bottom: ' . $padding['padding_bottom'] . 'px; ';
+	$style .= 'padding-left: ' . $padding['padding_left'] . 'px; ';
+	$style .= 'padding-right: ' . $padding['padding_right'] . 'px; ';
 }
 
 ?>
@@ -31,6 +42,11 @@ if ( $alignment ) {
 <style>
 	#<?php echo esc_attr( $block_id ); ?> {
 		word-break: break-all;
+	}
+	.wp-block-acf-inner-column .acf-block-body,
+	.wp-block-acf-inner-column .acf-block-body > div,
+	.wp-block-acf-inner-column .acf-block-preview {
+		height: 100%;
 	}
 </style>
 

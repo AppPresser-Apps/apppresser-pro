@@ -21,16 +21,17 @@ $segments = get_field( 'segments' );
 
 ?>
 
-<div style="padding:16px;" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
+	<div style="margin:16px;">
+		<ion-segment  value="<?php echo str_replace( ' ', '_', $segments[0]['label'] ); ?>">
 
-	<ion-segment value="<?php echo str_replace( ' ', '_', $segments[0]['label'] ); ?>">
-
-	<?php foreach ( $segments as $segment ) : ?>
-		<ion-segment-button value="<?php echo str_replace( ' ', '_', $segment['label'] ); ?>">
-			<ion-label><?php echo $segment['label']; ?></ion-label>
-		</ion-segment-button>
-	<?php endforeach; ?>
-	</ion-segment>
+		<?php foreach ( $segments as $segment ) : ?>
+			<ion-segment-button value="<?php echo str_replace( ' ', '_', $segment['label'] ); ?>">
+				<ion-label><?php echo $segment['label']; ?></ion-label>
+			</ion-segment-button>
+		<?php endforeach; ?>
+		</ion-segment>
+	</div>
 
 	<InnerBlocks 
 		templateInsertUpdatesSelection="false" 
