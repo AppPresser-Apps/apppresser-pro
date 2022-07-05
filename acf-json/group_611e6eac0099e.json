@@ -2895,7 +2895,7 @@
             },
             "button_label": "Add Button",
             "min": "",
-            "max": ""
+            "max": 3
         },
         {
             "key": "field_62210d5dc36ec",
@@ -4386,7 +4386,7 @@
             },
             "button_label": "Add Button",
             "min": "",
-            "max": ""
+            "max": 3
         },
         {
             "key": "field_6225101ff6fac",
@@ -4662,5 +4662,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1655843777
+    "modified": 1656957918
 }

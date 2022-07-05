@@ -28,7 +28,7 @@ $margin      = get_field( 'margin' ) ?? 0;
 $padding     = get_field( 'padding' );
 $alignment   = get_field( 'alignment' );
 $shadow      = get_field( 'text_shadow' );
-$alpha_color = $shadow['text_shadow_color'];
+
 
 $style = '';
 
@@ -38,6 +38,7 @@ $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
 
 if ( $shadow ) {
+	$alpha_color = $shadow['text_shadow_color'];
 	$x_coord           = $shadow['x_coord'] . 'px';
 	$y_coord           = $shadow['y_coord'] . 'px';
 	$blur              = $shadow['blur'] . 'px';
@@ -81,6 +82,9 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 
 <style>
 	#<?php echo esc_attr( $block_id ); ?> {
 	
+	}
+	.wp-block-acf-text {
+		width: 100%;
 	}
 </style>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">

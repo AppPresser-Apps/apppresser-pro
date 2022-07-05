@@ -29,10 +29,10 @@ $border_radius       = get_field( 'border_radius' );
 
 $style = '';
 
-$style .= 'margin-left:' . ( $margin['margin'] ?? '16' ) . 'px; ';
-$style .= 'margin-top:' . ( $margin['margin'] ?? '16' ) . 'px; ';
-$style .= 'margin-right:' . ( $margin['margin'] ?? '16' ) . 'px; ';
-$style .= 'margin-bottom:' . ( $margin['margin'] ?? '16' ) . 'px; ';
+$style .= 'margin-left:' . ( $margin['margin_left'] ?? '0' ) . 'px; ';
+$style .= 'margin-top:' . ( $margin['margin_top'] ?? '0' ) . 'px; ';
+$style .= 'margin-right:' . ( $margin['margin_right'] ?? '0' ) . 'px; ';
+$style .= 'margin-bottom:' . ( $margin['margin_bottom'] ?? '0' ) . 'px; ';
 
 $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
 $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
