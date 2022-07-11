@@ -110,10 +110,6 @@ $style .= '--padding-bottom: 16px; ';
 	#<?php echo $id; ?> .wp-block-acf-button {
 		margin-top: auto;
 	}
-</style>
-
-<style type="text/css">
-
 	#<?php echo esc_attr( $id ); ?> {
 		display: none;
 	}

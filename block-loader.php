@@ -15,7 +15,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'view',
 				'title'           => __( 'View' ),
-				'description'     => __( 'The most simple layout available consists of a toolbar and content. Most views in an app generally have both of these, but a toobar is not required in order to use content.' ),
+				'description'     => __( 'The view consists of a toolbar and content. These are the pages in your app.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/layout/view.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
@@ -67,7 +67,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'onboard',
 				'title'           => __( 'OnBoarding' ),
-				'description'     => __( 'Onboard view' ),
+				'description'     => __( 'App onboarding success is crucial for users as it helps establish the tone of your app. These are views outside the main apps navigation and only load when the app is first installed.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',

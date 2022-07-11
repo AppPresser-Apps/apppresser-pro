@@ -3,6 +3,23 @@
     "title": "View Settings",
     "fields": [
         {
+            "key": "field_62ccb0c485d5f",
+            "label": "Settings",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
             "key": "field_621ea2835ebaf",
             "label": "Title",
             "name": "title",
@@ -4575,5 +4592,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1657557504
+    "modified": 1657581785
 }

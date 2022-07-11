@@ -119,6 +119,10 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
+	.acf-block-body .acf-block-preview {
+		min-height: 0px !important;
+	}
+
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;
