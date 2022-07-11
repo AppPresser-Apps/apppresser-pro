@@ -20,7 +20,7 @@ if ( ! empty( $block['className'] ) ) {
 
 $template = array(
 	array(
-		'acf/image',
+		'acf/ion-image',
 		array(
 			'data' => array(
 				'image'         => APPPRESSER_URL . 'images/image-placeholder.png',
@@ -80,7 +80,7 @@ $style .= '--padding-bottom: 16px; ';
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-
+<div class="onboard-wrap">
 	<ion-content style="<?php echo $style; ?>" fullscreen="true">
 		<InnerBlocks 
 			templateInsertUpdatesSelection="false" 
@@ -90,21 +90,10 @@ $style .= '--padding-bottom: 16px; ';
 		/>
 	</ion-content>
 </div>
+</div>
 
 
 <style type="text/css">
-	.<?php echo $className; ?> {
-		border: 1px solid #e0e0e0;
-		height: 640px;
-		width: 320px;
-		margin: 10px !important;
-	}
-	#<?php echo $id; ?> ion-content {
-		height: 640px !important;
-		--offset-top: 0px !important;
-		--offset-bottom: 0px !important;
-	
-	}
 	#<?php echo $id; ?> .block-editor-block-list__layout {
 		height: 605px;
 		display: flex;
@@ -121,6 +110,36 @@ $style .= '--padding-bottom: 16px; ';
 	#<?php echo $id; ?> .wp-block-acf-button {
 		margin-top: auto;
 	}
+</style>
+
+<style type="text/css">
+
+	#<?php echo esc_attr( $id ); ?> {
+		display: none;
+	}
+
+	.is-selected #<?php echo esc_attr( $id ); ?>,
+	.has-child-selected #<?php echo esc_attr( $id ); ?> {
+		display: block;
+	}
+
+	.wp-block-acf-onboard.is-highlighted::after,
+	.block-editor-block-list__layout .block-editor-block-list__block.wp-block-acf-modal:after {
+		box-shadow: none !important;
+	}
+
+	.wp-block-acf-onboard.is-selected {
+		width: 100%;
+	}
+
+	.<?php echo $className; ?> .onboard-wrap {
+		border: 1px solid #e0e0e0;
+		height: 667px;
+		width: 375px;
+		margin:  0px auto !important;
+		font-family: var(--ion-font-family, inherit);
+	}
+
 </style>
 
 
