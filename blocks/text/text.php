@@ -28,7 +28,7 @@ $margin      = get_field( 'margin' ) ?? 0;
 $padding     = get_field( 'padding' );
 $alignment   = get_field( 'alignment' );
 $shadow      = get_field( 'text_shadow' );
-$alpha_color = $shadow['text_shadow_color'];
+
 
 $style = '';
 
@@ -38,6 +38,7 @@ $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
 
 if ( $shadow ) {
+	$alpha_color = $shadow['text_shadow_color'];
 	$x_coord           = $shadow['x_coord'] . 'px';
 	$y_coord           = $shadow['y_coord'] . 'px';
 	$blur              = $shadow['blur'] . 'px';
