@@ -120,7 +120,7 @@ $style .= '--padding-bottom: 16px; ';
 	}
 
 	.wp-block-acf-onboard.is-highlighted::after,
-	.block-editor-block-list__layout .block-editor-block-list__block.wp-block-acf-modal:after {
+	.block-editor-block-list__layout .block-editor-block-list__block.wp-block-acf-onboard:after {
 		box-shadow: none !important;
 	}
 
