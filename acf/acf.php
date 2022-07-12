@@ -7,6 +7,13 @@
  */
 function appp_acf_op_init() {
 	if ( function_exists( 'acf_add_options_page' ) ) {
+		$args2        = array(
+			'page_title'  => 'Themes',
+			'menu_title'  => 'Themes',
+			'parent_slug' => 'edit.php?post_type=app',
+		);
+		$option_page2 = acf_add_options_page( $args2 );
+
 		$args        = array(
 			'page_title'  => 'Integrations',
 			'menu_title'  => 'Integrations',
