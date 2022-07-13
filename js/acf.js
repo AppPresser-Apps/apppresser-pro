@@ -53,6 +53,10 @@ acf.addAction('load', (e)=> {
 
 });
 
+/**
+ * Sets head style for each theme color.
+ * @param {*} prop 
+ */
 function appp_create_style_from_properties(prop) {
 
    const css = `.ion-color-${prop} {

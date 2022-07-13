@@ -7,7 +7,7 @@
             "label": "Theme",
             "name": "themes",
             "type": "repeater",
-            "instructions": "AppPresser provides several global theme options that are used throughout blocks to change the default theme of an entire application. Application Colors are useful to change the look of most of the AppPresser blocks.",
+            "instructions": "AppPresser provides several global theme options that are used throughout blocks to change the default theme of an entire application.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -58,9 +58,9 @@
                     "endpoint": 0
                 },
                 {
-                    "key": "field_62ccb6ced521d",
-                    "label": "Light Mode",
-                    "name": "light_mode",
+                    "key": "field_62cf359986893",
+                    "label": "Primary",
+                    "name": "primary",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -73,9 +73,9 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_62ccb6dbd521e",
-                            "label": "Primary",
-                            "name": "primary",
+                            "key": "field_62cf35ad86894",
+                            "label": "Light",
+                            "name": "primary_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -90,94 +90,9 @@
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb6eed521f",
-                            "label": "Secondary",
-                            "name": "secondary",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#5260ff",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb6fdd5220",
-                            "label": "Tertiary",
-                            "name": "tertiary",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#5260ff",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb71fd5221",
-                            "label": "Success",
-                            "name": "success",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#2dd36f",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb729d5222",
-                            "label": "Warning",
-                            "name": "warning",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#ffc409",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb732d5223",
-                            "label": "Danger",
-                            "name": "danger",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#eb445a",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb743d5225",
+                            "key": "field_62cf35f786895",
                             "label": "Dark",
-                            "name": "dark",
+                            "name": "primary_dark",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -187,107 +102,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#232323",
+                            "default_value": "#3880ff",
                             "enable_opacity": 0,
                             "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb74cd5226",
-                            "label": "Medium",
-                            "name": "medium",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#92949c",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb76bd5227",
-                            "label": "Light",
-                            "name": "light",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#f4f5f8",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62ccb93a69705",
-                            "label": "Custom Color",
-                            "name": "custom_color",
-                            "type": "repeater",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "collapsed": "",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "block",
-                            "button_label": "Add Color",
-                            "sub_fields": [
-                                {
-                                    "key": "field_62ccb93a69706",
-                                    "label": "Name",
-                                    "name": "name",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 1,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_62ccb93a69707",
-                                    "label": "Color",
-                                    "name": "color",
-                                    "type": "color_picker",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "enable_opacity": 0,
-                                    "return_format": "string"
-                                }
-                            ]
                         }
                     ]
                 },
                 {
-                    "key": "field_62cd8fbfd4248",
-                    "label": "Dark Mode",
-                    "name": "dark_mode",
+                    "key": "field_62cf376a15a4e",
+                    "label": "Secondary",
+                    "name": "secondary",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -300,26 +124,9 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_62cd8fbfd4249",
-                            "label": "Primary",
-                            "name": "primary",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#3880ff",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_62cd8fbfd424a",
-                            "label": "Secondary",
-                            "name": "secondary",
+                            "key": "field_62cf376a15a4f",
+                            "label": "Light",
+                            "name": "secondary_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -334,9 +141,43 @@
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62cd8fbfd424b",
-                            "label": "Tertiary",
-                            "name": "tertiary",
+                            "key": "field_62cf379315a51",
+                            "label": "Dark",
+                            "name": "secondary_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#5260ff",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3c9f654df",
+                    "label": "Tertiary",
+                    "name": "tertiary",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3c9f654e0",
+                            "label": "Light",
+                            "name": "tertiary_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -351,9 +192,43 @@
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62cd8fbfd424c",
-                            "label": "Success",
-                            "name": "success",
+                            "key": "field_62cf3c9f654e1",
+                            "label": "Dark",
+                            "name": "tertiary_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#5260ff",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3cd8654e2",
+                    "label": "Success",
+                    "name": "success",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3cd8654e3",
+                            "label": "Light",
+                            "name": "success_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -365,12 +240,46 @@
                             },
                             "default_value": "#2dd36f",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": ""
                         },
                         {
-                            "key": "field_62cd8fbfd424d",
-                            "label": "Warning",
-                            "name": "warning",
+                            "key": "field_62cf3cd8654e4",
+                            "label": "Dark",
+                            "name": "success_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#2dd36f",
+                            "enable_opacity": 0,
+                            "return_format": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3d07654e5",
+                    "label": "Warning",
+                    "name": "warning",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3d07654e6",
+                            "label": "Light",
+                            "name": "warning_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -382,12 +291,46 @@
                             },
                             "default_value": "#ffc409",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": ""
                         },
                         {
-                            "key": "field_62cd8fbfd424e",
-                            "label": "Danger",
-                            "name": "danger",
+                            "key": "field_62cf3d07654e7",
+                            "label": "Dark",
+                            "name": "warning_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#ffc409",
+                            "enable_opacity": 0,
+                            "return_format": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3d4a07437",
+                    "label": "Danger",
+                    "name": "danger",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3d4a07438",
+                            "label": "Light",
+                            "name": "danger_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -399,12 +342,46 @@
                             },
                             "default_value": "#eb445a",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": ""
                         },
                         {
-                            "key": "field_62cd8fbfd424f",
+                            "key": "field_62cf3d4a07439",
                             "label": "Dark",
-                            "name": "dark",
+                            "name": "danger_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#eb445a",
+                            "enable_opacity": 0,
+                            "return_format": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3d740743a",
+                    "label": "Dark",
+                    "name": "dark",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3d740743b",
+                            "label": "Light",
+                            "name": "dark_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -416,12 +393,46 @@
                             },
                             "default_value": "#232323",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": ""
                         },
                         {
-                            "key": "field_62cd8fbfd4250",
-                            "label": "Medium",
-                            "name": "medium",
+                            "key": "field_62cf3d740743c",
+                            "label": "Dark",
+                            "name": "dark_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#232323",
+                            "enable_opacity": 0,
+                            "return_format": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3d9f0743d",
+                    "label": "Medium",
+                    "name": "medium",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3d9f0743e",
+                            "label": "Light",
+                            "name": "medium_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -433,12 +444,46 @@
                             },
                             "default_value": "#92949c",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": ""
                         },
                         {
-                            "key": "field_62cd8fbfd4251",
+                            "key": "field_62cf3d9f0743f",
+                            "label": "Dark",
+                            "name": "medium_dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#92949c",
+                            "enable_opacity": 0,
+                            "return_format": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62cf3dc707440",
+                    "label": "Light",
+                    "name": "light",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_62cf3dc707441",
                             "label": "Light",
-                            "name": "light",
+                            "name": "light_light",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -453,10 +498,10 @@
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62cd8fbfd4252",
-                            "label": "Custom Color",
-                            "name": "custom_color",
-                            "type": "repeater",
+                            "key": "field_62cf3dc707442",
+                            "label": "Dark",
+                            "name": "light_dark",
+                            "type": "color_picker",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -465,49 +510,83 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "collapsed": "",
-                            "min": 0,
-                            "max": 0,
-                            "layout": "block",
-                            "button_label": "Add Color",
-                            "sub_fields": [
-                                {
-                                    "key": "field_62cd8fbfd4253",
-                                    "label": "Name",
-                                    "name": "name",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 1,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
-                                    "key": "field_62cd8fbfd4254",
-                                    "label": "Color",
-                                    "name": "color",
-                                    "type": "color_picker",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "enable_opacity": 0,
-                                    "return_format": "string"
-                                }
-                            ]
+                            "default_value": "#f4f5f8",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_62ccb93a69705",
+                    "label": "Custom Color",
+                    "name": "custom_color",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "row",
+                    "button_label": "Add Color",
+                    "sub_fields": [
+                        {
+                            "key": "field_62ccb93a69706",
+                            "label": "Name",
+                            "name": "name",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_62ccb93a69707",
+                            "label": "Light",
+                            "name": "light",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_62cf3e800bab2",
+                            "label": "Dark",
+                            "name": "dark",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string"
                         }
                     ]
                 }
@@ -532,5 +611,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1657728796
+    "modified": 1657750691
 }

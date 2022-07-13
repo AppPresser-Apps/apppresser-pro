@@ -57,8 +57,10 @@ function appp_add_custom_colors_select( $colors, $post ) {
 		}
 	);
 
-	if ( isset( $needed_object[0]['light_mode']['custom_color'] ) ) {
-		foreach ( $needed_object[0]['light_mode']['custom_color'] as $custom_color ) {
+	//error_log(print_r($needed_object,true));
+
+	if ( isset( $needed_object[0]['custom_color'] ) ) {
+		foreach ( $needed_object[0]['custom_color'] as $custom_color ) {
 			$value            = strtolower( str_replace( ' ', '-', $custom_color['name'] ) );
 			$colors[ $value ] = $custom_color['name'];
 		}

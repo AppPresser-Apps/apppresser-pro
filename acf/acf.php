@@ -251,6 +251,19 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
  */
 function appp_get_theme_colors( $post_id ) {
 
+	$colors = array(
+		'primary'      => 'Primary',
+		'secondary'    => 'Secondary',
+		'tertiary'     => 'Tertiary',
+		'warning'      => 'Warning',
+		'success'      => 'Success',
+		'danger'       => 'Danger',
+		'dark'         => 'Dark',
+		'medium'       => 'Medium',
+		'light'        => 'Light',
+		'custom_color' => 'Custom color',
+	);
+
 	$theme  = get_field( 'theme', $post_id );
 	$themes = get_field( 'themes', 'option' );
 
@@ -263,16 +276,16 @@ function appp_get_theme_colors( $post_id ) {
 
 	$palette = array();
 
-	foreach ( $needed_object[0]['light_mode'] as $key => $color ) {
+	foreach ( $colors as $key => $value ) {
 
 		if ( 'custom_color' === $key ) {
-			foreach ( $color as $key => $value ) {
+			foreach ( $needed_object[0][ $key ] as $key => $value ) {
 				$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
-				$colors           = appp_process_colors( '--ion-color-' . $name, $value['color'] );
+				$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
 				$palette[ $name ] = $colors;
 			}
 		} else {
-			$colors          = appp_process_colors( '--ion-color-' . $key, $color );
+			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[0][ $key ][ "{$key}-light" ] );
 			$palette[ $key ] = $colors;
 		}
 	}
