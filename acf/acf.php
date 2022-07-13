@@ -41,7 +41,7 @@ function appp_load_route_field_choices( $field ) {
 		foreach ( $data as $key => $value ) {
 			$choices[ $value ] = $value;
 		}
-	
+
 		$field['choices'] = $choices;
 	}
 
@@ -49,6 +49,32 @@ function appp_load_route_field_choices( $field ) {
 
 }
 add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
+
+/**
+ * Load theme select with theme items.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_load_theme_field_choices( $field ) {
+	global $post;
+
+	$data = get_field( 'themes', 'option' );
+
+	$choices = array( 'default' => 'Default' );
+
+	if ( $data ) {
+		foreach ( $data as $key => $value ) {
+			$choices[ $value['theme_name'] ] = $value['theme_name'];
+		}
+	}
+
+	$field['choices'] = $choices;
+
+	return $field;
+
+}
+add_filter( 'acf/load_field/name=theme_select', 'appp_load_theme_field_choices' );
 
 /**
  * Load action route select with route entered on each view.
@@ -205,7 +231,15 @@ function appp_localize_scripts() {
 
 	$palette = appp_get_theme_colors( $post->ID );
 
-	wp_localize_script( 'appp-block-script', 'appp_data', array( 'color_palettes' => json_encode( $palette ) ) );
+	wp_localize_script(
+		'appp-block-script',
+		'appp_data',
+		array(
+			'color_palettes' => json_encode( $palette ),
+			'themes'         => json_encode( get_field( 'themes', 'option' ) ),
+		)
+	);
+
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
@@ -217,15 +251,30 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
  */
 function appp_get_theme_colors( $post_id ) {
 
-	$fields = get_field( 'light_mode', $post_id );
+	$theme  = get_field( 'theme', $post_id );
+	$themes = get_field( 'themes', 'option' );
+
+	$needed_object = array_filter(
+		$themes,
+		function ( $e ) use ( &$theme ) {
+			return $e['theme_name'] === $theme;
+		}
+	);
 
 	$palette = array();
 
-	foreach ( $fields as $field => $value ) {
+	foreach ( $needed_object[0]['light_mode'] as $key => $color ) {
 
-		$colors = appp_process_colors( '--ion-color-' . $field, $value );
-
-		$palette[ $field ] = $colors;
+		if ( 'custom_color' === $key ) {
+			foreach ( $color as $key => $value ) {
+				$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
+				$colors           = appp_process_colors( '--ion-color-' . $name, $value['color'] );
+				$palette[ $name ] = $colors;
+			}
+		} else {
+			$colors          = appp_process_colors( '--ion-color-' . $key, $color );
+			$palette[ $key ] = $colors;
+		}
 	}
 
 	return $palette;

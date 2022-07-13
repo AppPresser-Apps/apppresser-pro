@@ -5,9 +5,9 @@
         {
             "key": "field_62ccb3cefc401",
             "label": "Theme",
-            "name": "theme",
+            "name": "themes",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "AppPresser provides several global theme options that are used throughout blocks to change the default theme of an entire application. Application Colors are useful to change the look of most of the AppPresser blocks.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -85,7 +85,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#3880ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -102,7 +102,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#5260ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -119,7 +119,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#5260ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -136,7 +136,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#2dd36f",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -153,7 +153,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#ffc409",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -170,7 +170,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#eb445a",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -187,7 +187,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#232323",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -204,7 +204,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#92949c",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -221,7 +221,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#f4f5f8",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -278,25 +278,14 @@
                                     },
                                     "default_value": "",
                                     "enable_opacity": 0,
-                                    "return_format": "string",
-                                    "choices": {
-                                        "primary": "Primary",
-                                        "secondary": "Secondary",
-                                        "tertiary": "Tertiary",
-                                        "warning": "Warning",
-                                        "success": "Success",
-                                        "danger": "Danger",
-                                        "dark": "Dark",
-                                        "medium": "Medium",
-                                        "light": "Light"
-                                    }
+                                    "return_format": "string"
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    "key": "field_62ccb7a354419",
+                    "key": "field_62cd8fbfd4248",
                     "label": "Dark Mode",
                     "name": "dark_mode",
                     "type": "group",
@@ -311,7 +300,7 @@
                     "layout": "row",
                     "sub_fields": [
                         {
-                            "key": "field_62ccb7a35441a",
+                            "key": "field_62cd8fbfd4249",
                             "label": "Primary",
                             "name": "primary",
                             "type": "color_picker",
@@ -323,12 +312,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#3880ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a35441b",
+                            "key": "field_62cd8fbfd424a",
                             "label": "Secondary",
                             "name": "secondary",
                             "type": "color_picker",
@@ -340,12 +329,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#5260ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a35441c",
+                            "key": "field_62cd8fbfd424b",
                             "label": "Tertiary",
                             "name": "tertiary",
                             "type": "color_picker",
@@ -357,12 +346,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#5260ff",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a35441d",
+                            "key": "field_62cd8fbfd424c",
                             "label": "Success",
                             "name": "success",
                             "type": "color_picker",
@@ -374,12 +363,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#2dd36f",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a35441e",
+                            "key": "field_62cd8fbfd424d",
                             "label": "Warning",
                             "name": "warning",
                             "type": "color_picker",
@@ -391,12 +380,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#ffc409",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a35441f",
+                            "key": "field_62cd8fbfd424e",
                             "label": "Danger",
                             "name": "danger",
                             "type": "color_picker",
@@ -408,12 +397,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#eb445a",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a354420",
+                            "key": "field_62cd8fbfd424f",
                             "label": "Dark",
                             "name": "dark",
                             "type": "color_picker",
@@ -425,12 +414,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#232323",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a354421",
+                            "key": "field_62cd8fbfd4250",
                             "label": "Medium",
                             "name": "medium",
                             "type": "color_picker",
@@ -442,12 +431,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#92949c",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb7a354422",
+                            "key": "field_62cd8fbfd4251",
                             "label": "Light",
                             "name": "light",
                             "type": "color_picker",
@@ -459,12 +448,12 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
+                            "default_value": "#f4f5f8",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
                         {
-                            "key": "field_62ccb8cc00d7b",
+                            "key": "field_62cd8fbfd4252",
                             "label": "Custom Color",
                             "name": "custom_color",
                             "type": "repeater",
@@ -483,7 +472,7 @@
                             "button_label": "Add Color",
                             "sub_fields": [
                                 {
-                                    "key": "field_62ccb8e600d7c",
+                                    "key": "field_62cd8fbfd4253",
                                     "label": "Name",
                                     "name": "name",
                                     "type": "text",
@@ -502,7 +491,7 @@
                                     "maxlength": ""
                                 },
                                 {
-                                    "key": "field_62ccb8f200d7d",
+                                    "key": "field_62cd8fbfd4254",
                                     "label": "Color",
                                     "name": "color",
                                     "type": "color_picker",
@@ -516,18 +505,7 @@
                                     },
                                     "default_value": "",
                                     "enable_opacity": 0,
-                                    "return_format": "string",
-                                    "choices": {
-                                        "primary": "Primary",
-                                        "secondary": "Secondary",
-                                        "tertiary": "Tertiary",
-                                        "warning": "Warning",
-                                        "success": "Success",
-                                        "danger": "Danger",
-                                        "dark": "Dark",
-                                        "medium": "Medium",
-                                        "light": "Light"
-                                    }
+                                    "return_format": "string"
                                 }
                             ]
                         }
@@ -554,5 +532,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1657584012
+    "modified": 1657728796
 }

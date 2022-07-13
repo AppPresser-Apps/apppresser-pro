@@ -20,10 +20,11 @@ $select_source = get_field( 'select_source' );
 $border_radius = get_field( 'border_radius' );
 
 $margin        = get_field( 'margin' );
-$margin_top    = $margin['margin_top'];
-$margin_right  = $margin['margin_right'];
-$margin_bottom = $margin['margin_bottom'];
-$margin_left   = $margin['margin_left'];
+$margin_top    = $margin['margin_top'] ?? 0;
+$margin_right  = $margin['margin_right'] ?? 0;
+$margin_bottom = $margin['margin_bottom'] ?? 0;
+$margin_left   = $margin['margin_left'] ?? 0;
+
 
 $image = APPPRESSER_URL . '/images/image-placeholder.png';
 

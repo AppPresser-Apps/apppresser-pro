@@ -33,14 +33,18 @@ acf.add_filter('color_picker_args', function( args, field ){
 });
 
 
-acf.add_action('ready append', (e)=> {
+acf.addAction('load', (e)=> {
 
     window.jQuery('a.acf-icon.-duplicate').remove();
 
     // Load root theme styles
     if(window.appp_data !== undefined && window.appp_data !== null) {
         const data = JSON.parse(appp_data.color_palettes);
+        //console.log(data);
         for (const key in data ) {
+
+            appp_create_style_from_properties(key);
+
             for (const color in data[key] ) {
                 document.documentElement.style.setProperty(color, data[key][color]);
             }
@@ -48,6 +52,22 @@ acf.add_action('ready append', (e)=> {
     }
 
 });
+
+function appp_create_style_from_properties(prop) {
+
+   const css = `.ion-color-${prop} {
+        --ion-color-base: var(--ion-color-${prop});
+        --ion-color-base-rgb: var(--ion-color-${prop}-rgb);
+        --ion-color-contrast: var(--ion-color-${prop}-contrast);
+        --ion-color-contrast-rgb: var(--ion-color-${prop}-contrast-rgb);
+        --ion-color-shade: var(--ion-color-${prop}-shade);
+        --ion-color-tint: var(--ion-color-${prop}-tint);
+    }`
+
+    var style = document.createElement('style')
+    style.innerText = css
+    document.head.appendChild(style)
+}
 
 acf.addAction('load', ()=> {
 
@@ -67,6 +87,15 @@ acf.addAction('load', ()=> {
 });
 
 acf.addAction('remount', function ($el) {
+    //console.log($el);
+});
+
+acf.addAction('ready_field/name=theme_select', (field)=> {
+
+
+    console.log(acf.getFields('option'));
+
+    console.log(field.val())
 });
 
 acf.addAction('append_field/name=data_source', function( field ){
