@@ -285,7 +285,7 @@ function appp_get_theme_colors( $post_id ) {
 				$palette[ $name ] = $colors;
 			}
 		} else {
-			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[0][ $key ][ "{$key}-light" ] );
+			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[0][ $key ][ "{$key}_light" ] );
 			$palette[ $key ] = $colors;
 		}
 	}

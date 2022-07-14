@@ -391,9 +391,9 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#232323",
+                            "default_value": "#222428",
                             "enable_opacity": 0,
-                            "return_format": ""
+                            "return_format": "string"
                         },
                         {
                             "key": "field_62cf3d740743c",
@@ -408,9 +408,9 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#232323",
+                            "default_value": "#222428",
                             "enable_opacity": 0,
-                            "return_format": ""
+                            "return_format": "string"
                         }
                     ]
                 },
@@ -589,6 +589,207 @@
                             "return_format": "string"
                         }
                     ]
+                },
+                {
+                    "key": "field_62d0381550f27",
+                    "label": "Advanced",
+                    "name": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_62d03bc3c87c3",
+                    "label": "Background Color",
+                    "name": "background_color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#ffffff",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_62d03bdfc87c4",
+                    "label": "Text Color",
+                    "name": "text_color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_62d0382150f28",
+                    "label": "Font Family",
+                    "name": "font_family",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "default": "Default"
+                    },
+                    "default_value": "default",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62d0398d0040c",
+                    "label": "Safe Area Top",
+                    "name": "safe_area_top",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_62d03a890040d",
+                    "label": "Safe Area Bottom",
+                    "name": "safe_area_bottom",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_62d03a970040e",
+                    "label": "Safe Area Left",
+                    "name": "safe_area_left",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_62d03aa900410",
+                    "label": "Safe Area Right",
+                    "name": "safe_area_right",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 20,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_62d03ace23453",
+                    "label": "Margin",
+                    "name": "ion_margin",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 16,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": "",
+                    "step": 1
+                },
+                {
+                    "key": "field_62d03af123454",
+                    "label": "Padding",
+                    "name": "ion_padding",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 16,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": "",
+                    "step": 1
                 }
             ]
         }
@@ -611,5 +812,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1657750691
+    "modified": 1657814060
 }
