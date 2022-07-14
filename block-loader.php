@@ -15,7 +15,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'view',
 				'title'           => __( 'View' ),
-				'description'     => __( 'The most simple layout available consists of a toolbar and content. Most views in an app generally have both of these, but a toobar is not required in order to use content.' ),
+				'description'     => __( 'The view consists of a toolbar and content. These are the pages in your app.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/layout/view.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
@@ -63,30 +63,30 @@ function appp_init_block_types() {
 		);
 
 		// register a onboard view.
-		acf_register_block_type(
-			array(
-				'name'            => 'onboard',
-				'title'           => __( 'OnBoarding' ),
-				'description'     => __( 'Onboard view' ),
-				'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
-				'category'        => 'appp_view',
-				'icon'            => 'admin-page',
-				'keywords'        => array( 'component', 'onboard' ),
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'supports'        => array(
-					'mode'          => false,
-					'align'         => false,
-					'align_text'    => false,
-					'align_content' => false,
-					'full_height'   => false,
-					'jsx'           => true,
-				),
-				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
-				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
-			)
-		);
+		// acf_register_block_type(
+		// 	array(
+		// 		'name'            => 'onboard',
+		// 		'title'           => __( 'OnBoarding' ),
+		// 		'description'     => __( 'App onboarding success is crucial for users as it helps establish the tone of your app. These are views outside the main apps navigation and only load when the app is first installed.' ),
+		// 		'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
+		// 		'category'        => 'appp_view',
+		// 		'icon'            => 'admin-page',
+		// 		'keywords'        => array( 'component', 'onboard' ),
+		// 		'post_types'      => array( 'app' ),
+		// 		'mode'            => 'preview',
+		// 		'align'           => 'center',
+		// 		'supports'        => array(
+		// 			'mode'          => false,
+		// 			'align'         => false,
+		// 			'align_text'    => false,
+		// 			'align_content' => false,
+		// 			'full_height'   => false,
+		// 			'jsx'           => true,
+		// 		),
+		// 		// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+		// 		// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+		// 	)
+		// );
 
 		// register a button block.
 		acf_register_block_type(
@@ -259,61 +259,62 @@ function appp_init_block_types() {
 
 		// Begin Create-ACF-Block
 
-		acf_register_block_type(
-			array(
-				'name'            => __( 'repeater' ),
-				'title'           => __( 'Repeater' ),
-				'description'     => __( 'Repeats a child block' ),
-				'category'        => 'appp_data',
-				'icon'            => 'update',
-				'keywords'        => array( 'component', 'repeater', 'data' ),
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'className'       => 'appp-repeater',
-				'supports'        => array(
-					'mode'          => false,
-					'align'         => false,
-					'align_text'    => false,
-					'align_content' => false,
-					'full_height'   => false,
-					'jsx'           => true,
-				),
-				'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
-				'example'         => array(
-					'attributes' => array(
-						'mode' => 'preview',
-						'data' => array(
-							'_is_preview' => 'true',
-						),
-					),
-				),
-			)
-		);
-		acf_register_block_type(
-			array(
-				'name'            => 'openweather',
-				'title'           => 'OpenWeather',
-				'description'     => 'OpenWeather Api',
-				'icon'            => 'cloud',
-				'category'        => 'appp_third_party',
-				'keywords'        => array( 'component', 'openweather' ),
-				'post_types'      => array( 'app' ),
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'className'       => 'appp-openweather',
-				'parent'          => array( 'acf/view' ),
-				'supports'        => array(
-					'mode'          => false,
-					'align'         => false,
-					'align_text'    => false,
-					'align_content' => false,
-					'full_height'   => false,
-					'jsx'           => true,
-				),
-				'render_template' => APPPRESSER_DIR . 'blocks/third-party/openweather/block.php',
-			)
-		);
+		// acf_register_block_type(
+		// 	array(
+		// 		'name'            => __( 'repeater' ),
+		// 		'title'           => __( 'Repeater' ),
+		// 		'description'     => __( 'Repeats a child block' ),
+		// 		'category'        => 'appp_data',
+		// 		'icon'            => 'update',
+		// 		'keywords'        => array( 'component', 'repeater', 'data' ),
+		// 		'post_types'      => array( 'app' ),
+		// 		'mode'            => 'preview',
+		// 		'align'           => 'center',
+		// 		'className'       => 'appp-repeater',
+		// 		'supports'        => array(
+		// 			'mode'          => false,
+		// 			'align'         => false,
+		// 			'align_text'    => false,
+		// 			'align_content' => false,
+		// 			'full_height'   => false,
+		// 			'jsx'           => true,
+		// 		),
+		// 		'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
+		// 		'example'         => array(
+		// 			'attributes' => array(
+		// 				'mode' => 'preview',
+		// 				'data' => array(
+		// 					'_is_preview' => 'true',
+		// 				),
+		// 			),
+		// 		),
+		// 	)
+		// );
+
+		// acf_register_block_type(
+		// 	array(
+		// 		'name'            => 'openweather',
+		// 		'title'           => 'OpenWeather',
+		// 		'description'     => 'OpenWeather Api',
+		// 		'icon'            => 'cloud',
+		// 		'category'        => 'appp_third_party',
+		// 		'keywords'        => array( 'component', 'openweather' ),
+		// 		'post_types'      => array( 'app' ),
+		// 		'mode'            => 'preview',
+		// 		'align'           => 'center',
+		// 		'className'       => 'appp-openweather',
+		// 		'parent'          => array( 'acf/view' ),
+		// 		'supports'        => array(
+		// 			'mode'          => false,
+		// 			'align'         => false,
+		// 			'align_text'    => false,
+		// 			'align_content' => false,
+		// 			'full_height'   => false,
+		// 			'jsx'           => true,
+		// 		),
+		// 		'render_template' => APPPRESSER_DIR . 'blocks/third-party/openweather/block.php',
+		// 	)
+		// );
 
 		acf_register_block_type(
 			array(

@@ -123,6 +123,10 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
+	.acf-block-body .acf-block-preview {
+		min-height: 0px !important;
+	}
+
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;
@@ -174,8 +178,7 @@ function appp_remove_core_button_styles() {
 	if ( 'app' === $screen->id ) {
 		echo "
 		<style type='text/css'>
-		.wp-core-ui .button:not(.acf-button):not(.wp-color-result), 
-		.wp-core-ui .button:not(.acf-button):not(.wp-color-result):hover {
+		.wp-core-ui .button:not(.acf-button):not(.wp-color-result):not(.button-primary)  {
 			all: unset;
 		}
 		</style>

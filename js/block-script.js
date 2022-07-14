@@ -74,13 +74,17 @@ if (!isListViewOpened) {
 function apppFilterBlockRegister(settings, name) {
   switch (name) {
     case "acf/view":
-      settings.parent = [];
+      console.log(settings);
+      settings.parent = ['core/post-content'];
       break;
     case "acf/modal":
-      settings.parent = [];
+      settings.parent = ['core/post-content'];
       break;
     case "acf/onboard":
-      settings.parent = [];
+      settings.parent = ['core/post-content'];
+      break;
+    case "acf/fetch":
+      settings.parent = ["acf/view"];
       break;
     case "core/spacer":
       settings.category = "appp_layout";

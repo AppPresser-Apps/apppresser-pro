@@ -7,6 +7,13 @@
  */
 function appp_acf_op_init() {
 	if ( function_exists( 'acf_add_options_page' ) ) {
+		$args2        = array(
+			'page_title'  => 'Themes',
+			'menu_title'  => 'Themes',
+			'parent_slug' => 'edit.php?post_type=app',
+		);
+		$option_page2 = acf_add_options_page( $args2 );
+
 		$args        = array(
 			'page_title'  => 'Integrations',
 			'menu_title'  => 'Integrations',
@@ -34,7 +41,7 @@ function appp_load_route_field_choices( $field ) {
 		foreach ( $data as $key => $value ) {
 			$choices[ $value ] = $value;
 		}
-	
+
 		$field['choices'] = $choices;
 	}
 
@@ -42,6 +49,32 @@ function appp_load_route_field_choices( $field ) {
 
 }
 add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
+
+/**
+ * Load theme select with theme items.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_load_theme_field_choices( $field ) {
+	global $post;
+
+	$data = get_field( 'themes', 'option' );
+
+	$choices = array( 'default' => 'Default' );
+
+	if ( $data ) {
+		foreach ( $data as $key => $value ) {
+			$choices[ $value['theme_name'] ] = $value['theme_name'];
+		}
+	}
+
+	$field['choices'] = $choices;
+
+	return $field;
+
+}
+add_filter( 'acf/load_field/name=theme_select', 'appp_load_theme_field_choices' );
 
 /**
  * Load action route select with route entered on each view.
@@ -198,7 +231,15 @@ function appp_localize_scripts() {
 
 	$palette = appp_get_theme_colors( $post->ID );
 
-	wp_localize_script( 'appp-block-script', 'appp_data', array( 'color_palettes' => json_encode( $palette ) ) );
+	wp_localize_script(
+		'appp-block-script',
+		'appp_data',
+		array(
+			'color_palettes' => json_encode( $palette ),
+			'themes'         => json_encode( get_field( 'themes', 'option' ) ),
+		)
+	);
+
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
@@ -210,15 +251,43 @@ add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
  */
 function appp_get_theme_colors( $post_id ) {
 
-	$fields = get_field( 'light_mode', $post_id );
+	$colors = array(
+		'primary'      => 'Primary',
+		'secondary'    => 'Secondary',
+		'tertiary'     => 'Tertiary',
+		'warning'      => 'Warning',
+		'success'      => 'Success',
+		'danger'       => 'Danger',
+		'dark'         => 'Dark',
+		'medium'       => 'Medium',
+		'light'        => 'Light',
+		'custom_color' => 'Custom color',
+	);
+
+	$theme  = get_field( 'theme', $post_id );
+	$themes = get_field( 'themes', 'option' );
+
+	$needed_object = array_filter(
+		$themes,
+		function ( $e ) use ( &$theme ) {
+			return $e['theme_name'] === $theme;
+		}
+	);
 
 	$palette = array();
 
-	foreach ( $fields as $field => $value ) {
+	foreach ( $colors as $key => $value ) {
 
-		$colors = appp_process_colors( '--ion-color-' . $field, $value );
-
-		$palette[ $field ] = $colors;
+		if ( 'custom_color' === $key ) {
+			foreach ( $needed_object[0][ $key ] as $key => $value ) {
+				$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
+				$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
+				$palette[ $name ] = $colors;
+			}
+		} else {
+			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[0][ $key ][ "{$key}_light" ] );
+			$palette[ $key ] = $colors;
+		}
 	}
 
 	return $palette;

@@ -3,46 +3,9 @@
     "title": "Repeater",
     "fields": [
         {
-            "key": "field_622a1947d44b2",
-            "label": "Items Per Page",
-            "name": "per_page",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 1,
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "min": 1,
-            "max": "",
-            "step": 1
-        },
-        {
-            "key": "field_622a1a91d44b5",
+            "key": "field_62cc553898e9b",
             "label": "Data Source",
             "name": "data_source",
-            "type": "url",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_626965668d2ee",
-            "label": "Request Method",
-            "name": "request_method",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -53,16 +16,43 @@
                 "id": ""
             },
             "choices": {
-                "GET": "GET",
-                "POST": "POST"
+                "none": "None",
+                "api": "Rest API",
+                "custom": "Custom Data"
             },
-            "default_value": "GET",
+            "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_62cc55a398e9c",
+            "label": "Custom Data",
+            "name": "custom_data",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62cc553898e9b",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "monokai"
         }
     ],
     "location": [
@@ -83,5 +73,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654813035
+    "modified": 1657558503
 }

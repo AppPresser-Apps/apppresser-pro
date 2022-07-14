@@ -3,6 +3,23 @@
     "title": "View Settings",
     "fields": [
         {
+            "key": "field_62ccb0c485d5f",
+            "label": "Settings",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
             "key": "field_621ea2835ebaf",
             "label": "Title",
             "name": "title",
@@ -4540,93 +4557,6 @@
                     "step": 1
                 }
             ]
-        },
-        {
-            "key": "field_626ab31303c0b",
-            "label": "Data",
-            "name": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 0,
-            "multi_expand": 0,
-            "endpoint": 0
-        },
-        {
-            "key": "field_626ab32403c0c",
-            "label": "Rest API",
-            "name": "rest_api_source",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "https:\/\/plugin-dev.local\/wp-json": "https:\/\/plugin-dev.local\/wp-json",
-                "https:\/\/catfact.ninja": "https:\/\/catfact.ninja"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "endpoints": [
-                [
-                    {
-                        "endpoint_name": "Posts",
-                        "endpoint_path": "\/wp\/v2\/posts",
-                        "request_method": "GET",
-                        "headers": false,
-                        "parameters": false
-                    }
-                ],
-                [
-                    {
-                        "endpoint_name": "fact",
-                        "endpoint_path": "\/fact",
-                        "request_method": "GET",
-                        "headers": false,
-                        "parameters": false
-                    }
-                ]
-            ]
-        },
-        {
-            "key": "field_6277ea3b157f3",
-            "label": "Endpoint",
-            "name": "rest_api_endpoints",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
         }
     ],
     "location": [
@@ -4662,5 +4592,9 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
+<<<<<<< HEAD
     "modified": 1656957918
+=======
+    "modified": 1657581785
+>>>>>>> main
 }

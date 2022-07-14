@@ -19,9 +19,7 @@ add_filter( 'acf/settings/show_admin', 'appp_acf_show_admin' );
  */
 function appp_acf_dynamic_colors( $field ) {
 
-	if ( 0 !== strpos( $field['name'], 'color' ) ) {
-		return $field;
-	}
+	global $post;
 
 	$colors = array(
 		'primary'   => 'Primary',
@@ -35,13 +33,42 @@ function appp_acf_dynamic_colors( $field ) {
 		'light'     => 'Light',
 	);
 
+	$colors = apply_filters( 'appp_acf_dynamic_colors', $colors, $post );
+
 	foreach ( $colors as $color => $value ) {
 		$field['choices'][ $color ] = $value;
 	}
 
 	return $field;
 }
-add_filter( 'acf/load_field', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=toolbar_color', 'appp_acf_dynamic_colors' );
+
+
+function appp_add_custom_colors_select( $colors, $post ) {
+
+	$theme  = get_field( 'theme', $post->ID );
+	$themes = get_field( 'themes', 'option' );
+
+	$needed_object = array_filter(
+		$themes,
+		function ( $e ) use ( &$theme ) {
+			return $e['theme_name'] === $theme;
+		}
+	);
+
+	//error_log(print_r($needed_object,true));
+
+	if ( isset( $needed_object[0]['custom_color'] ) ) {
+		foreach ( $needed_object[0]['custom_color'] as $custom_color ) {
+			$value            = strtolower( str_replace( ' ', '-', $custom_color['name'] ) );
+			$colors[ $value ] = $custom_color['name'];
+		}
+	}
+
+	return $colors;
+}
+add_filter( 'appp_acf_dynamic_colors', 'appp_add_custom_colors_select', 10, 2 );
 
 /**
  * Filters the action acf field with dynamic choices.
@@ -58,7 +85,7 @@ function appp_acf_dynamic_action( $field ) {
 
 	$actions = array(
 		'none'         => 'None',
-		'router_push'  => 'Navigate to Route',
+		'router_push'  => 'Navigate to View',
 		'router_back'  => 'Navigate Back',
 		'alert'        => 'Alert Message',
 		'popover'      => 'Popover',
