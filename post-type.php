@@ -86,6 +86,75 @@ function app_post_type() {
 add_action( 'init', 'app_post_type', 0 );
 
 
+// Register Custom Post Type
+function data_post_type() {
+
+	$labels = array(
+		'name'                   => _x( 'Data Tables', 'Post Type General Name', 'apppresser' ),
+		'singular_name'          => _x( 'Data Table', 'Post Type Singular Name', 'apppresser' ),
+		'menu_name'              => __( 'Data Tables', 'apppresser' ),
+		'name_admin_bar'         => __( 'Data Table', 'apppresser' ),
+		'archives'               => __( 'Data Table Archives', 'apppresser' ),
+		'attributes'             => __( 'Data Table Attributes', 'apppresser' ),
+		'parent_item_colon'      => __( 'Parent Item:', 'apppresser' ),
+		'all_items'              => __( 'All Data Tables', 'apppresser' ),
+		'add_new_item'           => __( 'Add New Data Table', 'apppresser' ),
+		'add_new'                => __( 'Add New', 'apppresser' ),
+		'new_item'               => __( 'New Data Table', 'apppresser' ),
+		'edit_item'              => __( 'Edit Data Table', 'apppresser' ),
+		'update_item'            => __( 'Update Data Table', 'apppresser' ),
+		'view_item'              => __( 'View Data Table', 'apppresser' ),
+		'view_items'             => __( 'View Data Tables', 'apppresser' ),
+		'search_items'           => __( 'Search Data Tables', 'apppresser' ),
+		'not_found'              => __( 'Not found', 'apppresser' ),
+		'not_found_in_trash'     => __( 'Not found in Trash', 'apppresser' ),
+		'featured_image'         => __( 'Featured Image', 'apppresser' ),
+		'set_featured_image'     => __( 'Set featured image', 'apppresser' ),
+		'remove_featured_image'  => __( 'Remove featured image', 'apppresser' ),
+		'use_featured_image'     => __( 'Use as featured image', 'apppresser' ),
+		'insert_into_item'       => __( 'Insert into Data Table', 'apppresser' ),
+		'uploaded_to_this_item'  => __( 'Uploaded to this Data Table', 'apppresser' ),
+		'items_list'             => __( 'Data Tables list', 'apppresser' ),
+		'items_list_navigation'  => __( 'Data Tables list navigation', 'apppresser' ),
+		'filter_items_list'      => __( 'Filter apps list', 'apppresser' ),
+		'item_updated'           => __( 'Data Table updated.', 'apppresser' ),
+		'item_published'         => __( 'Data Table published.', 'apppresser' ),
+		'item_reverted_to_draft' => __( 'Data Table reverted to draft.', 'apppresser' ),
+
+	);
+	$capabilities = array(
+		// 'edit_post'     => 'edit_post',
+		// 'read_post'     => 'read_post',
+		// 'delete_post'   => 'delete_post',
+		// 'publish_posts' => 'publish_posts',
+	);
+	$args = array(
+		'label'               => __( 'Data Table', 'apppresser' ),
+		'description'         => __( 'Data table', 'apppresser' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'custom-fields' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+		'menu_icon'           => 'dashicons-database',
+		'show_in_admin_bar'   => false,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => true,
+		'capabilities'        => $capabilities,
+		'show_in_rest'        => true,
+		'template_lock'       => false,
+	);
+	register_post_type( 'datatable', $args );
+
+
+}
+add_action( 'init', 'data_post_type', 0 );
+
 add_filter(
 	'manage_app_posts_columns',
 	function( $columns ) {

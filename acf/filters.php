@@ -43,11 +43,12 @@ function appp_acf_dynamic_colors( $field ) {
 }
 add_filter( 'acf/prepare_field/name=color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=toolbar_color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=color_button', 'appp_acf_dynamic_colors' );
 
 
 function appp_add_custom_colors_select( $colors, $post ) {
 
-	$theme  = get_field( 'theme', $post->ID );
+	$theme  = get_field( 'theme_select', $post->ID );
 	$themes = get_field( 'themes', 'option' );
 
 	$needed_object = array_filter(
