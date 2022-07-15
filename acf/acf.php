@@ -264,7 +264,7 @@ function appp_get_theme_colors( $post_id ) {
 		'custom_color' => 'Custom color',
 	);
 
-	$theme  = get_field( 'theme', $post_id );
+	$theme  = get_field( 'theme_select', $post_id );
 	$themes = get_field( 'themes', 'option' );
 
 	$needed_object = array_filter(
