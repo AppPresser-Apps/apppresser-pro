@@ -176,7 +176,7 @@ function appp_get_app_data( $request ) {
 }
 
 /**
- * Formats each innerblocks sub array recursivley.
+ * Formats each innerBlocks nested array recursivley.
  *
  * @param array $block
  * @return void
@@ -198,7 +198,7 @@ function appp_array_walk( &$block ) {
 }
 
 /**
- * Formats each block to fit ionic component app data.
+ * Formats each ACF block data to fit ionic component app data.
  *
  * @param array $block
  * @return array
@@ -288,6 +288,8 @@ function appp_format_block_data( $block ) {
 
 			break;
 	}
+
+	$block = apply_filters( 'appp_format_block_data', $block );
 
 	return $block;
 }
