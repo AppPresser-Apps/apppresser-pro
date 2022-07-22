@@ -122,52 +122,92 @@ function appp_get_app_data( $request ) {
 	$post   = get_post( $param );
 	$blocks = parse_blocks( $post->post_content );
 
-	$arr = array();
+	$menu       = false;
+	$views      = false;
+	$modals     = false;
+	$onboarding = false;
 
 	// error_log( print_r( $blocks, true ) );
 
-	array_walk_recursive_array( $blocks, 'appp_format_block_data' );
+	// array_walk_recursive_array( $blocks, 'appp_format_block_data' );
 
-	//error_log( print_r( $blocks, true ) );
+	// error_log( print_r( $blocks, true ) );
 
-	// foreach ( $blocks as $index => $block ) {
+	foreach ( $blocks as $index => &$block ) {
 
-	// if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
+		if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
 
-	// $block = appp_format_block_data( $block );
+			unset( $block['innerHTML'] );
+			unset( $block['innerContent'] );
 
-	// unset( $block['innerHTML'] );
-	// unset( $block['innerContent'] );
-	// $arr[] = $block;
-	// }
-	// }
+			// This recusivley formats all innerBlock sub arrays.
+			if ( ! empty( $block ) ) {
+				appp_array_walk( $block );
+			}
+
+			if ( 'acf/view' === $block['blockName'] ) {
+				$views[] = $block;
+
+			}
+
+			if ( 'acf/side-menu' === $block['blockName'] ) {
+				$menu  = $block;
+			}
+
+			if ( 'acf/modal' === $block['blockName'] ) {
+				$modals[] = $block;
+			}
+
+			if ( 'acf/onboarding' === $block['blockName'] ) {
+				$onboarding[] = $block;
+			}
+		}
+	}
 
 	$app = array(
 		'theme_colors' => appp_get_theme_colors( $param ),
-		'blocks'       => (array) $blocks,
+		'views'        => $views,
+		'side_menu'    => $menu,
+		'modals'       => $modals,
+		'onboarding'   => $onboarding,
 	);
 
 	return $app;
 }
 
-function array_walk_recursive_array( array &$array, callable $callback ) {
-	
-	foreach ( $array as $k => &$v ) {
-		if ( is_array( $v['innerBlocks'] ) && ! empty( $v['innerBlocks'] ) ) {
-			array_walk_recursive_array( $v['innerBlocks'], $callback );
-		} else {
-			error_log( print_r( $v, true ) );
-			$callback($v, $k, $array);
+/**
+ * Formats each innerblocks sub array recursivley.
+ *
+ * @param array $block
+ * @return void
+ */
+function appp_array_walk( &$block ) {
+
+	if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+
+		foreach ( $block['innerBlocks'] as &$value ) {
+
+			$value = appp_format_block_data( $value );
+
+			if ( isset( $value['innerBlocks'] ) && ! empty( $value['innerBlocks'] ) ) {
+
+				appp_array_walk( $value );
+			}
 		}
 	}
 }
 
+/**
+ * Formats each block to fit ionic component app data.
+ *
+ * @param array $block
+ * @return array
+ */
+function appp_format_block_data( $block ) {
 
-function appp_format_block_data( $value, $key, $block ) {
-
-	//error_log( print_r( $value, true ) );
-	//error_log( print_r( $key, true ) );
-	//error_log( print_r( $block, true ) );
+	if ( ! isset( $block['blockName'] ) ) {
+		return $block;
+	}
 
 	switch ( $block['blockName'] ) {
 		case 'acf/ion-image':
@@ -184,7 +224,7 @@ function appp_format_block_data( $value, $key, $block ) {
 				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
 				$avatar                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
 				$block['attrs']['data']['image_url'] = empty( $avatar[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar[0];
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				// error_log( print_r( $block, true ) );
 			}
 			break;
 		case 'acf/ion-thumbnail':
@@ -246,8 +286,6 @@ function appp_format_block_data( $value, $key, $block ) {
 
 			$block['attrs']['data'] = array( 'segments' => $segments );
 
-			break;
-		default:
 			break;
 	}
 

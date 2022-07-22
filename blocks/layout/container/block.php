@@ -2,7 +2,7 @@
 /**
  * Block Name: Container
  *
- * Description: wrapper to rpovide layout options for inner blocks
+ * Description: wrapper to provide layout options for inner blocks
  *
  * @package AppPresser
  */

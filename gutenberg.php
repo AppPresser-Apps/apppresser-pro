@@ -127,6 +127,7 @@ function appp_get_allowed_blocks() {
 	return array_merge(
 		array(
 			'core/spacer',
+			'custom/section',
 		),
 		$arr
 	);
@@ -151,6 +152,7 @@ function appp_get_allowed_view_blocks() {
 	return array_merge(
 		array(
 			'core/spacer',
+			'custom/section',
 		),
 		$arr
 	);

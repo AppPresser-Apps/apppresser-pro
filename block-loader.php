@@ -62,6 +62,31 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'side-menu',
+				'title'           => __( 'Side Menu' ),
+				'description'     => __( 'The Side Menu block is a navigation drawer that slides in from the side of the current view. ' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/menu/block.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
+				'keywords'        => array( 'app', 'menu' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
 		// register a onboard view.
 		// acf_register_block_type(
 		// 	array(
@@ -361,6 +386,30 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/media/ion-thumbnail/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-menu-toggle',
+				'title'           => 'Menu Toggle',
+				'description'     => 'The Menu Toggle block can be used to toggle a menu open or closed.',
+				'category'        => 'appp_layout',
+				'keywords'        => array( 'component', 'menu', 'item' ),
+				'icon'            => 'menu',
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view', 'acf/side-menu' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/menu-toggle/block.php',
 			)
 		);
 

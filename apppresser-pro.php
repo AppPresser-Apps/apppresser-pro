@@ -72,7 +72,7 @@ function appp_gutenberg_register_files() {
 		'appp-block-script',
 		APPPRESSER_URL . '/js/block-script.js',
 		array( 'wp-blocks', 'wp-edit-post' ),
-		'1.1.5',
+		'1.1.8',
 		true,
 	);
 
@@ -119,6 +119,6 @@ function appp_acf_admin_enqueue_scripts() {
 	wp_enqueue_script( 'beautify-css', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-css.min.js', array(), '1.0.0', false );
 	wp_enqueue_script( 'beautify-html', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-html.min.js', array(), '1.0.0', false );
 
-	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array( 'lodash', 'jquery' ), '1.0.9', true );
+	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array( 'lodash', 'jquery' ), '1.1.0', true );
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts', 99 );
