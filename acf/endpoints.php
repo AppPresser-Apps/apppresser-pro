@@ -118,62 +118,89 @@ function appp_get_endpoints_data() {
 
 function appp_get_app_data( $request ) {
 
-	$param  = $request->get_param( 'id' );
-	$post   = get_post( $param );
-	$blocks = parse_blocks( $post->post_content );
+	$param = $request->get_param( 'id' );
 
-	$menu       = false;
-	$views      = false;
-	$modals     = false;
-	$onboarding = false;
+	$appp_data_transient = get_transient( 'appp_data_transient_' . $param );
 
-	// error_log( print_r( $blocks, true ) );
+	// Get any existing copy of our transient data.
+	if ( false === $appp_data_transient ) {
 
-	// array_walk_recursive_array( $blocks, 'appp_format_block_data' );
+		$post   = get_post( $param );
+		$blocks = parse_blocks( $post->post_content );
 
-	// error_log( print_r( $blocks, true ) );
+		$menu       = false;
+		$views      = false;
+		$modals     = false;
+		$onboarding = false;
 
-	foreach ( $blocks as $index => &$block ) {
+		// error_log( print_r( $blocks, true ) );
 
-		if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
+		// array_walk_recursive_array( $blocks, 'appp_format_block_data' );
 
-			unset( $block['innerHTML'] );
-			unset( $block['innerContent'] );
+		// error_log( print_r( $blocks, true ) );
 
-			// This recusivley formats all innerBlock sub arrays.
-			if ( ! empty( $block ) ) {
-				appp_array_walk( $block );
-			}
+		foreach ( $blocks as $index => &$block ) {
 
-			if ( 'acf/view' === $block['blockName'] ) {
-				$views[] = $block;
+			if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
 
-			}
+				unset( $block['innerHTML'] );
+				unset( $block['innerContent'] );
 
-			if ( 'acf/side-menu' === $block['blockName'] ) {
-				$menu  = $block;
-			}
+				// This recusivley formats all innerBlock sub arrays.
+				if ( ! empty( $block ) ) {
+					appp_array_walk( $block );
+				}
 
-			if ( 'acf/modal' === $block['blockName'] ) {
-				$modals[] = $block;
-			}
+				if ( 'acf/view' === $block['blockName'] ) {
+					$views[] = $block;
 
-			if ( 'acf/onboarding' === $block['blockName'] ) {
-				$onboarding[] = $block;
+				}
+
+				if ( 'acf/side-menu' === $block['blockName'] ) {
+					$menu = $block;
+				}
+
+				if ( 'acf/modal' === $block['blockName'] ) {
+					$modals[] = $block;
+				}
+
+				if ( 'acf/onboarding' === $block['blockName'] ) {
+					$onboarding[] = $block;
+				}
 			}
 		}
+
+		$app = array(
+			'theme_colors' => appp_get_theme_colors( $param ),
+			'views'        => $views,
+			'side_menu'    => $menu,
+			'modals'       => $modals,
+			'onboarding'   => $onboarding,
+		);
+
+		set_transient( 'appp_data_transient_' . $param, $app, 12 * HOUR_IN_SECONDS );
+
+		return $app;
+
+	} else {
+		return $appp_data_transient;
 	}
 
-	$app = array(
-		'theme_colors' => appp_get_theme_colors( $param ),
-		'views'        => $views,
-		'side_menu'    => $menu,
-		'modals'       => $modals,
-		'onboarding'   => $onboarding,
-	);
-
-	return $app;
 }
+
+/**
+ * Delete app data transient on app update.
+ *
+ * @param Integar $id
+ * @param Object $post
+ * @return void
+ */
+function appp_delete_transient( $id, $post ) {
+	if ( 'app' === $post->post_type ) {
+		delete_transient( 'appp_data_transient_' . $id );
+	}
+}
+add_action( 'post_updated', 'appp_delete_transient', 10, 2 );
 
 /**
  * Formats each innerBlocks nested array recursivley.
