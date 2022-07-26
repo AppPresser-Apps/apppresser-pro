@@ -61,7 +61,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					};
 					?>
 				</ion-buttons>
-				<ion-title style="width:273px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
+				<ion-title style="width:304px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {
@@ -114,7 +114,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	.<?php echo $className; ?> .side-menu-wrap {
 		border: 1px solid #e0e0e0;
 		height: 667px;
-		width: 275px;
+		width: 306px;
 		margin:  0px auto !important;
 		font-family: var(--ion-font-family, inherit);
 	}

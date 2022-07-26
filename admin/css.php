@@ -35,6 +35,10 @@ function appp_custom_editor_css() {
 		margin: 6px;
 	}
 
+	.block-editor-block-list__block .block-list-appender.block-list-appender {
+		z-index: 999999 !important;
+	}
+
 	.block-editor-inserter {
 		// position: absolute;
 		// right: 20px;
