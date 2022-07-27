@@ -47,42 +47,42 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 ?>
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
-<div class="side-menu-wrap">
+	<div class="side-menu-wrap">
 
-    <?php if ( ! $hide_toolbar ) : ?>
-		<ion-header>
-			<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
-				<ion-buttons slot="start">
-					<?php
-					if ( $left_buttons ) {
-						foreach ( $left_buttons as $button ) {
-							appp_process_right_button( $button );
+		<?php if ( ! $hide_toolbar ) : ?>
+			<ion-header>
+				<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
+					<ion-buttons slot="start" style="--color: initial;">
+						<?php
+						if ( $left_buttons ) {
+							foreach ( $left_buttons as $button ) {
+								appp_process_right_button( $button );
+							};
 						};
-					};
-					?>
-				</ion-buttons>
-				<ion-title style="width:304px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
-				<ion-buttons slot="end">
-					<?php
-					if ( $right_buttons ) {
-						foreach ( $right_buttons as $button ) {
-							appp_process_right_button( $button );
+						?>
+					</ion-buttons>
+					<ion-title style="width:304px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
+					<ion-buttons slot="end">
+						<?php
+						if ( $right_buttons ) {
+							foreach ( $right_buttons as $button ) {
+								appp_process_right_button( $button );
+							};
 						};
-					};
-					?>
-				</ion-buttons>
-			</ion-toolbar>
-		</ion-header>
-	<?php endif; ?>
+						?>
+					</ion-buttons>
+				</ion-toolbar>
+			</ion-header>
+		<?php endif; ?>
 
-	<ion-content style="<?php echo $style; ?>" fullscreen="true">
-		<InnerBlocks 
-			templateInsertUpdatesSelection="true"
-			templateLock="false" 
-			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
-		/>
-	</ion-content>
-</div>
+		<ion-content style="<?php echo $style; ?>" fullscreen="true">
+			<InnerBlocks 
+				templateInsertUpdatesSelection="true"
+				templateLock="false" 
+				allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+			/>
+		</ion-content>
+	</div>
 </div>
 
 

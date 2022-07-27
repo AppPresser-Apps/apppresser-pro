@@ -160,7 +160,7 @@ function appp_process_left_button( $button ) {
 			if ( '0' === $button['icon'] ) {
 				echo '<ion-button>' . $button['label'] . '</ion-button>';
 			} else {
-				echo '<ion-button><ion-icon name="heart"></ion-icon></ion-button>';
+				echo '<ion-button><ion-icon name="'. $button['icon'] . '"></ion-icon></ion-button>';
 			}
 			break;
 
@@ -214,7 +214,8 @@ function appp_fields_flexible_content_layout_title( $title, $field, $layout, $i 
 
 	return $title;
 }
-add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
+//add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
+//add_filter( 'acf/fields/flexible_content/layout_title/name=left_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
 
 /**
  * Adds processed theme css variables into the header of WordPress as json data.
