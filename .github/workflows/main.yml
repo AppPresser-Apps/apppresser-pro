@@ -1,19 +1,20 @@
 on: push
 name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy_job:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: 104.131.120.32
-        username: runcloud
-        password: ${{ secrets.PASSWORD }}
-        protocol: ftps
-        port: 22
-        server-dir: home/runcloud/webapps/appp-dev/wp-content/plugins/apppresser-pro/
+        - name: Checkout
+        uses: actions/checkout@v2
+        
+        - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: ${{ secrets.USERNAME }}
+            server: ${{ secrets.SERVER }}
+            port: ${{ secrets.PORT }}
+            local_path: './'
+            remote_path: ${{ secrets.REMOTE_PATH }}
+            sftp_only: true
+            password: ${{ secrets.PASSWORD }}
