@@ -11,8 +11,8 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ftp.samkirkland.com
-        username: myFtpUserName
+        server: 104.131.120.32
+        username: runcloud
         password: ${{ secrets.password }}
         protocol: ftps
-        port: 1234 # todo replace with your web hosts ftps port
+        port: 22
