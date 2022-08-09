@@ -186,58 +186,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		</ion-content>
 	</div>
 </div>
-
-
 <script>
-
-	// We need this because ion-button has a class 
-	// .button and WordPress editor styles is screwing up the design
-	setTimeout(() => {
-		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
-
-		var content = view.querySelector('ion-content');
-		<?php if ( $content_padding ) : ?>
-			content.classList.add('ion-padding');
-		<?php endif; ?>
-
-		// var menubtns = view.querySelectorAll('ion-menu-button'), i;
-
-		// for (i = 0; i < menubtns.length; ++i) {
-		// 	menubtns[i].classList.remove('button');
-		// 	menubtns[i].setAttribute('auto-hide', false);
-		// 	menubtns[i].classList.remove('menu-button-hidden');
-		// }
-
-		// var backbtns = view.querySelectorAll('ion-back-button'), i;
-
-		// for (i = 0; i < backbtns.length; ++i) {
-		// 	backbtns[i].classList.remove('button');
-		// }
-
-		// var btns = view.querySelectorAll('ion-button'), i;
-
-		// for (i = 0; i < btns.length; ++i) {
-		// 	btns[i].classList.remove('button');
-		// }
-
-	}, 500);
-
-
-</script>
-
-<script>
-	var <?php echo $block['id']; ?> = {
-		'data_source': "<?php echo $data_source; ?>",
-	}
-	// jQuery(document).ready(function() {
-
-	// 	jQuery('.load-repeater-<?php echo $block['id']; ?>').click( function(e) {
-	// 		jQuery(this).toggleClass("spin");
-	// 		appp_load_repeater();
-	// 	});
-
-	// 	jQuery(document).on("stopSpinner", ()=> {
-	// 		jQuery('.load-repeater-<?php echo $block['id']; ?>').removeClass("spin");
-	// 	});
-	// });
+	appp_remove_button_class("#<?php echo esc_attr( $id ); ?>");
 </script>

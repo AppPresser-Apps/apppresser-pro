@@ -137,30 +137,6 @@ $style .= '--padding-bottom: 16px; ';
 	}
 
 </style>
-
-
 <script>
-
-	// We need this because ion-button has a class 
-	// .button and WordPress editor styles is screwing up the design
-	setTimeout(() => {
-		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
-
-		var menubtns = view.querySelectorAll('ion-menu-button'), i;
-
-		for (i = 0; i < menubtns.length; ++i) {
-			menubtns[i].classList.remove('button');
-			menubtns[i].setAttribute('auto-hide', false);
-			menubtns[i].classList.remove('menu-button-hidden');
-		}
-
-		var btns = view.querySelectorAll('ion-button'), i;
-
-		for (i = 0; i < btns.length; ++i) {
-			btns[i].classList.remove('button');
-		}
-
-	}, 500);
-
-
+	appp_remove_button_class("#<?php echo esc_attr( $id ); ?>");
 </script>

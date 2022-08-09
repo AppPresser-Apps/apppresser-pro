@@ -83,6 +83,9 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 
 	#<?php echo esc_attr( $block_id ); ?> {
 	
 	}
+	.wp-block-acf-text {
+		width: 100%;
+	}
 </style>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<p style="<?php echo $style; ?>"><?php echo $text ? $text : ''; ?></p>

@@ -34,7 +34,7 @@
             },
             "choices": {
                 "none": "None",
-                "router_push": "Navigate to Route",
+                "router_push": "Navigate to View",
                 "router_back": "Navigate Back",
                 "alert": "Alert Message",
                 "popover": "Popover",
@@ -128,7 +128,7 @@
                 "id": ""
             },
             "choices": {
-                "none: None": "none: None"
+                "none": "None"
             },
             "default_value": "none",
             "allow_null": 0,
@@ -1589,7 +1589,7 @@
                             },
                             "choices": {
                                 "none": "None",
-                                "router_push": "Navigate to Route",
+                                "router_push": "Navigate to View",
                                 "router_back": "Navigate Back",
                                 "alert": "Alert Message",
                                 "popover": "Popover",
@@ -1635,7 +1635,7 @@
             ],
             "choices": {
                 "none": "None",
-                "router_push": "Navigate to Route",
+                "router_push": "Navigate to View",
                 "router_back": "Navigate Back",
                 "alert": "Alert Message",
                 "popover": "Popover",
@@ -1706,5 +1706,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1656018816
+    "modified": 1658934524
 }

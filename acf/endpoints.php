@@ -118,105 +118,297 @@ function appp_get_endpoints_data() {
 
 function appp_get_app_data( $request ) {
 
-	$param  = $request->get_param( 'id' );
-	$post   = get_post( $param );
-	$blocks = parse_blocks( $post->post_content );
+	$param = $request->get_param( 'id' );
 
-	$arr = array();
+	$appp_data_transient = get_transient( 'appp_data_transient_' . $param );
 
-	foreach ( $blocks as $index => $block ) {
+	// Get any existing copy of our transient data.
+	if ( false === $appp_data_transient ) {
 
-		if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
-			$block = appp_format_block_data( $block );
-			unset( $block['innerHTML'] );
-			unset( $block['innerContent'] );
-			$arr[] = $block;
+		$post   = get_post( $param );
+		$blocks = parse_blocks( $post->post_content );
+
+		$menu       = false;
+		$views      = false;
+		$modals     = false;
+		$onboarding = false;
+
+		// error_log( print_r( $blocks, true ) );
+
+		// array_walk_recursive_array( $blocks, 'appp_format_block_data' );
+
+		// error_log( print_r( $blocks, true ) );
+
+		foreach ( $blocks as $index => &$block ) {
+
+			if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
+
+				unset( $block['innerHTML'] );
+				unset( $block['innerContent'] );
+
+				foreach ( $block['attrs']['data'] as $key => $attr ) {
+
+					$first_character = substr( $key, 0, 1 );
+
+					if ( '_' === $first_character ) {
+						unset( $block['attrs']['data'][ $key ] );
+					}
+				}
+
+				// This recusivley formats all innerBlock sub arrays.
+				if ( ! empty( $block ) ) {
+					appp_array_walk( $block );
+				}
+
+				if ( 'acf/view' === $block['blockName'] ) {
+					$block   = appp_format_toolbar( $block );
+					$views[] = $block;
+
+				}
+
+				if ( 'acf/side-menu' === $block['blockName'] ) {
+					$block = appp_format_toolbar( $block );
+					$menu  = $block;
+				}
+
+				if ( 'acf/modal' === $block['blockName'] ) {
+					$modals[] = $block;
+				}
+
+				if ( 'acf/onboarding' === $block['blockName'] ) {
+					$onboarding[] = $block;
+				}
+			}
 		}
+
+		$app = array(
+			'theme_colors'  => appp_get_theme_colors( $param ),
+			'theme_globals' => appp_get_theme_globals( $param ),
+			'views'         => $views,
+			'side_menu'     => $menu,
+			'modals'        => $modals,
+			'onboarding'    => $onboarding,
+		);
+
+		set_transient( 'appp_data_transient_' . $param, $app, 12 * HOUR_IN_SECONDS );
+
+		return $app;
+
+	} else {
+		return $appp_data_transient;
 	}
 
-	$app = array(
-		'theme_colors' => appp_get_theme_colors( $param ),
-		'blocks'       => (array) $arr,
-	);
-
-	return $app;
 }
 
-function appp_format_block_data( $block ) {
+function appp_format_toolbar( $block ) {
 
-	foreach ( $block['innerBlocks'] as $index => $inner_block ) {
-		switch ( $inner_block['blockName'] ) {
-			case 'acf/ion-image':
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
-				$image = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
-				break;
-			case 'acf/ion-avatar':
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
-				$avatar = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $avatar ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar;
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
-				break;
-			case 'acf/ion-thumbnail':
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['image_url'];
-				$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['image_url'], 'original_image' )[0];
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
-				break;
-			case 'acf/container':
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['background_image'];
-				$image = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['background_image'], 'original_image' )[0];
-				$block['innerBlocks'][ $index ]['attrs']['data']['background_image_url'] = empty( $image ) ? '' : $image;
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
-				break;
-			case 'acf/ion-item':
-				$block['innerBlocks'][ $index ]['attrs']['data']['image_id'] = $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'];
-				$thumbnail = wp_get_attachment_image_src( $block['innerBlocks'][ $index ]['attrs']['data']['icon_thumbnail'], 'original_image' )[0];
-				$block['innerBlocks'][ $index ]['attrs']['data']['thumbnail_url'] = empty( $thumbnail ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail;
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
-				break;
-			case 'acf/breadcrumbs':
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+	// error_log( print_r( $block['attrs']['data'], true ) );
 
-				// Creates an array from integer so we can loop through ACF data that isnt an array. 
-				$bcrumbs     = range( 0, ( $block['innerBlocks'][ $index ]['attrs']['data']['breadcrumb'] - 1 ) );
-				$breadcrumbs = array();
+	$lbtns = isset( $block['attrs']['data']['left_buttons'] ) && ! empty( $block['attrs']['data']['left_buttons'] ) ? $block['attrs']['data']['left_buttons'] : array();
+	$rbtns = isset( $block['attrs']['data']['right_buttons'] ) && ! empty( $block['attrs']['data']['right_buttons'] ) ? $block['attrs']['data']['right_buttons'] : array();
 
-				foreach ( $bcrumbs as $breadcrumb ) {
+	$left_buttons  = array();
+	$right_buttons = array();
 
-					$breadcrumbs[] = array(
-						'title' => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_title' ],
-						'link'  => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_link' ],
-						'icon'  => $block['innerBlocks'][ $index ]['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_icon' ],
-					);
+	foreach ( $lbtns as $key => $button ) {
 
-				}
+		error_log( print_r( $button, true ) );
 
-				$block['innerBlocks'][ $index ]['attrs']['data']['breadcrumbs'] = $breadcrumbs;
-
-				break;
-			case 'acf/segment':
-				// Creates an array from integer so we can loop through ACF data that isnt an array. 
-				$segs     = range( 0, ( $block['innerBlocks'][ $index ]['attrs']['data']['segments'] - 1 ) );
-				$segments = array();
-
-				foreach ( $segs as $segment ) {
-
-					$segments[] = array(
-						'label' => $block['innerBlocks'][ $index ]['attrs']['data'][ 'segments_' . $segment . '_label' ],
-					);
-
-				}
-
-				$block['innerBlocks'][ $index ]['attrs']['data'] = array( 'segments' => $segments );
-
-				break;
-
-			default:
-				break;
+		if ( 'button' === $button ) {
+			$left_buttons[] = array(
+				'icon'    => $block['attrs']['data'][ 'left_buttons_' . $key . '_icon' ],
+				'label'   => $block['attrs']['data'][ 'left_buttons_' . $key . '_label' ],
+				'action'  => $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ],
+				'route'   => 'router_push' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_route' ] : false,
+				'popover' => 'popover' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_popover' ] : false,
+				'type'    => $button,
+			);
+		} else {
+			$left_buttons[] = array(
+				'icon'  => $block['attrs']['data'][ 'left_buttons_' . $key . '_icon' ],
+				'label' => isset( $block['attrs']['data'][ 'left_buttons_' . $key . '_label' ] ) ? $block['attrs']['data'][ 'left_buttons_' . $key . '_label' ] : '',
+				'type'  => $block['attrs']['data']['left_buttons'][ $key ],
+			);
 		}
 	}
+
+	foreach ( $rbtns as $key => $button ) {
+
+		$right_buttons[] = array(
+			'icon'    => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
+			'label'   => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
+			'action'  => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
+			'route'   => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
+			'popover' => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
+			'type'    => $button,
+		);
+
+	}
+
+	$block['attrs']['data']['left_buttons']  = $left_buttons;
+	$block['attrs']['data']['right_buttons'] = $right_buttons;
+
+	// error_log( print_r( $left_buttons, true ) );
+	// error_log( print_r( $right_buttons, true ) );
+
+	return $block;
+}
+
+/**
+ * Delete app data transient on app update.
+ *
+ * @param Integar $id
+ * @param Object  $post
+ * @return void
+ */
+function appp_delete_transient( $id, $post ) {
+	if ( 'app' === $post->post_type ) {
+		delete_transient( 'appp_data_transient_' . $id );
+	}
+}
+add_action( 'post_updated', 'appp_delete_transient', 10, 2 );
+
+/**
+ * Formats each innerBlocks nested array recursivley.
+ *
+ * @param array $block
+ * @return void
+ */
+function appp_array_walk( &$block ) {
+
+	if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+
+		foreach ( $block['innerBlocks'] as &$value ) {
+
+			$value = appp_format_block_data( $value );
+
+			if ( isset( $value['innerBlocks'] ) && ! empty( $value['innerBlocks'] ) ) {
+
+				appp_array_walk( $value );
+			}
+		}
+	}
+}
+
+/**
+ * Formats each ACF block data to fit ionic component app data.
+ *
+ * @param array $block
+ * @return array
+ */
+function appp_format_block_data( $block ) {
+
+	if ( ! isset( $block['blockName'] ) ) {
+		return $block;
+	}
+
+	if ( isset( $block['attrs']['data'] ) ) {
+		foreach ( $block['attrs']['data'] as $key => $attr ) {
+
+			$first_character = substr( $key, 0, 1 );
+
+			if ( '_' === $first_character ) {
+				unset( $block['attrs']['data'][ $key ] );
+			}
+		}
+	}
+
+	switch ( $block['blockName'] ) {
+		case 'acf/ion-image':
+			if ( isset( $block['attrs']['data']['image_url'] ) ) {
+				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
+				$image                               = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' )[0];
+				$block['attrs']['data']['image_url'] = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+			}
+			// error_log( print_r( $block, true ) );
+			break;
+		case 'acf/ion-avatar':
+			if ( isset( $block['attrs']['data']['image_url'] ) ) {
+				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
+				$avatar                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
+				$block['attrs']['data']['image_url'] = empty( $avatar[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar[0];
+				// error_log( print_r( $block, true ) );
+			}
+			break;
+		case 'acf/ion-thumbnail':
+			if ( isset( $block['attrs']['data']['image_url'] ) ) {
+				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
+				$thumbnail                           = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
+				$block['attrs']['data']['image_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+			}
+			break;
+		case 'acf/container':
+			if ( isset( $block['attrs']['data']['background_image'] ) ) {
+				$block['attrs']['data']['image_id'] = $block['attrs']['data']['background_image'];
+				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
+				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
+
+				$bordertl = $block['attrs']['data']['border_radius_border_radius_top_left'] . 'px';
+				$bordertr = $block['attrs']['data']['border_radius_border_radius_top_right'] . 'px';
+				$borderbl = $block['attrs']['data']['border_radius_border_radius_bottom_left'] . 'px';
+				$borderbr = $block['attrs']['data']['border_radius_border_radius_bottom_right'] . 'px';
+
+				$block['attrs']['data']['border_radius'] = "$bordertl $bordertr $borderbl $borderbr";
+
+
+				$borderw = $block['attrs']['data']['border_top_width'] . 'px';
+				$borders = $block['attrs']['data']['border_top_style'];
+				$borderc = $block['attrs']['data']['border_top_color'];
+
+				$block['attrs']['data']['border'] = "$borderw $borders $borderc";
+
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+			}
+			break;
+		case 'acf/ion-item':
+			if ( isset( $block['attrs']['data']['icon_thumbnail'] ) ) {
+				$block['attrs']['data']['image_id']      = $block['attrs']['data']['icon_thumbnail'];
+				$thumbnail                               = wp_get_attachment_image_src( $block['attrs']['data']['icon_thumbnail'], 'original_image' );
+				$block['attrs']['data']['thumbnail_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
+				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+			}
+			break;
+		case 'acf/breadcrumbs':
+			// error_log( print_r( $block['innerBlocks'][$index], true ) );
+
+			// Creates an array from integer so we can loop through ACF data that isnt an array.
+			$bcrumbs     = range( 0, ( $block['attrs']['data']['breadcrumb'] - 1 ) );
+			$breadcrumbs = array();
+
+			foreach ( $bcrumbs as $breadcrumb ) {
+
+				$breadcrumbs[] = array(
+					'title' => $block['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_title' ],
+					'link'  => $block['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_link' ],
+					'icon'  => $block['attrs']['data'][ 'breadcrumb_' . $breadcrumb . '_icon' ],
+				);
+
+			}
+
+			$block['attrs']['data']['breadcrumbs'] = $breadcrumbs;
+
+			break;
+		case 'acf/segment':
+			// Creates an array from integer so we can loop through ACF data that isnt an array.
+			$segs     = range( 0, ( $block['attrs']['data']['segments'] - 1 ) );
+			$segments = array();
+
+			foreach ( $segs as $segment ) {
+
+				$segments[] = array(
+					'label' => $block['attrs']['data'][ 'segments_' . $segment . '_label' ],
+				);
+
+			}
+
+			$block['attrs']['data'] = array( 'segments' => $segments );
+
+			break;
+	}
+
+	$block = apply_filters( 'appp_format_block_data', $block );
 
 	return $block;
 }

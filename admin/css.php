@@ -31,18 +31,22 @@ function appp_custom_editor_css() {
 		font-size: 0.6rem;
 		font-family: Arial;
 	}
-	.block-editor-inserter {
-		position: absolute;
-		right: 20px;
-		top: -50px;
-	}
 	.block-editor-inner-blocks .block-editor-inserter {
-		right: 20px;
-		top: 20px;
+		margin: 6px;
+	}
+
+	.block-editor-block-list__block .block-list-appender.block-list-appender {
+		z-index: 999999 !important;
+	}
+
+	.block-editor-inserter {
+		// position: absolute;
+		// right: 20px;
+		// top: -50px;
 	}
 	.block-editor-block-list__insertion-point-inserter .block-editor-inserter {
-		right: -24px;
-		top: 0px;
+		// right: -24px;
+		// top: 0px;
 	}
 	.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
 		margin-left: 0px !important;
@@ -51,6 +55,10 @@ function appp_custom_editor_css() {
 	}
 	.edit-post-visual-editor__post-title-wrapper {
 		margin-top: 1.5rem;
+	}
+
+	.block-editor-inner-blocks {
+		flex: 1;
 	}
 
 	.no-iris-picker .wp-picker-input-wrap {
@@ -170,7 +178,8 @@ add_action( 'admin_footer', 'appp_custom_editor_css', 999 );
 function appp_remove_core_button_styles() {
 
 	$screen = get_current_screen();
-	if ( 'app' === $screen->post_type ) {
+
+	if ( 'app' === $screen->id ) {
 		echo "
 		<style type='text/css'>
 		.wp-core-ui .button:not(.acf-button):not(.wp-color-result):not(.button-primary)  {

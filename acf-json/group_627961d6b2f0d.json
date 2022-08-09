@@ -100,7 +100,8 @@
                 "top left": "Top Left",
                 "top right": "Top Right",
                 "bottom left": "Bottom Left",
-                "bottom right": "Bottom Right"
+                "bottom right": "Bottom Right",
+                "custom": "Custom"
             },
             "default_value": "center",
             "allow_null": 0,
@@ -109,6 +110,33 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_62e7ecf90577f",
+            "label": "Custom Position",
+            "name": "custom_position",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_629b86ca1f5d9",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_629b814d64e4b",
@@ -164,10 +192,10 @@
             "placeholder": ""
         },
         {
-            "key": "field_629b7c7bcd6aa",
-            "label": "Border Radius",
-            "name": "border_radius",
-            "type": "number",
+            "key": "field_62f16bfa40e03",
+            "label": "Borders",
+            "name": "",
+            "type": "accordion",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -176,17 +204,462 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "min": 0,
-            "max": 100,
-            "step": 1
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
         },
         {
-            "key": "field_6279623e3ba20",
-            "label": "Layout",
+            "key": "field_629b7c7bcd6aa",
+            "label": "Border Radius",
+            "name": "border_radius",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62f16c2340e04",
+                    "label": "Top Left",
+                    "name": "border_radius_top_left",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f16c4840e06",
+                    "label": "Top Right",
+                    "name": "border_radius_top_right",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f16c5d40e07",
+                    "label": "Bottom Left",
+                    "name": "border_radius_bottom_left",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f16c6940e08",
+                    "label": "Bottom Right",
+                    "name": "border_radius_bottom_right",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                }
+            ]
+        },
+        {
+            "key": "field_62f17cbee8b74",
+            "label": "Border Top",
+            "name": "border_top",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62f17cfee8b76",
+                    "label": "Width",
+                    "name": "width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f17d5ce8b77",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "solid": "Solid",
+                        "hidden": "Hidden",
+                        "dashed": "Dashed",
+                        "dotted": "Dotted",
+                        "double": "Double",
+                        "groove": "Groove",
+                        "ridge": "Ridge",
+                        "inset": "Inset",
+                        "outset": "Outset"
+                    },
+                    "default_value": "solid",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62f17cd1e8b75",
+                    "label": "Color",
+                    "name": "color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                }
+            ]
+        },
+        {
+            "key": "field_62f1803e4586e",
+            "label": "Border Bottom",
+            "name": "border_bottom",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62f1803e4586f",
+                    "label": "Width",
+                    "name": "width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f1803e45870",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "solid": "Solid",
+                        "hidden": "Hidden",
+                        "dashed": "Dashed",
+                        "dotted": "Dotted",
+                        "double": "Double",
+                        "groove": "Groove",
+                        "ridge": "Ridge",
+                        "inset": "Inset",
+                        "outset": "Outset"
+                    },
+                    "default_value": "solid",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62f1803e45871",
+                    "label": "Color",
+                    "name": "color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": ""
+                }
+            ]
+        },
+        {
+            "key": "field_62f1804a45872",
+            "label": "Border Left",
+            "name": "border_left",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62f1804a45873",
+                    "label": "Width",
+                    "name": "width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f1804a45874",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "solid": "Solid",
+                        "hidden": "Hidden",
+                        "dashed": "Dashed",
+                        "dotted": "Dotted",
+                        "double": "Double",
+                        "groove": "Groove",
+                        "ridge": "Ridge",
+                        "inset": "Inset",
+                        "outset": "Outset"
+                    },
+                    "default_value": "solid",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62f1804a45875",
+                    "label": "Color",
+                    "name": "color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": ""
+                }
+            ]
+        },
+        {
+            "key": "field_62f1805b45876",
+            "label": "Border Right",
+            "name": "border_right",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62f1805b45877",
+                    "label": "Width",
+                    "name": "width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_62f1805b45878",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "solid": "Solid",
+                        "hidden": "Hidden",
+                        "dashed": "Dashed",
+                        "dotted": "Dotted",
+                        "double": "Double",
+                        "groove": "Groove",
+                        "ridge": "Ridge",
+                        "inset": "Inset",
+                        "outset": "Outset"
+                    },
+                    "default_value": "solid",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62f1805b45879",
+                    "label": "Color",
+                    "name": "color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                }
+            ]
+        },
+        {
+            "key": "field_62e7f05f59cd4",
+            "label": "Margin & Padding",
             "name": "",
             "type": "accordion",
             "instructions": "",
@@ -402,6 +875,221 @@
                     "step": ""
                 }
             ]
+        },
+        {
+            "key": "field_6279623e3ba20",
+            "label": "Layout",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_62e7fa36def67",
+            "label": "Height",
+            "name": "height",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "auto": "auto",
+                "pixels": "pixels",
+                "percentage": "percentage"
+            },
+            "default_value": "auto",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_62e7fa98def68",
+            "label": "Height Amount",
+            "name": "height_amount",
+            "type": "range",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62e7fa36def67",
+                        "operator": "==",
+                        "value": "pixels"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_62e7fa36def67",
+                        "operator": "==",
+                        "value": "percentage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 150,
+            "min": "",
+            "max": 3000,
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_62e7f0c10231a",
+            "label": "Flex",
+            "name": "flex",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_62e7f11b0231b",
+                    "label": "Flex Direction",
+                    "name": "flex_direction",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "column": "column",
+                        "column-reverse": "column-reverse",
+                        "row": "row",
+                        "row-reverse": "row-reverse"
+                    },
+                    "default_value": "column",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62e7f1710231c",
+                    "label": "Flex Wrap",
+                    "name": "flex_wrap",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "nowrap": "nowrap",
+                        "wrap": "wrap",
+                        "wrap-reverse": "wrap-reverse"
+                    },
+                    "default_value": "nowrap",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62e7f2170231d",
+                    "label": "Justify Content",
+                    "name": "justify_content",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "flex-start": "flex-start",
+                        "flex-end": "flex-end",
+                        "center": "center",
+                        "space-between": "space-between",
+                        "space-around": "space-around",
+                        "space-evenly": "space-evenly",
+                        "start": "start",
+                        "end": "end",
+                        "left": "left",
+                        "right": "right"
+                    },
+                    "default_value": "flex-start",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62e7f2a10231e",
+                    "label": "Align Items",
+                    "name": "align_items",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "stretch": "stretch",
+                        "flex-start": "flex-start",
+                        "flex-end": "flex-end",
+                        "center": "center",
+                        "baseline": "baseline",
+                        "first baseline": "first baseline",
+                        "last baseline": "last baseline",
+                        "start": "start",
+                        "end": "end",
+                        "self-start": "self-start",
+                        "self-end": "self-end"
+                    },
+                    "default_value": "stretch",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -437,5 +1125,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1656268120
+    "modified": 1659994214
 }
