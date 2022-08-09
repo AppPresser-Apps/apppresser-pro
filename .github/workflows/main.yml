@@ -1,5 +1,5 @@
 on: push
-name: 🚀 Deploy website on push
+name: 🚀 Deploy plugin on push
 jobs:
   deploy_job:
     name: deploy
