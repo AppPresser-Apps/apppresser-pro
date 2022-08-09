@@ -160,7 +160,7 @@ function appp_process_left_button( $button ) {
 			if ( '0' === $button['icon'] ) {
 				echo '<ion-button>' . $button['label'] . '</ion-button>';
 			} else {
-				echo '<ion-button><ion-icon name="'. $button['icon'] . '"></ion-icon></ion-button>';
+				echo '<ion-button><ion-icon name="' . $button['icon'] . '"></ion-icon></ion-button>';
 			}
 			break;
 
@@ -214,8 +214,8 @@ function appp_fields_flexible_content_layout_title( $title, $field, $layout, $i 
 
 	return $title;
 }
-//add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
-//add_filter( 'acf/fields/flexible_content/layout_title/name=left_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
+// add_filter( 'acf/fields/flexible_content/layout_title/name=right_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
+// add_filter( 'acf/fields/flexible_content/layout_title/name=left_buttons', 'appp_fields_flexible_content_layout_title', 10, 4 );
 
 /**
  * Adds processed theme css variables into the header of WordPress as json data.
@@ -231,13 +231,15 @@ function appp_localize_scripts() {
 	}
 
 	$palette = appp_get_theme_colors( $post->ID );
+	$globals = appp_get_theme_globals( $post->ID );
 
 	wp_localize_script(
 		'appp-block-script',
 		'appp_data',
 		array(
-			'color_palettes' => json_encode( $palette ),
-			'themes'         => json_encode( get_field( 'themes', 'option' ) ),
+			'color_palettes' => wp_json_encode( $palette ),
+			'theme_globals'  => wp_json_encode( $globals ),
+			'themes'         => wp_json_encode( get_field( 'themes', 'option' ) ),
 		)
 	);
 
@@ -275,23 +277,56 @@ function appp_get_theme_colors( $post_id ) {
 		}
 	);
 
+	$needed_object = array_values( $needed_object )[0];
+
 	$palette = array();
 
 	foreach ( $colors as $key => $value ) {
 
 		if ( 'custom_color' === $key ) {
-			foreach ( $needed_object[0][ $key ] as $key => $value ) {
+			foreach ( $needed_object[ $key ] as $key => $value ) {
 				$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
 				$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
 				$palette[ $name ] = $colors;
 			}
 		} else {
-			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[0][ $key ][ "{$key}_light" ] );
+			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[ $key ][ "{$key}_light" ] );
 			$palette[ $key ] = $colors;
 		}
 	}
 
 	return $palette;
+}
+
+function appp_get_theme_globals( $post_id ) {
+
+	$theme  = get_field( 'theme_select', $post_id );
+	$themes = get_field( 'themes', 'option' );
+
+	$needed_object = array_filter(
+		$themes,
+		function ( $e ) use ( &$theme ) {
+			return $e['theme_name'] === $theme;
+		}
+	);
+
+	$needed_object = array_values( $needed_object )[0];
+
+	$globals = array(
+		'--background-color' => $needed_object['background_color'],
+		'--text-color'       => $needed_object['text_color'],
+		'--font-family'      => $needed_object['font_family'],
+		'--safe-area-top'    => $needed_object['safe_area_top'] . 'px',
+		'--safe-area-bottom' => $needed_object['safe_area_bottom'] . 'px',
+		'--safe-area-left'   => $needed_object['safe_area_left'] . 'px',
+		'--safe-area-right'  => $needed_object['safe_area_right'] . 'px',
+		'--ion-margin'       => $needed_object['ion_margin'] . 'px',
+		'--ion-padding'      => $needed_object['ion_padding'] . 'px',
+		'--border-radius'    => $needed_object['border_radius'] . 'px',
+		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
+	);
+
+	return $globals;
 }
 
 function appp_allow_acf_block( $block ) {

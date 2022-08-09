@@ -182,11 +182,12 @@ function appp_get_app_data( $request ) {
 		}
 
 		$app = array(
-			'theme_colors' => appp_get_theme_colors( $param ),
-			'views'        => $views,
-			'side_menu'    => $menu,
-			'modals'       => $modals,
-			'onboarding'   => $onboarding,
+			'theme_colors'  => appp_get_theme_colors( $param ),
+			'theme_globals' => appp_get_theme_globals( $param ),
+			'views'         => $views,
+			'side_menu'     => $menu,
+			'modals'        => $modals,
+			'onboarding'    => $onboarding,
 		);
 
 		set_transient( 'appp_data_transient_' . $param, $app, 12 * HOUR_IN_SECONDS );
@@ -343,6 +344,21 @@ function appp_format_block_data( $block ) {
 				$block['attrs']['data']['image_id'] = $block['attrs']['data']['background_image'];
 				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
 				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
+
+				$bordertl = $block['attrs']['data']['border_radius_border_radius_top_left'] . 'px';
+				$bordertr = $block['attrs']['data']['border_radius_border_radius_top_right'] . 'px';
+				$borderbl = $block['attrs']['data']['border_radius_border_radius_bottom_left'] . 'px';
+				$borderbr = $block['attrs']['data']['border_radius_border_radius_bottom_right'] . 'px';
+
+				$block['attrs']['data']['border_radius'] = "$bordertl $bordertr $borderbl $borderbr";
+
+
+				$borderw = $block['attrs']['data']['border_top_width'] . 'px';
+				$borders = $block['attrs']['data']['border_top_style'];
+				$borderc = $block['attrs']['data']['border_top_color'];
+
+				$block['attrs']['data']['border'] = "$borderw $borders $borderc";
+
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 			}
 			break;

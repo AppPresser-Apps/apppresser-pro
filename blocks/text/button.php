@@ -49,11 +49,15 @@ if( 'inline' === $expand && $alignment ) {
 	#<?php echo esc_attr( $block_id ); ?> ion-button::part(native) {
 		<?php echo ( $css ); ?>
 	}
+
+	ion-button {
+		--border-radius: var(--ion-border-radius);
+	}
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<div style="<?php echo $style; ?>">
-		<ion-button 
+		<ion-button
 			color="<?php echo $color ? $color : 'primary'; ?>"
 			fill="<?php echo $fill ? $fill : 'solid'; ?>"
 			size="<?php echo $size ? $size : 'default'; ?>"
@@ -61,7 +65,3 @@ if( 'inline' === $expand && $alignment ) {
 		><?php echo $title ? $title : 'Button'; ?></ion-button>
 	</div>
 </div>
-
-<script>
-	appp_remove_button_class("#<?php echo esc_attr( $block_id ); ?>");
-</script>

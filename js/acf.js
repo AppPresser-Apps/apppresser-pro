@@ -33,24 +33,27 @@ acf.add_filter('color_picker_args', function( args, field ){
 });
 
 
-acf.addAction('load', (e)=> {
+acf.add_action('load', (e)=> {
 
     window.jQuery('a.acf-icon.-duplicate').remove();
 
     // Load root theme styles
     if(window.appp_data !== undefined && window.appp_data !== null) {
-        const data = JSON.parse(appp_data.color_palettes);
-        //console.log(data);
-        for (const key in data ) {
+        const palettes = JSON.parse(appp_data.color_palettes);
+        const globals = JSON.parse(appp_data.theme_globals);
+        for (const key in palettes ) {
+            for (const color in palettes[key] ) {
+                document.documentElement.style.setProperty(color, palettes[key][color]);
 
-            appp_create_style_from_properties(key);
-
-            for (const color in data[key] ) {
-                document.documentElement.style.setProperty(color, data[key][color]);
             }
+            appp_create_style_from_properties(key);
+        }
+
+        for (const global in globals ) {
+            console.log(globals[global]);
+            document.documentElement.style.setProperty(global, globals[global]);
         }
     }
-
 });
 
 /**
@@ -68,9 +71,9 @@ function appp_create_style_from_properties(prop) {
         --ion-color-tint: var(--ion-color-${prop}-tint);
     }`
 
-    var style = document.createElement('style')
-    style.innerText = css
-    document.head.appendChild(style)
+    var style = document.createElement('style');
+    style.innerHTML = css;
+    document.head.appendChild(style);
 }
 
 acf.addAction('load', ()=> {

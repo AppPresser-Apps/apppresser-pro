@@ -16,7 +16,7 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$select_source = get_field( 'select_source' );
+$image_url = get_field( 'image_url' );
 $border_radius = get_field( 'border_radius' );
 
 $margin        = get_field( 'margin' );
@@ -26,19 +26,7 @@ $margin_bottom = $margin['margin_bottom'] ?? 0;
 $margin_left   = $margin['margin_left'] ?? 0;
 
 
-$image = APPPRESSER_URL . '/images/image-placeholder.png';
-
-switch ( $select_source ) {
-	case 'media':
-		$image = get_field( 'media_library' );
-		break;
-	case 'url':
-		$image = get_field( 'image_url' );
-		break;
-	case 'data':
-		$image = get_field( 'data_source' );
-		break;
-}
+$image = $image_url ? $image_url : APPPRESSER_URL . '/images/image-placeholder.png';
 
 ?>
 	<style>

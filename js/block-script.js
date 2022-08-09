@@ -173,26 +173,18 @@ wp.hooks.addFilter(
 );
 
 /**
- * DEPRECATED DO NOT DELETE: Removed class from buttons.
- * We are using css for this now.
+ * DO NOT DELETE: Removed class from buttons.
  * @param {*} block_id
  */
 function appp_remove_button_class(block_id) {
+  //console.log(block_id);
   // We need this because ion-button has a class
   // .button and WordPress editor styles is screwing up the design
   setTimeout(() => {
     const view = document.querySelector(block_id);
+    const content = view.querySelector("ion-content");
 
-    var menubtns = view.querySelectorAll("ion-menu-button"),
-      i;
-
-    for (i = 0; i < menubtns.length; ++i) {
-      menubtns[i].classList.remove("button");
-      menubtns[i].setAttribute("auto-hide", false);
-      menubtns[i].classList.remove("menu-button-hidden");
-    }
-
-    var btns = view.querySelectorAll("ion-button"),
+    var btns = content.querySelectorAll("ion-button"),
       i;
 
     for (i = 0; i < btns.length; ++i) {

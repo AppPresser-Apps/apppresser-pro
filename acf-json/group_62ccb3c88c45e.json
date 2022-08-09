@@ -790,6 +790,26 @@
                     "min": 0,
                     "max": "",
                     "step": 1
+                },
+                {
+                    "key": "field_62e6b27167779",
+                    "label": "Border Radius",
+                    "name": "border_radius",
+                    "type": "range",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "min": "",
+                    "max": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         }
@@ -812,5 +832,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1657814060
+    "modified": 1659286175
 }

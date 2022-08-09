@@ -137,46 +137,33 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 <div id="<?php echo esc_attr( $id ); ?>" class="view <?php echo esc_attr( $className ); ?>">
 
-	<!-- <div class="block-tag">
-		<div></div>
-		<div class="block-tag-actions">
-			<div class="edit-<?php echo esc_attr( $id ); ?>" style="cursor:pointer;">
-				<div class="spinr dashicons dashicons-admin-generic"></div>
-			</div>
-			<div class="preview-<?php echo esc_attr( $id ); ?>" style="cursor:pointer;">
-				<div class="spinr dashicons dashicons-controls-play"></div>
-			</div>
-		</div>
-	</div> -->
-
 	<div class="view-wrap">
 
-
-	<?php if ( ! $hide_toolbar ) : ?>
-		<ion-header>
-			<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
-				<ion-buttons slot="start">
-					<?php
-					if ( $left_buttons ) {
-						foreach ( $left_buttons as $button ) {
-							appp_process_left_button( $button );
+		<?php if ( ! $hide_toolbar ) : ?>
+			<ion-header>
+				<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">
+					<ion-buttons slot="start">
+						<?php
+						if ( $left_buttons ) {
+							foreach ( $left_buttons as $button ) {
+								appp_process_left_button( $button );
+							};
 						};
-					};
-					?>
-				</ion-buttons>
-				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
-				<ion-buttons slot="end">
-					<?php
-					if ( $right_buttons ) {
-						foreach ( $right_buttons as $button ) {
-							appp_process_right_button( $button );
+						?>
+					</ion-buttons>
+					<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
+					<ion-buttons slot="end">
+						<?php
+						if ( $right_buttons ) {
+							foreach ( $right_buttons as $button ) {
+								appp_process_right_button( $button );
+							};
 						};
-					};
-					?>
-				</ion-buttons>
-			</ion-toolbar>
-		</ion-header>
-	<?php endif; ?>
+						?>
+					</ion-buttons>
+				</ion-toolbar>
+			</ion-header>
+		<?php endif; ?>
 		<ion-content style="<?php echo $style; ?>" fullscreen="<?php echo $fullscreen; ?>">
 			<InnerBlocks 
 				templateInsertUpdatesSelection="true" 
@@ -187,57 +174,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	</div>
 </div>
 
-
 <script>
-
-	// We need this because ion-button has a class 
-	// .button and WordPress editor styles is screwing up the design
-	setTimeout(() => {
-		const view = document.querySelector('#<?php echo esc_attr( $id ); ?>');
-
-		var content = view.querySelector('ion-content');
-		<?php if ( $content_padding ) : ?>
-			content.classList.add('ion-padding');
-		<?php endif; ?>
-
-		// var menubtns = view.querySelectorAll('ion-menu-button'), i;
-
-		// for (i = 0; i < menubtns.length; ++i) {
-		// 	menubtns[i].classList.remove('button');
-		// 	menubtns[i].setAttribute('auto-hide', false);
-		// 	menubtns[i].classList.remove('menu-button-hidden');
-		// }
-
-		// var backbtns = view.querySelectorAll('ion-back-button'), i;
-
-		// for (i = 0; i < backbtns.length; ++i) {
-		// 	backbtns[i].classList.remove('button');
-		// }
-
-		// var btns = view.querySelectorAll('ion-button'), i;
-
-		// for (i = 0; i < btns.length; ++i) {
-		// 	btns[i].classList.remove('button');
-		// }
-
-	}, 500);
-
-
-</script>
-
-<script>
-	var <?php echo $block['id']; ?> = {
-		'data_source': "<?php echo $data_source; ?>",
-	}
-	// jQuery(document).ready(function() {
-
-	// 	jQuery('.load-repeater-<?php echo $block['id']; ?>').click( function(e) {
-	// 		jQuery(this).toggleClass("spin");
-	// 		appp_load_repeater();
-	// 	});
-
-	// 	jQuery(document).on("stopSpinner", ()=> {
-	// 		jQuery('.load-repeater-<?php echo $block['id']; ?>').removeClass("spin");
-	// 	});
-	// });
+	appp_remove_button_class("#<?php echo esc_attr( $id ); ?>");
 </script>
