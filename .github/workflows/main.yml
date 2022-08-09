@@ -16,4 +16,4 @@ jobs:
         password: ${{ secrets.password }}
         protocol: ftps
         port: 22
-        server-dir: home/runcloud/webapps/appp-dev/wp-content/plugins/apppresser-pro
+        server-dir: home/runcloud/webapps/appp-dev/wp-content/plugins/apppresser-pro/
