@@ -36,7 +36,7 @@ on:
       sync:
         description: "File synchronization"
         required: true
-        default: "delta"
+        default: "full"
 
 jobs:
   deploy-master:
@@ -57,4 +57,4 @@ jobs:
           remote-user: ${{ secrets.USERNAME }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-path: ${{ secrets.REMOTE_PATH }}
-          # sync-delta-excludes: /.github /.gitignore /.git /appp-preview/src /package.json
+          sync-delta-excludes: /.github /.gitignore /.git /appp-preview/src /package.json
