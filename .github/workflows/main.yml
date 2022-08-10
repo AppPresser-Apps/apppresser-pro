@@ -30,7 +30,7 @@ on:
   push:
     branches:
       - main
-  # Enables manually triggering of Workflow with file synchronization option
+  # Enables manually triggering of Workflow with file synchronization option.
   workflow_dispatch:
     inputs:
       sync:
@@ -57,4 +57,4 @@ jobs:
           remote-user: ${{ secrets.USERNAME }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-path: ${{ secrets.REMOTE_PATH }}
-          sync-delta-excludes: /.github /.gitignore /.git /appp-preview/src /package.json
+          # sync-delta-excludes: /.github /.gitignore /.git /appp-preview/src /package.json
