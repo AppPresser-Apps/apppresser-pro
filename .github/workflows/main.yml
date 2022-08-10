@@ -29,7 +29,7 @@ name: Deploy Files
 on:
   push:
     branches:
-      - master
+      - main
   # Enables manually triggering of Workflow with file synchronization option
   workflow_dispatch:
     inputs:
@@ -40,7 +40,7 @@ on:
 
 jobs:
   deploy-master:
-    name: "master branch"
+    name: "main branch"
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
