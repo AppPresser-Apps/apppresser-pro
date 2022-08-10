@@ -19,7 +19,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             server: ${{ secrets.SERVER }}
             port: ${{ secrets.PORT }}
-            local_path: './.deploy'
+            local_path: './'
             remote_path: ${{ secrets.REMOTE_PATH }}
             sftp_only: true
             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
