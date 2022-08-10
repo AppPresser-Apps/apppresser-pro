@@ -53,7 +53,7 @@ jobs:
         uses: milanmk/actions-file-deployer@master
         with:
           remote-protocol: "sftp"
-          remote-host: server: ${{ secrets.SERVER }}
+          remote-host: ${{ secrets.SERVER }}
           remote-user: ${{ secrets.USERNAME }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-path: ${{ secrets.REMOTE_PATH }}
