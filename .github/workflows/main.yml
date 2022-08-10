@@ -48,7 +48,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 5
       - name: "Deploy"
         uses: milanmk/actions-file-deployer@master
         with:
@@ -57,4 +57,3 @@ jobs:
           remote-user: ${{ secrets.USERNAME }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-path: ${{ secrets.REMOTE_PATH }}
-          # sync-delta-excludes: /.github /.gitignore /.git /appp-preview/src /package.json
