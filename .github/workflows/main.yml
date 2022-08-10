@@ -8,10 +8,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Copy to staging directory for deployment
-        run: |
-          mkdir .deploy
-          rsync -av --progress --delete . .deploy --exclude .git --exclude node_modules --exclude .gitignore --exclude .github
+      # - name: Copy to staging directory for deployment
+      #   run: |
+      #     mkdir .deploy
+      #     rsync -av --progress --delete . .deploy --exclude .git --exclude node_modules --exclude .gitignore --exclude .github
         
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
