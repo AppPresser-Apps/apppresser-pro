@@ -11,8 +11,8 @@ jobs:
       - name: Copy to staging directory for deployment
         run: |
           mkdir .deploy
-          rmdir /Q /S  .deploy/appp-preview/dist
-          rmdir /Q /S  .deploy/appp-preview/src
+          rmdir .deploy/appp-preview/dist
+          rmdir .deploy/appp-preview/src
           rsync -avn --progress --delete . .deploy --exclude .git --exclude .deploy --exclude node_modules --exclude .gitignore --exclude .github
         
       - name: Deploy file
