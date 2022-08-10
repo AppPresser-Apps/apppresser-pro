@@ -11,7 +11,7 @@ jobs:
       - name: Copy to staging directory for deployment
         run: |
           mkdir deploy
-          rsync -av --progress . deploy --exclude .git --exclude deploy --exclude node_modules --exclude .gitignore --exclude .github
+          rsync -av --progress . deploy --exclude .git --delete deploy --exclude node_modules --exclude .gitignore --exclude .github
         
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -19,7 +19,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             server: ${{ secrets.SERVER }}
             port: ${{ secrets.PORT }}
-            local_path: './deploy'
+            local_path: './deploy/*'
             remote_path: ${{ secrets.REMOTE_PATH }}
             sftp_only: true
             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
