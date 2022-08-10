@@ -11,8 +11,7 @@ jobs:
       - name: Copy to staging directory for deployment
         run: |
           mkdir .deploy
-          ls
-          rsync -avn --progress --delete . .deploy --exclude .git --exclude .deploy --exclude node_modules --exclude .gitignore --exclude .github
+          rsync -av --progress --delete . .deploy --exclude .git --exclude .deploy --exclude node_modules --exclude .gitignore --exclude .github
         
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
