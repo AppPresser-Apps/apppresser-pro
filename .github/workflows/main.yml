@@ -11,10 +11,7 @@ jobs:
       - name: Copy to staging directory for deployment
         run: |
           mkdir .deploy
-          rsync -av --progress --delete . .deploy --exclude .git --exclude .deploy --exclude node_modules --exclude .gitignore --exclude .github
-
-          rmdir .deploy/appp-preview/dist
-          rmdir .deploy/appp-preview/src
+          rsync -avzh --progress --delete . .deploy --exclude .git --exclude .deploy --exclude node_modules --exclude .gitignore --exclude .github
         
       - name: Deploy file
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
