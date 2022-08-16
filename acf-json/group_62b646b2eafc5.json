@@ -90,7 +90,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "default_value": "Label",
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
@@ -117,5 +117,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660687766
+    "modified": 1660687982
 }
