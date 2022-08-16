@@ -172,6 +172,7 @@ function appp_get_app_data( $request ) {
 				}
 
 				if ( 'acf/modal' === $block['blockName'] ) {
+					$block   = appp_format_toolbar( $block );
 					$modals[] = $block;
 				}
 

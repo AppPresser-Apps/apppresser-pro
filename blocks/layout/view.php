@@ -35,10 +35,6 @@ $fullscreen = ! $hide_toolbar ? 'false' : 'true';
 
 $style = '';
 
-if ( 'default' !== $background ) {
-	$style .= '--background: var(--ion-color-' . $background . '); ';
-}
-
 $style .= '--padding-start:' . ( $padding['padding_left'] ?? '0' ) . 'px; ';
 $style .= '--padding-top:' . ( $padding['padding_top'] ?? '0' ) . 'px; ';
 $style .= '--padding-end:' . ( $padding['padding_right'] ?? '0' ) . 'px; ';
@@ -164,7 +160,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 				</ion-toolbar>
 			</ion-header>
 		<?php endif; ?>
-		<ion-content style="<?php echo $style; ?>" fullscreen="<?php echo $fullscreen; ?>">
+		<ion-content color="<?php echo $background ? esc_attr( $background ) : 'default'; ?>" style="<?php echo $style; ?>" fullscreen="<?php echo $fullscreen; ?>">
 			<InnerBlocks 
 				templateInsertUpdatesSelection="true" 
 				templateLock="false" 

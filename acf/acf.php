@@ -163,6 +163,13 @@ function appp_process_left_button( $button ) {
 				echo '<ion-button><ion-icon name="' . $button['icon'] . '"></ion-icon></ion-button>';
 			}
 			break;
+		case 'close_button':
+			if ( '0' === $button['icon'] ) {
+				echo '<ion-button>' . $button['label'] . '</ion-button>';
+			} else {
+				echo '<ion-button><ion-icon name="' . $button['icon'] . '"></ion-icon></ion-button>';
+			}
+			break;
 
 	}
 

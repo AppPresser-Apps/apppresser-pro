@@ -86,42 +86,6 @@
             "min": 0,
             "max": 100,
             "step": 1
-        },
-        {
-            "key": "field_629a85894a5d5",
-            "label": "Data",
-            "name": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 0,
-            "multi_expand": 0,
-            "endpoint": 0
-        },
-        {
-            "key": "field_629a85924a5d6",
-            "label": "Token",
-            "name": "token",
-            "type": "text",
-            "instructions": "Data token entered here will replace the src attribute of the image element.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -142,5 +106,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654813010
+    "modified": 1660686212
 }

@@ -18,12 +18,13 @@ if ( ! empty( $block['className'] ) ) {
 }
 
 $segments = get_field( 'segments' );
+$color = get_field( 'color' );
 
 ?>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
 	<div style="margin:16px;">
-		<ion-segment  value="<?php echo str_replace( ' ', '_', $segments[0]['label'] ); ?>">
+		<ion-segment color="<?php echo $color; ?>"  value="<?php echo str_replace( ' ', '_', $segments[0]['label'] ); ?>">
 
 		<?php foreach ( $segments as $segment ) : ?>
 			<ion-segment-button value="<?php echo str_replace( ' ', '_', $segment['label'] ); ?>">
