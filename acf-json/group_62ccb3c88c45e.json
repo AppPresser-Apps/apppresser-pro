@@ -625,9 +625,43 @@
                     "return_format": "string"
                 },
                 {
-                    "key": "field_62d03bdfc87c4",
+                    "key": "field_62fd6a1be2037",
                     "label": "Text Color",
                     "name": "text_color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_62fd69cac7cfd",
+                    "label": "Background Color Dark Mode",
+                    "name": "background_color_dark",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#ffffff",
+                    "enable_opacity": 0,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_62d03bdfc87c4",
+                    "label": "Text Color Dark Mode",
+                    "name": "text_color_dark",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -832,5 +866,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1659286175
+    "modified": 1660774967
 }

@@ -88,15 +88,15 @@ function appp_blend_colors( $color, $mix, $weight ) {
 	$mixColorRGB    = appp_hex2rgb( $mix );
 	$mixColorWeight = ( 1 - $weight );
 
-	$r = round( ($weight * $mixColorRGB['r']) + ($mixColorWeight * $colorRGB['r']) );
-	$g = round( ($weight * $mixColorRGB['g']) + ($mixColorWeight * $colorRGB['g']) );
-	$b = round( ($weight * $mixColorRGB['b']) + ($mixColorWeight * $colorRGB['b']) );
+	$r = round( ( $weight * $mixColorRGB['r'] ) + ( $mixColorWeight * $colorRGB['r'] ) );
+	$g = round( ( $weight * $mixColorRGB['g'] ) + ( $mixColorWeight * $colorRGB['g'] ) );
+	$b = round( ( $weight * $mixColorRGB['b'] ) + ( $mixColorWeight * $colorRGB['b'] ) );
 
 	// error_log( print_r( $r, true ) );
 	// error_log( print_r( $g, true ) );
 	// error_log( print_r( $b, true ) );
 	// error_log( print_r( $weight, true ) );
-	//error_log( print_r( $mixColorWeight, true ) );
+	// error_log( print_r( $mixColorWeight, true ) );
 
 	return array(
 		'r' => $r,
@@ -202,22 +202,26 @@ function hexToHsl( $hex ) {
 
 function steppedColors( $background, $text ) {
 
-	$rgb = appp_hex2rgb( $text );
+	$rgb    = appp_hex2rgb( $text );
+	$bg_rgb = appp_hex2rgb( $background );
+
+	$steps = array();
+
+	$steps['rgbs'] = array(
+		'--ion-background-color'     => $background,
+		'--ion-background-color-rgb' => $bg_rgb,
+		'--ion-text-color'           => $text,
+		'--ion-text-color-rgb'       => $rgb,
+	);
 
 	for ( $i = 0; $i < 19; $i++ ) {
 
-		$blend = appp_blend_colors( $background, $text, (($i + 1) * 5) / 100 );
-
+		$blend = appp_blend_colors( $background, $text, ( ( $i + 1 ) * 5 ) / 100 );
 		$color = appp_rgb2hex( $blend );
+		$steps['steps'][ '--ion-color-step-' . ( $i + 1 ) * 50 ] = $color;
 
-		error_log( print_r( $color ,true ));
 	}
 
+	return $steps;
+
 }
-
-// export const generateSteppedColors = (background = '#ffffff', text = '#000000') => {
-// const color = new Color(background);
-// const colors = new Array(19).fill(null);
-
-// return colors.map((_, i) => color.mix(text, ((i + 1) * 5) / 100).hex);
-// };

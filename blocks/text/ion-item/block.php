@@ -45,7 +45,7 @@ $description_color = get_field( 'description_color' );
 
 	<div class="clickable"></div>
 
-	<ion-item color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : ''); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
+	<ion-item color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
 		<?php if ( 'icon' === $icon_type ) : ?>
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>

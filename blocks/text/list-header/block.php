@@ -19,7 +19,7 @@ if ( ! empty( $block['className'] ) ) {
 
 $label        = get_field( 'label' );
 $label_border  = get_field( 'label_border' );
-$color_label  = get_field( 'color_label' );
+$color_label  = get_field( 'label_color' );
 $button_label = get_field( 'button_label' );
 $color_button = get_field( 'color_button' );
 
@@ -32,9 +32,9 @@ $color_button = get_field( 'color_button' );
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<ion-list-header lines="<?php echo esc_attr( $label_border ); ?>">
-		<ion-label color="<?php echo esc_attr( $color_label ); ?>"><?php echo esc_attr( $label ); ?></ion-label>
+		<ion-label color="<?php echo esc_attr( 'default' !== $color_label ? $color_label : '' ); ?>"><?php echo esc_attr( $label ); ?></ion-label>
 		<?php if ( ! empty( $button_label ) ) : ?>
-		<ion-button color="<?php echo esc_attr( $color_button ); ?>"><?php echo esc_attr( $button_label ); ?></ion-button>
+		<ion-button color="<?php echo esc_attr( 'default' !== $color_button ? $color_button : ''  ); ?>"><?php echo esc_attr( $button_label ); ?></ion-button>
 		<?php endif ; ?>	
 	</ion-list-header>
 

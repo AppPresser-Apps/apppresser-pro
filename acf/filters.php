@@ -53,6 +53,10 @@ add_filter( 'acf/prepare_field/name=color_button', 'appp_acf_dynamic_colors' );
 
 function appp_add_custom_colors_select( $colors, $post ) {
 
+	if ( ! $post ) {
+		return array();
+	}
+
 	$theme  = get_field( 'theme_select', $post->ID );
 	$themes = get_field( 'themes', 'option' );
 
@@ -63,7 +67,7 @@ function appp_add_custom_colors_select( $colors, $post ) {
 		}
 	);
 
-	//error_log(print_r($needed_object,true));
+	// error_log(print_r($needed_object,true));
 
 	if ( isset( $needed_object[0]['custom_color'] ) ) {
 		foreach ( $needed_object[0]['custom_color'] as $custom_color ) {
