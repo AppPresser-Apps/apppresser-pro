@@ -1,5 +1,10 @@
 <?php
 
+add_filter( 'acf/settings/show_admin', function () {
+	return defined('ACF_MENU');
+} );
+
+
 /**
  * Create ACF options pages.
  *
