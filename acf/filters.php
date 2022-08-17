@@ -43,6 +43,10 @@ function appp_acf_dynamic_colors( $field ) {
 }
 add_filter( 'acf/prepare_field/name=color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=background', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=background_color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=icon_color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=label_color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=description_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=toolbar_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=color_button', 'appp_acf_dynamic_colors' );
 

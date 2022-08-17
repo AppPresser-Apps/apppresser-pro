@@ -17,12 +17,16 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$icon_type      = get_field( 'item_icon_type' );
-$icon           = get_field( 'icon' );
-$icon_thumbnail = get_field( 'icon_thumbnail' );
-$label          = get_field( 'label' );
-$description    = get_field( 'description' );
-$detail         = get_field( 'detail' ) ? 'true' : 'false';
+$icon_type         = get_field( 'item_icon_type' );
+$icon              = get_field( 'icon' );
+$icon_thumbnail    = get_field( 'icon_thumbnail' );
+$label             = get_field( 'label' );
+$description       = get_field( 'description' );
+$detail            = get_field( 'detail' ) ? 'true' : 'false';
+$background_color  = get_field( 'background_color' );
+$icon_color        = get_field( 'icon_color' );
+$label_color       = get_field( 'label_color' );
+$description_color = get_field( 'description_color' );
 
 ?>
 
@@ -41,18 +45,18 @@ $detail         = get_field( 'detail' ) ? 'true' : 'false';
 
 	<div class="clickable"></div>
 
-	<ion-item href="#" detail="<?php echo esc_attr( $detail ); ?>">
+	<ion-item color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : ''); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
 		<?php if ( 'icon' === $icon_type ) : ?>
-			<ion-icon size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
+			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>
 		<?php if ( 'thumbnail' === $icon_type ) : ?>
 			<ion-thumbnail slot="start">
 				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>
-		<ion-label>
+		<ion-label color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
 			<?php echo esc_attr( $label ); ?>
-			<p> <?php echo esc_attr( $description ); ?> </p>
+			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
 	</ion-item>
 

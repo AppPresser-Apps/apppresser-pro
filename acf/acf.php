@@ -291,11 +291,14 @@ function appp_get_theme_colors( $post_id ) {
 	foreach ( $colors as $key => $value ) {
 
 		if ( 'custom_color' === $key ) {
-			foreach ( $needed_object[ $key ] as $key => $value ) {
-				$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
-				$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
-				$palette[ $name ] = $colors;
+			if ( ! empty( $needed_object[ $key ] )) {
+				foreach ( $needed_object[ $key ] as $key => $value ) {
+					$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
+					$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
+					$palette[ $name ] = $colors;
+				}
 			}
+	
 		} else {
 			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[ $key ][ "{$key}_light" ] );
 			$palette[ $key ] = $colors;
@@ -319,17 +322,19 @@ function appp_get_theme_globals( $post_id ) {
 
 	$needed_object = array_values( $needed_object )[0];
 
+	steppedColors( $needed_object['background_color'], $needed_object['text_color'] );
+
 	$globals = array(
-		'--background-color' => $needed_object['background_color'],
-		'--text-color'       => $needed_object['text_color'],
-		'--font-family'      => $needed_object['font_family'],
-		'--safe-area-top'    => $needed_object['safe_area_top'] . 'px',
-		'--safe-area-bottom' => $needed_object['safe_area_bottom'] . 'px',
-		'--safe-area-left'   => $needed_object['safe_area_left'] . 'px',
-		'--safe-area-right'  => $needed_object['safe_area_right'] . 'px',
-		'--ion-margin'       => $needed_object['ion_margin'] . 'px',
-		'--ion-padding'      => $needed_object['ion_padding'] . 'px',
-		'--border-radius'    => $needed_object['border_radius'] . 'px',
+		'--ion-background-color' => $needed_object['background_color'],
+		'--ion-text-color'       => $needed_object['text_color'],
+		// '--ion-font-family'      => $needed_object['font_family'],
+		// '--ion-safe-area-top'    => $needed_object['safe_area_top'] . 'px',
+		// '--ion-safe-area-bottom' => $needed_object['safe_area_bottom'] . 'px',
+		// '--ion-safe-area-left'   => $needed_object['safe_area_left'] . 'px',
+		// '--ion-safe-area-right'  => $needed_object['safe_area_right'] . 'px',
+		'--ion-margin'           => $needed_object['ion_margin'] . 'px',
+		'--ion-padding'          => $needed_object['ion_padding'] . 'px',
+		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
 		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
 	);
 

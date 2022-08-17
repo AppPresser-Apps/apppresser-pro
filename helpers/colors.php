@@ -10,16 +10,16 @@
  */
 function appp_process_colors( $rule, $hex ) {
 
-	$rgb      = appp_rgb2hex( $hex );
+	$rgb      = appp_hex2rgb( $hex );
 	$contrast = appp_contrast( $hex );
 
 	$colors = array(
 		$rule                   => $hex,
 		$rule . '-rgb'          => implode( ',', $rgb ),
-		$rule . '-shade'        => appp_rgb2hex( appp_mix_colors( $rgb, 'shade', 0.88 ) ),
-		$rule . '-tint'         => appp_rgb2hex( appp_mix_colors( $rgb, 'tint', 0.90 ) ),
+		$rule . '-shade'        => appp_hex2rgb( appp_mix_colors( $rgb, 'shade', 0.88 ) ),
+		$rule . '-tint'         => appp_hex2rgb( appp_mix_colors( $rgb, 'tint', 0.90 ) ),
 		$rule . '-contrast'     => $contrast,
-		$rule . '-contrast-rgb' => implode( ',', appp_rgb2hex( $contrast ) ),
+		$rule . '-contrast-rgb' => implode( ',', appp_hex2rgb( $contrast ) ),
 	);
 
 	return $colors;
@@ -45,7 +45,7 @@ function appp_rgbToYIQ( $rgb ) {
  * @return string
  */
 function appp_contrast( $hex, $threshold = 168 ) {
-	$rgb = appp_rgb2hex( $hex );
+	$rgb = appp_hex2rgb( $hex );
 	return appp_rgbToYIQ( $rgb ) >= $threshold ? '#000000' : '#ffffff';
 }
 
@@ -72,13 +72,52 @@ function appp_mix_colors( $rgb, $type = 'tint', $weight = 0.88 ) {
 	return $colors;
 }
 
+function appp_blend_colors( $color, $mix, $weight ) {
+
+	// const colorRGB: RGB = color.rgb;
+	// const mixColorRGB: RGB = mixColor.rgb;
+	// const mixColorWeight = 1 - weight;
+
+	// return {
+	// r: Math.round(weight * mixColorRGB.r + mixColorWeight * colorRGB.r),
+	// g: Math.round(weight * mixColorRGB.g + mixColorWeight * colorRGB.g),
+	// b: Math.round(weight * mixColorRGB.b + mixColorWeight * colorRGB.b),
+	// };
+
+	$colorRGB       = appp_hex2rgb( $color );
+	$mixColorRGB    = appp_hex2rgb( $mix );
+	$mixColorWeight = ( 1 - $weight );
+
+	$r = round( ($weight * $mixColorRGB['r']) + ($mixColorWeight * $colorRGB['r']) );
+	$g = round( ($weight * $mixColorRGB['g']) + ($mixColorWeight * $colorRGB['g']) );
+	$b = round( ($weight * $mixColorRGB['b']) + ($mixColorWeight * $colorRGB['b']) );
+
+	// error_log( print_r( $r, true ) );
+	// error_log( print_r( $g, true ) );
+	// error_log( print_r( $b, true ) );
+	// error_log( print_r( $weight, true ) );
+	//error_log( print_r( $mixColorWeight, true ) );
+
+	return array(
+		'r' => $r,
+		'g' => $g,
+		'b' => $b,
+	);
+
+}
+
+function appp_rgb2hex( $rgb ) {
+	$color = sprintf( '#%02x%02x%02x', $rgb['r'], $rgb['g'], $rgb['b'] );
+	return $color;
+}
+
 /**
- * Converts rgb to hex color.
+ * Converts hex to rgb color.
  *
  * @param array $c Color to convert.
  * @return string
  */
-function appp_rgb2hex( $c ) {
+function appp_hex2rgb( $c ) {
 	if ( ! $c ) {
 		return false;
 	}
@@ -160,3 +199,25 @@ function hexToHsl( $hex ) {
 
 	return array( $hue, $saturation, $lightness );
 }
+
+function steppedColors( $background, $text ) {
+
+	$rgb = appp_hex2rgb( $text );
+
+	for ( $i = 0; $i < 19; $i++ ) {
+
+		$blend = appp_blend_colors( $background, $text, (($i + 1) * 5) / 100 );
+
+		$color = appp_rgb2hex( $blend );
+
+		error_log( print_r( $color ,true ));
+	}
+
+}
+
+// export const generateSteppedColors = (background = '#ffffff', text = '#000000') => {
+// const color = new Color(background);
+// const colors = new Array(19).fill(null);
+
+// return colors.map((_, i) => color.mix(text, ((i + 1) * 5) / 100).hex);
+// };

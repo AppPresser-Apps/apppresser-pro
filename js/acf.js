@@ -50,7 +50,7 @@ acf.add_action('load', (e)=> {
         }
 
         for (const global in globals ) {
-            console.log(globals[global]);
+            console.log('globals', global);
             document.documentElement.style.setProperty(global, globals[global]);
         }
     }
