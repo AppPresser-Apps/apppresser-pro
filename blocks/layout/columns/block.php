@@ -18,9 +18,9 @@ $allowed_blocks = array( 'acf/inner-columns' );
 
 ?>
 <style>
-#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks .block-editor-block-list__layout {
+#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > .block-editor-block-list__layout {
 	display: flex;
-	flex-direction: row;
+	/* flex-direction: row; */
 }
 
 #<?php echo esc_attr( $block_id ); ?> .wp-block-acf-inner-column {

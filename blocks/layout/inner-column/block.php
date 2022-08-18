@@ -45,7 +45,9 @@ if ( $padding ) {
 	}
 	.wp-block-acf-inner-column .acf-block-body,
 	.wp-block-acf-inner-column .acf-block-body > div,
-	.wp-block-acf-inner-column .acf-block-preview {
+	.wp-block-acf-inner-column .acf-block-preview,
+	.wp-block-acf-inner-column .block-editor-inner-blocks,
+	.wp-block-acf-inner-column .block-editor-block-list__layout {
 		height: 100%;
 	}
 </style>

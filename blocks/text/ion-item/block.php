@@ -39,13 +39,16 @@ $description_color = get_field( 'description_color' );
 		left: 0;
 		right: 0;
 	}
+	.wp-block-acf-ion-item {
+		width: 100%;
+	}
 </style>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
+<div style="width: 100%;" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<div class="clickable"></div>
 
-	<ion-item color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
+	<ion-item style="width: 100%;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
 		<?php if ( 'icon' === $icon_type ) : ?>
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>

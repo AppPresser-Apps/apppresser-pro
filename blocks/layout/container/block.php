@@ -83,13 +83,18 @@ if ( $height && $height === 'percentage' ) {
 	$style .= 'height: ' . $height_amount . '%; ';
 }
 
+if ( $height && $height === 'auto' ) {
+	$style .= 'height: 100%; ';
+}
+
 $style .= 'overflow: hidden; ';
 
 ?>
 
 <style>
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
-		height: 100%
+		height: 100%;
+		width: 100%;
 	}
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > div {
 		display: flex;
@@ -100,6 +105,12 @@ $style .= 'overflow: hidden; ';
 	}
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks .wp-block {
 	
+	}
+	.appp-container {
+		/* height: 100%; */
+	}
+	.wp-block-acf-container {
+		/* width: 100%; */
 	}
 </style>
 
