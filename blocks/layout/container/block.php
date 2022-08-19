@@ -24,6 +24,7 @@ $background_position = get_field( 'background_position' );
 $position            = get_field( 'custom_position' );
 $background_size     = get_field( 'background_size' );
 $background_repeat   = get_field( 'background_repeat' );
+$background_gradient = get_field( 'background_gradient' );
 $margin              = get_field( 'margin' );
 $padding             = get_field( 'padding' );
 $border_radius       = get_field( 'border_radius' );
@@ -56,7 +57,7 @@ if ( $background ) {
 }
 
 if ( $background_image ) {
-	$style .= 'background-image: url(' . $background_image . '); ';
+	//$style .= 'background-image: url(' . $background_image . '); ';
 }
 
 if ( $background_size ) {
@@ -74,6 +75,37 @@ if ( $background_position && $background_position !== 'custom' ) {
 if ( $background_position && $background_position === 'custom' ) {
 	$style .= 'background-position: ' . $position . '; ';
 }
+
+if ( $background_gradient && 'none' !== $background_gradient['type'] && ! empty( $background_gradient['colors'] ) ) {
+
+	$colors = array();
+
+	foreach ( $background_gradient['colors'] as $index => $color ) {
+		$colors[] = 'var(--ion-color-' . $background_gradient['colors'][ $index ]['color'] . ')';
+	}
+
+	switch ( $background_gradient['type'] ) {
+		case 'linear':
+			$style .= 'background-image: linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . implode( ', ', $colors ) . '; ';
+			break;
+		case 'radial':
+			$style .= 'background-image: radial-gradient( circle at ' . $background_gradient['position'] . ', ' . implode( ', ', $colors ) . '; ';
+			break;
+		case 'conic':
+			$style .= 'background-image: conic-gradient( from ' . $background_gradient['angle'] . 'deg,' . implode( ', ', $colors ) . '; ';
+			break;
+		case 'repeating-linear':
+			$style .= 'background-image: repeating-linear-gradient(-45deg, white, white 20px, black 20px, black 40px); ';
+
+			// $style .= 'background-image: repeating-linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . implode( ', ', $colors ) . ' ' . $background_gradient['size'] . 'px; ';
+			break;
+
+
+	}
+}
+
+// background: repeating-linear-gradient(#e66465, #e66465 20px, #9198e5 20px, #9198e5 25px);
+// background: repeating-linear-gradient(45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
 
 if ( $height && $height === 'pixels' ) {
 	$style .= 'height: ' . $height_amount . 'px; ';

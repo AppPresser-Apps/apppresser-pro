@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       AppPresser Pro
- * Description:       Functionality for custom AppPresser Apps.
+ * Description:       Functionality for pro AppPresser Apps.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.0
@@ -100,11 +100,8 @@ function appp_admin_enqueue_scripts( $hook_suffix ) {
 		wp_enqueue_script( 'ionic-js', 'https://cdn.jsdelivr.net/npm/@ionic/core@6.0.10/dist/ionic/ionic.js', array(), '1.0.0', false );
 		wp_enqueue_script( 'ionicons-js', 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js', array(), '1.0.0', false );
 
-		
 		wp_enqueue_style( 'owm-icon-css', APPPRESSER_URL . '/images/opw-icons/css/weather-icons.min.css', array(), '1.0.0' );
-
 	}
-
 }
 add_action( 'admin_enqueue_scripts', 'appp_admin_enqueue_scripts' );
 
@@ -122,3 +119,8 @@ function appp_acf_admin_enqueue_scripts() {
 	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array( 'lodash', 'jquery' ), '1.1.0', true );
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts', 99 );
+
+// Hide ACF in production
+if ( ! defined( 'ACF_MENU' ) ) {
+	add_filter( 'acf/settings/show_admin', '__return_false' );
+}

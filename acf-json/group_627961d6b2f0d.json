@@ -220,17 +220,127 @@
                         "id": ""
                     },
                     "choices": {
+                        "none: None": "none: None",
                         "linear": "Linear",
                         "radial": "Radial",
-                        "conic": "Conical"
+                        "conic": "Conical",
+                        "repeating-linear": "Repeating Linear"
                     },
-                    "default_value": "linear",
+                    "default_value": "none",
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
                     "return_format": "value",
                     "ajax": 0,
                     "placeholder": ""
+                },
+                {
+                    "key": "field_62ffcc9534a77",
+                    "label": "Angle",
+                    "name": "angle",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "linear"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "conic"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "repeating-linear"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 360,
+                    "step": 1
+                },
+                {
+                    "key": "field_62ffd0e77bce6",
+                    "label": "Position",
+                    "name": "position",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "radial"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "center": "center",
+                        "top right": "top right",
+                        "top left": "top left",
+                        "bottom right": "bottom right",
+                        "bottom left": "bottom left"
+                    },
+                    "default_value": "center",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_62ffdc35a410c",
+                    "label": "Size",
+                    "name": "size",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "repeating-linear"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
                 },
                 {
                     "key": "field_62fe5bc50fe55",
@@ -1211,5 +1321,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660837366
+    "modified": 1660937305
 }

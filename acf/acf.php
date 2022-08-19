@@ -1,10 +1,5 @@
 <?php
 
-add_filter( 'acf/settings/show_admin', function () {
-	return defined('ACF_MENU');
-} );
-
-
 /**
  * Create ACF options pages.
  *
@@ -92,13 +87,19 @@ function appp_load_modal_field_choices( $field ) {
 
 	$data = appp_get_block_data( $post, 'acf/modal', 'modal_name' );
 
-	$choices = array();
+	if ( $data ) {
 
-	foreach ( $data  as $key => $value ) {
-		$choices[ $value['attrs']['id'] ] = $value['attrs']['data']['modal_name'];
+		$choices = array();
+
+		foreach ( $data  as $key => $value ) {
+			$choices[ $value['attrs']['id'] ] = $value['attrs']['data']['modal_name'];
+		}
+	
+		$field['choices'] = $choices;
+
 	}
 
-	$field['choices'] = $choices;
+
 
 	return $field;
 
@@ -296,14 +297,13 @@ function appp_get_theme_colors( $post_id ) {
 	foreach ( $colors as $key => $value ) {
 
 		if ( 'custom_color' === $key ) {
-			if ( ! empty( $needed_object[ $key ] )) {
+			if ( ! empty( $needed_object[ $key ] ) ) {
 				foreach ( $needed_object[ $key ] as $key => $value ) {
 					$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
 					$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
 					$palette[ $name ] = $colors;
 				}
 			}
-	
 		} else {
 			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[ $key ][ "{$key}_light" ] );
 			$palette[ $key ] = $colors;
