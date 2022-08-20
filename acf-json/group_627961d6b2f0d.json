@@ -165,6 +165,27 @@
             "placeholder": ""
         },
         {
+            "key": "field_630107e6c308b",
+            "label": "Background Opacity",
+            "name": "background_opacity",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 0,
+            "max": 1,
+            "step": ".01"
+        },
+        {
             "key": "field_629b81cd912f8",
             "label": "Background Repeat",
             "name": "background_repeat",
@@ -220,11 +241,12 @@
                         "id": ""
                     },
                     "choices": {
-                        "none: None": "none: None",
+                        "none": "None",
                         "linear": "Linear",
                         "radial": "Radial",
                         "conic": "Conical",
-                        "repeating-linear": "Repeating Linear"
+                        "repeating-linear": "Repeating Linear",
+                        "repeating-radial": "Repeating Radial"
                     },
                     "default_value": "none",
                     "allow_null": 0,
@@ -291,6 +313,13 @@
                                 "operator": "==",
                                 "value": "radial"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "repeating-radial"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -326,6 +355,13 @@
                                 "field": "field_62fe5d1a0fe57",
                                 "operator": "==",
                                 "value": "repeating-linear"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_62fe5d1a0fe57",
+                                "operator": "==",
+                                "value": "repeating-radial"
                             }
                         ]
                     ],
@@ -1321,5 +1357,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660937305
+    "modified": 1661015979
 }

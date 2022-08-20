@@ -19,11 +19,12 @@ if ( ! empty( $block['className'] ) ) {
 $allowed_blocks = appp_get_allowed_innerblocks();
 
 $background          = get_field( 'color' );
-$background_image    = get_field( 'background_image' );
+$background_img      = get_field( 'background_image' );
 $background_position = get_field( 'background_position' );
 $position            = get_field( 'custom_position' );
 $background_size     = get_field( 'background_size' );
 $background_repeat   = get_field( 'background_repeat' );
+$background_opacity  = get_field( 'background_opacity' );
 $background_gradient = get_field( 'background_gradient' );
 $margin              = get_field( 'margin' );
 $padding             = get_field( 'padding' );
@@ -52,61 +53,6 @@ $botr = $border_radius['border_radius_bottom_right'] . 'px';
 
 $style .= "border-radius: $topl $topr $botl $botr; ";
 
-if ( $background ) {
-	$style .= 'background-color: var(--ion-color-' . $background . '); ';
-}
-
-if ( $background_image ) {
-	//$style .= 'background-image: url(' . $background_image . '); ';
-}
-
-if ( $background_size ) {
-	$style .= 'background-size: ' . $background_size . '; ';
-}
-
-if ( $background_repeat ) {
-	$style .= 'background-repeat: ' . $background_repeat . '; ';
-}
-
-if ( $background_position && $background_position !== 'custom' ) {
-	$style .= 'background-position: ' . $background_position . '; ';
-}
-
-if ( $background_position && $background_position === 'custom' ) {
-	$style .= 'background-position: ' . $position . '; ';
-}
-
-if ( $background_gradient && 'none' !== $background_gradient['type'] && ! empty( $background_gradient['colors'] ) ) {
-
-	$colors = array();
-
-	foreach ( $background_gradient['colors'] as $index => $color ) {
-		$colors[] = 'var(--ion-color-' . $background_gradient['colors'][ $index ]['color'] . ')';
-	}
-
-	switch ( $background_gradient['type'] ) {
-		case 'linear':
-			$style .= 'background-image: linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . implode( ', ', $colors ) . '; ';
-			break;
-		case 'radial':
-			$style .= 'background-image: radial-gradient( circle at ' . $background_gradient['position'] . ', ' . implode( ', ', $colors ) . '; ';
-			break;
-		case 'conic':
-			$style .= 'background-image: conic-gradient( from ' . $background_gradient['angle'] . 'deg,' . implode( ', ', $colors ) . '; ';
-			break;
-		case 'repeating-linear':
-			$style .= 'background-image: repeating-linear-gradient(-45deg, white, white 20px, black 20px, black 40px); ';
-
-			// $style .= 'background-image: repeating-linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . implode( ', ', $colors ) . ' ' . $background_gradient['size'] . 'px; ';
-			break;
-
-
-	}
-}
-
-// background: repeating-linear-gradient(#e66465, #e66465 20px, #9198e5 20px, #9198e5 25px);
-// background: repeating-linear-gradient(45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
-
 if ( $height && $height === 'pixels' ) {
 	$style .= 'height: ' . $height_amount . 'px; ';
 }
@@ -121,9 +67,87 @@ if ( $height && $height === 'auto' ) {
 
 $style .= 'overflow: hidden; ';
 
+// ::before styles
+
+$background_image     = '';
+$background_gradients = '';
+
+$border_radius = "border-radius: $topl $topr $botl $botr; ";
+
+if ( $background ) {
+	$background_color = 'background-color: var(--ion-color-' . $background . '); ';
+}
+
+if ( $background_size ) {
+	$background_size = 'background-size: ' . $background_size . '; ';
+}
+
+if ( $background_repeat ) {
+	$background_repeat = 'background-repeat: ' . $background_repeat . '; ';
+}
+
+if ( $background_position && $background_position !== 'custom' ) {
+	$background_position = 'background-position: ' . $background_position . '; ';
+}
+
+if ( $background_gradient && 'none' !== $background_gradient['type'] && ! empty( $background_gradient['colors'] ) ) {
+
+	$colors = array();
+
+	foreach ( $background_gradient['colors'] as $index => $color ) {
+		$colors[] = 'var(--ion-color-' . $background_gradient['colors'][ $index ]['color'] . ')';
+	}
+
+	switch ( $background_gradient['type'] ) {
+		case 'linear':
+			$background_gradients = ' linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . implode( ', ', $colors ) . ')';
+			break;
+		case 'radial':
+			$background_gradients = ' radial-gradient( circle at ' . $background_gradient['position'] . ', ' . implode( ', ', $colors ) . ')';
+			break;
+		case 'conic':
+			$background_gradients = ' conic-gradient( from ' . $background_gradient['angle'] . 'deg,' . implode( ', ', $colors ) . ')';
+			break;
+		case 'repeating-linear':
+			$background_gradients = ' repeating-linear-gradient( ' . $background_gradient['angle'] . 'deg, ' . $colors[0] . ', ' . $colors[0] . ' ' . ( $background_gradient['size'] / 2 ) . 'px, ' . $colors[1] . ' ' . ( $background_gradient['size'] / 2 ) . 'px, ' . $colors[1] . ' ' . $background_gradient['size'] . 'px) ';
+			break;
+		case 'repeating-radial':
+			$background_gradients = ' repeating-radial-gradient( circle at ' . $background_gradient['position'] . ', ' . $colors[0] . ', ' . $colors[0] . ' ' . ( $background_gradient['size'] / 2 ) . 'px, ' . $colors[1] . ' ' . ( $background_gradient['size'] / 2 ) . 'px, ' . $colors[1] . ' ' . $background_gradient['size'] . 'px) ';
+			break;
+	}
+}
+
+if ( $background_img ) {
+	$background_image = 'url(' . $background_img . ')';
+}
+
+$comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' ';
+
 ?>
 
 <style>
+
+	#<?php echo esc_attr( $block_id ); ?>::before {
+		content:"";
+		background-image: <?php echo $background_image; ?> <?php echo $comma; ?> <?php echo $background_gradients; ?>;
+		<?php echo $background_color; ?>;
+		<?php echo $background_size; ?>;
+		<?php echo $background_position; ?>;
+		<?php echo $background_repeat; ?>;
+		<?php echo $border_radius; ?>;
+		opacity: <?php echo $background_opacity; ?>;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		width: auto;
+		height: auto;
+		z-index:-3;
+		overflow: hidden;
+	}
+
+
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
 		height: 100%;
 		width: 100%;
