@@ -172,7 +172,7 @@ function appp_get_app_data( $request ) {
 				}
 
 				if ( 'acf/modal' === $block['blockName'] ) {
-					$block   = appp_format_toolbar( $block );
+					$block    = appp_format_toolbar( $block );
 					$modals[] = $block;
 				}
 
@@ -353,15 +353,25 @@ function appp_format_block_data( $block ) {
 
 				$block['attrs']['data']['border_radius'] = "$bordertl $bordertr $borderbl $borderbr";
 
-
 				$borderw = $block['attrs']['data']['border_top_width'] . 'px';
 				$borders = $block['attrs']['data']['border_top_style'];
 				$borderc = $block['attrs']['data']['border_top_color'];
 
 				$block['attrs']['data']['border'] = "$borderw $borders $borderc";
 
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 			}
+
+			// Creates an array from integer so we can loop through ACF data that isnt an array.
+			$gradcolors = range( 0, ( $block['attrs']['data']['background_gradient_colors'] - 1 ) );
+			$gradients  = array();
+
+			foreach ( $gradcolors as $gradindex ) {
+				$gradients[] = $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ];
+				unset( $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ] );
+			}
+
+			$block['attrs']['data']['background_gradient_colors'] = $gradients;
+
 			break;
 		case 'acf/ion-item':
 			if ( isset( $block['attrs']['data']['icon_thumbnail'] ) ) {

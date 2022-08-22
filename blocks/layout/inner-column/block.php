@@ -50,6 +50,10 @@ if ( $padding ) {
 	.wp-block-acf-inner-column .block-editor-block-list__layout {
 		height: 100%;
 	}
+
+	.wp-block-acf-inner-column .block-editor-block-list__layout < div {
+		flex: 1;
+	}
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo $style; ?>">

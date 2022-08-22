@@ -31,6 +31,8 @@ $padding             = get_field( 'padding' );
 $border_radius       = get_field( 'border_radius' );
 $height              = get_field( 'height' );
 $height_amount       = get_field( 'height_amount' );
+$width               = get_field( 'width' );
+$width_amount        = get_field( 'width_amount' );
 
 $flex = get_field( 'flex' );
 
@@ -61,11 +63,16 @@ if ( $height && $height === 'percentage' ) {
 	$style .= 'height: ' . $height_amount . '%; ';
 }
 
-if ( $height && $height === 'auto' ) {
-	$style .= 'height: 100%; ';
+if ( $width && $width === 'pixels' ) {
+	$style .= 'width: ' . $width_amount . 'px; ';
+}
+
+if ( $width && $width === 'percentage' ) {
+	$style .= 'width: ' . $width_amount . '%; ';
 }
 
 $style .= 'overflow: hidden; ';
+$style .= 'position: relative; ';
 
 // ::before styles
 
@@ -159,15 +166,7 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
 		height: 100%;
 	}
-	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks .wp-block {
-	
-	}
-	.appp-container {
-		/* height: 100%; */
-	}
-	.wp-block-acf-container {
-		/* width: 100%; */
-	}
+
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo $style; ?>">
