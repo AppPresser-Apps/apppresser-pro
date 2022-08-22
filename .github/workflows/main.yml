@@ -31,6 +31,3 @@ jobs:
           remote-user: ${{ secrets.USERNAME }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           remote-path: ${{ secrets.REMOTE_PATH }}
-          proxy: true
-          proxy-port: 22
-          proxy-forwarding-port: 1080
