@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       AppPresser Pro
- * Description:       Functionality for  AppPresser Pro.
+ * Description:       Functionality for AppPresser Pro.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.0
