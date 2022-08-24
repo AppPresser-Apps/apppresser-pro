@@ -2,9 +2,9 @@
 Contributors: elliotcondon
 Tags: acf, fields, custom fields, meta, repeater
 Requires at least: 4.7
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 5.12
+Stable tag: 5.12.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Customize WordPress with powerful, professional and intuitive fields. Proudly po
 == Description ==
 
 Advanced Custom Fields turns WordPress sites into a fully-fledged content management system by giving you all the tools to do more with your data.
+
+https://deliciousbrains.wistia.com/medias/md7ea4ep8z
 
 Use the Advanced Custom Fields plugin to take full control of your WordPress edit screens & custom field data.
 
@@ -75,6 +77,59 @@ From your WordPress dashboard
 
 
 == Changelog ==
+
+= 6.0.0-RC1 =
+*Release Date 24th August 2022*
+
+* New - ACF now has a new refreshed UI with improved UX for editing field groups, including a new tabbed settings layout for fields. Third party ACF extension plugin developers can read more about the optional changes they can make to support the new tabs in [our RC1 announcement post](https://www.advancedcustomfields.com/blog/acf-pro-6-0-rc-1/#new-ui})
+* New - Repeaters now have an optional "Pagination" setting which can be used to control the number of rows displayed at once. More details can be found on our [RC1 announcement post](https://www.advancedcustomfields.com/blog/acf-pro-6-0-rc-1/)
+* New - ACF Blocks now have a versioning system allowing developers to opt in to new features
+* New - ACF Blocks now support version 2, enabling block.json support, reduced wrapper markup and significant other new features. Full details and examples of this can be found on our [RC1 announcement post](https://www.advancedcustomfields.com/blog/acf-pro-6-0-rc-1/)
+* New - ACF Blocks no longer use Block IDs saved in the block comment
+* Enhancement - Bulk actions for field groups now include "Activate" and "Deactivate" options
+* Fix - ACF will no longer perform a multisite database upgrade check on every admin load once each upgrade has been performed
+* Fix - ACF Block templates which render other blocks will now have their InnerBlocks rendered correctly
+* Fix - ACF Blocks preloading now works for blocks saved in edit mode
+* Fix - ACF Blocks edit forms now behave correctly if they are not visible when loaded 
+* Fix - ACF Blocks now always fire `render_block_preview` events when a block preview is displayed or redisplayed
+* Fix - ACF Blocks with no fields now display advisory text and are selectable in the block editor. This message is filterable with the acf/blocks/no_fields_assigned_message filter, providing both the message to be displayed and the block name it's being displayed against
+* Fix - Accordions inside ACF Blocks now match the current native block styling
+* Fix - ACF Blocks which contain no fields now preload correctly
+* Fix - Changes to an ACF Block's context now trigger a re-render
+* Fix - A rare warning inside `wp_post_revision_field` will no longer be possible
+* Fix - The field “move” option now no longer displays for fields when only one field group exists
+* Fix - Language for field group activation state now standardized to "active" and "inactive"
+* Fix - SVGs containing `foreignObject` tags now correctly render in JSX rendered ACF Blocks
+* Fix - Server errors during ACF updates or version checks are now cached for 5 minutes rather than 24 hours
+* Accessibility - The new ACF UI has significantly improved accessibility for screen readers and alternative input options
+* i18n - All strings inside ACF are now translatable
+* i18n - Accented term names in taxonomy fields are no longer corrupted at output
+* i18n - ACF translations are now synced with contributions from translation.wordpress.org at each release, increasing ACF's supported languages and updating many other translations. PRO strings should still be submitted as pull requests on GitHub (Additional thanks to maximebj, emreerkan and Timothée Moulin for their contributions which are included here)
+
+= 5.12.3 =
+*Release Date 14th July 2022*
+
+* Security Fix - Inputs for basic file uploads are now nonced to prevent an issue which could allow arbitrary file uploads to forms with ACF fields (Thanks to James Golovich from Pritect, Inc.)
+
+= 5.12.2 =
+*Release Date 6th April 2022*
+
+* Fix - Cloned fields in custom named options pages now behave correctly
+* Fix - Default values and the `acf/load_value` filter are now applied if a field value load [fails security validation](https://www.advancedcustomfields.com/resources/acf-field-functions/#non-acf-data)
+* Fix - The ACF field is no longer present in REST responses if the ACF REST API setting is disabled
+* Fix - Duplicating a flexible content layout or repeater row now also replaces the field ID in `for` attributes
+
+= 5.12.1 =
+*Release Date 23rd March 2022*
+
+* New - REST API now supports the comment route for displaying ACF fields.
+* Fix - ACF now validates access to option page field values when accessing via field keys the same way as field names. [View More](https://www.advancedcustomfields.com/resources/acf-field-functions/#non-acf-data)
+* Fix - REST API now correctly validates fields for POST update requests
+* Fix - Fixed an issue where invalid field types caused an error during REST API requests
+* Fix - Fixed a PHP warning when duplicating an empty field group
+* Fix - Fixed a bug preventing block duplication detection changing an ACF Block’s ID if it was nested deeper than one level inside another block
+* Fix - Fixed a bug where the `acf-block-preview` wrapper might not appear around a block if it was saved in edit mode
+* i18n - Updated several translations from user contributions (Thanks to Dariusz Zielonka, Mikko Kekki and Alberto!)
 
 = 5.12 =
 *Release Date 23rd February 2022*

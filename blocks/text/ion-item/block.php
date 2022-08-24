@@ -27,6 +27,7 @@ $background_color  = get_field( 'background_color' );
 $icon_color        = get_field( 'icon_color' );
 $label_color       = get_field( 'label_color' );
 $description_color = get_field( 'description_color' );
+$input_type        = get_field( 'input_type' );
 
 ?>
 
@@ -61,6 +62,16 @@ $description_color = get_field( 'description_color' );
 			<?php echo esc_attr( $label ); ?>
 			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
+		<?php
+		switch ( $input_type ) {
+			case 'toggle':
+				echo '<ion-toggle checked></ion-toggle>';
+				break;
+
+			default:
+				break;
+		}
+		?>
 	</ion-item>
 
 </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Register ACF blocks
@@ -21,6 +21,7 @@ function appp_init_block_types() {
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'view' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -47,6 +48,7 @@ function appp_init_block_types() {
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'modal' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -72,6 +74,7 @@ function appp_init_block_types() {
 				'icon'            => 'admin-page',
 				'keywords'        => array( 'app', 'menu' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -89,28 +92,28 @@ function appp_init_block_types() {
 
 		// register a onboard view.
 		// acf_register_block_type(
-		// 	array(
-		// 		'name'            => 'onboard',
-		// 		'title'           => __( 'OnBoarding' ),
-		// 		'description'     => __( 'App onboarding success is crucial for users as it helps establish the tone of your app. These are views outside the main apps navigation and only load when the app is first installed.' ),
-		// 		'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
-		// 		'category'        => 'appp_view',
-		// 		'icon'            => 'admin-page',
-		// 		'keywords'        => array( 'component', 'onboard' ),
-		// 		'post_types'      => array( 'app' ),
-		// 		'mode'            => 'preview',
-		// 		'align'           => 'center',
-		// 		'supports'        => array(
-		// 			'mode'          => false,
-		// 			'align'         => false,
-		// 			'align_text'    => false,
-		// 			'align_content' => false,
-		// 			'full_height'   => false,
-		// 			'jsx'           => true,
-		// 		),
-		// 		// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
-		// 		// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
-		// 	)
+		// array(
+		// 'name'            => 'onboard',
+		// 'title'           => __( 'OnBoarding' ),
+		// 'description'     => __( 'App onboarding success is crucial for users as it helps establish the tone of your app. These are views outside the main apps navigation and only load when the app is first installed.' ),
+		// 'render_template' => APPPRESSER_DIR . '/blocks/layout/onboard.php',
+		// 'category'        => 'appp_view',
+		// 'icon'            => 'admin-page',
+		// 'keywords'        => array( 'component', 'onboard' ),
+		// 'post_types'      => array( 'app' ),
+		// 'mode'            => 'preview',
+		// 'align'           => 'center',
+		// 'supports'        => array(
+		// 'mode'          => false,
+		// 'align'         => false,
+		// 'align_text'    => false,
+		// 'align_content' => false,
+		// 'full_height'   => false,
+		// 'jsx'           => true,
+		// ),
+		// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+		// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+		// )
 		// );
 
 		// register a button block.
@@ -124,6 +127,7 @@ function appp_init_block_types() {
 				'icon'            => 'button',
 				'keywords'        => array( 'component', 'button' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -148,6 +152,7 @@ function appp_init_block_types() {
 				'icon'            => 'editor-ul',
 				'keywords'        => array( 'component', 'list' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -172,6 +177,7 @@ function appp_init_block_types() {
 				'icon'            => 'pressthis',
 				'keywords'        => array( 'component', 'breadcrumb' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -196,6 +202,7 @@ function appp_init_block_types() {
 				'icon'            => 'ellipsis',
 				'keywords'        => array( 'component', 'segment' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -220,6 +227,7 @@ function appp_init_block_types() {
 				'icon'            => 'ellipsis',
 				'keywords'        => array( 'component', 'segment' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -233,7 +241,6 @@ function appp_init_block_types() {
 			)
 		);
 
-
 		// register a text block.
 		acf_register_block_type(
 			array(
@@ -245,6 +252,7 @@ function appp_init_block_types() {
 				'icon'            => 'editor-paragraph',
 				'keywords'        => array( 'component', 'text' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -269,6 +277,7 @@ function appp_init_block_types() {
 				'icon'            => 'feedback',
 				'keywords'        => array( 'component', 'card' ),
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'supports'        => array(
@@ -285,60 +294,60 @@ function appp_init_block_types() {
 		// Begin Create-ACF-Block
 
 		// acf_register_block_type(
-		// 	array(
-		// 		'name'            => __( 'repeater' ),
-		// 		'title'           => __( 'Repeater' ),
-		// 		'description'     => __( 'Repeats a child block' ),
-		// 		'category'        => 'appp_data',
-		// 		'icon'            => 'update',
-		// 		'keywords'        => array( 'component', 'repeater', 'data' ),
-		// 		'post_types'      => array( 'app' ),
-		// 		'mode'            => 'preview',
-		// 		'align'           => 'center',
-		// 		'className'       => 'appp-repeater',
-		// 		'supports'        => array(
-		// 			'mode'          => false,
-		// 			'align'         => false,
-		// 			'align_text'    => false,
-		// 			'align_content' => false,
-		// 			'full_height'   => false,
-		// 			'jsx'           => true,
-		// 		),
-		// 		'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
-		// 		'example'         => array(
-		// 			'attributes' => array(
-		// 				'mode' => 'preview',
-		// 				'data' => array(
-		// 					'_is_preview' => 'true',
-		// 				),
-		// 			),
-		// 		),
-		// 	)
+		// array(
+		// 'name'            => __( 'repeater' ),
+		// 'title'           => __( 'Repeater' ),
+		// 'description'     => __( 'Repeats a child block' ),
+		// 'category'        => 'appp_data',
+		// 'icon'            => 'update',
+		// 'keywords'        => array( 'component', 'repeater', 'data' ),
+		// 'post_types'      => array( 'app' ),
+		// 'mode'            => 'preview',
+		// 'align'           => 'center',
+		// 'className'       => 'appp-repeater',
+		// 'supports'        => array(
+		// 'mode'          => false,
+		// 'align'         => false,
+		// 'align_text'    => false,
+		// 'align_content' => false,
+		// 'full_height'   => false,
+		// 'jsx'           => true,
+		// ),
+		// 'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
+		// 'example'         => array(
+		// 'attributes' => array(
+		// 'mode' => 'preview',
+		// 'data' => array(
+		// '_is_preview' => 'true',
+		// ),
+		// ),
+		// ),
+		// )
 		// );
 
 		// acf_register_block_type(
-		// 	array(
-		// 		'name'            => 'openweather',
-		// 		'title'           => 'OpenWeather',
-		// 		'description'     => 'OpenWeather Api',
-		// 		'icon'            => 'cloud',
-		// 		'category'        => 'appp_third_party',
-		// 		'keywords'        => array( 'component', 'openweather' ),
-		// 		'post_types'      => array( 'app' ),
-		// 		'mode'            => 'preview',
-		// 		'align'           => 'center',
-		// 		'className'       => 'appp-openweather',
-		// 		'parent'          => array( 'acf/view' ),
-		// 		'supports'        => array(
-		// 			'mode'          => false,
-		// 			'align'         => false,
-		// 			'align_text'    => false,
-		// 			'align_content' => false,
-		// 			'full_height'   => false,
-		// 			'jsx'           => true,
-		// 		),
-		// 		'render_template' => APPPRESSER_DIR . 'blocks/third-party/openweather/block.php',
-		// 	)
+		// array(
+		// 'name'            => 'openweather',
+		// 'title'           => 'OpenWeather',
+		// 'description'     => 'OpenWeather Api',
+		// 'icon'            => 'cloud',
+		// 'category'        => 'appp_third_party',
+		// 'keywords'        => array( 'component', 'openweather' ),
+		// 'post_types'      => array( 'app' ),
+		// 'mode'            => 'preview',
+		// 'align'           => 'center',
+		// 'className'       => 'appp-openweather',
+		// 'parent'          => array( 'acf/view' ),
+		// 'supports'        => array(
+		// 'mode'          => false,
+		// 'align'         => false,
+		// 'align_text'    => false,
+		// 'align_content' => false,
+		// 'full_height'   => false,
+		// 'jsx'           => true,
+		// ),
+		// 'render_template' => APPPRESSER_DIR . 'blocks/third-party/openweather/block.php',
+		// )
 		// );
 
 		acf_register_block_type(
@@ -350,6 +359,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -374,6 +384,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'image', 'photo' ),
 				'icon'            => 'format-image',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -398,6 +409,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'menu', 'item' ),
 				'icon'            => 'menu',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view', 'acf/side-menu' ),
@@ -422,6 +434,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'list', 'item' ),
 				'icon'            => 'list-view',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -446,6 +459,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'text', 'chip', 'item' ),
 				'icon'            => 'tag',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -470,6 +484,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'avatar', 'image', 'media' ),
 				'icon'            => 'buddicons-buddypress-logo',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -494,6 +509,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'icon', 'image', 'media' ),
 				'icon'            => 'admin-generic',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -518,6 +534,7 @@ function appp_init_block_types() {
 				'keywords'        => array( 'component', 'text', 'fab', 'item' ),
 				'icon'            => 'button',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -541,6 +558,7 @@ function appp_init_block_types() {
 				'category'        => 'appp_data',
 				'icon'            => 'database',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'parent'          => array( 'acf/view' ),
@@ -565,6 +583,7 @@ function appp_init_block_types() {
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'icon'            => 'layout',
+				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
 				'parent'          => array( 'acf/view' ),
 				'supports'        => array(
@@ -588,6 +607,7 @@ function appp_init_block_types() {
 				'mode'            => 'preview',
 				'align'           => 'center',
 				'icon'            => 'columns',
+				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
 				'parent'          => array( 'acf/view' ),
 				'supports'        => array(
@@ -611,6 +631,7 @@ function appp_init_block_types() {
 				'align'           => 'center',
 				'icon'            => 'columns',
 				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
 				'parent'          => array( 'acf/columns' ),
 				'supports'        => array(
 					'mode'          => false,

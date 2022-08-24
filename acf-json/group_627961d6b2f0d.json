@@ -395,7 +395,7 @@
                     "min": 0,
                     "max": 0,
                     "layout": "block",
-                    "button_label": "",
+                    "button_label": "Add Row",
                     "sub_fields": [
                         {
                             "key": "field_62fe5bd20fe56",
@@ -417,7 +417,8 @@
                             "ui": 0,
                             "return_format": "value",
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "parent_repeater": "field_62fe5bc50fe55"
                         }
                     ]
                 }
@@ -1418,5 +1419,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661184370
+    "modified": 1661372077
 }
