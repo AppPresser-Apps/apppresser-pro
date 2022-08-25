@@ -34,6 +34,7 @@ $toggle            = get_field( 'toggle' );
 
 
 $select = get_field( 'select' );
+$input  = get_field( 'input' );
 
 ?>
 
@@ -69,11 +70,16 @@ $select = get_field( 'select' );
 				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>
-		<ion-label color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
+		<ion-label position="<?php echo $input['label_position']; ?>" color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
 			<?php echo esc_attr( $label ); ?>
 			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
 		<?php
+		error_log(print_r('sssssssssss ' . $input['disabled'],true));
+
+		$disabled = $input['disabled'] ? "true" : "false";
+		$read_only = $input['read_only'] ? "true" : "false";
+
 		switch ( $input_type ) {
 			case 'toggle':
 				echo '<ion-toggle color=' . $toggle['color'] . ' checked></ion-toggle>';
@@ -86,6 +92,17 @@ $select = get_field( 'select' );
 				}
 
 				echo '</ion-select>';
+				break;
+			case 'input':
+				switch ( $input['input_type'] ) {
+					case 'number':
+						echo '<ion-input inputmode="numeric" disabled="' . $disabled . '" readonly="' . $read_only . '" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						break;
+					default:
+						echo '<ion-input autocomplete="off" inputmode="text" disabled="' . $disabled . '" readonly="' . $read_only . '" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						break;
+				}
+
 				break;
 
 			default:
