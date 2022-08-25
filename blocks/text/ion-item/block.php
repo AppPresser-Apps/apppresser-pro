@@ -23,11 +23,17 @@ $icon_thumbnail    = get_field( 'icon_thumbnail' );
 $label             = get_field( 'label' );
 $description       = get_field( 'description' );
 $detail            = get_field( 'detail' ) ? 'true' : 'false';
+$detail_icon       = get_field( 'icon_detail' );
+$lines             = get_field( 'lines' );
 $background_color  = get_field( 'background_color' );
 $icon_color        = get_field( 'icon_color' );
 $label_color       = get_field( 'label_color' );
 $description_color = get_field( 'description_color' );
 $input_type        = get_field( 'input_type' );
+$toggle            = get_field( 'toggle' );
+
+
+$select = get_field( 'select' );
 
 ?>
 
@@ -49,7 +55,12 @@ $input_type        = get_field( 'input_type' );
 
 	<div class="clickable"></div>
 
-	<ion-item style="width: 100%;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" href="#" detail="<?php echo esc_attr( $detail ); ?>">
+	
+	<ion-item style="width: 100%;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
+			  href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
+			  detail-icon="<?php echo '0' === $detail_icon ? 'false' : $detail_icon; ?>"
+			  lines="<?php echo $lines; ?>"
+	>
 		<?php if ( 'icon' === $icon_type ) : ?>
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>
@@ -65,7 +76,16 @@ $input_type        = get_field( 'input_type' );
 		<?php
 		switch ( $input_type ) {
 			case 'toggle':
-				echo '<ion-toggle checked></ion-toggle>';
+				echo '<ion-toggle color=' . $toggle['color'] . ' checked></ion-toggle>';
+				break;
+			case 'select':
+				echo '<ion-select>';
+
+				foreach ( $select['options'] as $key => $value ) {
+					echo '<ion-select-option value="apples">' . $value['label'] . '</ion-select-option>';
+				}
+
+				echo '</ion-select>';
 				break;
 
 			default:
