@@ -2951,6 +2951,33 @@
             "placeholder": ""
         },
         {
+            "key": "field_6307b9a6157ae",
+            "label": "Label Position",
+            "name": "label_position",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "fixed": "Fixed",
+                "stacked": "Stacked",
+                "floating": "Floating"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_62fd1b42d238c",
             "label": "Description Color",
             "name": "description_color",
@@ -2996,7 +3023,7 @@
             "label": "Name",
             "name": "input_name",
             "type": "text",
-            "instructions": "",
+            "instructions": "The input name attribute for data sending and receiving.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -3005,10 +3032,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_63064c9ed0f4a",
@@ -3320,32 +3347,6 @@
                     "ui_off_text": ""
                 },
                 {
-                    "key": "field_6307b9a6157ae",
-                    "label": "Label Position",
-                    "name": "label_position",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "fixed": "Fixed",
-                        "stacked": "Stacked",
-                        "floating": "Floating"
-                    },
-                    "default_value": "fixed",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
                     "key": "field_6307b6b1b8d3d",
                     "label": "Type",
                     "name": "input_type",
@@ -3436,5 +3437,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661457110
+    "modified": 1661552636
 }

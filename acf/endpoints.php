@@ -378,7 +378,25 @@ function appp_format_block_data( $block ) {
 				$block['attrs']['data']['image_id']      = $block['attrs']['data']['icon_thumbnail'];
 				$thumbnail                               = wp_get_attachment_image_src( $block['attrs']['data']['icon_thumbnail'], 'original_image' );
 				$block['attrs']['data']['thumbnail_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+			}
+
+			error_log( print_r( $block['attrs']['data'], true ) );
+
+			if ( 'select' === $block['attrs']['data']['input_type'] ) {
+
+				$soptions = range( 0, ( $block['attrs']['data']['select_options'] - 1 ) );
+				$options  = array();
+
+				foreach ( $soptions as $key ) {
+
+					$options[] = array(
+						'label' => $block['attrs']['data'][ 'select_options_' . $key . '_label' ],
+						'value'  => $block['attrs']['data'][ 'select_options_' . $key . '_value' ],
+					);
+
+				}
+
+				$block['attrs']['data']['select_options'] = $options;
 			}
 			break;
 		case 'acf/breadcrumbs':

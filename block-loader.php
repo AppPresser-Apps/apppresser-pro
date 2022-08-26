@@ -429,7 +429,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'ion-item',
 				'title'           => 'Item',
-				'description'     => 'Items are elements that can contain text, icons, avatars, images, inputs, and any other native or custom elements. Generally they are placed in a list with other items. Items can be swiped, deleted, reordered, edited, and more.',
+				'description'     => 'Items are elements that can contain text, icons, avatars, images, inputs, and other elements.',
 				'category'        => 'appp_text',
 				'keywords'        => array( 'component', 'list', 'item' ),
 				'icon'            => 'list-view',

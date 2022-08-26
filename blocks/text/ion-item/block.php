@@ -28,6 +28,7 @@ $lines             = get_field( 'lines' );
 $background_color  = get_field( 'background_color' );
 $icon_color        = get_field( 'icon_color' );
 $label_color       = get_field( 'label_color' );
+$label_position    = get_field( 'label_position' );
 $description_color = get_field( 'description_color' );
 $input_type        = get_field( 'input_type' );
 $toggle            = get_field( 'toggle' );
@@ -35,6 +36,8 @@ $toggle            = get_field( 'toggle' );
 
 $select = get_field( 'select' );
 $input  = get_field( 'input' );
+
+$position = 'default' === $label_position ? '' : 'position="' . $label_position . '"';
 
 ?>
 
@@ -70,15 +73,13 @@ $input  = get_field( 'input' );
 				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>
-		<ion-label position="<?php echo $input['label_position']; ?>" color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
+		<ion-label <?php echo $position; ?> color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
 			<?php echo esc_attr( $label ); ?>
 			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
 		<?php
-		error_log(print_r('sssssssssss ' . $input['disabled'],true));
-
-		$disabled = $input['disabled'] ? "true" : "false";
-		$read_only = $input['read_only'] ? "true" : "false";
+	
+		$disabled  = $input['disabled'] ? 'true' : 'false';
 
 		switch ( $input_type ) {
 			case 'toggle':
@@ -96,10 +97,10 @@ $input  = get_field( 'input' );
 			case 'input':
 				switch ( $input['input_type'] ) {
 					case 'number':
-						echo '<ion-input inputmode="numeric" disabled="' . $disabled . '" readonly="' . $read_only . '" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input inputmode="numeric" disabled="' . $disabled . '" readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 					default:
-						echo '<ion-input autocomplete="off" inputmode="text" disabled="' . $disabled . '" readonly="' . $read_only . '" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input autocomplete="off" inputmode="text" disabled="' . $disabled . '" readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 				}
 
