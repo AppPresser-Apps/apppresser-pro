@@ -39,6 +39,8 @@ $input  = get_field( 'input' );
 
 $position = 'default' === $label_position ? '' : 'position="' . $label_position . '"';
 
+error_log(print_r($select,true));
+
 ?>
 
 <style>
@@ -58,7 +60,6 @@ $position = 'default' === $label_position ? '' : 'position="' . $label_position 
 <div style="width: 100%;" id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 
 	<div class="clickable"></div>
-
 	
 	<ion-item style="width: 100%;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
 			  href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
@@ -78,18 +79,18 @@ $position = 'default' === $label_position ? '' : 'position="' . $label_position 
 			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
 		<?php
-	
-		$disabled  = $input['disabled'] ? 'true' : 'false';
+
+		$disabled = isset( $input['disabled'] ) ? 'true' : 'false';
 
 		switch ( $input_type ) {
 			case 'toggle':
 				echo '<ion-toggle color=' . $toggle['color'] . ' checked></ion-toggle>';
 				break;
 			case 'select':
-				echo '<ion-select>';
+				echo '<ion-select value="' . $select['default'] . '">';
 
 				foreach ( $select['options'] as $key => $value ) {
-					echo '<ion-select-option value="apples">' . $value['label'] . '</ion-select-option>';
+					echo '<ion-select-option value="'.$value['value'].'">' . $value['label'] . '</ion-select-option>';
 				}
 
 				echo '</ion-select>';

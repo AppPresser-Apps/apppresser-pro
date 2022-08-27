@@ -36,16 +36,17 @@
                 "none": "None",
                 "router_push": "Navigate to View",
                 "router_back": "Navigate Back",
+                "external_url": "External URL",
                 "alert": "Alert Message",
                 "popover": "Popover",
                 "action_sheet": "Action Sheet",
                 "modal": "Modal"
             },
             "default_value": "none",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": ""
         },
@@ -216,7 +217,8 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": ""
+                            "maxlength": "",
+                            "parent_repeater": "field_62acfa0f98257"
                         },
                         {
                             "key": "field_62acfa3698259",
@@ -1572,7 +1574,8 @@
                             "ui": 0,
                             "return_format": "value",
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "parent_repeater": "field_62acfa0f98257"
                         },
                         {
                             "key": "field_62acfaa59825a",
@@ -1602,7 +1605,8 @@
                             "ui": 0,
                             "return_format": "value",
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "parent_repeater": "field_62acfa0f98257"
                         },
                         {
                             "key": "field_62acfb32ebb7e",
@@ -1628,7 +1632,8 @@
                             "ui": 0,
                             "return_format": "value",
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "parent_repeater": "field_62acfa0f98257"
                         }
                     ]
                 }
@@ -1672,6 +1677,30 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_630a8cfae14c9",
+            "label": "External URL",
+            "name": "external_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "external_url"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -1706,5 +1735,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1658934524
+    "modified": 1661635875
 }

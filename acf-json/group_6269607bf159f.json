@@ -3156,6 +3156,108 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_630a806f947a8",
+                    "label": "Cancel Text",
+                    "name": "cancel_text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Cancel",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_630a7f961d5e5",
+                    "label": "Ok Text",
+                    "name": "ok_text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Ok",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_630a7fae1d5e6",
+                    "label": "Placeholder",
+                    "name": "placeholder",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Select One",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_630a7fe21d5e7",
+                    "label": "Interface",
+                    "name": "interface",
+                    "type": "select",
+                    "instructions": "The style of the select popup.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "alert": "Alert",
+                        "action-sheet": "Action Sheet",
+                        "popover": "Popover"
+                    },
+                    "default_value": "alert",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_630a7a11e3583",
+                    "label": "Default Value",
+                    "name": "default",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_6307aa0c8adaa",
                     "label": "Options",
                     "name": "options",
@@ -3209,6 +3311,26 @@
                                 "id": ""
                             },
                             "default_value": "Value",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_6307aa0c8adaa"
+                        },
+                        {
+                            "key": "field_630a7f3e1d5e4",
+                            "label": "",
+                            "name": "cancel_text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
@@ -3437,5 +3559,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661552636
+    "modified": 1661632850
 }
