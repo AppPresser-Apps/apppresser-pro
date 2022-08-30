@@ -89,22 +89,20 @@ function appp_load_modal_field_choices( $field ) {
 
 	if ( $data ) {
 
-		$choices = array();
+		$choices = array( 'none' => 'None' );
 
 		foreach ( $data  as $key => $value ) {
-			$choices[ $value['attrs']['id'] ] = $value['attrs']['data']['modal_name'];
+			$choices[ $value['attrs']['data']['modal_name'] ] = $value['attrs']['data']['modal_name'];
 		}
-	
+
 		$field['choices'] = $choices;
 
 	}
 
-
-
 	return $field;
 
 }
-add_filter( 'acf/load_field/name=modal', 'appp_load_modal_field_choices' );
+add_filter( 'acf/load_field/name=modal_item', 'appp_load_modal_field_choices' );
 
 /**
  * Parse Block data helper function

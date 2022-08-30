@@ -1651,7 +1651,7 @@
         {
             "key": "field_62b239fc07feb",
             "label": "Modal",
-            "name": "modal",
+            "name": "modal_item",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1671,10 +1671,10 @@
             },
             "choices": [],
             "default_value": "none",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": ""
         },
@@ -1735,5 +1735,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661635875
+    "modified": 1661880182
 }

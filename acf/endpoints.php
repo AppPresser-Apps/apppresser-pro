@@ -315,6 +315,8 @@ function appp_format_block_data( $block ) {
 	}
 
 	switch ( $block['blockName'] ) {
+		case 'acf/button':
+			break;
 		case 'acf/ion-image':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
 				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
