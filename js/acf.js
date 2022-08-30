@@ -50,7 +50,6 @@ acf.add_action('load', (e)=> {
         }
 
         for (const global in globals ) {
-            console.log('globals', global);
             document.documentElement.style.setProperty(global, globals[global]);
         }
     }
@@ -98,11 +97,6 @@ acf.addAction('remount', function ($el) {
 });
 
 acf.addAction('ready_field/name=theme_select', (field)=> {
-
-
-    console.log(acf.getFields('option'));
-
-    console.log(field.val())
 });
 
 acf.addAction('append_field/name=data_source', function( field ){

@@ -180,17 +180,17 @@ function appp_remove_button_class(block_id) {
   //console.log(block_id);
   // We need this because ion-button has a class
   // .button and WordPress editor styles is screwing up the design
-  setTimeout(() => {
-    const view = document.querySelector(block_id);
-    const content = view.querySelector("ion-content");
+  // setTimeout(() => {
+  //   const view = document.querySelector(block_id);
+  //   const content = view.querySelector("ion-content");
 
-    var btns = content.querySelectorAll("ion-button"),
-      i;
+  //   var btns = content.querySelectorAll("ion-button"),
+  //     i;
 
-    for (i = 0; i < btns.length; ++i) {
-      btns[i].classList.remove("button");
-    }
-  }, 500);
+  //   for (i = 0; i < btns.length; ++i) {
+  //     btns[i].classList.remove("button");
+  //   }
+  // }, 500);
 }
 
 

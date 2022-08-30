@@ -169,7 +169,3 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		</ion-content>
 	</div>
 </div>
-
-<script>
-	appp_remove_button_class("#<?php echo esc_attr( $id ); ?>");
-</script>

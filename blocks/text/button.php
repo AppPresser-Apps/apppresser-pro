@@ -20,25 +20,25 @@ if ( ! empty( $block['className'] ) ) {
 
 
 
-$title = get_field( 'title' );
-$color = get_field( 'color' );
-$fill  = get_field( 'fill' );
-$size  = get_field( 'size' );
-$expand  = get_field( 'expand' );
-$margin  = get_field( 'margin' );
-$alignment  = get_field( 'alignment' );
-$css = get_field( 'css' );
+$title     = get_field( 'title' );
+$color     = get_field( 'color' );
+$fill      = get_field( 'fill' );
+$size      = get_field( 'size' );
+$expand    = get_field( 'expand' );
+$margin    = get_field( 'margin' );
+$alignment = get_field( 'alignment' );
+$css       = get_field( 'css' );
 
 $style = '';
 
-if( $margin ) {
+if ( $margin ) {
 	$style .= 'margin-left:' . $margin['margin_left'] . 'px; ';
 	$style .= 'margin-right:' . $margin['margin_right'] . 'px; ';
 	$style .= 'margin-top:' . $margin['margin_top'] . 'px; ';
 	$style .= 'margin-bottom:' . $margin['margin_right'] . 'px; ';
 }
 
-if( 'inline' === $expand && $alignment ) {
+if ( 'inline' === $expand && $alignment ) {
 	$style .= 'display: flex; ';
 	$style .= 'justify-content:' . $alignment . '; ';
 }
@@ -65,3 +65,15 @@ if( 'inline' === $expand && $alignment ) {
 		><?php echo $title ? $title : 'Button'; ?></ion-button>
 	</div>
 </div>
+
+<script>
+	setTimeout(() => {
+		const el = document.querySelector("#<?php echo esc_attr( $block_id ); ?>");
+
+		var btns = el.querySelectorAll("ion-button");
+
+		for (i = 0; i < btns.length; ++i) {
+		 btns[i].classList.remove("button");
+		}
+	}, 500);
+</script>
