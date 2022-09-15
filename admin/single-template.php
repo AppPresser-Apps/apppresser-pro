@@ -8,5 +8,5 @@
  */
 
 get_header(); ?>
-    <app-root url="<?php echo esc_url( APPPRESSER_URL ); ?>" app-url="<?php echo 'https://apppresser-app.pages.dev?url=' . get_rest_url() . 'apppresser/v1/app/' . get_the_ID(); ?>"></app-root>
+    <app-root url="<?php echo esc_url( APPPRESSER_URL ); ?>" app-url="<?php echo 'https://apppresser.pages.dev?url=' . get_rest_url() . 'apppresser/v1/app/' . get_the_ID(); ?>"></app-root>
 <?php get_footer(); ?>
