@@ -173,13 +173,17 @@ if ( is_admin() ) {
 	);
 }
 
-if ( ! function_exists( 'get_MY_CUSTOM_POST_TYPE_template' ) ) {
-	function appp_preview_template( $single_template ) {
-		global $wp_query, $post;
-		if ( 'app' === $post->post_type ) {
-			$single_template = plugin_dir_path( __FILE__ ) . 'single-template.php';
-		}//end if MY_CUSTOM_POST_TYPE
-		return $single_template;
-	}//end get_MY_CUSTOM_POST_TYPE_template()
+/**
+ * Filter app post type template location.
+ *
+ * @param string $single_template
+ * @return void
+ */
+function appp_preview_template( $single_template ) {
+	global $wp_query, $post;
+	if ( 'app' === $post->post_type ) {
+		$single_template = plugin_dir_path( __FILE__ ) . 'single-template.php';
+	}
+	return $single_template;
 }
 add_filter( 'single_template', 'appp_preview_template' );
