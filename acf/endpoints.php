@@ -222,6 +222,7 @@ function appp_format_toolbar( $block ) {
 				'action'  => $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ],
 				'route'   => 'router_push' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_route' ] : false,
 				'popover' => 'popover' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_popover' ] : false,
+				'modal_item'   => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
 				'type'    => $button,
 			);
 		} else {
@@ -241,6 +242,7 @@ function appp_format_toolbar( $block ) {
 			'action'  => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
 			'route'   => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
 			'popover' => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
+			'modal_item'   => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
 			'type'    => $button,
 		);
 
@@ -393,7 +395,7 @@ function appp_format_block_data( $block ) {
 
 					$options[] = array(
 						'label' => $block['attrs']['data'][ 'select_options_' . $key . '_label' ],
-						'value'  => $block['attrs']['data'][ 'select_options_' . $key . '_value' ],
+						'value' => $block['attrs']['data'][ 'select_options_' . $key . '_value' ],
 					);
 
 				}
