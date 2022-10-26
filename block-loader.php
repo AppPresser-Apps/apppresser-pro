@@ -644,6 +644,31 @@ function appp_init_block_types() {
 				'render_template' => APPPRESSER_DIR . 'blocks/layout/inner-column/block.php',
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'action',
+				'title'           => 'Action',
+				'description'     => 'Action block wraps an element to provide different navigation and functionality',
+				'category'        => 'appp_layout',
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'icon'            => 'layout',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/action/block.php',
+			)
+		);
+
 		// End Create-ACF-Block
 
 	}

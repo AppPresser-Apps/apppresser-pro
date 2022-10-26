@@ -6,6 +6,7 @@
             "key": "field_629be31e76c8e",
             "label": "Alignment Horizontal",
             "name": "alignment",
+            "aria-label": "",
             "type": "select",
             "instructions": "Aligns all elements in parent column.",
             "required": 0,
@@ -32,6 +33,7 @@
             "key": "field_62b8a9b4feb2c",
             "label": "Alignment Vertical",
             "name": "alignment_vertical",
+            "aria-label": "",
             "type": "select",
             "instructions": "Aligns all elements in parent column.",
             "required": 0,
@@ -58,6 +60,7 @@
             "key": "field_62b8b73fada9f",
             "label": "Padding",
             "name": "padding",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -73,6 +76,7 @@
                     "key": "field_62b8b74badaa0",
                     "label": "Top",
                     "name": "padding_top",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -94,6 +98,7 @@
                     "key": "field_62b8b772adaa1",
                     "label": "Bottom",
                     "name": "padding_bottom",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -115,6 +120,7 @@
                     "key": "field_62b8b77eadaa2",
                     "label": "Left",
                     "name": "padding_left",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -136,6 +142,7 @@
                     "key": "field_62b8b788adaa3",
                     "label": "Right",
                     "name": "padding_right",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -154,6 +161,28 @@
                     "step": 1
                 }
             ]
+        },
+        {
+            "key": "field_63598cddbbf2e",
+            "label": "Flex Grow",
+            "name": "flex_grow",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -174,5 +203,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1656272785
+    "modified": 1666813172
 }

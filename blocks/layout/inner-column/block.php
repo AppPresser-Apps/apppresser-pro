@@ -9,6 +9,8 @@
 // Create id attribute value.
 $block_id = 'inner-column-' . $block['id'];
 
+$parent_id = str_replace( '_', '-', $block['id']);
+
 // Create class attribute allowing for custom "className" values.
 $class_name = 'appp-inner-column';
 if ( ! empty( $block['className'] ) ) {
@@ -20,6 +22,7 @@ $allowed_blocks = appp_get_allowed_innerblocks();
 $alignment = get_field( 'alignment' );
 $vertical  = get_field( 'alignment_vertical' );
 $padding  = get_field( 'padding' );
+$flex_grow  = get_field( 'flex_grow' );
 
 $style = '';
 
@@ -52,8 +55,12 @@ if ( $padding ) {
 		height: 100%;
 	}
 
-	.wp-block-acf-inner-column .block-editor-block-list__layout < div {
+	/* .wp-block-acf-inner-column .block-editor-block-list__layout < div {
 		flex: 1;
+	} */
+
+	#<?php echo esc_attr( $parent_id ); ?> {
+		flex-grow: <?php echo esc_attr( $flex_grow ); ?>;
 	}
 
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-block-list__layout {
@@ -73,3 +80,5 @@ if ( $padding ) {
 	allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 	/>
 </div>
+
+

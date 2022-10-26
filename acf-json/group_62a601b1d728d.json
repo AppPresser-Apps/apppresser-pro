@@ -6,6 +6,7 @@
             "key": "field_62a6078588560",
             "label": "Actions",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -23,6 +24,7 @@
             "key": "field_62a601b8b9399",
             "label": "Action",
             "name": "action",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -54,6 +56,7 @@
             "key": "field_62a6024df1f8b",
             "label": "Route",
             "name": "route",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -84,6 +87,7 @@
             "key": "field_62aa269904b49",
             "label": "Alert Message",
             "name": "alert_message",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -111,6 +115,7 @@
             "key": "field_62abb2de74885",
             "label": "Popover",
             "name": "popover",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -143,6 +148,7 @@
             "key": "field_62acf87c98255",
             "label": "Action Sheet Options",
             "name": "action_sheet_options",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -166,6 +172,7 @@
                     "key": "field_62acf8b898256",
                     "label": "Header",
                     "name": "header",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -185,6 +192,7 @@
                     "key": "field_62acfa0f98257",
                     "label": "Buttons",
                     "name": "buttons",
+                    "aria-label": "",
                     "type": "repeater",
                     "instructions": "",
                     "required": 0,
@@ -204,6 +212,7 @@
                             "key": "field_62acfa1f98258",
                             "label": "Label",
                             "name": "label",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -224,6 +233,7 @@
                             "key": "field_62acfa3698259",
                             "label": "Icon",
                             "name": "icon",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1581,6 +1591,7 @@
                             "key": "field_62acfaa59825a",
                             "label": "Action",
                             "name": "action",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1612,6 +1623,7 @@
                             "key": "field_62acfb32ebb7e",
                             "label": "Role",
                             "name": "role",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1635,7 +1647,8 @@
                             "placeholder": "",
                             "parent_repeater": "field_62acfa0f98257"
                         }
-                    ]
+                    ],
+                    "rows_per_page": 20
                 }
             ],
             "choices": {
@@ -1652,6 +1665,7 @@
             "key": "field_62b239fc07feb",
             "label": "Modal",
             "name": "modal_item",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1682,6 +1696,7 @@
             "key": "field_630a8cfae14c9",
             "label": "External URL",
             "name": "external_url",
+            "aria-label": "",
             "type": "url",
             "instructions": "",
             "required": 0,
@@ -1724,6 +1739,13 @@
                 "operator": "==",
                 "value": "acf\/ion-item"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/action"
+            }
         ]
     ],
     "menu_order": 1,
@@ -1735,5 +1757,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661880182
+    "modified": 1666816907
 }

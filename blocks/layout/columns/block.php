@@ -27,9 +27,6 @@ $allowed_blocks = array( 'acf/inner-columns' );
 	/* flex-direction: row; */
 }
 
-#<?php echo esc_attr( $block_id ); ?> .wp-block-acf-inner-column {
-	flex: 1;
-}
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
