@@ -35,8 +35,8 @@
                 "id": ""
             },
             "choices": {
-                "local": "Local",
-                "external": "External Database"
+                "local": "Local Data",
+                "external": "External Data"
             },
             "default_value": "local",
             "return_format": "value",
@@ -324,5 +324,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666725128
+    "modified": 1666796742
 }

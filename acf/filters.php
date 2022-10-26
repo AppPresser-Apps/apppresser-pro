@@ -31,6 +31,8 @@ function appp_acf_dynamic_colors( $field ) {
 		'dark'      => 'Dark',
 		'medium'    => 'Medium',
 		'light'     => 'Light',
+		'white'     => 'White',
+		'black'     => 'Black',
 	);
 
 	$colors = apply_filters( 'appp_acf_dynamic_colors', $colors, $post );
@@ -67,10 +69,10 @@ function appp_add_custom_colors_select( $colors, $post ) {
 		}
 	);
 
-	// error_log(print_r($needed_object,true));
+	//error_log( print_r( $needed_object, true ) );
 
-	if ( isset( $needed_object[0]['custom_color'] ) ) {
-		foreach ( $needed_object[0]['custom_color'] as $custom_color ) {
+	if ( isset( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] ) ) {
+		foreach ( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] as $custom_color ) {
 			$value            = strtolower( str_replace( ' ', '-', $custom_color['name'] ) );
 			$colors[ $value ] = $custom_color['name'];
 		}
@@ -124,7 +126,7 @@ add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
  */
 function appp_acf_update_value( $value, $post_id, $field, $original ) {
 
-	if ( 'fetch_result' === $field['name'] ) {
+	if ( 'data_response' === $field['name'] ) {
 		$value = '';
 	}
 
@@ -198,7 +200,7 @@ function appp_filter_rest_api_select( $field ) {
 }
 add_filter( 'acf/load_field/name=rest_api_source', 'appp_filter_rest_api_select', 0, 1 );
 
-function appp_acf_dynamic_segements( $field ) {
+function appp_acf_dynamic_segments( $field ) {
 
 	global $post;
 
@@ -238,7 +240,7 @@ function appp_acf_dynamic_segements( $field ) {
 
 	return $field;
 }
-add_filter( 'acf/load_field', 'appp_acf_dynamic_segements', 999, 1 );
+add_filter( 'acf/load_field', 'appp_acf_dynamic_segments', 999, 1 );
 
 /**
  * Edit block before render.

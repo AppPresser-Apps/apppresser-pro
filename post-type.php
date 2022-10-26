@@ -174,7 +174,7 @@ add_action(
 	function( $column_key, $post_id ) {
 
 		if ( 'app' === $column_key ) {
-			$icon  = get_field( 'icon', $post_id );
+			$icon  = get_field( 'app_icon', $post_id );
 			$title = get_the_title( $post_id );
 			echo '<div style="display:flex; align-items: center;">';
 				echo '<a href="' . esc_attr( get_edit_post_link( $post_id ) ) . '">';

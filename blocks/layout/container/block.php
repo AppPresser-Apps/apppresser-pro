@@ -18,6 +18,8 @@ if ( ! empty( $block['className'] ) ) {
 
 $allowed_blocks = appp_get_allowed_innerblocks();
 
+$allowed_blocks[] = 'acf/columns';
+
 $background          = get_field( 'color' );
 $background_img      = get_field( 'background_image' );
 $background_position = get_field( 'background_position' );
@@ -155,16 +157,16 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 	}
 
 
-	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
-		height: 100%;
+	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > div {
 		width: 100%;
 	}
-	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > div {
+	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
 		display: flex;
 		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?>;
 		justify-content: <?php echo esc_attr( $flex['justify_content'] ); ?>;
 		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
 		height: 100%;
+		width: 100%;
 	}
 
 </style>
