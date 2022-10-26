@@ -192,92 +192,58 @@ acf.addAction('ready_field/name=light_mode', function(field){
 /**
  * Loads up a test button for API data for each base_url endpoint field.
  */
-acf.addAction('ready_field/name=base_url', function(field){
+acf.addAction('ready_field/name=data_response', function(field){
 
-    const base_url = field.val();
-    const next = jQuery(field.$el).next();
-    const paths = acf.findFields({parent:next, name:'endpoint_path'});
+    var d = document.createElement("div");
+    d.addEventListener('click', async (e)=> { 
 
- 
-    [...paths].forEach( item => {
-
-        const headers_el = jQuery(item).next().next();
-
-        const header_obj = acf.findFields({parent:jQuery(item).next().next()});
-        let newHeaderArray = [];
-        
-        for (var i = header_obj.length; i >= 0; i--) {
-            const first2 = header_obj.splice(0, 2);
-
-            //console.log(first2);
-
-            const key = jQuery(first2[0]).find('input').val();
-            const value = jQuery(first2[1]).find('input').val();
-
-            if ( typeof key != 'undefined'|| typeof value != 'undefined' ) {
-                newHeaderArray.push({ key: key, value: value });
-            }
-            
-
-        }
-
-        //console.log(newHeaderArray);
-
-        const parameter_obj = acf.findFields({parent:jQuery(item).next().next().next()});
-        let newParameterArray = [];
-
-        //console.log(parameter_obj);
-        
-        for (var i = parameter_obj.length; i >= 0; i--) {
-            const first2 = parameter_obj.splice(0, 2);
-
-            const key = jQuery(first2[0]).find('input').val();
-            const value = jQuery(first2[1]).find('input').val();
-
-            if ( typeof key != 'undefined'|| typeof value != 'undefined' ) {
-                newParameterArray.push({ key: key, value: value });
-            }
-
-        }
-
-        //console.log(newParameterArray);
-
-        var d = document.createElement("div");
-        d.addEventListener('click', async (e)=> { 
-            const url = base_url + jQuery(item).find('input').val();
- 
-            let data = {};
-
-            try {
-
-                const response = await fetch( url, {
-                    headers: {
-                        //'content-type': 'application/json'
-                      },
-                    method: 'GET' 
-                });
-
-                data = await response.json();
-
-            } catch (error) {
-                data = {error: error};
-            }
-     
-            document.querySelector('.CodeMirror').CodeMirror.setValue(js_beautify(JSON.stringify(data), {brace_style: 'expand'}))
-
-
-        }, false);
     
-        d.innerHTML = "test";
-        d.className = 'button button-primary';
-        d.style.height = '20px';
-        d.style.lineHeight = '27px';
-        d.style.position = 'absolute';
-        d.style.right = '0px';
-        d.style.top = '-9px';
+        const url_value = jQuery("[data-name=rest_url]").find('input').val();
+        let url = new URL(url_value);
+        const parameters = jQuery("[data-name=parameters]").find('.acf-table').find('.acf-row:not(.acf-clone)').find('.acf-fields');
 
-        const prev = jQuery(item).prev().find('.acf-label').append(d);
-    });
+        [...parameters].forEach( item => {
+
+            const key = jQuery(item).find('[data-name=key]').find('input').val();
+            const value = jQuery(item).find('[data-name=value]').find('input').val();
+
+            url.searchParams.append(key, value);
+
+            console.log(item, url);
+        });
+
+        
+        let data = {};
+
+        try {
+
+            const response = await fetch( url, {
+                headers: {
+                    //'content-type': 'application/json'
+                  },
+                method: 'GET'
+            });
+
+            data = await response.json();
+
+        } catch (error) {
+            data = {error: error};
+        }
+ 
+        document.querySelector('.CodeMirror').CodeMirror.setValue(js_beautify(JSON.stringify(data), {brace_style: 'expand'}))
+
+
+    }, false);
+
+    d.innerHTML = "Fetch";
+    d.className = 'button button-primary';
+    d.style.height = '20px';
+    d.style.lineHeight = '27px';
+    d.style.position = 'absolute';
+    d.style.right = '0px';
+    d.style.top = '-9px';
+
+    jQuery("[data-name=data_response]").find('.acf-label').append(d);
     
 });
 

@@ -270,6 +270,25 @@
             "message": "External data is supplied externally from REST API sources.",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_635834db06c0e",
+            "label": "Data Response",
+            "name": "data_response",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "monokai"
         }
     ],
     "location": [
@@ -305,5 +324,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666716473
+    "modified": 1666725128
 }

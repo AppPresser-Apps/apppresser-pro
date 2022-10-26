@@ -134,7 +134,7 @@ function data_post_type() {
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'custom-fields' ),
 		'hierarchical'        => false,
-		'public'              => true,
+		'public'              => false,
 		'show_ui'             => true,
 		'show_in_menu'        => true,
 		'menu_position'       => 5,
@@ -144,13 +144,12 @@ function data_post_type() {
 		'can_export'          => true,
 		'has_archive'         => false,
 		'exclude_from_search' => true,
-		'publicly_queryable'  => true,
+		'publicly_queryable'  => false,
 		'capabilities'        => $capabilities,
 		'show_in_rest'        => true,
 		'template_lock'       => false,
 	);
 	register_post_type( 'datatable', $args );
-
 
 }
 add_action( 'init', 'data_post_type', 0 );
@@ -180,9 +179,15 @@ add_action(
 			echo '<div style="display:flex; align-items: center;">';
 				echo '<a href="' . esc_attr( get_edit_post_link( $post_id ) ) . '">';
 			if ( $icon ) {
-				echo '<img src="' . esc_url( $icon ) . '" style="width:40px; border-radius:6px;"/>';
+				echo '<style>';
+				echo '.app-image { width: 40px; height: 40px; border-radius:6px; background-size: cover; background-position: center; background-image: url(' . esc_url( $icon ) . '); }';
+				echo '</style>';
+				echo '<div class="app-image"></div>';
 			} else {
-				echo '<img src="' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . '" style="width:40px; border-radius:6px;"/>';
+				echo '<style>';
+				echo '.app-icon { width: 40px; height: 40px; border-radius:6px; background-size: cover; background-position: center; background-image: url(' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . '); }';
+				echo '</style>';
+				echo '<div class="app-icon"></div>';
 			}
 				echo '<a/>';
 
@@ -199,3 +204,29 @@ add_action(
 	10,
 	2
 );
+
+/**
+ * Filter admin notice wehn datatable cpt is updated / saved.
+ *
+ * @param array $messages
+ * @return array
+ */
+function datatable_updated_messages( $messages ) {
+	global $post, $post_ID;
+
+	$messages['datatable'] = array(
+		0  => '',
+		1  => sprintf( __( 'Data updated.' ), esc_url( get_permalink( $post_ID ) ) ),
+		2  => __( 'Custom field updated.' ),
+		3  => __( 'Custom field deleted.' ),
+		4  => __( 'Data updated.' ),
+		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Data restored to revision from %s' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		6  => sprintf( __( 'Data published. <a href="%s">View data</a>' ), esc_url( get_permalink( $post_ID ) ) ),
+		7  => __( 'Data saved.' ),
+		8  => sprintf( __( 'Data submitted.' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+		9  => sprintf( __( 'Data scheduled for: <strong>%1$s</strong>.' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
+		10 => sprintf( __( 'Data draft updated.' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+	);
+	return $messages;
+}
+add_filter( 'post_updated_messages', 'datatable_updated_messages' );
