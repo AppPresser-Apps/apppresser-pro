@@ -69,7 +69,7 @@ function appp_add_custom_colors_select( $colors, $post ) {
 		}
 	);
 
-	//error_log( print_r( $needed_object, true ) );
+	// error_log( print_r( $needed_object, true ) );
 
 	if ( isset( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] ) ) {
 		foreach ( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] as $custom_color ) {
@@ -171,34 +171,24 @@ add_filter( 'acf/fields/flexible_content/layout_title/name=integration', 'appp_f
  */
 function appp_filter_rest_api_select( $field ) {
 
-	// Check value exists.
-	if ( have_rows( 'integration', 'options' ) ) :
+	$field['choices'][ 'none' ] = 'None';
 
-		// Loop through rows.
-		while ( have_rows( 'integration', 'options' ) ) :
-			the_row();
+	$args = array(
+		'post_type'   => 'datatable',
+		'numberposts' => -1,
+	);
 
-			// Case: Paragraph layout.
-			if ( get_row_layout() === 'rest_api' ) :
-				$url                      = get_sub_field( 'base_url' );
-				$field['endpoints'][]     = get_sub_field( 'rest_api_endpoints' );
-				$field['choices'][ $url ] = $url;
-			endif;
+	$posts = get_posts( $args );
 
-			// End loop.
-		endwhile;
-
-		// No value.
-	else :
-		// Do something...
-	endif;
-
-	// error_log( print_r( $integration, true ) );
-	// error_log( print_r( $field, true ) );
+	foreach ( $posts as $key => $value ) {
+		$field['choices'][ $value->ID ] = $value->post_title;
+	}
 
 	return $field;
 }
-add_filter( 'acf/load_field/name=rest_api_source', 'appp_filter_rest_api_select', 0, 1 );
+add_filter( 'acf/load_field/name=data_source', 'appp_filter_rest_api_select', 0, 1 );
+
+
 
 function appp_acf_dynamic_segments( $field ) {
 

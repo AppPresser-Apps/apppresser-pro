@@ -6,6 +6,7 @@
             "key": "field_62cc553898e9b",
             "label": "Data Source",
             "name": "data_source",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -17,14 +18,13 @@
             },
             "choices": {
                 "none": "None",
-                "api": "Rest API",
-                "custom": "Custom Data"
+                "608": "SMP Blog Posts"
             },
             "default_value": "none",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": ""
         },
@@ -32,6 +32,7 @@
             "key": "field_62cc55a398e9c",
             "label": "Custom Data",
             "name": "custom_data",
+            "aria-label": "",
             "type": "acf_code_field",
             "instructions": "",
             "required": 0,
@@ -73,5 +74,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1657558503
+    "modified": 1666886407
 }

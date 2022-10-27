@@ -293,37 +293,37 @@ function appp_init_block_types() {
 
 		// Begin Create-ACF-Block
 
-		// acf_register_block_type(
-		// array(
-		// 'name'            => __( 'repeater' ),
-		// 'title'           => __( 'Repeater' ),
-		// 'description'     => __( 'Repeats a child block' ),
-		// 'category'        => 'appp_data',
-		// 'icon'            => 'update',
-		// 'keywords'        => array( 'component', 'repeater', 'data' ),
-		// 'post_types'      => array( 'app' ),
-		// 'mode'            => 'preview',
-		// 'align'           => 'center',
-		// 'className'       => 'appp-repeater',
-		// 'supports'        => array(
-		// 'mode'          => false,
-		// 'align'         => false,
-		// 'align_text'    => false,
-		// 'align_content' => false,
-		// 'full_height'   => false,
-		// 'jsx'           => true,
-		// ),
-		// 'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
-		// 'example'         => array(
-		// 'attributes' => array(
-		// 'mode' => 'preview',
-		// 'data' => array(
-		// '_is_preview' => 'true',
-		// ),
-		// ),
-		// ),
-		// )
-		// );
+		acf_register_block_type(
+			array(
+				'name'            => __( 'repeater' ),
+				'title'           => __( 'Repeater' ),
+				'description'     => __( 'Repeats all inner blocks for each item in array of data.' ),
+				'category'        => 'appp_data',
+				'icon'            => 'update',
+				'keywords'        => array( 'component', 'repeater', 'data' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'className'       => 'appp-repeater',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/data/repeater/block.php',
+				'example'         => array(
+					'attributes' => array(
+						'mode' => 'preview',
+						'data' => array(
+							'_is_preview' => 'true',
+						),
+					),
+				),
+			)
+		);
 
 		// acf_register_block_type(
 		// array(

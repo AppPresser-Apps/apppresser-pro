@@ -8,11 +8,11 @@ function appp_app_endpoints() {
 
 	register_rest_route(
 		'apppresser/v1',
-		'/fields/endpoints',
+		'/fields/datatable',
 		array(
 			'methods'             => 'GET',
 			'permission_callback' => '__return_true',
-			'callback'            => 'appp_get_endpoints_data',
+			'callback'            => 'appp_get_app_datatable',
 		)
 	);
 
@@ -42,40 +42,58 @@ add_action( 'rest_api_init', 'appp_app_endpoints' );
  * @param WP_Rest_Request $request
  * @return void
  */
-function appp_get_endpoints_field( $request ) {
+function appp_get_app_datatable( $request ) {
 
 	$url    = $request->get_param( 'base_url' );
-	$postID = $request->get_param( 'post_id' );
+	$post_ID = $request->get_param( 'post_id' );
 
 	$data = array();
 
-	if ( have_rows( 'integration', 'options' ) ) :
+	$data_fields = get_fields( $post_ID );
 
-		// Loop through rows.
-		while ( have_rows( 'integration', 'options' ) ) :
-			the_row();
+	error_log(print_r($data_fields,true));
 
-			// Case: Paragraph layout.
-			if ( get_row_layout() == 'rest_api' ) :
+	switch ( $data_fields['database_type'] ) {
+		case 'local':
+			
+			break;
 
-				$base_url = get_sub_field( 'base_url' );
+		case 'external':
+			$data['type'] = $data_type;
+			break;
+		
+		default:
+			
+			break;
+	}
 
-				$post = get_post( $postID );
+	// if ( have_rows( 'integration', 'options' ) ) :
 
-				if ( $url === $base_url ) {
-					$data['url']         = $base_url;
-					$data['endpoints'][] = get_sub_field( 'rest_api_endpoints' );
-				}
+	// 	// Loop through rows.
+	// 	while ( have_rows( 'integration', 'options' ) ) :
+	// 		the_row();
 
-			endif;
+	// 		// Case: Paragraph layout.
+	// 		if ( get_row_layout() == 'rest_api' ) :
 
-			// End loop.
-		endwhile;
+	// 			$base_url = get_sub_field( 'base_url' );
 
-		// No value.
-	else :
-		// Do something...
-	endif;
+	// 			$post = get_post( $postID );
+
+	// 			if ( $url === $base_url ) {
+	// 				$data['url']         = $base_url;
+	// 				$data['endpoints'][] = get_sub_field( 'rest_api_endpoints' );
+	// 			}
+
+	// 		endif;
+
+	// 		// End loop.
+	// 	endwhile;
+
+	// 	// No value.
+	// else :
+	// 	// Do something...
+	// endif;
 
 	return $data;
 

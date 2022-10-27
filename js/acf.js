@@ -141,7 +141,7 @@ function flattenObject(o, prefix = '', result = {}, keepNull = true) {
  */
 async function displayTokens(url) {
 
-    const field = jQuery('[data-name="data"] .acf-accordion-content');
+    const field = jQuery('[data-name="data_source"]');
 
     if ( url !== '' ) {
        
@@ -251,32 +251,33 @@ acf.addAction('render_block_preview/type=fetch', (field)=> {
     //console.log(field);
 });
 
-acf.addAction('append_field/name=rest_api_source', async (field)=> {
+acf.addAction('append_field/name=data_source', async (field)=> {
 
 
-    const base_url = field.val();
+    const post_id = field.val();
     const selected = wp.data.select( 'core/block-editor' ).getSelectedBlock();
 
-    const data = await appp_get_endpoints_select(base_url);
+    console.log(post_id);
+
+    const data = await appp_get_endpoints_select(post_id, post_id);
   
-    if ( 'none' !== base_url ) {
-        appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
-        displayTokens( base_url + selected.attributes.data.rest_api_endpoints );
-    }
+    // if ( 'none' !== base_url ) {
+    //     appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
+    //     displayTokens( base_url + selected.attributes.data.rest_api_endpoints );
+    // }
 
-    field.$el.find('select').on( 'change', async (e) => {
+    // field.$el.find('select').on( 'change', async (e) => {
+    //     jQuery('#data-tokens-wrap').remove();
+    //     if ( 'none' !== e.target.value ) {
+    //         appp_set_endpoints_select(data[e.target.value], 'none');
+    //     }
+    // })    
+
+    jQuery('[data-name=data_source]').find('select').on( 'change', async (e) => {
+        const base_url = jQuery('[data-name=data_source]').find('select').val();
         jQuery('#data-tokens-wrap').remove();
         if ( 'none' !== e.target.value ) {
-            appp_set_endpoints_select(data[e.target.value], 'none');
-        }
-    })    
-
-    jQuery('[data-name=rest_api_endpoints]').find('select').on( 'change', async (e) => {
-        const base_url = jQuery('[data-name=rest_api_source]').find('select').val();
-        console.log(base_url, e.target.value);
-        jQuery('#data-tokens-wrap').remove();
-        if ( 'none' !== e.target.value ) {
-            displayTokens( base_url + e.target.value );
+            displayTokens( base_url );
         }
         
     });
@@ -303,9 +304,9 @@ async function appp_set_endpoints_select(data, selected) {
 
 }
 
-async function appp_get_endpoints_select(base_url) {
-    var postID = acf.get('post_id');
-    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/endpoints?base_url=${base_url}&post_id=${postID}` });
+async function appp_get_endpoints_select(post_id, base_url) {
+    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/datatable?base_url=${base_url}&post_id=${post_id}` });
+    console.log(data);
     return data;
 }
 
