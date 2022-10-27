@@ -100,7 +100,7 @@ acf.addAction('ready_field/name=theme_select', (field)=> {
 });
 
 acf.addAction('append_field/name=data_source', function( field ){
-    displayTokens(field);
+    //displayTokens(field);
 });
 
 
@@ -139,36 +139,29 @@ function flattenObject(o, prefix = '', result = {}, keepNull = true) {
  * Get data_source url and create data tokens html from object.
  * @param {*} field 
  */
-async function displayTokens(url) {
+async function displayTokens(data) {
 
     const field = jQuery('[data-name="data_source"]');
 
-    if ( url !== '' ) {
-       
-        const rsp = await fetch(url);
-        const data = await rsp.json();
+    let html = '<div id="data-tokens-wrap" style="padding: 16px;">';
 
-        let html = '<div id="data-tokens-wrap" style="padding: 16px;">';
+    if (data) {
 
-        if (data) {
+        html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>';
 
-            html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>';
+        const obj = lodash.isArray(data) ? data.shift() : data;
+ 
+        const result = flattenObject(obj);
 
-            const obj = lodash.isArray(data) ? data.shift() : data;
-     
-            const result = flattenObject(obj);
+        Object.keys(result).map(item => {
+            
+            html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{{${item}}}</span>`;
+        });
 
-            Object.keys(result).map(item => {
-                
-                html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{{${item}}}</span>`;
-            });
+        html += '</div>';
 
-            html += '</div>';
+        field.append(html);
 
-            field.append(html);
-
-        }
-        
     }
 
 }
@@ -257,14 +250,22 @@ acf.addAction('append_field/name=data_source', async (field)=> {
     const post_id = field.val();
     const selected = wp.data.select( 'core/block-editor' ).getSelectedBlock();
 
-    console.log(post_id);
+    const data = await appp_get_endpoints_select(post_id);
 
-    const data = await appp_get_endpoints_select(post_id, post_id);
+    let json;
   
-    // if ( 'none' !== base_url ) {
-    //     appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
-    //     displayTokens( base_url + selected.attributes.data.rest_api_endpoints );
-    // }
+    if ( 'none' !== post_id ) {
+       //appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
+        if( 'external' === data['type'] ) {
+            const rsp = await fetch(data['url']);
+            json = await rsp.json();
+        }
+
+        if( 'local' === data['type'] ) {
+            json = data['items'];
+        }
+        displayTokens( json );
+    }
 
     // field.$el.find('select').on( 'change', async (e) => {
     //     jQuery('#data-tokens-wrap').remove();
@@ -274,10 +275,24 @@ acf.addAction('append_field/name=data_source', async (field)=> {
     // })    
 
     jQuery('[data-name=data_source]').find('select').on( 'change', async (e) => {
-        const base_url = jQuery('[data-name=data_source]').find('select').val();
+
+        console.log(e);
         jQuery('#data-tokens-wrap').remove();
         if ( 'none' !== e.target.value ) {
-            displayTokens( base_url );
+
+            const data = await appp_get_endpoints_select(e.target.value);
+
+            if( 'external' === data['type'] ) {
+                const rsp = await fetch(data['url']);
+                json = await rsp.json();
+            }
+       
+            if( 'local' === data['type'] ) {
+                json = data['items'];
+            }
+
+
+            displayTokens( json );
         }
         
     });
@@ -304,8 +319,8 @@ async function appp_set_endpoints_select(data, selected) {
 
 }
 
-async function appp_get_endpoints_select(post_id, base_url) {
-    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/datatable?base_url=${base_url}&post_id=${post_id}` });
+async function appp_get_endpoints_select(post_id) {
+    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/datatable?post_id=${post_id}` });
     console.log(data);
     return data;
 }

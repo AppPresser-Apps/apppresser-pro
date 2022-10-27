@@ -279,7 +279,15 @@
             "type": "acf_code_field",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6357f9fcd77c4",
+                        "operator": "==",
+                        "value": "external"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -324,5 +332,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666796742
+    "modified": 1666891665
 }

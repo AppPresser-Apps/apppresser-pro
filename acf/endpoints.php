@@ -44,56 +44,43 @@ add_action( 'rest_api_init', 'appp_app_endpoints' );
  */
 function appp_get_app_datatable( $request ) {
 
-	$url    = $request->get_param( 'base_url' );
 	$post_ID = $request->get_param( 'post_id' );
+	$data_fields = get_fields( $post_ID );
 
 	$data = array();
 
-	$data_fields = get_fields( $post_ID );
-
-	error_log(print_r($data_fields,true));
-
 	switch ( $data_fields['database_type'] ) {
 		case 'local':
-			
+			$data['type'] = $data_fields['database_type'];
+
+			$items = array();
+
+			foreach ( $data_fields['local_table']['body'] as $row ) {
+
+				foreach ( $row as $key => $value) {
+					$col  = $data_fields['local_table']['header'][ $key ]['c'];
+					$items[ $col ] = $row[$key]['c'];
+				}
+
+				
+			}
+
+			$data['items'] = $items;
+
 			break;
 
 		case 'external':
-			$data['type'] = $data_type;
+			$data['type']       = $data_fields['database_type'];
+			$data['url']        = $data_fields['rest_url'];
+			$data['headers']    = $data_fields['headers'];
+			$data['parameters'] = $data_fields['parameters'];
 			break;
-		
+
 		default:
-			
 			break;
 	}
 
-	// if ( have_rows( 'integration', 'options' ) ) :
-
-	// 	// Loop through rows.
-	// 	while ( have_rows( 'integration', 'options' ) ) :
-	// 		the_row();
-
-	// 		// Case: Paragraph layout.
-	// 		if ( get_row_layout() == 'rest_api' ) :
-
-	// 			$base_url = get_sub_field( 'base_url' );
-
-	// 			$post = get_post( $postID );
-
-	// 			if ( $url === $base_url ) {
-	// 				$data['url']         = $base_url;
-	// 				$data['endpoints'][] = get_sub_field( 'rest_api_endpoints' );
-	// 			}
-
-	// 		endif;
-
-	// 		// End loop.
-	// 	endwhile;
-
-	// 	// No value.
-	// else :
-	// 	// Do something...
-	// endif;
+	error_log( print_r( $data, true ) );
 
 	return $data;
 
@@ -235,13 +222,13 @@ function appp_format_toolbar( $block ) {
 
 		if ( 'button' === $button ) {
 			$left_buttons[] = array(
-				'icon'    => $block['attrs']['data'][ 'left_buttons_' . $key . '_icon' ],
-				'label'   => $block['attrs']['data'][ 'left_buttons_' . $key . '_label' ],
-				'action'  => $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ],
-				'route'   => 'router_push' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_route' ] : false,
-				'popover' => 'popover' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_popover' ] : false,
-				'modal_item'   => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
-				'type'    => $button,
+				'icon'       => $block['attrs']['data'][ 'left_buttons_' . $key . '_icon' ],
+				'label'      => $block['attrs']['data'][ 'left_buttons_' . $key . '_label' ],
+				'action'     => $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ],
+				'route'      => 'router_push' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_route' ] : false,
+				'popover'    => 'popover' === $block['attrs']['data'][ 'left_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'left_buttons_' . $key . '_popover' ] : false,
+				'modal_item' => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
+				'type'       => $button,
 			);
 		} else {
 			$left_buttons[] = array(
@@ -255,13 +242,13 @@ function appp_format_toolbar( $block ) {
 	foreach ( $rbtns as $key => $button ) {
 
 		$right_buttons[] = array(
-			'icon'    => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
-			'label'   => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
-			'action'  => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
-			'route'   => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
-			'popover' => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
-			'modal_item'   => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
-			'type'    => $button,
+			'icon'       => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
+			'label'      => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
+			'action'     => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
+			'route'      => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
+			'popover'    => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
+			'modal_item' => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
+			'type'       => $button,
 		);
 
 	}
