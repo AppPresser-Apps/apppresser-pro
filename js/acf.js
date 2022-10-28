@@ -255,7 +255,7 @@ acf.addAction('append_field/name=data_source', async (field)=> {
     let json;
   
     if ( 'none' !== post_id ) {
-       //appp_set_endpoints_select(data[base_url], selected.attributes.data.rest_api_endpoints );
+
         if( 'external' === data['type'] ) {
             const rsp = await fetch(data['url']);
             json = await rsp.json();
@@ -267,16 +267,8 @@ acf.addAction('append_field/name=data_source', async (field)=> {
         displayTokens( json );
     }
 
-    // field.$el.find('select').on( 'change', async (e) => {
-    //     jQuery('#data-tokens-wrap').remove();
-    //     if ( 'none' !== e.target.value ) {
-    //         appp_set_endpoints_select(data[e.target.value], 'none');
-    //     }
-    // })    
-
     jQuery('[data-name=data_source]').find('select').on( 'change', async (e) => {
 
-        console.log(e);
         jQuery('#data-tokens-wrap').remove();
         if ( 'none' !== e.target.value ) {
 

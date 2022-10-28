@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Data is local data sets or external databases. Data can be used in the fetch block.",
+            "message": "Data is local data sets or external REST API. Data can be used in the fetch block.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -332,5 +332,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666891665
+    "modified": 1666968572
 }
