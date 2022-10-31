@@ -15,11 +15,11 @@ $block_id = 'repeater-' . $block['id'];
 
 $blockClasses = implode( ' ', array( $block['className'] ) );
 
-$per_page    = get_field( 'per_page' );
-$data_source = get_field( 'data_source' );
+$per_page       = get_field( 'per_page' );
+$data_source    = get_field( 'data_source' );
 $request_method = get_field( 'request_method' );
 
-$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item'  );
+$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action' );
 
 ?>
 <style>
@@ -29,4 +29,3 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-i
 <div id="<?php echo $block_id; ?>" class="<?php echo $blockClasses; ?>">
 	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"/>
 </div>
-
