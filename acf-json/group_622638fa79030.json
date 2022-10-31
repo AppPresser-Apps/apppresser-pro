@@ -6,6 +6,7 @@
             "key": "field_62263904e081b",
             "label": "Header Image",
             "name": "header_image",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -25,6 +26,7 @@
             "key": "field_622665dd8ef61",
             "label": "Image Height",
             "name": "image_height",
+            "aria-label": "",
             "type": "range",
             "instructions": "",
             "required": 0,
@@ -45,6 +47,7 @@
             "key": "field_62263937e081c",
             "label": "Sub Title",
             "name": "sub_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -64,6 +67,7 @@
             "key": "field_62263943e081d",
             "label": "Title",
             "name": "title",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -83,6 +87,7 @@
             "key": "field_62263948e081e",
             "label": "Content",
             "name": "content",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -117,5 +122,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654812962
+    "modified": 1667171751
 }

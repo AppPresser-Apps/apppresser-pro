@@ -44,7 +44,7 @@ add_action( 'rest_api_init', 'appp_app_endpoints' );
  */
 function appp_get_app_datatable( $request ) {
 
-	$post_ID = $request->get_param( 'post_id' );
+	$post_ID     = $request->get_param( 'post_id' );
 	$data_fields = get_fields( $post_ID );
 
 	$data = array();
@@ -57,12 +57,10 @@ function appp_get_app_datatable( $request ) {
 
 			foreach ( $data_fields['local_table']['body'] as $row ) {
 
-				foreach ( $row as $key => $value) {
-					$col  = $data_fields['local_table']['header'][ $key ]['c'];
-					$items[ $col ] = $row[$key]['c'];
+				foreach ( $row as $key => $value ) {
+					$col           = $data_fields['local_table']['header'][ $key ]['c'];
+					$items[ $col ] = $row[ $key ]['c'];
 				}
-
-				
 			}
 
 			$data['items'] = $items;
@@ -442,6 +440,15 @@ function appp_format_block_data( $block ) {
 			}
 
 			$block['attrs']['data'] = array( 'segments' => $segments );
+
+			break;
+
+		case 'acf/repeater':
+			$post_id = $block['attrs']['data']['data_source'];
+
+			$fields = get_fields( $post_id );
+
+			$block['attrs']['data'] = array( 'data_source' => $fields );
 
 			break;
 	}
