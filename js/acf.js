@@ -87,6 +87,14 @@ acf.addAction('load', ()=> {
         // Get a list of all blocks with their ID, content and attributes
         const blocks = data.getBlocks();
         wp.data.dispatch("core/block-editor").selectBlock(blocks[0].clientId);
+
+
+        console.log(blocks);
+
+        blocks.map( block => {
+            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title').append(' ' + block.attributes.data.view_route )
+        });
+
     }
 
 
