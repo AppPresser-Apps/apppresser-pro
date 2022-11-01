@@ -221,7 +221,7 @@ function datatable_updated_messages( $messages ) {
 		3  => __( 'Custom field deleted.' ),
 		4  => __( 'Data updated.' ),
 		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Data restored to revision from %s' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-		6  => sprintf( __( 'Data published. <a href="%s">View data</a>' ), esc_url( get_permalink( $post_ID ) ) ),
+		6  => sprintf( __( 'Data published.' ), esc_url( get_permalink( $post_ID ) ) ),
 		7  => __( 'Data saved.' ),
 		8  => sprintf( __( 'Data submitted.' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
 		9  => sprintf( __( 'Data scheduled for: <strong>%1$s</strong>.' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
