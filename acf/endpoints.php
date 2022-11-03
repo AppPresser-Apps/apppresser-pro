@@ -78,8 +78,6 @@ function appp_get_app_datatable( $request ) {
 			break;
 	}
 
-	error_log( print_r( $data, true ) );
-
 	return $data;
 
 }
@@ -448,7 +446,24 @@ function appp_format_block_data( $block ) {
 
 			$fields = get_fields( $post_id );
 
-			$block['attrs']['data'] = array( 'data_source' => $fields );
+			if ( 'local' === $fields['database_type'] ) {
+
+				foreach ( $fields['local_table']['body'] as $row ) {
+
+					$cells = array();
+
+					foreach ( $row as $key => $value ) {
+						$col           = $fields['local_table']['header'][ $key ]['c'];
+						$cells[ $col ] = $row[ $key ]['c'];
+
+					}
+
+					$block['attrs']['data']['local_data'][] = $cells;
+				}
+
+			}
+
+			$block['attrs']['data']['data_source'] = $fields;
 
 			break;
 	}
