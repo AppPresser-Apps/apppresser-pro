@@ -93,7 +93,7 @@ acf.addAction('load', ()=> {
 
         // Add custom title to block view navigation list
         blocks.map( block => {
-            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title').append(' ' + (block.attributes.data.view_route || '') )
+            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' ' + (block.attributes.data.view_route || '') )
         });
 
     }
