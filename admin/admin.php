@@ -172,18 +172,3 @@ if ( is_admin() ) {
 		}
 	);
 }
-
-/**
- * Filter app post type template location.
- *
- * @param string $single_template
- * @return void
- */
-function appp_preview_template( $single_template ) {
-	global $wp_query, $post;
-	if ( 'app' === $post->post_type ) {
-		$single_template = plugin_dir_path( __FILE__ ) . 'single-template.php';
-	}
-	return $single_template;
-}
-add_filter( 'single_template', 'appp_preview_template' );

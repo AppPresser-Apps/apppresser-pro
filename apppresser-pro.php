@@ -24,11 +24,11 @@ require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
 require dirname( __FILE__ ) . '/vendors/acf-code-field/acf-code-field.php';
 require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-table-field/acf-table.php';
 
+require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/admin/admin.php';
 require dirname( __FILE__ ) . '/admin/css.php';
 require dirname( __FILE__ ) . '/admin/media.php';
 require dirname( __FILE__ ) . '/helpers/colors.php';
-require dirname( __FILE__ ) . '/post-type.php';
 require dirname( __FILE__ ) . '/block-loader.php';
 require dirname( __FILE__ ) . '/gutenberg.php';
 

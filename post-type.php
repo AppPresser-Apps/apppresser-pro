@@ -230,3 +230,21 @@ function datatable_updated_messages( $messages ) {
 	return $messages;
 }
 add_filter( 'post_updated_messages', 'datatable_updated_messages' );
+
+
+/**
+ * Filter app post type template location.
+ *
+ * @param string $single_template
+ * @return void
+ */
+function appp_preview_template( $template, $type, $templates ) {
+	global $wp_query, $post;
+
+	if ( 'app' === $post->post_type ) {
+
+		$template = plugin_dir_path( __FILE__ ) . '/admin/single-template.php';
+	}
+	return $template;
+}
+add_filter( 'single_template', 'appp_preview_template', 10, 3 );
