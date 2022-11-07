@@ -371,16 +371,18 @@ function appp_format_block_data( $block ) {
 
 			}
 
-			// Creates an array from integer so we can loop through ACF data that isnt an array.
-			$gradcolors = range( 0, ( $block['attrs']['data']['background_gradient_colors'] - 1 ) );
-			$gradients  = array();
+			if ( isset( $block['attrs']['data']['background_gradient_colors'] ) ) {
+				// Creates an array from integer so we can loop through ACF data that isnt an array.
+				$gradcolors = range( 0, ( $block['attrs']['data']['background_gradient_colors'] - 1 ) );
+				$gradients  = array();
 
-			foreach ( $gradcolors as $gradindex ) {
-				$gradients[] = $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ];
-				unset( $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ] );
+				foreach ( $gradcolors as $gradindex ) {
+					$gradients[] = $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ];
+					unset( $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ] );
+				}
+
+				$block['attrs']['data']['background_gradient_colors'] = $gradients;
 			}
-
-			$block['attrs']['data']['background_gradient_colors'] = $gradients;
 
 			break;
 		case 'acf/ion-item':

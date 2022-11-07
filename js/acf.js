@@ -1,7 +1,10 @@
+// Force ionic to display ios styles in the editor.
 const html = document.querySelector('html');
 html.setAttribute( 'mode', 'ios');
 
-
+/**
+ * filter ACF color picker defaults to match ionic defaults.
+ */
 acf.add_filter('color_picker_args', function( args, field ){
 
     // do something to args
@@ -32,7 +35,9 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
-
+/**
+ * Add theem colors to HTML head on gutenberg load.
+ */
 acf.add_action('load', (e)=> {
 
     window.jQuery('a.acf-icon.-duplicate').remove();
@@ -75,6 +80,9 @@ function appp_create_style_from_properties(prop) {
     document.head.appendChild(style);
 }
 
+/**
+ * ACF gutenberg loaded hook.
+ */
 acf.addAction('load', ()=> {
 
     if (wp.data) {
@@ -102,9 +110,12 @@ acf.addAction('load', ()=> {
 
     }
 
-
 });
 
+/**
+ * Add custom title to block view navigation list on view.
+ * @param {*} blocks 
+ */
 function setListViewTitle(blocks) {
 
     blocks.map( block => {
@@ -126,7 +137,7 @@ acf.addAction('append_field/name=data_source', function( field ){
 
 
 /**
- * Flatten object to dot notaion path.
+ * Flatten js object to dot notaion path.
  * @param {*} o obj. 
  * @returns 
  */
