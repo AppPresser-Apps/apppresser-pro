@@ -84,22 +84,34 @@ acf.addAction('load', ()=> {
         // Get the currently selected block.
         //const selected = data.getSelectedBlock();
     
-        // Get a list of all blocks with their ID, content and attributes
+        // Get a list of all blocks with their ID, content and attributes.
         const blocks = data.getBlocks();
         wp.data.dispatch("core/block-editor").selectBlock(blocks[0].clientId);
 
+        // Add custom title to block view navigation list on load
+        setListViewTitle(blocks);  ;
 
-        console.log(blocks);
+         // Add custom title to block view navigation list on view toggle.
+        jQuery('.edit-post-header-toolbar__list-view-toggle').bind('click', ()=> {
 
-        // Add custom title to block view navigation list
-        blocks.map( block => {
-            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' ' + (block.attributes.data.view_route || '') )
-        });
+            setTimeout(() => {
+            setListViewTitle(blocks);    
+            }, 300);
+          
+          });
 
     }
 
 
 });
+
+function setListViewTitle(blocks) {
+
+    blocks.map( block => {
+        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' ' + (block.attributes.data.view_route || '') );
+    });
+
+}
 
 acf.addAction('remount', function ($el) {
     //console.log($el);
