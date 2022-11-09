@@ -62,6 +62,12 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		width: 100%;
 	}
 
+	.wp-block-acf-view.is-highlighted {
+		outline: 0px !important;
+		box-shadow: none !important;
+	}
+
+
 	.<?php echo $className; ?> .view-wrap {
 		border: 1px solid #e0e0e0;
 		height: 667px;

@@ -320,7 +320,7 @@ function appp_format_block_data( $block ) {
 	switch ( $block['blockName'] ) {
 		case 'acf/text':
 			if ( isset( $block['attrs']['data']['text'] ) ) {
-				$block['attrs']['data']['text'] = htmlentities($block['attrs']['data']['text']);
+				$block['attrs']['data']['text'] = $block['attrs']['data']['text'];
 			}
 			break;
 		case 'acf/button':
