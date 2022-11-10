@@ -180,6 +180,10 @@ function appp_get_app_data( $request ) {
 				if ( 'acf/onboarding' === $block['blockName'] ) {
 					$onboarding[] = $block;
 				}
+
+				if ( 'acf/popover' === $block['blockName'] ) {
+					$popovers[] = $block;
+				}
 			}
 		}
 
@@ -189,6 +193,7 @@ function appp_get_app_data( $request ) {
 			'views'         => $views,
 			'side_menu'     => $menu,
 			'modals'        => $modals,
+			'popovers'      => $popovers,
 			'onboarding'    => $onboarding,
 		);
 
@@ -467,7 +472,6 @@ function appp_format_block_data( $block ) {
 
 					$block['attrs']['data']['local_data'][] = $cells;
 				}
-
 			}
 
 			$block['attrs']['data']['data_source'] = $fields;
