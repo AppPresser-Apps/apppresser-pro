@@ -103,7 +103,7 @@ acf.addAction('load', ()=> {
         jQuery('.edit-post-header-toolbar__list-view-toggle').bind('click', ()=> {
 
             setTimeout(() => {
-            setListViewTitle(blocks);    
+            setListViewTitle(blocks);
             }, 300);
           
           });
@@ -119,7 +119,26 @@ acf.addAction('load', ()=> {
 function setListViewTitle(blocks) {
 
     blocks.map( block => {
-        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' ' + (block.attributes.data.view_route || '') );
+        //console.log('js', block);
+
+        let title = '';
+
+        switch (block.name) {
+            case 'acf/view':
+                title = block.attributes.data.view_route;
+                break;
+            case 'acf/modal':
+                title = block.attributes.data.view_route;
+                break;
+            case 'acf/popover':
+                title = block.attributes.data.name;
+                break;
+        
+            default:
+                break;
+        }
+
+        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' - ' + title );
     });
 
 }

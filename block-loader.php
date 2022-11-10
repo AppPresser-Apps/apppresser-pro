@@ -69,7 +69,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'popover',
 				'title'           => __( 'Popover' ),
-				'description'     => __( 'A Popover is a dialog that appears on top of the current page. It can be used for anything, but generally it is used for overflow actions that don\'t fit in the navigation bar.' ),
+				'description'     => __( 'A Popover is a dialog that appears on top of the current page. It can be used for anything, but generally it is used for overflow actions that don\'t fit in the toolbar.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/layout/popover/block.php',
 				'category'        => 'appp_view',
 				'icon'            => 'admin-page',
