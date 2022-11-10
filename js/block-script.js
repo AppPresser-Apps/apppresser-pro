@@ -78,6 +78,9 @@ function apppFilterBlockRegister(settings, name) {
     case "acf/modal":
       settings.parent = ['core/post-content'];
       break;
+    case "acf/popover":
+      settings.parent = ['core/post-content'];
+      break;
     case "acf/onboard":
       settings.parent = ['core/post-content'];
       break;
@@ -115,34 +118,34 @@ function apppFilterBlockRegister(settings, name) {
       break;
     case "core/spacer":
       settings.category = "appp_layout";
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/repeater", "acf/popover"];
       break;
     case "acf/button":
-      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater"];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "acf/popover"];
       break;
     case "acf/text":
-      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "custom/section"];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "custom/section", "acf/popover"];
       break;
     case "acf/card":
       settings.parent = ["acf/view", "acf/modal", "acf/repeater"];
       break;
     case "acf/ion-image":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover"];
       break;
     case "acf/ion-thumbnail":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover"];
       break;
     case "acf/ion-avatar":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover"];
       break;
     case "acf/ion-chip":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover"];
       break;
     case "acf/ion-icon":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover"];
       break;
     case "acf/repeater":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover"];
       break;
     case "acf/breadcrumbs":
       settings.parent = ["acf/view", "acf/modal"];
@@ -151,13 +154,13 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view", "acf/modal"];
       break;
       case "acf/list-header":
-        settings.parent = ["acf/view", "acf/modal", "acf/side-menu"];
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover"];
         break;
       case "acf/ion-item":
-        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle"];
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle", "acf/popover"];
         break;
       case "acf/inner-segment":
-        settings.parent = ["acf/segment"];
+        settings.parent = ["acf/segment", "acf/popover"];
         break;
   }
 

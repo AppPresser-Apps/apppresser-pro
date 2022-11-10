@@ -66,6 +66,11 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		width: 100%;
 	}
 
+	.wp-block-acf-modal.is-highlighted {
+		outline: 0px !important;
+		box-shadow: none !important;
+	}
+
 	.<?php echo $className; ?> .modal-wrap {
 		border: 1px solid #e0e0e0;
 		height: 667px;
@@ -135,7 +140,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	  }
 </style>
 
-<div id="<?php echo esc_attr( $id ); ?>" class="modal <?php echo esc_attr( $className ); ?>">
+<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
 
 	<!-- <div class="block-tag">
 		<div></div>
