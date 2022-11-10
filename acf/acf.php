@@ -50,6 +50,33 @@ function appp_load_route_field_choices( $field ) {
 }
 add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
 
+
+/**
+ * Load popover select with name entered on each view.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_load_popover_field_choices( $field ) {
+	global $post;
+
+	$data = appp_get_block_data( $post, 'acf/popover', 'name' );
+
+	if ( $data ) {
+		$choices = array( 'none' => 'None' );
+
+		foreach ( $data as $key => $value ) {
+			$choices[ $value ] = $value;
+		}
+
+		$field['choices'] = $choices;
+	}
+
+	return $field;
+
+}
+add_filter( 'acf/load_field/name=popover', 'appp_load_popover_field_choices' );
+
 /**
  * Load theme select with theme items.
  *
@@ -132,6 +159,9 @@ function appp_get_block_data( $post, $block_name, $field_name ) {
 							break;
 						case 'acf/modal':
 							$content[] = $block;
+							break;
+						case 'acf/popover':
+							$content[] = $block['attrs']['data'][ $field_name ];
 							break;
 					}
 				}
