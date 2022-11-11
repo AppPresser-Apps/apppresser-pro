@@ -678,12 +678,8 @@ function appp_init_block_types() {
 				'title'           => 'Action',
 				'description'     => 'Action block wraps an element to provide different navigation and functionality',
 				'category'        => 'appp_layout',
-				'mode'            => 'preview',
-				'align'           => 'center',
-				'icon'            => 'layout',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
-				'parent'          => array( 'acf/view' ),
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,

@@ -147,6 +147,7 @@ function appp_get_allowed_view_blocks() {
 	unset( $arr['acf/view'] );
 	unset( $arr['acf/modal'] );
 	unset( $arr['acf/onboard'] );
+	unset( $arr['acf/popover'] );
 	unset( $arr['acf/inner-column'] );
 
 	return array_merge(
@@ -177,6 +178,7 @@ function appp_get_allowed_innerblocks() {
 		'acf/ion-avatar',
 		'acf/ion-icon',
 		'acf/container',
+		'acf/action',
 	);
 }
 
