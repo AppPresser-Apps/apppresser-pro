@@ -19,7 +19,7 @@ if ( ! empty( $block['className'] ) ) {
 	$className .= ' ' . $block['className'];
 }
 
-$allowed_blocks = appp_get_allowed_view_blocks();
+$allowed_blocks = appp_get_allowed_innerblocks();
 
 ?>
 
