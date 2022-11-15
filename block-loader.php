@@ -680,6 +680,7 @@ function appp_init_block_types() {
 				'category'        => 'appp_layout',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
