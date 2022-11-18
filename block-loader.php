@@ -693,6 +693,48 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'iframe',
+				'title'           => 'Iframe',
+				'description'     => '',
+				'category'        => 'appp_layout',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'icon'            => 'visibility',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/iframe/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'bp-profile',
+				'title'           => 'Profile Fields',
+				'description'     => '',
+				'category'        => 'appp_buddypress',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/profile.php',
+			)
+		);
+
 		// End Create-ACF-Block
 
 	}

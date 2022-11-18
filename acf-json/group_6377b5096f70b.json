@@ -1,13 +1,14 @@
 {
-    "key": "group_63067dc352bba",
-    "title": "test",
+    "key": "group_6377b5096f70b",
+    "title": "BuddyPress Profile",
     "fields": [
         {
-            "key": "field_63067dc428c5a",
-            "label": "test",
-            "name": "test",
-            "type": "text",
-            "instructions": "",
+            "key": "field_6377b50aad79d",
+            "label": "URL",
+            "name": "url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "The url to the BuddyPress site.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,10 +17,7 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "placeholder": ""
         }
     ],
     "location": [
@@ -27,7 +25,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/test"
+                "value": "acf\/bp-profile"
             }
         ]
     ],
@@ -40,5 +38,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661369816
+    "modified": 1668789650
 }

@@ -84,6 +84,34 @@
             "placeholder": ""
         },
         {
+            "key": "field_63751320301f5",
+            "label": "Path",
+            "name": "path",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "router_push"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_62aa269904b49",
             "label": "Alert Message",
             "name": "alert_message",
@@ -1757,5 +1785,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666816907
+    "modified": 1668617033
 }

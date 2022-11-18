@@ -259,6 +259,10 @@ function appp_block_category( $categories, $post ) {
 				'title' => __( 'Data', 'apppresser' ),
 			),
 			array(
+				'slug'  => 'appp_buddypress',
+				'title' => __( 'BuddyPress', 'apppresser' ),
+			),
+			array(
 				'slug'  => 'appp_third_party',
 				'title' => __( 'Third Party', 'apppresser' ),
 			),
