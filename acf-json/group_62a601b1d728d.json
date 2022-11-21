@@ -1758,20 +1758,6 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/button"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/ion-item"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
                 "value": "acf\/action"
             }
         ]
@@ -1785,5 +1771,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1668617033
+    "modified": 1669054089
 }

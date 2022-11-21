@@ -681,6 +681,7 @@ function appp_init_block_types() {
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
 				'parent'          => array( 'acf/view' ),
+				'icon'            => 'superhero',
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
@@ -701,6 +702,7 @@ function appp_init_block_types() {
 				'category'        => 'appp_layout',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
 				'icon'            => 'visibility',
 				'supports'        => array(
 					'mode'          => false,
@@ -722,6 +724,7 @@ function appp_init_block_types() {
 				'category'        => 'appp_buddypress',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
 				'icon'            => 'buddicons-buddypress-logo',
 				'supports'        => array(
 					'mode'          => false,
