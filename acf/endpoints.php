@@ -246,6 +246,7 @@ function appp_format_toolbar( $block ) {
 			'icon'       => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
 			'label'      => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
 			'action'     => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
+			'custom_action'     => $block['attrs']['data'][ 'right_buttons_' . $key . '_custom' ],
 			'route'      => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
 			'popover'    => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
 			'modal_item' => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,

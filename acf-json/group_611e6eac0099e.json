@@ -6,6 +6,7 @@
             "key": "field_62ccb0c485d5f",
             "label": "Settings",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -23,6 +24,7 @@
             "key": "field_6221141d56a46",
             "label": "Route",
             "name": "view_route",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -42,6 +44,7 @@
             "key": "field_62190c31f4bb8",
             "label": "Visibility",
             "name": "visibility",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -61,6 +64,7 @@
             "key": "field_6220ec41ae077",
             "label": "Toolbar",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -78,6 +82,7 @@
             "key": "field_621ea2835ebaf",
             "label": "Title",
             "name": "title",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -97,6 +102,7 @@
             "key": "field_62276c7894efa",
             "label": "Hide Toolbar",
             "name": "hide_toolbar",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -116,6 +122,7 @@
             "key": "field_622234420074a",
             "label": "Toolbar Color",
             "name": "toolbar_color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -148,6 +155,7 @@
             "key": "field_6220f340a223a",
             "label": "Left Buttons",
             "name": "left_buttons",
+            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -168,6 +176,7 @@
                             "key": "field_6220f93af2437",
                             "label": "Icon",
                             "name": "icon",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1534,6 +1543,7 @@
                             "key": "field_6297718183798",
                             "label": "Label",
                             "name": "label",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -1553,6 +1563,7 @@
                             "key": "field_6297718183799",
                             "label": "Icon",
                             "name": "icon",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -2919,6 +2930,7 @@
                             "key": "field_62e157769ddbb",
                             "label": "Label",
                             "name": "label",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -2938,6 +2950,7 @@
                             "key": "field_62e157769ddbc",
                             "label": "Icon",
                             "name": "icon",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -4294,6 +4307,7 @@
                             "key": "field_62e157caba10c",
                             "label": "Action",
                             "name": "action",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -4310,7 +4324,10 @@
                                 "alert": "Alert Message",
                                 "popover": "Popover",
                                 "action_sheet": "Action Sheet",
-                                "modal": "Modal"
+                                "modal": "Modal",
+                                "external_url": "External URL",
+                                "internal_url": "Internal URL",
+                                "custom": "Custom"
                             },
                             "default_value": "none",
                             "allow_null": 0,
@@ -4324,6 +4341,7 @@
                             "key": "field_62e157ebba10d",
                             "label": "Route",
                             "name": "route",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -4354,6 +4372,7 @@
                             "key": "field_62e1584eba10e",
                             "label": "Alert Message",
                             "name": "alert_message",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -4381,6 +4400,7 @@
                             "key": "field_62e158b829fd6",
                             "label": "Popover",
                             "name": "popover",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -4422,6 +4442,7 @@
             "key": "field_62210d5dc36ec",
             "label": "Right Buttons",
             "name": "right_buttons",
+            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -4442,6 +4463,7 @@
                             "key": "field_62210d74c36ed",
                             "label": "Label",
                             "name": "label",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -4461,6 +4483,7 @@
                             "key": "field_62210d7ac36ee",
                             "label": "Icon",
                             "name": "icon",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -5817,6 +5840,7 @@
                             "key": "field_6221108f07584",
                             "label": "Action",
                             "name": "action",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -5831,9 +5855,12 @@
                                 "router_push": "Navigate to View",
                                 "router_back": "Navigate Back",
                                 "alert": "Alert Message",
+                                "external_url": "External URL",
+                                "internal_url": "Internal URL",
                                 "popover": "Popover",
                                 "action_sheet": "Action Sheet",
-                                "modal": "Modal"
+                                "modal": "Modal",
+                                "custom": "Custom"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -5847,6 +5874,7 @@
                             "key": "field_6221111e6c54f",
                             "label": "Route",
                             "name": "route",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -5877,6 +5905,7 @@
                             "key": "field_62aa01a1a886d",
                             "label": "Alert Message",
                             "name": "alert_message",
+                            "aria-label": "",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -5904,6 +5933,7 @@
                             "key": "field_62e1556ea7860",
                             "label": "Popover",
                             "name": "popover",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -5936,6 +5966,7 @@
                             "key": "field_632355752f5ba",
                             "label": "Modal",
                             "name": "modal_item",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -5961,6 +5992,84 @@
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": ""
+                        },
+                        {
+                            "key": "field_637be6d5fc870",
+                            "label": "External URL",
+                            "name": "external_url_",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6221108f07584",
+                                        "operator": "==",
+                                        "value": "external_url"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_637be708fc871",
+                            "label": "Internal URL",
+                            "name": "internall_url",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6221108f07584",
+                                        "operator": "==",
+                                        "value": "internal_url"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_637be72ccf88f",
+                            "label": "Custom",
+                            "name": "custom",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6221108f07584",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -5975,6 +6084,7 @@
             "key": "field_6225101ff6fac",
             "label": "Content",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -5992,6 +6102,7 @@
             "key": "field_62251042f6fad",
             "label": "Background",
             "name": "background",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -6027,6 +6138,7 @@
             "key": "field_6220ec6a68f93",
             "label": "Padding (16px)",
             "name": "padding",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -6042,6 +6154,7 @@
                     "key": "field_62262d35a3069",
                     "label": "Left",
                     "name": "padding_left",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -6063,6 +6176,7 @@
                     "key": "field_62262d59a306a",
                     "label": "Top",
                     "name": "padding_top",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -6084,6 +6198,7 @@
                     "key": "field_62262d6ba306b",
                     "label": "Right",
                     "name": "padding_right",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -6105,6 +6220,7 @@
                     "key": "field_62262d78a306c",
                     "label": "Bottom",
                     "name": "padding_bottom",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -6158,5 +6274,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1663260242
+    "modified": 1669064682
 }

@@ -39,10 +39,12 @@
                 "router_push": "Navigate to View",
                 "router_back": "Navigate Back",
                 "external_url": "External URL",
+                "internal_url": "Internal URL",
                 "alert": "Alert Message",
                 "popover": "Popover",
                 "action_sheet": "Action Sheet",
-                "modal": "Modal"
+                "modal": "Modal",
+                "custom": "Custom"
             },
             "default_value": "none",
             "return_format": "value",
@@ -1744,6 +1746,59 @@
             },
             "default_value": "",
             "placeholder": ""
+        },
+        {
+            "key": "field_637be54a8633c",
+            "label": "Internal URL",
+            "name": "internal_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "internal_url"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_637be56f1ad81",
+            "label": "Custom Action",
+            "name": "custom_action",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -1771,5 +1826,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669054089
+    "modified": 1669064139
 }

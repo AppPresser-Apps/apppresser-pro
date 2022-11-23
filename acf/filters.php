@@ -100,9 +100,12 @@ function appp_acf_dynamic_action( $field ) {
 		'router_push'  => 'Navigate to View',
 		'router_back'  => 'Navigate Back',
 		'alert'        => 'Alert Message',
+		'external_url' => 'External URL',
+		'internal_url' => 'Internal URL',
 		'popover'      => 'Popover',
 		'action_sheet' => 'Action Sheet',
 		'modal'        => 'Modal',
+		'custom'       => 'Custom',
 	);
 
 	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );
@@ -171,7 +174,7 @@ add_filter( 'acf/fields/flexible_content/layout_title/name=integration', 'appp_f
  */
 function appp_filter_rest_api_select( $field ) {
 
-	$field['choices'][ 'none' ] = 'None';
+	$field['choices']['none'] = 'None';
 
 	$args = array(
 		'post_type'   => 'datatable',
