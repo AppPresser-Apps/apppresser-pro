@@ -116,6 +116,9 @@ function apppFilterBlockRegister(settings, name) {
     case "acf/fetch":
       settings.parent = ["acf/view"];
       break;
+    case "acf/form":
+      settings.parent = ["acf/view"];
+      break;
     case "core/spacer":
       settings.category = "appp_layout";
       settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/repeater", "acf/popover"];

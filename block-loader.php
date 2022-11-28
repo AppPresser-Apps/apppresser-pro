@@ -301,7 +301,7 @@ function appp_init_block_types() {
 				'description'     => __( 'Card' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/patterns/card.php',
 				'category'        => 'appp_patterns',
-				'icon'            => 'feedback',
+				'icon'            => 'excerpt-view',
 				'keywords'        => array( 'component', 'card' ),
 				'post_types'      => array( 'app' ),
 				'usesContext'     => array( 'acf/fields' ),
@@ -735,6 +735,28 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/profile.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'form',
+				'title'           => 'Form Builder',
+				'description'     => 'An HTML form is used to collect user input. The user input is most often sent to a server for processing.',
+				'category'        => 'appp_data',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'icon'            => 'editor-kitchensink',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/data/form/block.php',
 			)
 		);
 

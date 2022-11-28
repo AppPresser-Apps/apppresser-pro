@@ -1,0 +1,42 @@
+{
+    "key": "group_6384d532959f2",
+    "title": "Form",
+    "fields": [
+        {
+            "key": "field_6384d53368293",
+            "label": "POST URL",
+            "name": "post_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Enter url for HTTP POST request.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/form"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1669649961
+}
