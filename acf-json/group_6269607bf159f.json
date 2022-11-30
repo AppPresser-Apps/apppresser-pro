@@ -3074,7 +3074,7 @@
                 "checkbox": "Checkbox",
                 "radio": "Radio",
                 "input": "Input",
-                "textarea: Textarea": "textarea: Textarea"
+                "textarea": "Textarea"
             },
             "default_value": "none",
             "return_format": "value",
@@ -3480,7 +3480,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
+                    "message": "input must contain value before submission.",
                     "default_value": 0,
                     "ui": 0,
                     "ui_on_text": "",
@@ -3555,6 +3555,54 @@
                     "ui_off_text": ""
                 },
                 {
+                    "key": "field_638789164dfa8",
+                    "label": "Validation",
+                    "name": "validation",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "validate input before form submission.",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_638789424dfa9",
+                    "label": "Validation Pattern",
+                    "name": "validation_pattern",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_638789164dfa8",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_6307b6b1b8d3d",
                     "label": "Type",
                     "name": "input_type",
@@ -3572,6 +3620,7 @@
                         "text": "Text",
                         "password": "Password",
                         "number": "Number",
+                        "tel": "Tel",
                         "email": "Email",
                         "url": "URL",
                         "search": "Search",
@@ -3581,7 +3630,7 @@
                         "textarea": "Textarea"
                     },
                     "default_value": "textarea",
-                    "return_format": "",
+                    "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
                     "ui": 0,
@@ -3707,5 +3756,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669657799
+    "modified": 1669827074
 }
