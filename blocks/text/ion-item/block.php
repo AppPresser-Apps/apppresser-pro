@@ -32,6 +32,7 @@ $label_position    = get_field( 'label_position' );
 $description_color = get_field( 'description_color' );
 $input_type        = get_field( 'input_type' );
 $toggle            = get_field( 'toggle' );
+$checkbox          = get_field( 'checkbox' );
 
 $select = get_field( 'select' );
 $input  = get_field( 'input' );
@@ -45,7 +46,7 @@ $required_text = empty( $input['required_text'] ) ? '*' : '';
 
 $is_required = $required ? $required_text : '';
 
-//error_log( print_r( $required_text, true ) );
+// error_log( print_r( $required_text, true ) );
 
 ?>
 
@@ -80,15 +81,20 @@ $is_required = $required ? $required_text : '';
 				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>
+
+		<?php if ( ! empty( $label ) ) : ?>
 		<ion-label <?php echo $position; ?> color="<?php echo esc_attr( 'default' !== $label_color ? $label_color : '' ); ?>">
 			<?php echo esc_attr( $label ); ?> <?php echo esc_attr( $is_required ); ?>
 			<ion-text color="<?php echo esc_attr( $description_color ); ?>"><p> <?php echo esc_attr( $description ); ?> </p></iom-text>
 		</ion-label>
-		<?php
-
-
+			<?php
+		endif;
 
 		switch ( $input_type ) {
+			case 'checkbox':
+				echo '<ion-checkbox color=' . $checkbox['color'] . ' checked slot="start">ddddddd</ion-checkbox> 
+					<ion-label>' . $checkbox['description'] . '</ion-label>';
+				break;
 			case 'toggle':
 				echo '<ion-toggle color=' . $toggle['color'] . ' checked></ion-toggle>';
 				break;
@@ -107,7 +113,7 @@ $is_required = $required ? $required_text : '';
 						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 					case 'textarea':
-						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '" autogrow="'. $input['autogrow'] .'" rows="'. $input['rows'] .'"></ion-textarea>';
+						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
 						break;
 					default:
 						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';

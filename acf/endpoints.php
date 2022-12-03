@@ -243,14 +243,14 @@ function appp_format_toolbar( $block ) {
 	foreach ( $rbtns as $key => $button ) {
 
 		$right_buttons[] = array(
-			'icon'       => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
-			'label'      => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
-			'action'     => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
-			'custom_action'     => $block['attrs']['data'][ 'right_buttons_' . $key . '_custom' ],
-			'route'      => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
-			'popover'    => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
-			'modal_item' => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
-			'type'       => $button,
+			'icon'          => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
+			'label'         => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
+			'action'        => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
+			'custom_action' => $block['attrs']['data'][ 'right_buttons_' . $key . '_custom' ],
+			'route'         => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
+			'popover'       => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
+			'modal_item'    => 'modal' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_modal_item' ] : false,
+			'type'          => $button,
 		);
 
 	}
@@ -322,6 +322,9 @@ function appp_format_block_data( $block ) {
 			}
 		}
 	}
+
+	unset( $block['innerContent'] );
+	unset( $block['innerHTML'] );
 
 	switch ( $block['blockName'] ) {
 		case 'acf/text':
@@ -476,6 +479,91 @@ function appp_format_block_data( $block ) {
 			}
 
 			$block['attrs']['data']['data_source'] = $fields;
+
+			break;
+
+		case 'acf/form':
+			$sinputs  = range( 0, ( $block['attrs']['data']['hidden_inputs'] - 1 ) );
+			$sheaders = range( 0, ( $block['attrs']['data']['headers'] - 1 ) );
+			$sparams  = range( 0, ( $block['attrs']['data']['parameters'] - 1 ) );
+
+			/**
+			 * Format input into array.
+			 */
+			foreach ( $sinputs as $key ) {
+
+				$name  = $block['attrs']['data'][ 'hidden_inputs_' . $key . '_name' ];
+				$value = $block['attrs']['data'][ 'hidden_inputs_' . $key . '_value' ];
+
+				if ( ! empty( $name ) ) {
+
+					$input[] = array(
+						'name'   => $name,
+						'value' => $value,
+					);
+
+					$block['attrs']['data']['hidden_inputs'] = $input;
+
+				} else {
+					$block['attrs']['data']['hidden_inputs'] = array();
+				}
+
+				unset( $block['attrs']['data'][ 'hidden_inputs_' . $key . '_name' ] );
+				unset( $block['attrs']['data'][ 'hidden_inputs_' . $key . '_value' ] );
+
+			}
+
+			/**
+			 * Format headers into array.
+			 */
+			foreach ( $sheaders as $key ) {
+
+				$key   = $block['attrs']['data'][ 'headers_' . $key . '_key' ];
+				$value = $block['attrs']['data'][ 'headers_' . $key . '_value' ];
+
+				if ( ! empty( $key ) && ! empty( $value ) ) {
+
+					$param[] = array(
+						'key'   => $key,
+						'value' => $value,
+					);
+
+					$block['attrs']['data']['headers'] = $param;
+
+				} else {
+					$block['attrs']['data']['headers'] = array();
+				}
+
+				unset( $block['attrs']['data'][ 'headers_' . $key . '_key' ] );
+				unset( $block['attrs']['data'][ 'headers_' . $key . '_value' ] );
+
+			}
+
+			/**
+			 * Format params into array.
+			 */
+			foreach ( $sparams as $key ) {
+
+				$key   = $block['attrs']['data'][ 'parameters_' . $key . '_key' ];
+				$value = $block['attrs']['data'][ 'parameters_' . $key . '_value' ];
+
+				if ( ! empty( $key ) && ! empty( $value ) ) {
+
+					$param[] = array(
+						'key'   => $key,
+						'value' => $value,
+					);
+
+					$block['attrs']['data']['parameters'] = $param;
+
+				} else {
+					$block['attrs']['data']['parameters'] = array();
+				}
+
+				unset( $block['attrs']['data'][ 'parameters_' . $key . '_key' ] );
+				unset( $block['attrs']['data'][ 'parameters_' . $key . '_value' ] );
+
+			}
 
 			break;
 	}

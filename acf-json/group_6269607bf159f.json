@@ -3439,6 +3439,26 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_638b77ce1fdd8",
+                    "label": "description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -3603,6 +3623,26 @@
                     "append": ""
                 },
                 {
+                    "key": "field_6388eb8e6d7f5",
+                    "label": "Hidden",
+                    "name": "hidden",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 0
+                },
+                {
                     "key": "field_6307b6b1b8d3d",
                     "label": "Type",
                     "name": "input_type",
@@ -3756,5 +3796,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669827074
+    "modified": 1670084572
 }
