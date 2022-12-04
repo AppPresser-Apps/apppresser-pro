@@ -3623,6 +3623,34 @@
                     "append": ""
                 },
                 {
+                    "key": "field_638cbc5b68960",
+                    "label": "Validation Error Message",
+                    "name": "validation_error_message",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_638789164dfa8",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_6388eb8e6d7f5",
                     "label": "Hidden",
                     "name": "hidden",
@@ -3796,5 +3824,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670084572
+    "modified": 1670167697
 }
