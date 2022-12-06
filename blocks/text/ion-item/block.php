@@ -33,6 +33,8 @@ $description_color = get_field( 'description_color' );
 $input_type        = get_field( 'input_type' );
 $toggle            = get_field( 'toggle' );
 $checkbox          = get_field( 'checkbox' );
+$padding_top          = get_field( 'padding_top' );
+$padding_bottom          = get_field( 'padding_bottom' );
 
 $select = get_field( 'select' );
 $input  = get_field( 'input' );
@@ -68,7 +70,7 @@ $is_required = $required ? $required_text : '';
 
 	<div class="clickable"></div>
 	
-	<ion-item style="width: 100%;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
+	<ion-item style="width: 100%; --padding-top: <?php echo $padding_top; ?>px; --padding-bottom: <?php echo $padding_bottom; ?>px;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
 			  href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
 			  detail-icon="<?php echo '0' === $detail_icon ? 'false' : $detail_icon; ?>"
 			  lines="<?php echo $lines; ?>"
