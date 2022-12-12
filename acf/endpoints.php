@@ -219,7 +219,7 @@ function appp_format_toolbar( $block ) {
 
 	foreach ( $lbtns as $key => $button ) {
 
-		error_log( print_r( $button, true ) );
+		// error_log( print_r( $button, true ) );
 
 		if ( 'button' === $button ) {
 			$left_buttons[] = array(
@@ -401,18 +401,19 @@ function appp_format_block_data( $block ) {
 				$block['attrs']['data']['thumbnail_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
 			}
 
-			error_log( print_r( $block['attrs']['data'], true ) );
-
 			if ( 'select' === $block['attrs']['data']['input_type'] ) {
 
-				$soptions = range( 0, ( $block['attrs']['data']['select_options'] - 1 ) );
-				$options  = array();
+				$soptions = preg_split( "/\r\n|\n|\r/", $block['attrs']['data']['select_options'] );
+
+				$options = array();
 
 				foreach ( $soptions as $key ) {
 
+					$option = explode( ':', $key );
+
 					$options[] = array(
-						'label' => $block['attrs']['data'][ 'select_options_' . $key . '_label' ],
-						'value' => $block['attrs']['data'][ 'select_options_' . $key . '_value' ],
+						'label' => trim( $option[1] ),
+						'value' => trim( $option[0] ),
 					);
 
 				}
@@ -498,7 +499,7 @@ function appp_format_block_data( $block ) {
 				if ( ! empty( $name ) ) {
 
 					$input[] = array(
-						'name'   => $name,
+						'name'  => $name,
 						'value' => $value,
 					);
 

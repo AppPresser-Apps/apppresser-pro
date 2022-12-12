@@ -41,8 +41,8 @@ $input  = get_field( 'input' );
 
 $position = 'default' === $label_position ? '' : 'position="' . $label_position . '"';
 
-$required = $input['required'] ? 'required=true' : '';
-$disabled = $input['disabled'] ? 'disabled=true' : '';
+$required = isset( $input['required'] ) ? 'required=true' : '';
+$disabled = isset( $input['disabled'] ) ? 'disabled=true' : '';
 
 $required_text = empty( $input['required_text'] ) ? '*' : '';
 
@@ -103,9 +103,9 @@ $is_required = $required ? $required_text : '';
 			case 'select':
 				echo '<ion-select value="' . $select['default'] . '">';
 
-				foreach ( $select['options'] as $key => $value ) {
-					echo '<ion-select-option value="' . $value['value'] . '">' . $value['label'] . '</ion-select-option>';
-				}
+				// foreach ( $select['options'] as $key => $value ) {
+				// 	echo '<ion-select-option value="' . $value['value'] . '">' . $value['label'] . '</ion-select-option>';
+				// }
 
 				echo '</ion-select>';
 				break;

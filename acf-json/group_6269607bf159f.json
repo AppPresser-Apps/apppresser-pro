@@ -3365,12 +3365,12 @@
                     "append": ""
                 },
                 {
-                    "key": "field_6307aa0c8adaa",
+                    "key": "field_63974cbd0b23d",
                     "label": "Options",
                     "name": "options",
                     "aria-label": "",
-                    "type": "repeater",
-                    "instructions": "",
+                    "type": "textarea",
+                    "instructions": "Place one option per line. Format - label : value",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -3378,78 +3378,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "block",
-                    "pagination": 0,
-                    "min": 0,
-                    "max": 0,
-                    "collapsed": "field_6307aa208adab",
-                    "button_label": "Add Option",
-                    "sub_fields": [
-                        {
-                            "key": "field_6307aa208adab",
-                            "label": "Label",
-                            "name": "label",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "Label",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_6307aa0c8adaa"
-                        },
-                        {
-                            "key": "field_6307aa388adac",
-                            "label": "Value",
-                            "name": "value",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "Value",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_6307aa0c8adaa"
-                        },
-                        {
-                            "key": "field_630a7f3e1d5e4",
-                            "label": "",
-                            "name": "cancel_text",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_6307aa0c8adaa"
-                        }
-                    ],
-                    "rows_per_page": 20
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
                 }
             ]
         },
@@ -3952,5 +3885,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670253339
+    "modified": 1670860021
 }
