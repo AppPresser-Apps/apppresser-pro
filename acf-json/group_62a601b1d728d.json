@@ -114,6 +114,41 @@
             "append": ""
         },
         {
+            "key": "field_639895670049d",
+            "label": "Router Animation",
+            "name": "router_animation",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "router_push"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "forward": "Push",
+                "backward": "Pop",
+                "root": "Root"
+            },
+            "default_value": "forward",
+            "return_format": "",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_62aa269904b49",
             "label": "Alert Message",
             "name": "alert_message",
@@ -1636,9 +1671,12 @@
                                 "router_push": "Navigate to View",
                                 "router_back": "Navigate Back",
                                 "alert": "Alert Message",
+                                "external_url": "External URL",
+                                "internal_url": "Internal URL",
                                 "popover": "Popover",
                                 "action_sheet": "Action Sheet",
-                                "modal": "Modal"
+                                "modal": "Modal",
+                                "custom": "Custom"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -1686,9 +1724,12 @@
                 "router_push": "Navigate to View",
                 "router_back": "Navigate Back",
                 "alert": "Alert Message",
+                "external_url": "External URL",
+                "internal_url": "Internal URL",
                 "popover": "Popover",
                 "action_sheet": "Action Sheet",
-                "modal": "Modal"
+                "modal": "Modal",
+                "custom": "Custom"
             }
         },
         {
@@ -1752,7 +1793,7 @@
             "label": "Internal URL",
             "name": "internal_url",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -1770,7 +1811,10 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": ""
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_637be56f1ad81",
@@ -1826,5 +1870,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669064139
+    "modified": 1670944404
 }

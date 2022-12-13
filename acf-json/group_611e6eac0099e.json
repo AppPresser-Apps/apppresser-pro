@@ -41,6 +41,26 @@
             "maxlength": ""
         },
         {
+            "key": "field_63989b70eb0a7",
+            "label": "Path",
+            "name": "path",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_62190c31f4bb8",
             "label": "Visibility",
             "name": "visibility",
@@ -6274,5 +6294,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1669064682
+    "modified": 1670945667
 }

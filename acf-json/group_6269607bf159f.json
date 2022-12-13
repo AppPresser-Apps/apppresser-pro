@@ -3350,7 +3350,7 @@
                     "name": "default",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "You can also bind data to value with a data token: {{token_name}}",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -3370,7 +3370,7 @@
                     "name": "options",
                     "aria-label": "",
                     "type": "textarea",
-                    "instructions": "Place one option per line. Format - label : value",
+                    "instructions": "Place one option per line. Format - value : label",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -3885,5 +3885,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670860021
+    "modified": 1670952835
 }
