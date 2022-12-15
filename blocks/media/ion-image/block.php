@@ -8,7 +8,9 @@
  */
 
 // Create id attribute value.
-$block_id = 'ion-img-' . $block['id'];
+$id = 'ion-img-' . $block['id'];
+
+$block_id = str_replace('block_', 'block-', $block['id']);
 
 // Create class attribute allowing for custom "className" values.
 $class_name = 'appp-ion-image';
@@ -16,8 +18,10 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$image_url = get_field( 'image_url' );
+$image_url     = get_field( 'image_url' );
 $border_radius = get_field( 'border_radius' );
+$width         = get_field( 'width' );
+$width_amount  = get_field( 'width_amount' );
 
 $margin        = get_field( 'margin' );
 $margin_top    = $margin['margin_top'] ?? 0;
@@ -30,7 +34,17 @@ $image = $image_url ? $image_url : APPPRESSER_URL . '/images/image-placeholder.p
 
 ?>
 	<style>
-		#<?php echo esc_attr( $block_id ); ?> {
+
+		#<?php echo esc_attr( $block_id ); ?> div {
+			width: auto !important;
+		}
+
+		#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
+			width: auto !important;
+		}
+
+		#<?php echo esc_attr( $block_id ); ?> .block-editor-block-list__layout {
+			width: auto !important;
 		}
 
 		#<?php echo esc_attr( $block_id ); ?> ion-img {
@@ -41,6 +55,20 @@ $image = $image_url ? $image_url : APPPRESSER_URL . '/images/image-placeholder.p
 			margin-bottom: <?php echo esc_attr( $margin_bottom ); ?>px;
 			margin-left: <?php echo esc_attr( $margin_left ); ?>px;
 		}
+
+		<?php if ( 'pixels' === $width ) : ?>
+			#<?php echo esc_attr( $block_id ); ?>,
+			#<?php echo esc_attr( $block_id ); ?> ion-img {
+				width: <?php echo esc_attr( $width_amount ); ?>px;
+			}
+		<?php endif ; ?>
+
+		<?php if ( 'percentage' === $width ) : ?>
+			#<?php echo esc_attr( $block_id ); ?>,
+			#<?php echo esc_attr( $block_id ); ?> ion-img {
+				width: <?php echo esc_attr( $width_amount ); ?>%;
+			}
+		<?php endif ; ?>
 
 	</style>
 

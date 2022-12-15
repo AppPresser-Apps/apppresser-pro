@@ -13,6 +13,8 @@
 // Create id attribute allowing for custom "anchor" value.
 $id = 'appview-' . $block['id'];
 
+$block_id = str_replace('block_', 'block-', $block['id']);
+
 // Create class attribute allowing for custom "className" values.
 $className = 'appview';
 if ( ! empty( $block['className'] ) ) {
@@ -30,6 +32,8 @@ $right_buttons   = get_field( 'right_buttons' );
 $background      = get_field( 'background' );
 $padding         = get_field( 'padding' );
 $data_source     = get_field( 'data_source' );
+$display            = get_field( 'display' );
+$flex            = get_field( 'flex' );
 
 $fullscreen = ! $hide_toolbar ? 'false' : 'true';
 
@@ -61,6 +65,23 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 	.wp-block-acf-view.is-selected {
 		width: 100%;
 	}
+
+	ion-content .block-editor-block-list__layout,
+	ion-content .block-editor-inner-blocks {
+		height: 100%;
+	}
+
+	<?php if ( 'flex' === $display ) : ?>
+
+	#<?php echo $block_id; ?> ion-content > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		display: <?php echo esc_attr( $display ); ?>;
+		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?>;
+		justify-content: <?php echo esc_attr( $flex['justify_content'] ); ?>;
+		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
+		gap: <?php echo esc_attr( $flex['gap'] ); ?>px;
+		height: 100%;
+	}
+	<?php endif ; ?>
 
 	.wp-block-acf-view.is-highlighted {
 		outline: 0px !important;
@@ -140,7 +161,6 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 <div id="<?php echo esc_attr( $id ); ?>" class="view <?php echo esc_attr( $className ); ?>">
 
 	<div class="view-wrap">
-
 		<?php if ( ! $hide_toolbar ) : ?>
 			<ion-header>
 				<ion-toolbar color="<?php echo $toolbar_color ? esc_attr( $toolbar_color ) : 'primary'; ?>">

@@ -6259,6 +6259,203 @@
                     "step": 1
                 }
             ]
+        },
+        {
+            "key": "field_639a0448834f9",
+            "label": "Display",
+            "name": "display",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "block": "Block",
+                "flex": "Flex"
+            },
+            "default_value": "block",
+            "return_format": "",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_639a02ba13f7d",
+            "label": "Flex",
+            "name": "flex",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_639a0448834f9",
+                        "operator": "==",
+                        "value": "flex"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_639a02bc13f7e",
+                    "label": "Flex Direction",
+                    "name": "flex_direction",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "column": "column",
+                        "column-reverse": "column-reverse",
+                        "row": "row",
+                        "row-reverse": "row-reverse"
+                    },
+                    "default_value": "column",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_639a02bc13f7f",
+                    "label": "Flex Wrap",
+                    "name": "flex_wrap",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "nowrap": "nowrap",
+                        "wrap": "wrap",
+                        "wrap-reverse": "wrap-reverse"
+                    },
+                    "default_value": "nowrap",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_639a02bc13f80",
+                    "label": "Justify Content",
+                    "name": "justify_content",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "flex-start": "flex-start",
+                        "flex-end": "flex-end",
+                        "center": "center",
+                        "space-between": "space-between",
+                        "space-around": "space-around",
+                        "space-evenly": "space-evenly",
+                        "start": "start",
+                        "end": "end",
+                        "left": "left",
+                        "right": "right"
+                    },
+                    "default_value": "flex-start",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_639a02bc13f81",
+                    "label": "Align Items",
+                    "name": "align_items",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "stretch": "stretch",
+                        "flex-start": "flex-start",
+                        "flex-end": "flex-end",
+                        "center": "center",
+                        "baseline": "baseline",
+                        "first baseline": "first baseline",
+                        "last baseline": "last baseline",
+                        "start": "start",
+                        "end": "end",
+                        "self-start": "self-start",
+                        "self-end": "self-end"
+                    },
+                    "default_value": "stretch",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_639b3ed42f58f",
+                    "label": "Gap",
+                    "name": "gap",
+                    "aria-label": "",
+                    "type": "range",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "min": 0,
+                    "max": 2000,
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -6294,5 +6491,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1670945667
+    "modified": 1671118571
 }

@@ -21,6 +21,12 @@ $allowed_blocks = appp_get_allowed_innerblocks();
 $allowed_blocks[] = 'acf/columns';
 ?>
 
+<style>
+	.wp-block-acf-action {
+		position: relative;
+	}
+</style>
+
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
 	<InnerBlocks 
 		templateInsertUpdatesSelection="false" 

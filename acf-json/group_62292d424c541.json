@@ -6,6 +6,7 @@
             "key": "field_626c667c2966c",
             "label": "Image",
             "name": "image_url",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -30,6 +31,7 @@
             "key": "field_626c5c188499e",
             "label": "Layout",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -47,6 +49,7 @@
             "key": "field_626c5ba582262",
             "label": "Margin",
             "name": "margin",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -62,6 +65,7 @@
                     "key": "field_626c5bb182263",
                     "label": "Top",
                     "name": "margin_top",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -83,6 +87,7 @@
                     "key": "field_626c5bd082264",
                     "label": "Right",
                     "name": "margin_right",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -104,6 +109,7 @@
                     "key": "field_626c5bdd82265",
                     "label": "Bottom",
                     "name": "margin_bottom",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -125,6 +131,7 @@
                     "key": "field_626c5bea82266",
                     "label": "Left",
                     "name": "margin_left",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -148,6 +155,7 @@
             "key": "field_626c6c07d5e7a",
             "label": "Design",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -165,6 +173,7 @@
             "key": "field_62292da5a8f5e",
             "label": "Border Radius",
             "name": "border_radius",
+            "aria-label": "",
             "type": "range",
             "instructions": "",
             "required": 0,
@@ -182,9 +191,73 @@
             "append": ""
         },
         {
+            "key": "field_6399f70dab915",
+            "label": "Width",
+            "name": "width",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "auto": "Auto",
+                "pixels": "Pixels",
+                "percentage": "Percentage"
+            },
+            "default_value": false,
+            "return_format": "",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6399f794ab916",
+            "label": "Width Amount",
+            "name": "width_amount",
+            "aria-label": "",
+            "type": "range",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6399f70dab915",
+                        "operator": "==",
+                        "value": "pixels"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6399f70dab915",
+                        "operator": "==",
+                        "value": "percentage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 100,
+            "min": 0,
+            "max": 2000,
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_62292d86a8f5d",
             "label": "Caption",
             "name": "caption",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -204,6 +277,7 @@
             "key": "field_629a86f6c8dd2",
             "label": "Data",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -221,6 +295,7 @@
             "key": "field_629a86ffc8dd3",
             "label": "Token",
             "name": "token",
+            "aria-label": "",
             "type": "text",
             "instructions": "Data token entered here will replace the src attribute of the image element.",
             "required": 0,
@@ -255,5 +330,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1655914800
+    "modified": 1671039317
 }

@@ -101,7 +101,7 @@ $is_required = $required ? $required_text : '';
 				echo '<ion-toggle color=' . $toggle['color'] . ' checked></ion-toggle>';
 				break;
 			case 'select':
-				echo '<ion-select value="' . $select['default'] . '">';
+				echo '<ion-select>';
 
 				// foreach ( $select['options'] as $key => $value ) {
 				// 	echo '<ion-select-option value="' . $value['value'] . '">' . $value['label'] . '</ion-select-option>';

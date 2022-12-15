@@ -8,7 +8,9 @@
  */
 
 // Create id attribute value.
-$block_id = 'container-' . $block['id'];
+$id = 'container-' . $block['id'];
+
+$block_id = str_replace( 'block_', 'block-', $block['id'] );
 
 // Create class attribute allowing for custom "className" values.
 $class_name = 'appp-container';
@@ -136,7 +138,7 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 
 <style>
 
-	#<?php echo esc_attr( $block_id ); ?>::before {
+	#<?php echo esc_attr( $id ); ?>::before {
 		content:"";
 		background-image: <?php echo $background_image; ?> <?php echo $comma; ?> <?php echo $background_gradients; ?>;
 		<?php echo $background_color; ?>;
@@ -160,21 +162,64 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > div {
 		width: 100%;
 	}
-	#<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks {
+
+	#<?php echo esc_attr( $block_id ); ?> .acf-block-body {
+		width: 100%;
+	}
+
+	<?php
+	if ( $height === 'auto' ) {
+		$flexheight = 'auto';
+	} else {
+
+		if ( $height === 'pixels' ) {
+			$flexheight = $height_amount . 'px';
+		}
+
+		if ( $height === 'percentage' ) {
+			$flexheight = '100%';
+		}
+	}
+
+	?>
+
+	#<?php echo esc_attr( $id ); ?> .block-editor-block-list__layout {
 		display: flex;
 		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?>;
 		justify-content: <?php echo esc_attr( $flex['justify_content'] ); ?>;
 		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
+		height: <?php echo $flexheight; ?>;
+	}
+
+	#<?php echo esc_attr( $id ); ?>.block-editor-block-list__layout .block-editor-block-list__block {
 		height: 100%;
-		width: 100%;
 	}
 
 </style>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo $style; ?>">
+<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class_name ); ?>" style="<?php echo $style; ?>">
 	<InnerBlocks 
 		templateInsertUpdatesSelection="false" 
 		templateLock="false" 
 		allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 		/>
 </div>
+
+<!-- Set the height when a percentage with js because gutenberg is a bastard! -->
+<script>
+	function containerSetHeight() {
+		const height = jQuery('ion-content').height();
+		const percent = ( parseInt('<?php echo $height_amount; ?>') / 100) * height;
+		console.log(percent);
+		jQuery('#<?php echo esc_attr( $id ); ?>').height( percent );
+		jQuery('#<?php echo esc_attr( $id ); ?> .block-editor-block-list__layout').height( percent );
+	}
+
+	<?php if ( $height === 'percentage' ) : ?>
+		setTimeout(() => {
+			containerSetHeight();
+		}, 500);
+		
+	<?php endif; ?>
+
+</script>
