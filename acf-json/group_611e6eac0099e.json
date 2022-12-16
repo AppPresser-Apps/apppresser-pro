@@ -65,7 +65,7 @@
             "label": "Visibility",
             "name": "visibility",
             "aria-label": "",
-            "type": "true_false",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -74,11 +74,14 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This view is private.",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "choices": {
+                "unauthenticated": "Unauthenticated",
+                "authenticated": "Authenticated"
+            },
+            "default_value": "unauthenticated",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_6220ec41ae077",
@@ -6491,5 +6494,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1671118571
+    "modified": 1671203803
 }

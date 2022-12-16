@@ -23,9 +23,9 @@ $allowed_blocks = array( 'acf/inner-columns' );
 	width: 100%;
 }
 #<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > .block-editor-block-list__layout {
-	/* display: flex;
+	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	/* justify-content: center;
 	align-items: center; */
 }
 
