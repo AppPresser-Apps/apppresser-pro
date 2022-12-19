@@ -185,12 +185,16 @@ function appp_remove_core_button_styles() {
 		.wp-core-ui .button:not(.acf-button):not(.wp-color-result):not(.button-primary)  {
 			all: unset;
 		}
+
+		.interface-complementary-area {
+			width: 380px !important;
+		}
 		</style>
 		";
 	}
 
 }
-add_action( 'admin_head', 'appp_remove_core_button_styles' );
+add_action( 'admin_head', 'appp_remove_core_button_styles', 999 );
 
 /**
  * Custom dashboard icon / logo.
