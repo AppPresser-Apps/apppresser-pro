@@ -105,6 +105,7 @@ function appp_acf_dynamic_action( $field ) {
 		'popover'      => 'Popover',
 		'action_sheet' => 'Action Sheet',
 		'modal'        => 'Modal',
+		'auth_null'    => 'Unauthenticate',
 		'custom'       => 'Custom',
 	);
 

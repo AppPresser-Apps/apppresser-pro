@@ -418,7 +418,7 @@
                 },
                 {
                     "key": "field_63a0880a47721",
-                    "label": "Confim Button",
+                    "label": "Confirm Button",
                     "name": "confirm_button",
                     "aria-label": "",
                     "type": "text",
@@ -583,8 +583,8 @@
                 },
                 {
                     "key": "field_63a0883e47722",
-                    "label": "Confim Button",
-                    "name": "confim_button",
+                    "label": "Confirm Button",
+                    "name": "confirm_button",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -622,5 +622,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1671466938
+    "modified": 1671559525
 }
