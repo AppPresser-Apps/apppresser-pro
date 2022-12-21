@@ -106,7 +106,7 @@ function appp_acf_dynamic_action( $field ) {
 		'action_sheet' => 'Action Sheet',
 		'modal'        => 'Modal',
 		'auth_null'    => 'Unauthenticate',
-		'custom'       => 'Custom',
+		'custom'       => 'Custom Function',
 	);
 
 	$actions = apply_filters( 'appp_acf_dynamic_action', $actions );

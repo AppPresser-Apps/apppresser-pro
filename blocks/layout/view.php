@@ -156,6 +156,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		  transform: rotate(360deg);
 		}
 	  }
+	  
 </style>
 
 <div id="<?php echo esc_attr( $id ); ?>" class="view <?php echo esc_attr( $className ); ?>">
