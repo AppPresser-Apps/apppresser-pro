@@ -21,6 +21,26 @@
             "endpoint": 0
         },
         {
+            "key": "field_63a47515bd4cd",
+            "label": "Preferences",
+            "name": "preferences",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Load multiple saved app preferences with comma separated list.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_63a328a9cbcab",
             "label": "Javascript",
             "name": "javascript",
@@ -58,5 +78,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1671644363
+    "modified": 1671722402
 }

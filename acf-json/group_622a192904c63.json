@@ -3,9 +3,9 @@
     "title": "Repeater",
     "fields": [
         {
-            "key": "field_62cc553898e9b",
-            "label": "Data Source",
-            "name": "data_source",
+            "key": "field_63ac8ba2eb7f3",
+            "label": "Data Type",
+            "name": "data_type",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -18,7 +18,115 @@
             },
             "choices": {
                 "none": "None",
-                "608": "SMP Blog Posts"
+                "simple": "Simple Table",
+                "api": "External API",
+                "database": "Local Database"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_62cc553898e9b",
+            "label": "API Source",
+            "name": "data_source",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "database": "Database",
+                "764": "Random Joke",
+                "763": "Cat facts",
+                "762": "SMP News",
+                "758": "Local Data",
+                "608": "SMP Fraud schemes"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_63ac8dcc5ec20",
+            "label": "Local Database",
+            "name": "database_source",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "35684": "Tracker"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_63ac8e028a495",
+            "label": "Simple Table",
+            "name": "simple_table",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "simple"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None"
             },
             "default_value": "none",
             "return_format": "value",
@@ -31,7 +139,7 @@
         {
             "key": "field_62cc55a398e9c",
             "label": "Custom Data",
-            "name": "custom_data",
+            "name": "data_custom",
             "aria-label": "",
             "type": "acf_code_field",
             "instructions": "",
@@ -41,7 +149,7 @@
                     {
                         "field": "field_62cc553898e9b",
                         "operator": "==",
-                        "value": "custom"
+                        "value": "none"
                     }
                 ]
             ],
@@ -74,5 +182,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666886407
+    "modified": 1672255096
 }

@@ -120,6 +120,44 @@ function appp_acf_dynamic_action( $field ) {
 add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
 
 /**
+ * Filters the database acf field with dynamic choices.
+ * The value should be the naem of the function to run when the button is clicked.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_acf_dynamic_database( $field ) {
+
+	if ( 0 !== strpos( $field['name'], 'app_database' ) ) {
+		return $field;
+	}
+
+	$field['choices']['none'] = 'None';
+
+	$args = array(
+		'post_type'   => 'datatable',
+		'numberposts' => -1,
+	);
+
+	$posts = get_posts( $args );
+
+	foreach ( $posts as $key => $value ) {
+
+		$type = get_field( 'database_type', $value->ID );
+
+		error_log( print_r( $type, true ) );
+
+		if ( 'database' === $type ) {
+			$field['choices'][ $value->ID ] = $value->post_title;
+		}
+	}
+
+	return $field;
+
+}
+add_filter( 'acf/load_field', 'appp_acf_dynamic_database' );
+
+/**
  * Undocumented function
  *
  * @param [type] $value
@@ -185,7 +223,12 @@ function appp_filter_rest_api_select( $field ) {
 	$posts = get_posts( $args );
 
 	foreach ( $posts as $key => $value ) {
-		$field['choices'][ $value->ID ] = $value->post_title;
+
+		$type = get_field( 'database_type', $value->ID );
+
+		if ( 'external' === $type ) {
+			$field['choices'][ $value->ID ] = $value->post_title;
+		}
 	}
 
 	return $field;
@@ -193,6 +236,65 @@ function appp_filter_rest_api_select( $field ) {
 add_filter( 'acf/load_field/name=data_source', 'appp_filter_rest_api_select', 0, 1 );
 
 
+/**
+ * Formats the rest api select to show correct endpoints for chosen api resource.
+ *
+ * @param array $field
+ * @return void
+ */
+function appp_filter_database_select( $field ) {
+
+	$field['choices']['none'] = 'None';
+
+	$args = array(
+		'post_type'   => 'datatable',
+		'numberposts' => -1,
+	);
+
+	$posts = get_posts( $args );
+
+	foreach ( $posts as $key => $value ) {
+
+		$type = get_field( 'database_type', $value->ID );
+
+		if ( 'database' === $type ) {
+			$field['choices'][ $value->ID ] = $value->post_title;
+		}
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=database_source', 'appp_filter_database_select', 0, 1 );
+
+/**
+ * Formats the rest api select to show correct endpoints for chosen api resource.
+ *
+ * @param array $field
+ * @return void
+ */
+function appp_filter_simple_table_select( $field ) {
+
+	$field['choices']['none'] = 'None';
+
+	$args = array(
+		'post_type'   => 'datatable',
+		'numberposts' => -1,
+	);
+
+	$posts = get_posts( $args );
+
+	foreach ( $posts as $key => $value ) {
+
+		$type = get_field( 'database_type', $value->ID );
+
+		if ( 'simple' === $type ) {
+			$field['choices'][ $value->ID ] = $value->post_title;
+		}
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=simple_table', 'appp_filter_simple_table_select', 0, 1 );
 
 function appp_acf_dynamic_segments( $field ) {
 

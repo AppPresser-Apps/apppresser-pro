@@ -341,6 +341,15 @@ function appp_get_theme_colors( $post_id ) {
 	return $palette;
 }
 
+function appp_get_app_database( $post_id ) {
+
+	$database_id = get_field( 'app_database', $post_id );
+	$data        = get_field( 'database', $database_id );
+
+	return $data;
+
+}
+
 function appp_get_theme_globals( $post_id ) {
 
 	$theme  = get_field( 'theme_select', $post_id );

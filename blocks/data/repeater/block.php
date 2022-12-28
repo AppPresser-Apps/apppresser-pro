@@ -19,7 +19,7 @@ $per_page       = get_field( 'per_page' );
 $data_source    = get_field( 'data_source' );
 $request_method = get_field( 'request_method' );
 
-$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action' );
+$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action', "acf/container" );
 
 ?>
 <style>

@@ -195,6 +195,7 @@ function appp_get_app_data( $request ) {
 			'modals'        => $modals,
 			'popovers'      => $popovers,
 			'onboarding'    => $onboarding,
+			'database'      => appp_get_app_database( $param ),
 		);
 
 		set_transient( 'appp_data_transient_' . $param, $app, 12 * HOUR_IN_SECONDS );

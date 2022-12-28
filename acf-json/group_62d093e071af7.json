@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Data is local data sets or external REST API. Data can be used in the fetch block.",
+            "message": "Data is la simple data table, external REST API or local Database. Data can be used in the repeater or fetch block.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -35,10 +35,11 @@
                 "id": ""
             },
             "choices": {
-                "local": "Local Data",
-                "external": "External Data"
+                "simple": "Simple Data Table",
+                "external": "External Data",
+                "database": "Database"
             },
-            "default_value": "local",
+            "default_value": "simple",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -297,6 +298,118 @@
             "placeholder": "",
             "mode": "javascript",
             "theme": "monokai"
+        },
+        {
+            "key": "field_63ac721ad0707",
+            "label": "Database",
+            "name": "database",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6357f9fcd77c4",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_63ac7256d0708",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_63ac7263d0709",
+                    "label": "Tables",
+                    "name": "tables",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "field_63ac726fd070a",
+                    "button_label": "Add Table",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_63ac726fd070a",
+                            "label": "Name",
+                            "name": "name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_63ac7263d0709"
+                        },
+                        {
+                            "key": "field_63ac7273d070b",
+                            "label": "Statement",
+                            "name": "statement",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": "",
+                            "parent_repeater": "field_63ac7263d0709"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -332,5 +445,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666968572
+    "modified": 1672250892
 }
