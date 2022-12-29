@@ -38,6 +38,11 @@ $height_amount       = get_field( 'height_amount' );
 $width               = get_field( 'width' );
 $width_amount        = get_field( 'width_amount' );
 
+$bordertop    = get_field( 'border_top' );
+$borderright  = get_field( 'border_right' );
+$borderleft   = get_field( 'border_left' );
+$borderbottom = get_field( 'border_bottom' );
+
 $flex = get_field( 'flex' );
 
 $style = '';
@@ -52,10 +57,15 @@ $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
 $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
 
-$topl = $border_radius['border_radius_top_left'] . 'px';
-$topr = $border_radius['border_radius_top_right'] . 'px';
-$botl = $border_radius['border_radius_bottom_left'] . 'px';
-$botr = $border_radius['border_radius_bottom_right'] . 'px';
+$topl = $border_radius['border_radius_top_left'] . 'px; ';
+$topr = $border_radius['border_radius_top_right'] . 'px; ';
+$botl = $border_radius['border_radius_bottom_left'] . 'px; ';
+$botr = $border_radius['border_radius_bottom_right'] . 'px; ';
+
+$style .= 'border-top: ' . $bordertop['width'] . 'px ' . $bordertop['style'] . ' ' . $bordertop['color'] . '; ';
+$style .= 'border-right: ' . $borderright['width'] . 'px ' . $borderright['style'] . ' ' . $borderright['color'] . '; ';
+$style .= 'border-left: ' . $borderleft['width'] . 'px ' . $borderleft['style'] . ' ' . $borderleft['color'] . '; ';
+$style .= 'border-bottom: ' . $borderbottom['width'] . 'px ' . $borderbottom['style'] . ' ' . $borderbottom['color'] . '; ';
 
 $style .= "border-radius: $topl $topr $botl $botr; ";
 

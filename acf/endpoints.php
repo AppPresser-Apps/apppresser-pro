@@ -373,11 +373,29 @@ function appp_format_block_data( $block ) {
 
 				$block['attrs']['data']['border_radius'] = "$bordertl $bordertr $borderbl $borderbr";
 
-				$borderw = $block['attrs']['data']['border_top_width'] . 'px';
-				$borders = $block['attrs']['data']['border_top_style'];
-				$borderc = $block['attrs']['data']['border_top_color'];
+				$bordetw = $block['attrs']['data']['border_top_width'] . 'px';
+				$bordets = $block['attrs']['data']['border_top_style'];
+				$bordetc = $block['attrs']['data']['border_top_color'];
 
-				$block['attrs']['data']['border'] = "$borderw $borders $borderc";
+				$block['attrs']['data']['border_top'] = "$bordetw $bordets $bordetc";
+
+				$borderw = $block['attrs']['data']['border_right_width'] . 'px';
+				$borders = $block['attrs']['data']['border_right_style'];
+				$borderc = $block['attrs']['data']['border_right_color'];
+
+				$block['attrs']['data']['border_right'] = "$borderw $borders $borderc";
+
+				$bordelw = $block['attrs']['data']['border_left_width'] . 'px';
+				$bordels = $block['attrs']['data']['border_left_style'];
+				$bordelc = $block['attrs']['data']['border_left_color'];
+
+				$block['attrs']['data']['border_left'] = "$bordelw $bordels $bordelc";
+
+				$bordebw = $block['attrs']['data']['border_bottom_width'] . 'px';
+				$bordebs = $block['attrs']['data']['border_bottom_style'];
+				$bordebc = $block['attrs']['data']['border_bottom_color'];
+
+				$block['attrs']['data']['border_bottom'] = "$bordebw $bordebs $bordebc";
 
 			}
 
