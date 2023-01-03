@@ -41,6 +41,33 @@
             "ui": 0
         },
         {
+            "key": "field_63b448da9c919",
+            "label": "Form Type",
+            "name": "form_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "api": "External API",
+                "database": "Sqlite Database",
+                "local": "App Preferences"
+            },
+            "default_value": "api",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_63a08b37f171b",
             "label": "Form Name",
             "name": "form_name",
@@ -48,7 +75,43 @@
             "type": "text",
             "instructions": "Name used for saving data response to app preferences.",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63b44b2443ef1",
+            "label": "Database Name",
+            "name": "database_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -68,7 +131,15 @@
             "type": "url",
             "instructions": "Enter url for HTTP POST request.",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -85,7 +156,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -151,7 +230,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -622,5 +709,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1671559525
+    "modified": 1672760199
 }

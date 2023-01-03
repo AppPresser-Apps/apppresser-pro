@@ -35,6 +35,10 @@ acf.add_filter('color_picker_args', function( args, field ){
 
 });
 
+acf.add_action('show_field/name=input_value', (f)=> {
+    console.log(f);
+});
+
 /**
  * Add theem colors to HTML head on gutenberg load.
  */

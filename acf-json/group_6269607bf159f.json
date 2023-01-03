@@ -3365,6 +3365,34 @@
                     "append": ""
                 },
                 {
+                    "key": "field_63b44d1aff5dd",
+                    "label": "Option Source",
+                    "name": "option_source",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hard": "Hard Coded",
+                        "api": "External API",
+                        "database": "Sqlite Database",
+                        "local": "App Preferences"
+                    },
+                    "default_value": "hard",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
                     "key": "field_63974cbd0b23d",
                     "label": "Options",
                     "name": "options",
@@ -3372,7 +3400,15 @@
                     "type": "textarea",
                     "instructions": "Place one option per line. Format - value : label",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63b44d1aff5dd",
+                                "operator": "==",
+                                "value": "hard"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -3381,6 +3417,62 @@
                     "default_value": "",
                     "maxlength": "",
                     "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_63b44eff58189",
+                    "label": "Table",
+                    "name": "table",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63b44d1aff5dd",
+                                "operator": "==",
+                                "value": "database"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_63b44f2e5818a",
+                    "label": "Options",
+                    "name": "database_options",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Enter one option. Format - value : label. The value and label should named after table columns as such:  table_column_name : table_column_name. The value of the select will be saved into the database under the column with the name of this select input.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63b44d1aff5dd",
+                                "operator": "==",
+                                "value": "database"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 1,
                     "placeholder": "",
                     "new_lines": ""
                 }
@@ -3885,5 +3977,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670952835
+    "modified": 1672762697
 }
