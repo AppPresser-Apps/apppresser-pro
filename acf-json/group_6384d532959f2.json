@@ -124,6 +124,34 @@
             "append": ""
         },
         {
+            "key": "field_63b6ee15ac163",
+            "label": "Table Name",
+            "name": "table_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6384d53368293",
             "label": "POST URL",
             "name": "post_url",
@@ -709,5 +737,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1672760199
+    "modified": 1672932908
 }

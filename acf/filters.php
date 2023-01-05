@@ -296,6 +296,31 @@ function appp_filter_simple_table_select( $field ) {
 }
 add_filter( 'acf/load_field/name=simple_table', 'appp_filter_simple_table_select', 0, 1 );
 
+/**
+ * Formats the rest api select to show correct endpoints for chosen api resource.
+ *
+ * @param array $field
+ * @return void
+ */
+function appp_filter_formatting_select( $field ) {
+
+	$options = array(
+		'none'         => 'None',
+		'date'  => 'Format Date',
+		'uppercase'  => 'Uppercase',
+		'lowercase'  => 'Lowercase'
+	);
+
+	$options = apply_filters( 'appp_filter_formatting_select', $options );
+
+	foreach ( $options as $option => $value ) {
+		$field['choices'][ $option ] = $value;
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=formatting', 'appp_filter_formatting_select', 0, 1 );
+
 function appp_acf_dynamic_segments( $field ) {
 
 	global $post;
