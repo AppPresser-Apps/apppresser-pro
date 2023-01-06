@@ -117,6 +117,32 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'action-sheet',
+				'title'           => __( 'Action Sheet' ),
+				'description'     => __( 'An Action Sheet is a dialog that displays a set of options. It appears on top of the app\'s content, and must be manually dismissed by the user before they can resume interaction with the app.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/action-sheet/block.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
+				'keywords'        => array( 'app', 'menu' ),
+				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
 		// register a onboard view.
 		// acf_register_block_type(
 		// array(

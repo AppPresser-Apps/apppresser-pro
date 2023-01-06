@@ -129,12 +129,15 @@ function setListViewTitle(blocks) {
 
         switch (block.name) {
             case 'acf/view':
-                title = block.attributes.data.view_route;
+                title = block.attributes.data.view_route + block.attributes.data.path;
                 break;
             case 'acf/modal':
-                title = block.attributes.data.view_route;
+                title = block.attributes.data.view_route + block.attributes.data.path;
                 break;
             case 'acf/popover':
+                title = block.attributes.data.name;
+                break;
+            case 'acf/action-sheet':
                 title = block.attributes.data.name;
                 break;
         

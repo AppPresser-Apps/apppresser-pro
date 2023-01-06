@@ -84,6 +84,9 @@ function apppFilterBlockRegister(settings, name) {
     case "acf/onboard":
       settings.parent = ['core/post-content'];
       break;
+    case "acf/action-sheet":
+      settings.parent = ['core/post-content'];
+      break;
     case "acf/side-menu":
       settings.parent = ['core/post-content'];
       settings.supports['multiple'] = false;

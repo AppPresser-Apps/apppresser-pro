@@ -120,6 +120,40 @@ function appp_acf_dynamic_action( $field ) {
 add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
 
 /**
+ * Filters the action acf field with dynamic choices.
+ * The value should be the naem of the function to run when the button is clicked.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_acf_dynamic_sheet_action( $field ) {
+
+	if ( 0 !== strpos( $field['name'], 'sheet_action' ) ) {
+		return $field;
+	}
+
+	$actions = array(
+		'none'         => 'None',
+		'router_push'  => 'Navigate to View',
+		'router_back'  => 'Navigate Back',
+		'alert'        => 'Alert Message',
+		'external_url' => 'External URL',
+		'internal_url' => 'Internal URL',
+		'auth_null'    => 'Unauthenticate',
+		'custom'       => 'Custom Function',
+	);
+
+	$actions = apply_filters( 'appp_acf_dynamic_sheet_action', $actions );
+
+	foreach ( $actions as $action => $value ) {
+		$field['choices'][ $action ] = $value;
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field', 'appp_acf_dynamic_sheet_action' );
+
+/**
  * Filters the database acf field with dynamic choices.
  * The value should be the naem of the function to run when the button is clicked.
  *
@@ -305,10 +339,10 @@ add_filter( 'acf/load_field/name=simple_table', 'appp_filter_simple_table_select
 function appp_filter_formatting_select( $field ) {
 
 	$options = array(
-		'none'         => 'None',
-		'date'  => 'Format Date',
-		'uppercase'  => 'Uppercase',
-		'lowercase'  => 'Lowercase'
+		'none'      => 'None',
+		'date'      => 'Format Date',
+		'uppercase' => 'Uppercase',
+		'lowercase' => 'Lowercase',
 	);
 
 	$options = apply_filters( 'appp_filter_formatting_select', $options );

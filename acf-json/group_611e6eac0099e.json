@@ -4350,7 +4350,8 @@
                                 "modal": "Modal",
                                 "external_url": "External URL",
                                 "internal_url": "Internal URL",
-                                "custom": "Custom"
+                                "auth_null": "Unauthenticate",
+                                "custom": "Custom Function"
                             },
                             "default_value": "none",
                             "allow_null": 0,
@@ -5883,7 +5884,8 @@
                                 "popover": "Popover",
                                 "action_sheet": "Action Sheet",
                                 "modal": "Modal",
-                                "custom": "Custom"
+                                "auth_null": "Unauthenticate",
+                                "custom": "Custom Function"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -5986,6 +5988,49 @@
                             "placeholder": ""
                         },
                         {
+                            "key": "field_63b836362e53b",
+                            "label": "Action Sheet",
+                            "name": "action_sheet",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6221108f07584",
+                                        "operator": "==",
+                                        "value": "modal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "none": "None",
+                                "router_push": "Navigate to View",
+                                "router_back": "Navigate Back",
+                                "alert": "Alert Message",
+                                "external_url": "External URL",
+                                "internal_url": "Internal URL",
+                                "popover": "Popover",
+                                "action_sheet": "Action Sheet",
+                                "modal": "Modal",
+                                "auth_null": "Unauthenticate",
+                                "custom": "Custom Function"
+                            },
+                            "default_value": false,
+                            "return_format": "",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_632355752f5ba",
                             "label": "Modal",
                             "name": "modal_item",
@@ -6019,7 +6064,7 @@
                         {
                             "key": "field_637be6d5fc870",
                             "label": "External URL",
-                            "name": "external_url_",
+                            "name": "external_url",
                             "aria-label": "",
                             "type": "url",
                             "instructions": "",
@@ -6044,7 +6089,7 @@
                         {
                             "key": "field_637be708fc871",
                             "label": "Internal URL",
-                            "name": "internall_url",
+                            "name": "internal_url",
                             "aria-label": "",
                             "type": "url",
                             "instructions": "",
@@ -6159,7 +6204,7 @@
         },
         {
             "key": "field_6220ec6a68f93",
-            "label": "Padding (16px)",
+            "label": "Padding",
             "name": "padding",
             "aria-label": "",
             "type": "group",
@@ -6494,5 +6539,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1671203803
+    "modified": 1673017015
 }
