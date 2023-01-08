@@ -6000,7 +6000,7 @@
                                     {
                                         "field": "field_6221108f07584",
                                         "operator": "==",
-                                        "value": "modal"
+                                        "value": "action_sheet"
                                     }
                                 ]
                             ],
@@ -6010,20 +6010,10 @@
                                 "id": ""
                             },
                             "choices": {
-                                "none": "None",
-                                "router_push": "Navigate to View",
-                                "router_back": "Navigate Back",
-                                "alert": "Alert Message",
-                                "external_url": "External URL",
-                                "internal_url": "Internal URL",
-                                "popover": "Popover",
-                                "action_sheet": "Action Sheet",
-                                "modal": "Modal",
-                                "auth_null": "Unauthenticate",
-                                "custom": "Custom Function"
+                                "none": "None"
                             },
-                            "default_value": false,
-                            "return_format": "",
+                            "default_value": "none",
+                            "return_format": "value",
                             "multiple": 0,
                             "allow_null": 0,
                             "ui": 0,
@@ -6539,5 +6529,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1673017015
+    "modified": 1673196305
 }

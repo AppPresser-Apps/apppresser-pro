@@ -184,6 +184,11 @@ function appp_get_app_data( $request ) {
 				if ( 'acf/popover' === $block['blockName'] ) {
 					$popovers[] = $block;
 				}
+
+				if ( 'acf/action-sheet' === $block['blockName'] ) {
+					$block           = appp_format_block_data( $block );
+					$action_sheets[] = $block;
+				}
 			}
 		}
 
@@ -194,6 +199,7 @@ function appp_get_app_data( $request ) {
 			'side_menu'     => $menu,
 			'modals'        => $modals,
 			'popovers'      => $popovers,
+			'action_sheets' => $action_sheets,
 			'onboarding'    => $onboarding,
 			'database'      => appp_get_app_database( $param ),
 		);
@@ -247,6 +253,7 @@ function appp_format_toolbar( $block ) {
 			'icon'          => $block['attrs']['data'][ 'right_buttons_' . $key . '_icon' ],
 			'label'         => $block['attrs']['data'][ 'right_buttons_' . $key . '_label' ],
 			'action'        => $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ],
+			'action_sheet'  => $block['attrs']['data'][ 'right_buttons_' . $key . '_action_sheet' ],
 			'custom_action' => $block['attrs']['data'][ 'right_buttons_' . $key . '_custom' ],
 			'route'         => 'router_push' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_route' ] : false,
 			'popover'       => 'popover' === $block['attrs']['data'][ 'right_buttons_' . $key . '_action' ] ? $block['attrs']['data'][ 'right_buttons_' . $key . '_popover' ] : false,
@@ -264,6 +271,7 @@ function appp_format_toolbar( $block ) {
 
 	return $block;
 }
+
 
 /**
  * Delete app data transient on app update.
@@ -499,6 +507,33 @@ function appp_format_block_data( $block ) {
 			}
 
 			$block['attrs']['data']['data_source'] = $fields;
+
+			break;
+
+		case 'acf/action-sheet':
+			$sbuttons = range( 0, ( $block['attrs']['data']['action_buttons_buttons'] - 1 ) );
+
+			$buttons = array();
+
+			foreach ( $sbuttons as $key ) {
+
+				$buttons[] = array(
+					'function' => $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_function' ],
+					'role'     => $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_role' ],
+					'action'   => $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_sheet_action' ],
+					'text'     => $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_title' ],
+				);
+
+				unset( $block['attrs']['data']['cancel_button'] );
+				unset( $block['attrs']['data']['action_buttons_buttons'] );
+				unset( $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_function' ] );
+				unset( $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_role' ] );
+				unset( $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_sheet_action' ] );
+				unset( $block['attrs']['data'][ 'action_buttons_buttons_' . $key . '_title' ] );
+
+			}
+
+			$block['attrs']['data']['action_buttons'] = $buttons;
 
 			break;
 

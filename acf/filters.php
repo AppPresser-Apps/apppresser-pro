@@ -91,10 +91,6 @@ add_filter( 'appp_acf_dynamic_colors', 'appp_add_custom_colors_select', 10, 2 );
  */
 function appp_acf_dynamic_action( $field ) {
 
-	if ( 0 !== strpos( $field['name'], 'action' ) ) {
-		return $field;
-	}
-
 	$actions = array(
 		'none'         => 'None',
 		'router_push'  => 'Navigate to View',
@@ -117,7 +113,7 @@ function appp_acf_dynamic_action( $field ) {
 
 	return $field;
 }
-add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
+add_filter( 'acf/load_field/name=action', 'appp_acf_dynamic_action' );
 
 /**
  * Filters the action acf field with dynamic choices.
@@ -127,10 +123,6 @@ add_filter( 'acf/load_field', 'appp_acf_dynamic_action' );
  * @return array
  */
 function appp_acf_dynamic_sheet_action( $field ) {
-
-	if ( 0 !== strpos( $field['name'], 'sheet_action' ) ) {
-		return $field;
-	}
 
 	$actions = array(
 		'none'         => 'None',
@@ -151,7 +143,47 @@ function appp_acf_dynamic_sheet_action( $field ) {
 
 	return $field;
 }
-add_filter( 'acf/load_field', 'appp_acf_dynamic_sheet_action' );
+add_filter( 'acf/load_field/name=sheet_action', 'appp_acf_dynamic_sheet_action' );
+
+/**
+ * Filters the action acf field with dynamic choices.
+ * The value should be the naem of the function to run when the button is clicked.
+ *
+ * @param array $field
+ * @return array
+ */
+function appp_acf_dynamic_action_sheet( $field ) {
+
+	global $post;
+
+	$sheets = array(
+		'none' => 'None',
+	);
+
+	if ( $post ) {
+		$blocks = parse_blocks( $post->post_content );
+
+		foreach ( $blocks as $block ) {
+
+			if ( ! empty( $block['blockName'] ) ) {
+
+				if ( 'acf/action-sheet' === $block['blockName'] ) {
+					$name            = $block['attrs']['data']['name'];
+					$sheets[ $name ] = $name;
+				}
+			}
+		}
+	}
+
+	$actions = apply_filters( 'appp_acf_dynamic_action_sheet', $sheets );
+
+	foreach ( $sheets as $sheet => $value ) {
+		$field['choices'][ $sheet ] = $value;
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=action_sheet', 'appp_acf_dynamic_action_sheet' );
 
 /**
  * Filters the database acf field with dynamic choices.
@@ -178,8 +210,6 @@ function appp_acf_dynamic_database( $field ) {
 	foreach ( $posts as $key => $value ) {
 
 		$type = get_field( 'database_type', $value->ID );
-
-		error_log( print_r( $type, true ) );
 
 		if ( 'database' === $type ) {
 			$field['choices'][ $value->ID ] = $value->post_title;
