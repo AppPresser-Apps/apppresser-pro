@@ -28,6 +28,21 @@
         });
 
         window['codemirror'] = editor;
+
+        var $expand = $el.find( '.expand' );
+
+        
+
+        $expand.on('click', ()=> {
+
+            var wrapper = editor.getWrapperElement();
+
+            // detach the new element from wherever it is and append it below parent, and show it
+            $(wrapper).detach().appendTo('.wp-block-post-content').show();
+
+            console.log(wrapper);
+        })
+
     }
 
     if ( typeof acf.add_action !== 'undefined' ) {

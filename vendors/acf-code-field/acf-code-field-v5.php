@@ -177,6 +177,8 @@ if ( ! class_exists( 'acf_code_field' ) ) :
 			$e .= esc_textarea( $field['value'] );
 			$e .= '</textarea>';
 
+			$e .= '<div class="expand">expand</div>';
+
 			echo $e;
 
 			// Hook the enqueue functions into the editor

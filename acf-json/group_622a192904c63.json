@@ -3,6 +3,26 @@
     "title": "Repeater",
     "fields": [
         {
+            "key": "field_63c044891bd0c",
+            "label": "ID",
+            "name": "id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "ID required to target repeater in functions.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_63ac8ba2eb7f3",
             "label": "Data Type",
             "name": "data_type",
@@ -70,11 +90,11 @@
             "placeholder": ""
         },
         {
-            "key": "field_63ac8dcc5ec20",
-            "label": "Database",
-            "name": "database_source",
+            "key": "field_63bee375e0941",
+            "label": "Database Name",
+            "name": "database_name",
             "aria-label": "",
-            "type": "select",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -91,17 +111,38 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "none": "None",
-                "35684": "Tracker"
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63bee2eff47f7",
+            "label": "Database Query",
+            "name": "database_query",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            "default_value": "none",
-            "return_format": "label",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
+            "default_value": "`SELECT * from tracker`",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
         },
         {
             "key": "field_63ac8e028a495",
@@ -182,5 +223,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1672933974
+    "modified": 1673544904
 }

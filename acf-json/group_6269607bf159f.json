@@ -3422,10 +3422,10 @@
                 },
                 {
                     "key": "field_63b44eff58189",
-                    "label": "Table",
-                    "name": "table",
+                    "label": "Database Query",
+                    "name": "database_query",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "acf_code_field",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
@@ -3443,10 +3443,9 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
                     "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "mode": "javascript",
+                    "theme": "blackboard"
                 },
                 {
                     "key": "field_63b44f2e5818a",
@@ -3977,5 +3976,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1672762697
+    "modified": 1673456412
 }
