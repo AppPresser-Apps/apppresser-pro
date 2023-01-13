@@ -30,17 +30,48 @@
         window['codemirror'] = editor;
 
         var $expand = $el.find( '.expand' );
-
-        
+        var wrapper = editor.getWrapperElement();
 
         $expand.on('click', ()=> {
 
-            var wrapper = editor.getWrapperElement();
+            var modal = document.createElement('div');
+
+            modal.setAttribute( 'id', 'code-modal-wrapper');
+
+            modal.setAttribute('style', `
+            z-index: 9999; 
+            position: absolute; 
+            top: 0; left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            `);
+
+            modal.innerHTML = `<div id="code-modal" style="background: #ffffff; padding: 6px;">
+            <div class="modal-close"><span class="dashicons dashicons-fullscreen-exit-alt"></span></div>
+            <div id="code-inner"></div>
+            </div>
+            `;
+
+            $(modal).appendTo('body');
 
             // detach the new element from wherever it is and append it below parent, and show it
-            $(wrapper).detach().appendTo('.wp-block-post-content').show();
+            $(wrapper).detach().appendTo('#code-inner').show();
 
             console.log(wrapper);
+
+            $('.modal-close').on('click', ()=> {
+
+                $(wrapper).detach().insertBefore($expand).show();
+
+                window['codemirror'].refresh();
+
+                $('#code-modal-wrapper').remove();
+            });
+
         })
 
     }

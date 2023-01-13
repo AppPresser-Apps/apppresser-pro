@@ -177,7 +177,7 @@ if ( ! class_exists( 'acf_code_field' ) ) :
 			$e .= esc_textarea( $field['value'] );
 			$e .= '</textarea>';
 
-			$e .= '<div class="expand">expand</div>';
+			$e .= '<div class="expand"><span class="dashicons dashicons-fullscreen-alt"></span></div>';
 
 			echo $e;
 
