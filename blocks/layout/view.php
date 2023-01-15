@@ -13,7 +13,7 @@
 // Create id attribute allowing for custom "anchor" value.
 $id = 'appview-' . $block['id'];
 
-$block_id = str_replace('block_', 'block-', $block['id']);
+$block_id = str_replace( 'block_', 'block-', $block['id'] );
 
 // Create class attribute allowing for custom "className" values.
 $className = 'appview';
@@ -24,6 +24,7 @@ if ( ! empty( $block['className'] ) ) {
 $allowed_blocks = appp_get_allowed_view_blocks();
 
 $title           = get_field( 'title' );
+$logo            = get_field( 'logo' );
 $hide_toolbar    = get_field( 'hide_toolbar' );
 $toolbar_color   = get_field( 'toolbar_color' );
 $content_padding = get_field( 'padding' );
@@ -32,7 +33,7 @@ $right_buttons   = get_field( 'right_buttons' );
 $background      = get_field( 'background' );
 $padding         = get_field( 'padding' );
 $data_source     = get_field( 'data_source' );
-$display            = get_field( 'display' );
+$display         = get_field( 'display' );
 $flex            = get_field( 'flex' );
 
 $fullscreen = ! $hide_toolbar ? 'false' : 'true';
@@ -81,7 +82,7 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		gap: <?php echo esc_attr( $flex['gap'] ); ?>px;
 		height: 100%;
 	}
-	<?php endif ; ?>
+	<?php endif; ?>
 
 	.wp-block-acf-view.is-highlighted {
 		outline: 0px !important;
@@ -174,7 +175,13 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 						};
 						?>
 					</ion-buttons>
-					<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : ''; ?></ion-title>
+					<ion-title style="width:373px;">
+						<?php if ( $logo ) : ?>
+							<img src="<?php echo esc_url( wp_get_attachment_image_url( $logo, 'large' ) ); ?>" style="height: 40px; margin-top: 4px;" />
+						<?php else : ?>
+						<?php echo $title ? esc_attr( $title ) : ''; ?>
+						<?php endif ; ?>
+					</ion-title>
 					<ion-buttons slot="end">
 						<?php
 						if ( $right_buttons ) {

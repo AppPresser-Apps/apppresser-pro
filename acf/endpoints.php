@@ -189,6 +189,11 @@ function appp_get_app_data( $request ) {
 					$block           = appp_format_block_data( $block );
 					$action_sheets[] = $block;
 				}
+
+				if ( 'acf/ion-tabs' === $block['blockName'] ) {
+					$block    = appp_format_block_data( $block );
+					$tabbar[] = $block;
+				}
 			}
 		}
 
@@ -201,6 +206,7 @@ function appp_get_app_data( $request ) {
 			'popovers'      => $popovers,
 			'action_sheets' => $action_sheets,
 			'onboarding'    => $onboarding,
+			'tabbar'        => $tabbar,
 			'database'      => appp_get_app_database( $param ),
 		);
 
@@ -263,6 +269,10 @@ function appp_format_toolbar( $block ) {
 
 	}
 
+	if ( isset( $block['attrs']['data']['logo'] ) ) {
+		$block['attrs']['data']['logo'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
+	}
+	
 	$block['attrs']['data']['left_buttons']  = $left_buttons;
 	$block['attrs']['data']['right_buttons'] = $right_buttons;
 
@@ -617,6 +627,38 @@ function appp_format_block_data( $block ) {
 
 				unset( $block['attrs']['data'][ 'parameters_' . $key . '_key' ] );
 				unset( $block['attrs']['data'][ 'parameters_' . $key . '_value' ] );
+
+			}
+
+			break;
+
+		case 'acf/ion-tabs':
+
+			$stabs  = range( 0, ( $block['attrs']['data']['tabs'] - 1 ) );
+
+			$block['attrs']['data']['tabs'] = array();
+
+				/**
+			 * Format params into array.
+			 */
+			foreach ( $stabs as $key ) {
+
+				$icon  = $block['attrs']['data'][ 'tabs_' . $key . '_icon' ];
+				$label = $block['attrs']['data'][ 'tabs_' . $key . '_label' ];
+				$route = $block['attrs']['data'][ 'tabs_' . $key . '_route' ];
+
+			
+				$param[] = array(
+					'icon'  => $icon,
+					'label' => $label,
+					'route' => $route,
+				);
+
+				$block['attrs']['data']['tabs'] = $param;
+
+				unset( $block['attrs']['data'][ 'tabs_' . $key . '_icon' ] );
+				unset( $block['attrs']['data'][ 'tabs_' . $key . '_label' ] );
+				unset( $block['attrs']['data'][ 'tabs_' . $key . '_route' ] );
 
 			}
 

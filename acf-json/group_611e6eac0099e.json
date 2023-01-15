@@ -122,6 +122,31 @@
             "maxlength": ""
         },
         {
+            "key": "field_63c425a7e83b4",
+            "label": "Logo",
+            "name": "logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Logo will replace title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "",
+            "library": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
             "key": "field_62276c7894efa",
             "label": "Hide Toolbar",
             "name": "hide_toolbar",
@@ -6529,5 +6554,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1673196305
+    "modified": 1673799197
 }

@@ -50,9 +50,9 @@
             align-items: center;
             `);
 
-            modal.innerHTML = `<div id="code-modal" style="background: #ffffff; padding: 6px;">
-            <div class="modal-close"><span class="dashicons dashicons-fullscreen-exit-alt"></span></div>
-            <div id="code-inner"></div>
+            modal.innerHTML = `<div id="code-modal" style="background: #ffffff; padding: 6px; width: 100%; max-width: 900px;">
+            <div class="modal-close" style="padding-bottom: 8px;"><span class="dashicons dashicons-fullscreen-exit-alt"></span></div>
+            <div id="code-inner" style="height: calc( 100vh - 250px); max-height: 500px; overflow: scroll; background: #0C1021;"></div>
             </div>
             `;
 

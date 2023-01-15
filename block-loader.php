@@ -37,6 +37,33 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'ion-tabs',
+				'title'           => __( 'Tabbar' ),
+				'description'     => __( 'Tabs are a top level navigation component to implement a tab-based navigation. The component is a container of individual Tab components.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/layout/tabs/block.php',
+				'category'        => 'appp_view',
+				'icon'            => 'admin-page',
+				'keywords'        => array( 'app', 'modal' ),
+				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'supports'        => array(
+					'multiple'      => false,
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				// 'enqueue_script'  => 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+				// 'enqueue_style'   => 'https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css',
+			)
+		);
+
 		// register a modal block.
 		acf_register_block_type(
 			array(
