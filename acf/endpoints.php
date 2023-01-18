@@ -276,6 +276,8 @@ function appp_format_toolbar( $block ) {
 	$block['attrs']['data']['left_buttons']  = $left_buttons;
 	$block['attrs']['data']['right_buttons'] = $right_buttons;
 
+	$block['attrs']['data']['hide_tabbar'] = isset( $block['attrs']['data']['hide_tabbar'] ) ? $block['attrs']['data']['hide_tabbar'] : '0';   ;
+
 	// error_log( print_r( $left_buttons, true ) );
 	// error_log( print_r( $right_buttons, true ) );
 

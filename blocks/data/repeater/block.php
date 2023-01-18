@@ -18,6 +18,7 @@ $blockClasses = implode( ' ', array( $block['className'] ) );
 $per_page       = get_field( 'per_page' );
 $data_source    = get_field( 'data_source' );
 $request_method = get_field( 'request_method' );
+$empty_dataset_code = get_field( 'empty_dataset_code' );
 
 $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action', "acf/container" );
 
@@ -28,4 +29,5 @@ $allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-i
 
 <div id="<?php echo $block_id; ?>" class="<?php echo $blockClasses; ?>">
 	<InnerBlocks templateLock="false" allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"/>
+	<?php echo htmlspecialchars_decode($empty_dataset_code); ?>
 </div>

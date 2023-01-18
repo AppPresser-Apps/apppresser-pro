@@ -84,6 +84,26 @@
             "layout": "vertical"
         },
         {
+            "key": "field_63c6ba9560a52",
+            "label": "Hide Tabbar",
+            "name": "hide_tabbar",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6220ec41ae077",
             "label": "Toolbar",
             "name": "",
@@ -6554,5 +6574,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1673799197
+    "modified": 1673969333
 }

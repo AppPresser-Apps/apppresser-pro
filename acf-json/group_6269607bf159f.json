@@ -3318,6 +3318,26 @@
                     "append": ""
                 },
                 {
+                    "key": "field_63c80d66edc4a",
+                    "label": "Multiple Select",
+                    "name": "multiple_select",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
                     "key": "field_630a7fe21d5e7",
                     "label": "Interface",
                     "name": "interface",
@@ -3976,5 +3996,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1673456412
+    "modified": 1674055083
 }
