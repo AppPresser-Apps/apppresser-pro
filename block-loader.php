@@ -813,6 +813,27 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'accordion',
+				'title'           => 'Accordion',
+				'description'     => 'Accordions provide collapsible sections in your content to reduce vertical space while providing a way of organizing and grouping information.',
+				'category'        => 'appp_layout',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'icon'            => 'editor-insertmore',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/accordian/block.php',
+			)
+		);
+
 		// End Create-ACF-Block
 
 	}

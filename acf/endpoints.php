@@ -272,11 +272,11 @@ function appp_format_toolbar( $block ) {
 	if ( isset( $block['attrs']['data']['logo'] ) ) {
 		$block['attrs']['data']['logo'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
 	}
-	
+
 	$block['attrs']['data']['left_buttons']  = $left_buttons;
 	$block['attrs']['data']['right_buttons'] = $right_buttons;
 
-	$block['attrs']['data']['hide_tabbar'] = isset( $block['attrs']['data']['hide_tabbar'] ) ? $block['attrs']['data']['hide_tabbar'] : '0';   ;
+	$block['attrs']['data']['hide_tabbar'] = isset( $block['attrs']['data']['hide_tabbar'] ) ? $block['attrs']['data']['hide_tabbar'] : '0';
 
 	// error_log( print_r( $left_buttons, true ) );
 	// error_log( print_r( $right_buttons, true ) );
@@ -635,8 +635,7 @@ function appp_format_block_data( $block ) {
 			break;
 
 		case 'acf/ion-tabs':
-
-			$stabs  = range( 0, ( $block['attrs']['data']['tabs'] - 1 ) );
+			$stabs = range( 0, ( $block['attrs']['data']['tabs'] - 1 ) );
 
 			$block['attrs']['data']['tabs'] = array();
 
@@ -649,7 +648,6 @@ function appp_format_block_data( $block ) {
 				$label = $block['attrs']['data'][ 'tabs_' . $key . '_label' ];
 				$route = $block['attrs']['data'][ 'tabs_' . $key . '_route' ];
 
-			
 				$param[] = array(
 					'icon'  => $icon,
 					'label' => $label,
@@ -664,6 +662,33 @@ function appp_format_block_data( $block ) {
 
 			}
 
+			break;
+
+		case 'acf/accordion':
+			$saccordian = range( 0, ( $block['attrs']['data']['accordion'] - 1 ) );
+
+			$block['attrs']['data']['accordions'] = array();
+
+				/**
+			 * Format params into array.
+			 */
+			foreach ( $saccordian as $key ) {
+
+				$title   = $block['attrs']['data'][ 'accordion_' . $key . '_title' ];
+				$content = $block['attrs']['data'][ 'accordion_' . $key . '_content' ];
+
+				$param[] = array(
+					'title'   => $title,
+					'content' => $content,
+				);
+
+				$block['attrs']['data']['accordions'] = $param;
+
+				unset( $block['attrs']['data']['accordion'] );
+				unset( $block['attrs']['data'][ 'accordion_' . $key . '_title' ] );
+				unset( $block['attrs']['data'][ 'accordion_' . $key . '_content' ] );
+
+			}
 			break;
 	}
 
