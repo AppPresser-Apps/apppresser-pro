@@ -107,7 +107,7 @@ acf.addAction('load', ()=> {
         jQuery('.edit-post-header-toolbar__list-view-toggle').bind('click', ()=> {
 
             setTimeout(() => {
-            setListViewTitle(blocks);
+                setListViewTitle(blocks);
             }, 300);
           
           });

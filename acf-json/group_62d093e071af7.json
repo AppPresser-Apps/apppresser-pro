@@ -344,6 +344,28 @@
                     "append": ""
                 },
                 {
+                    "key": "field_63cd562cf669d",
+                    "label": "Version",
+                    "name": "version",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "To update a database the version number must be increased.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "min": 1,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 1,
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_63ac7263d0709",
                     "label": "Tables",
                     "name": "tables",
@@ -391,7 +413,7 @@
                             "label": "Statement",
                             "name": "statement",
                             "aria-label": "",
-                            "type": "textarea",
+                            "type": "acf_code_field",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -401,10 +423,9 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
-                            "rows": "",
                             "placeholder": "",
-                            "new_lines": "",
+                            "mode": "javascript",
+                            "theme": "blackboard",
                             "parent_repeater": "field_63ac7263d0709"
                         }
                     ]
@@ -445,5 +466,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1672250892
+    "modified": 1674401523
 }

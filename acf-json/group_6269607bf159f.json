@@ -3494,6 +3494,59 @@
                     "rows": 1,
                     "placeholder": "",
                     "new_lines": ""
+                },
+                {
+                    "key": "field_63c84ce1ba68e",
+                    "label": "Events",
+                    "name": "events",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "None",
+                        "focus": "Focus"
+                    },
+                    "default_value": "none",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63c85a1398923",
+                    "label": "Event Code",
+                    "name": "event_code",
+                    "aria-label": "",
+                    "type": "acf_code_field",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63c84ce1ba68e",
+                                "operator": "!=",
+                                "value": "none"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "mode": "javascript",
+                    "theme": "blackboard"
                 }
             ]
         },
@@ -3996,5 +4049,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674055083
+    "modified": 1674074879
 }

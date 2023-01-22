@@ -72,7 +72,7 @@ function appp_gutenberg_register_files() {
 		'appp-block-script',
 		APPPRESSER_URL . '/js/block-script.js',
 		array( 'wp-blocks', 'wp-edit-post' ),
-		'1.1.8',
+		'1.1.9',
 		true,
 	);
 
