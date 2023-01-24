@@ -20,7 +20,7 @@ $data_source    = get_field( 'data_source' );
 $request_method = get_field( 'request_method' );
 $empty_dataset_code = get_field( 'empty_dataset_code' );
 
-$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action', 'acf/container', 'acf/accordion' );
+$allowed_blocks = array( 'acf/card', 'acf/button', 'acf/openweather', 'acf/ion-image', 'acf/ion-thumbnail', 'acf/ion-item', 'acf/action', 'acf/container', 'acf/columns', 'acf/accordion' );
 
 ?>
 <style>
