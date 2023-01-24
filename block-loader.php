@@ -405,6 +405,39 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => __( 'subrepeater' ),
+				'title'           => __( 'Sub Repeater' ),
+				'description'     => __( 'Repeats all inner blocks for each item in array of data. Data supplied from parent repeater.' ),
+				'category'        => 'appp_data',
+				'icon'            => 'controls-repeat',
+				'keywords'        => array( 'component', 'repeater', 'data' ),
+				'post_types'      => array( 'app' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'className'       => 'appp-subrepeater',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/data/subrepeater/block.php',
+				'example'         => array(
+					'attributes' => array(
+						'mode' => 'preview',
+						'data' => array(
+							'_is_preview' => 'true',
+						),
+					),
+				),
+			)
+		);
+
 		// acf_register_block_type(
 		// array(
 		// 'name'            => 'openweather',

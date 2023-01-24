@@ -179,6 +179,7 @@ function appp_get_allowed_innerblocks() {
 		'acf/ion-icon',
 		'acf/container',
 		'acf/action',
+		'acf/accordion',
 	);
 }
 
