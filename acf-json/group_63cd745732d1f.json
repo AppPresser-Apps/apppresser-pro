@@ -3,8 +3,34 @@
     "title": "Accordion",
     "fields": [
         {
+            "key": "field_63d000160d3df",
+            "label": "Style",
+            "name": "style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "compact": "Compact",
+                "inset": "Inset"
+            },
+            "default_value": "compact",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_63cd7458e6ed2",
-            "label": "Accordion",
+            "label": "Accordions",
             "name": "accordion",
             "aria-label": "",
             "type": "repeater",
@@ -20,8 +46,8 @@
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
+            "collapsed": "field_63cd752ee6ed3",
+            "button_label": "Add Accordion",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -87,5 +113,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674410276
+    "modified": 1674576044
 }

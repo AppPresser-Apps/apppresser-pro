@@ -18,6 +18,7 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
+$style = get_field( 'style' );
 $accordions = get_field( 'accordion' );
 
 ?>
@@ -27,7 +28,7 @@ $accordions = get_field( 'accordion' );
 	}
 </style>
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-	<ion-accordion-group>
+	<ion-accordion-group expand="<?php echo esc_attr($style); ?>">
 
 		<?php foreach ( $accordions as $key => $value ) : ?>
 			<ion-accordion value="first">
@@ -35,7 +36,7 @@ $accordions = get_field( 'accordion' );
 				<ion-label><?php echo esc_attr( $value['title'] ); ?></ion-label>
 				</ion-item>
 				<div class="ion-padding" slot="content">
-				<?php echo $value['content']; ?>
+					<?php echo $value['content']; ?>
 				</div>
 			</ion-accordion>
 		<?php endforeach; ?>
