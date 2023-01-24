@@ -146,6 +146,10 @@ function setListViewTitle(blocks) {
         }
 
         jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' - ' + title );
+        console.log(block.attributes.data.visibility);
+        if ( 'unauthenticated' === block.attributes.data.visibility) {
+            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-contents').addClass('no-auth');
+        }
     });
 
 }

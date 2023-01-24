@@ -189,6 +189,14 @@ function appp_remove_core_button_styles() {
 		.interface-complementary-area {
 			width: 380px !important;
 		}
+
+		.block-editor-list-view-leaf:not(.is-selected)  .no-auth {
+			color: rgb(255, 63, 0);
+		}
+
+		.block-editor-list-view-leaf.is-selected .no-auth {
+			color: #ffffff;
+		}
 		</style>
 		";
 	}
