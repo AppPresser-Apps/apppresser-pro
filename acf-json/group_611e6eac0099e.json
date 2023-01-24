@@ -75,10 +75,11 @@
                 "id": ""
             },
             "choices": {
+                "visible": "Visible",
                 "unauthenticated": "Unauthenticated",
                 "authenticated": "Authenticated"
             },
-            "default_value": "unauthenticated",
+            "default_value": "visible",
             "return_format": "value",
             "allow_null": 0,
             "layout": "vertical"
@@ -6574,5 +6575,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1673969333
+    "modified": 1674495510
 }
