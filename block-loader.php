@@ -325,11 +325,11 @@ function appp_init_block_types() {
 		acf_register_block_type(
 			array(
 				'name'            => 'text',
-				'title'           => __( 'Paragraph' ),
-				'description'     => __( 'Multi-line paragraph of text' ),
+				'title'           => __( 'Text' ),
+				'description'     => __( 'Single or Multi-line paragraph of text.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/text/text.php',
 				'category'        => 'appp_text',
-				'icon'            => 'editor-paragraph',
+				'icon'            => 'text',
 				'keywords'        => array( 'component', 'text' ),
 				'post_types'      => array( 'app' ),
 				'usesContext'     => array( 'acf/fields' ),
