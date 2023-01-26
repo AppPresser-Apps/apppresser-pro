@@ -145,11 +145,46 @@ function setListViewTitle(blocks) {
                 break;
         }
 
-        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' - ' + title );
-        console.log(block.attributes.data.visibility);
+        let icon = '';
+
         if ( 'unauthenticated' === block.attributes.data.visibility) {
-            jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-contents').addClass('no-auth');
+            icon = '<span class="tooltip-icon" data-tooltip="This view available when app is unauthenticated" style="float:right; z-index: 999;"><span class="dashicons dashicons-unlock unauthenticated"></span></span>';
+            //jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-contents').addClass('no-auth');
         }
+
+        if ( 'authenticated' === block.attributes.data.visibility) {
+            icon = '<span class="tooltip-icon" data-tooltip="This view available when app is authenticated" style="float:right;"><span class="dashicons dashicons-lock authenticated"></span></span>';
+            //jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-contents').addClass('no-auth');
+        }
+
+        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' - ' + title + icon );
+
+        setTimeout(() => {
+            jQuery("span.tooltip-icon").on({
+                mouseenter: function (e) {
+                    //stuff to do on mouse enter
+                    console.log(e.pageX, e.pageY);
+
+                    // jQuery('<div>', {
+                    //     class: 'tooltip',
+                    // }).appendTo('body');
+
+                    jQuery('body').append('<div class="tooltip"></div>');
+
+                    jQuery(".tooltip").css("left", e.pageX - 80);
+                    jQuery(".tooltip").css("top", e.pageY + 10);
+                    jQuery(".tooltip").html(jQuery(this).attr("data-tooltip"));
+                    jQuery(".tooltop").show();
+                },
+                mouseleave: function (e) {
+                    //stuff to do on mouse leave
+                    //console.log(e)
+                    jQuery(".tooltip").remove();
+                }
+            });
+        }, 500);
+
+   
     });
 
 }

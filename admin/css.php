@@ -190,13 +190,22 @@ function appp_remove_core_button_styles() {
 			width: 380px !important;
 		}
 
-		.block-editor-list-view-leaf:not(.is-selected)  .no-auth {
-			color: rgb(255, 63, 0);
-		}
+		// .block-editor-list-view-leaf:not(.is-selected) .block-editor-list-view-block-select-button__title .dashicons {
+		// 	color: #e1e1e1;
+		// }
 
-		.block-editor-list-view-leaf.is-selected .no-auth {
+		// .block-editor-list-view-leaf.is-selected .block-editor-list-view-block-select-button__title .dashicons {
+		// 	color: #ffffff;
+		// }
+
+		.tooltip {
+			width: 230px;
+			padding: 4px;
+			position: absolute;
+			background: #000000;
 			color: #ffffff;
-		}
+			font-weight: 500;
+		} 
 		</style>
 		";
 	}
