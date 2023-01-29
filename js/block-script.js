@@ -49,10 +49,14 @@ if (!isListViewOpened) {
         return;
       }
 
+      var download_id = 'app-download-link';
       var link_id = 'app-preview-link';
 
-      // prepare our custom link's html.
-      var link_html = '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
+      var link_html = '';
+
+      // prepare our app link's html.
+      link_html += '<a id="' + download_id + '" class="components-button">Download App</a>';
+      link_html += '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
 
       setTimeout( function () {
           if ( !document.getElementById( link_id ) ) {
@@ -60,8 +64,24 @@ if (!isListViewOpened) {
               if( toolbalEl instanceof HTMLElement ){
                   toolbalEl.insertAdjacentHTML( 'beforeend', link_html );
               }
+
+              document.getElementById( download_id ).addEventListener( 'click', ()=> {
+                console.log('dowload app', post.id);
+
+                wp.apiFetch( { path: '/apppresser/v1/app-files/' + post.id } ).then( ( rsp ) => {
+                
+                    var link = document.createElement("a");
+                    link.download = 'assets';
+                    link.href = rsp;
+                    link.click();
+
+                } );
+
+              })
+
           }
-      }, 1 )
+      }, 10 )
+
   } );
 } )( window.wp );
 

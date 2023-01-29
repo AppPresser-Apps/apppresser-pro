@@ -26,7 +26,24 @@ function appp_app_endpoints() {
 			'args'                => array(
 				'id' => array(
 					'validate_callback' => function( $param, $request, $key ) {
-						return is_numeric( $param );
+						return true;
+					},
+				),
+			),
+		),
+	);
+
+	register_rest_route(
+		'apppresser/v1',
+		'/app-files/(?P<id>\d+)',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'appp_get_app_files',
+			'args'                => array(
+				'id' => array(
+					'validate_callback' => function( $param, $request, $key ) {
+						return true;
 					},
 				),
 			),
@@ -270,7 +287,14 @@ function appp_format_toolbar( $block ) {
 	}
 
 	if ( isset( $block['attrs']['data']['logo'] ) ) {
-		$block['attrs']['data']['logo'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
+
+		$image = wp_get_attachment_image_src( $block['attrs']['data']['logo'], 'original_image' );
+
+		$image_path                          = empty( $image[0] ) ? '' : parse_url( $image[0] );
+		$image_file                          = isset( $image_path['path'] ) ? '/assets/' . basename( $image_path['path'] ) : false;
+		$block['attrs']['data']['logo_file'] = $image_file;
+
+		$block['attrs']['data']['logo_url'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
 	}
 
 	$block['attrs']['data']['left_buttons']  = $left_buttons;
@@ -357,33 +381,48 @@ function appp_format_block_data( $block ) {
 			break;
 		case 'acf/ion-image':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
-				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
-				$image                               = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' )[0];
-				$block['attrs']['data']['image_url'] = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
+				$block['attrs']['data']['image_id'] = $block['attrs']['data']['image_url'];
+				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' )[0];
+
+				$image_path                           = empty( $image[0] ) ? '' : parse_url( $image[0] );
+				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
+				$block['attrs']['data']['image_url']  = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 			}
 			// error_log( print_r( $block, true ) );
 			break;
 		case 'acf/ion-avatar':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
-				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
-				$avatar                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
-				$block['attrs']['data']['image_url'] = empty( $avatar[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar[0];
+				$block['attrs']['data']['image_id'] = $block['attrs']['data']['image_url'];
+				$avatar                             = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
+
+				$image_path                           = empty( $avatar[0] ) ? '' : parse_url( $avatar[0] );
+				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
+				$block['attrs']['data']['image_url']  = empty( $avatar[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar[0];
 				// error_log( print_r( $block, true ) );
 			}
 			break;
 		case 'acf/ion-thumbnail':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
-				$block['attrs']['data']['image_id']  = $block['attrs']['data']['image_url'];
-				$thumbnail                           = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
-				$block['attrs']['data']['image_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
-				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+				$block['attrs']['data']['image_id'] = $block['attrs']['data']['image_url'];
+				$thumbnail                          = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
+
+				$image_path                           = empty( $thumbnail[0] ) ? '' : parse_url( $thumbnail[0] );
+				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
+				$block['attrs']['data']['image_url']  = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
 			}
 			break;
 		case 'acf/container':
 			if ( isset( $block['attrs']['data']['background_image'] ) ) {
 				$block['attrs']['data']['image_id'] = $block['attrs']['data']['background_image'];
 				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
+
+				$image_path                                     = empty( $image[0] ) ? '' : parse_url( $image[0] );
+				$image_file                                     = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+				$block['attrs']['data']['image_file']           = '/assets/' . $image_file;
 				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
 
 				$bordertl = $block['attrs']['data']['border_radius_border_radius_top_left'] . 'px';
@@ -695,4 +734,115 @@ function appp_format_block_data( $block ) {
 	$block = apply_filters( 'appp_format_block_data', $block );
 
 	return $block;
+}
+
+/**
+ * Api endpoint handler for compiling folder of app assets.
+ *
+ * @param WP_Rest_Request $request
+ * @return void
+ */
+function appp_get_app_files( $request ) {
+
+	$param = $request->get_param( 'id' );
+
+	if ( ! $param ) {
+		return;
+	}
+
+	add_filter( 'https_ssl_verify', '__return_false' );
+
+	$url        = site_url();
+	$upload_dir = wp_get_upload_dir();
+
+	if ( ! is_dir( $upload_dir['basedir'] . '/apppresser' ) ) {
+		wp_mkdir_p( $upload_dir['basedir'] . '/apppresser' );
+		chmod( $upload_dir['basedir'] . '/apppresser', 0755 );
+	}
+
+	$medias     = get_attached_media( '', $param );
+	$upload_dir = wp_get_upload_dir();
+	$appp_dir   = $upload_dir['basedir'] . '/apppresser';
+
+	foreach ( $medias as $media ) {
+		$meta = wp_get_attachment_metadata( $media->ID );
+		$file = basename( $meta['file'] );
+
+		copy( $upload_dir['basedir'] . '/' . $meta['file'], $appp_dir . '/' . $file );
+	}
+
+	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param );
+	$body     = wp_remote_retrieve_body( $response );
+
+	$bytes = file_put_contents( $upload_dir['basedir'] . '/apppresser/app.json', $body );
+
+	appp_copy_folder( APPPRESSER_DIR . 'app-assets', $appp_dir );
+
+	appp_zip_folder( $appp_dir, $upload_dir['basedir'] );
+
+	return $upload_dir['baseurl'] . '/assets.zip';
+}
+
+/**
+ * Zips up folder of app files.
+ *
+ * @param string $root_path
+ * @param string $upload_dir
+ * @return void
+ */
+function appp_zip_folder( $root_path, $upload_dir ) {
+
+	// Initialize archive object.
+	$zip = new ZipArchive();
+	$zip->open( $upload_dir . '/assets.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE );
+
+	// Create recursive directory iterator.
+	/** @var SplFileInfo[] $files */
+	$files = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator( $root_path ),
+		RecursiveIteratorIterator::LEAVES_ONLY
+	);
+
+	foreach ( $files as $name => $file ) {
+		// Skip directories (they would be added automatically).
+		if ( ! $file->isDir() ) {
+			// Get real and relative path for current file.
+			$file_path     = $file->getRealPath();
+			$relative_path = substr( $file_path, strlen( $root_path ) + 1 );
+
+			// Add current file to archive.
+			$zip->addFile( $file_path, $relative_path );
+		}
+	}
+
+	// Zip archive will be created only after closing object.
+	$zip->close();
+}
+
+/**
+ * Copy static app assets to app files folder.
+ *
+ * @param string $folder_path
+ * @param string $dest_dir
+ * @return void
+ */
+function appp_copy_folder( $folder_path, $dest_dir ) {
+	// Create recursive directory iterator.
+	/** @var SplFileInfo[] $files */
+	$files = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator( $folder_path ),
+		RecursiveIteratorIterator::LEAVES_ONLY
+	);
+
+	foreach ( $files as $name => $file ) {
+		// Skip directories (they would be added automatically).
+		if ( ! $file->isDir() ) {
+			// Get real and relative path for current file.
+			$file_path     = $file->getRealPath();
+			$relative_path = substr( $file_path, strlen( $folder_path ) + 1 );
+
+			// Add current file to dest folder.
+			copy( $file_path, $dest_dir . '/' . basename( $relative_path ) );
+		}
+	}
 }
