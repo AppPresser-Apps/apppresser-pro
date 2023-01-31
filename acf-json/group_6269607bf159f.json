@@ -3370,7 +3370,7 @@
                     "name": "default",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "You can also bind data to value with a data token: {{token_name}}",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -3402,7 +3402,7 @@
                         "hard": "Hard Coded",
                         "api": "External API",
                         "database": "Sqlite Database",
-                        "local": "App Preferences"
+                        "preferences": "App Preferences"
                     },
                     "default_value": "hard",
                     "return_format": "value",
@@ -3547,6 +3547,54 @@
                     "placeholder": "",
                     "mode": "javascript",
                     "theme": "blackboard"
+                },
+                {
+                    "key": "field_63d9572d4e9f0",
+                    "label": "Data Source",
+                    "name": "data_value_source",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hard": "Hard Coded",
+                        "api": "External API",
+                        "database": "Sqlite Database",
+                        "preferences": "App Preferences"
+                    },
+                    "default_value": "hard",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63d9579b4e9f1",
+                    "label": "Data Value",
+                    "name": "data_value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -3951,12 +3999,40 @@
                     "append": ""
                 },
                 {
+                    "key": "field_63d7e1ec0dd82",
+                    "label": "Value Source",
+                    "name": "value_source",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hard": "Hard Coded",
+                        "api": "External API",
+                        "database": "Sqlite Database",
+                        "preferences": "App Preferences"
+                    },
+                    "default_value": "hard",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
                     "key": "field_6307c374b3299",
                     "label": "Value",
                     "name": "input_value",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Database Format - table_name : table_column_name. App preferences use the format - preference_name : preference_value.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -4049,5 +4125,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674074879
+    "modified": 1675188313
 }
