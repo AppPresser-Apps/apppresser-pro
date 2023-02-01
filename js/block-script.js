@@ -194,6 +194,9 @@ function apppFilterBlockRegister(settings, name) {
       case "acf/inner-segment":
         settings.parent = ["acf/segment", "acf/popover"];
         break;
+      case "acf/date-time":
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", 'acf/subrepeater'];
+        break;
   }
 
   return settings;

@@ -868,6 +868,31 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'date-time',
+				'title'           => __( 'Date Time' ),
+				'description'     => __( 'Datetimes present a calendar interface and time wheel, making it easy for users to select dates and times.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/data/date-time/block.php',
+				'category'        => 'appp_data',
+				'icon'            => 'time',
+				'keywords'        => array( 'component', 'calender', 'date' ),
+				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
 		// End Create-ACF-Block
 
 	}
