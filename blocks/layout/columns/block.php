@@ -16,8 +16,9 @@ if ( ! empty( $block['className'] ) ) {
 
 $allowed_blocks = array( 'acf/inner-columns' );
 
-$margin  = get_field( 'margin' );
-$padding = get_field( 'padding' );
+$margin     = get_field( 'margin' );
+$padding    = get_field( 'padding' );
+$visibility = get_field( 'visibility' );
 
 $style = '';
 
@@ -30,6 +31,10 @@ $style .= 'padding-left:' . ( $padding['padding_left'] ?? '16' ) . 'px; ';
 $style .= 'padding-top:' . ( $padding['padding_top'] ?? '16' ) . 'px; ';
 $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
+
+if ( 'hidden' === $visibility ) {
+	$style .= 'display: none; ';
+}
 
 ?>
 <style>

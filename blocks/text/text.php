@@ -18,16 +18,17 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
-$text        = get_field( 'text' );
-$color       = get_field( 'color' );
-$background  = get_field( 'background' );
-$size        = get_field( 'font_size' );
-$weight      = get_field( 'font_weight' );
-$font_style  = get_field( 'font_style' );
-$margin      = get_field( 'margin' ) ?? 0;
-$padding     = get_field( 'padding' );
-$alignment   = get_field( 'alignment' );
-$shadow      = get_field( 'text_shadow' );
+$text       = get_field( 'text' );
+$color      = get_field( 'color' );
+$background = get_field( 'background' );
+$size       = get_field( 'font_size' );
+$weight     = get_field( 'font_weight' );
+$font_style = get_field( 'font_style' );
+$margin     = get_field( 'margin' ) ?? 0;
+$padding    = get_field( 'padding' );
+$alignment  = get_field( 'alignment' );
+$shadow     = get_field( 'text_shadow' );
+$visibility = get_field( 'visibility' );
 
 
 $style = '';
@@ -38,7 +39,7 @@ $style .= 'padding-right:' . ( $padding['padding_right'] ?? '16' ) . 'px; ';
 $style .= 'padding-bottom:' . ( $padding['padding_bottom'] ?? '16' ) . 'px; ';
 
 if ( $shadow ) {
-	$alpha_color = $shadow['text_shadow_color'];
+	$alpha_color       = $shadow['text_shadow_color'];
 	$x_coord           = $shadow['x_coord'] . 'px';
 	$y_coord           = $shadow['y_coord'] . 'px';
 	$blur              = $shadow['blur'] . 'px';
@@ -78,6 +79,9 @@ if ( 'default' === $color ) {
 
 $style .= 'font-family: var(--ion-font-family, inherit); font-size: ' . $size . 'px; font-weight: ' . $weight . '; box-sizing: border-box; margin: 0px;';
 
+if ( 'hidden' === $visibility ) {
+	$style .= 'display: none; ';
+}
 ?>
 <style>
 	#<?php echo esc_attr( $block_id ); ?> {

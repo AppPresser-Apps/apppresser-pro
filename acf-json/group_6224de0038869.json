@@ -1,6 +1,6 @@
 {
     "key": "group_6224de0038869",
-    "title": "Paragraph",
+    "title": "Text",
     "fields": [
         {
             "key": "field_6224e61a311d0",
@@ -526,5 +526,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1672940380
+    "modified": 1675353242
 }
