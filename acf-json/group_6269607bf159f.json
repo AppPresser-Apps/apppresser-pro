@@ -1486,6 +1486,62 @@
             "new_lines": ""
         },
         {
+            "key": "field_63dc3be2c6358",
+            "label": "Description Formatting",
+            "name": "formatting",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "date": "Format Date",
+                "uppercase": "Uppercase",
+                "lowercase": "Lowercase"
+            },
+            "default_value": "none",
+            "return_format": "",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_63dc3d7f9f375",
+            "label": "Date Format",
+            "name": "date_format",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use accepted patterns listed here: <a href=\"https:\/\/date-fns.org\/v2.29.3\/docs\/format\">https:\/\/date-fns.org<\/a>",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63dc3be2c6358",
+                        "operator": "==",
+                        "value": "date"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "MMM do y p",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6307a106dda9e",
             "label": "Detail Icon",
             "name": "icon_detail",
@@ -2843,6 +2899,26 @@
             "placeholder": ""
         },
         {
+            "key": "field_63dc4046ec3d9",
+            "label": "Wrap Text",
+            "name": "wrap_text",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_62fd189baa29b",
             "label": "Design",
             "name": "",
@@ -2963,6 +3039,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_62fd1b42d238c",
+            "label": "Description Color",
+            "name": "description_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default"
+            },
+            "default_value": "default",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_6307b9a6157ae",
             "label": "Label Position",
             "name": "label_position",
@@ -2987,31 +3088,6 @@
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_62fd1b42d238c",
-            "label": "Description Color",
-            "name": "description_color",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Default"
-            },
-            "default_value": "default",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
             "ajax": 0,
             "placeholder": ""
         },
@@ -4169,5 +4245,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675358188
+    "modified": 1675379818
 }
