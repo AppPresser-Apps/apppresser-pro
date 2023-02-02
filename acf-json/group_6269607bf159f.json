@@ -4016,7 +4016,8 @@
                         "hard": "Hard Coded",
                         "api": "External API",
                         "database": "Sqlite Database",
-                        "preferences": "App Preferences"
+                        "preferences": "App Preferences",
+                        "transient": "Transient"
                     },
                     "default_value": "hard",
                     "return_format": "value",
@@ -4034,7 +4035,50 @@
                     "type": "text",
                     "instructions": "Database Format - table_name : table_column_name. App preferences use the format - preference_name : preference_value.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63d7e1ec0dd82",
+                                "operator": "==",
+                                "value": "database"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63d7e1ec0dd82",
+                                "operator": "==",
+                                "value": "preferences"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_63dbefac44e16",
+                    "label": "Transient",
+                    "name": "transient",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63d7e1ec0dd82",
+                                "operator": "==",
+                                "value": "transient"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -4125,5 +4169,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675188313
+    "modified": 1675358188
 }

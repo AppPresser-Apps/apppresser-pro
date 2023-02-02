@@ -60,7 +60,8 @@
                 "id": ""
             },
             "choices": {
-                "none": "None"
+                "none": "None",
+                "35684": "Tracker Database"
             },
             "default_value": "none",
             "return_format": "value",
@@ -116,6 +117,99 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_63dbe60b685fe",
+            "label": "State",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_63dbe514f01a0",
+            "label": "Variables",
+            "name": "variables",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63dbe529f01a1",
+            "button_label": "Add Variable",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_63dbe529f01a1",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_63dbe514f01a0"
+                },
+                {
+                    "key": "field_63dbe530f01a2",
+                    "label": "Type",
+                    "name": "type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "any": "Any",
+                        "string": "String",
+                        "integer": "Integar",
+                        "array": "Array",
+                        "object": "Object"
+                    },
+                    "default_value": "any",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_63dbe514f01a0"
+                }
+            ]
         }
     ],
     "location": [
@@ -136,5 +230,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1672248039
+    "modified": 1675355877
 }
