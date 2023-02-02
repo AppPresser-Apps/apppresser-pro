@@ -79,7 +79,8 @@
                 "763": "Cat facts",
                 "762": "SMP News",
                 "758": "Local Data",
-                "608": "SMP Fraud schemes"
+                "608": "SMP Fraud schemes",
+                "35748": "SMP Help"
             },
             "default_value": "none",
             "return_format": "value",
@@ -240,6 +241,45 @@
             "placeholder": "",
             "mode": "text\/html",
             "theme": "blackboard"
+        },
+        {
+            "key": "field_63db011884d3b",
+            "label": "Reset Button Text",
+            "name": "reset_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Reset Filter",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63daff444dc48",
+            "label": "Empty Filter Code",
+            "name": "empty_filter_code",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "text\/html",
+            "theme": "blackboard"
         }
     ],
     "location": [
@@ -260,5 +300,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1673969497
+    "modified": 1675297103
 }
