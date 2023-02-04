@@ -389,8 +389,46 @@ function appp_format_block_data( $block ) {
 				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
 				$block['attrs']['data']['image_url']  = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
+
+				if ( isset( $block['attrs']['data']['rules'] ) ) {
+					// Creates an array from integer so we can loop through ACF data that isnt an array.
+					$srules = range( 0, ( $block['attrs']['data']['rules'] - 1 ) );
+					$rules  = array();
+
+					foreach ( $srules as $index => $rule ) {
+	
+						$rules[] = array(
+							'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
+							'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
+						);
+
+						unset( $block['attrs']['data'][ 'rules_' . $index . '_rule' ] );
+						unset( $block['attrs']['data'][ 'rules_' . $index . '_plus' ] );
+					}
+
+					$block['attrs']['data']['rules'] = $rules;
+				}
 			}
-			// error_log( print_r( $block, true ) );
+			break;
+		case 'acf/wysiwyg':
+			if ( isset( $block['attrs']['data']['rules'] ) ) {
+				// Creates an array from integer so we can loop through ACF data that isnt an array.
+				$srules = range( 0, ( $block['attrs']['data']['rules'] - 1 ) );
+				$rules  = array();
+
+				foreach ( $srules as $index => $rule ) {
+
+					$rules[] = array(
+						'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
+						'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
+					);
+
+					unset( $block['attrs']['data'][ 'rules_' . $index . '_rule' ] );
+					unset( $block['attrs']['data'][ 'rules_' . $index . '_plus' ] );
+				}
+
+				$block['attrs']['data']['rules'] = $rules;
+			}
 			break;
 		case 'acf/ion-avatar':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
@@ -463,7 +501,7 @@ function appp_format_block_data( $block ) {
 				$gradcolors = range( 0, ( $block['attrs']['data']['background_gradient_colors'] - 1 ) );
 				$gradients  = array();
 
-				foreach ( $gradcolors as $gradindex ) {
+				foreach ( $gradcolors as $gradindex => $gradient ) {
 					$gradients[] = $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ];
 					unset( $block['attrs']['data'][ 'background_gradient_colors_' . $gradindex . '_color' ] );
 				}

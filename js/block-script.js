@@ -189,13 +189,16 @@ function apppFilterBlockRegister(settings, name) {
         settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", 'acf/subrepeater'];
         break;
       case "acf/ion-item":
-        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle", "acf/popover", 'acf/subrepeater'];
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle", "acf/popover", 'acf/repeater', 'acf/subrepeater'];
         break;
       case "acf/inner-segment":
         settings.parent = ["acf/segment", "acf/popover"];
         break;
       case "acf/date-time":
         settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", 'acf/subrepeater'];
+        break;
+      case "acf/wysiwyg":
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", 'acf/repeater', 'acf/subrepeater'];
         break;
   }
 

@@ -893,6 +893,31 @@ function appp_init_block_types() {
 			)
 		);
 
+		acf_register_block_type(
+			array(
+				'name'            => 'wysiwyg',
+				'title'           => __( 'WYSIWYG' ),
+				'description'     => __( 'Text editor.' ),
+				'render_template' => APPPRESSER_DIR . '/blocks/text/wysiwyg/block.php',
+				'category'        => 'appp_text',
+				'icon'            => 'time',
+				'keywords'        => array( 'component', 'text', 'html' ),
+				'post_types'      => array( 'app' ),
+				'usesContext'     => array( 'acf/fields' ),
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'parent'          => array( 'acf/view' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+			)
+		);
+
 		// End Create-ACF-Block
 
 	}
