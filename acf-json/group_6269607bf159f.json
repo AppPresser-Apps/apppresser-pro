@@ -3414,6 +3414,66 @@
                     "ui_off_text": ""
                 },
                 {
+                    "key": "field_63e11a0da4c7b",
+                    "label": "Required",
+                    "name": "required",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_63e11c2089e46",
+                    "label": "Required Text",
+                    "name": "required_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The text to display nexts to label of required input.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "*",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_63e120fb70076",
+                    "label": "Validation Error Message",
+                    "name": "validation_error_message",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_630a7fe21d5e7",
                     "label": "Interface",
                     "name": "interface",
@@ -4245,5 +4305,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675379818
+    "modified": 1675698459
 }
