@@ -382,7 +382,7 @@ function appp_format_block_data( $block ) {
 		case 'acf/ion-image':
 			if ( isset( $block['attrs']['data']['image_url'] ) ) {
 				$block['attrs']['data']['image_id'] = $block['attrs']['data']['image_url'];
-				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' )[0];
+				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
 
 				$image_path                           = empty( $image[0] ) ? '' : parse_url( $image[0] );
 				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
