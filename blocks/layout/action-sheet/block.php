@@ -23,6 +23,8 @@ $subheader      = get_field( 'subheader' );
 $cancel_button  = get_field( 'cancel_button' );
 $action_buttons = get_field( 'action_buttons' );
 
+$buttons = isset($buttons['buttons']) ? $buttons['buttons'] : [];
+
 ?>
 
 <style>
@@ -188,7 +190,7 @@ $action_buttons = get_field( 'action_buttons' );
 		<div class="action-sheet">
 			<div class="action-sheet-group sc-ion-action-sheet-ios">
 				<div class="action-sheet-title action-sheet-has-sub-title sc-ion-action-sheet-ios"><?php echo esc_attr( $header ); ?><div class="action-sheet-sub-title sc-ion-action-sheet-ios"><?php echo esc_attr( $subheader ); ?></div></div>
-				<? foreach ($action_buttons['buttons'] as $button) : ?>
+				<? foreach ($buttons as $button) : ?>
 					<button type="button" class="action-sheet-button ion-activatable ion-focusable action-sheet-<?php echo esc_attr( $button['role'] ); ?> sc-ion-action-sheet-ios"><span class="action-sheet-button-inner sc-ion-action-sheet-ios"><?php echo esc_attr( $button['title'] ); ?></span></button>
 					<?php endforeach; ?>
 			</div>
