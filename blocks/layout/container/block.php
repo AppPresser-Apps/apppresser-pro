@@ -195,7 +195,7 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 
 	#<?php echo esc_attr( $id ); ?> .block-editor-block-list__layout {
 		display: flex;
-		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?>;
+		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?> !important;
 		justify-content: <?php echo esc_attr( $flex['justify_content'] ); ?>;
 		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
 		height: <?php echo $flexheight; ?>;
