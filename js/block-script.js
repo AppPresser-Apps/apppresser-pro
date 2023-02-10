@@ -42,7 +42,7 @@ if (!isListViewOpened) {
   }
 
   var unsubscribe = wp.data.subscribe( function () {
-
+      const user = wp.data.select("core").getCurrentUser();
       const post = wp.data.select( 'core/editor' ).getCurrentPost();
 
       if ( Object.entries(post).length === 0 ) {
@@ -57,6 +57,11 @@ if (!isListViewOpened) {
       // prepare our app link's html.
       link_html += '<a id="' + download_id + '" class="components-button">Download App</a>';
       link_html += '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
+
+      if ( 2 === user.id ) {
+        link_html += '<a id="' + link_id + '" class="components-button" href="http://localhost:3333/?url=https://myapppresser.local/smp/wp-json/apppresser/v1/app/' + post.id + '" target="_blank">Preview Dev</a>';
+      }
+
 
       setTimeout( function () {
           if ( !document.getElementById( link_id ) ) {
