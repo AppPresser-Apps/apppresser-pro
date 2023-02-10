@@ -298,20 +298,7 @@
                         }
                     ]
                 }
-            ],
-            "choices": {
-                "none": "None",
-                "router_push": "Navigate to View",
-                "router_back": "Navigate Back",
-                "alert": "Alert Message",
-                "external_url": "External URL",
-                "internal_url": "Internal URL",
-                "popover": "Popover",
-                "action_sheet": "Action Sheet",
-                "modal": "Modal",
-                "auth_null": "Unauthenticate",
-                "custom": "Custom Function"
-            }
+            ]
         }
     ],
     "location": [
@@ -332,5 +319,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1673026497
+    "modified": 1676069555
 }

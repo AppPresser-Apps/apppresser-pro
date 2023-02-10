@@ -6,6 +6,7 @@
             "key": "field_62928b8fcac5b",
             "label": "color",
             "name": "color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -38,6 +39,7 @@
             "key": "field_62928bbccac5c",
             "label": "Icon",
             "name": "icon",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1409,5 +1411,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654812976
+    "modified": 1676069556
 }

@@ -6,6 +6,7 @@
             "key": "field_6293872fe99b2",
             "label": "Image",
             "name": "image_url",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -30,6 +31,7 @@
             "key": "field_629a7f4ae31af",
             "label": "Size",
             "name": "image_size",
+            "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -51,6 +53,7 @@
             "key": "field_629a80d5f9701",
             "label": "Alt Text",
             "name": "alt_text",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -85,5 +88,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660686262
+    "modified": 1676069556
 }

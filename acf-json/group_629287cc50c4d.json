@@ -6,6 +6,7 @@
             "key": "field_629287d3b5a13",
             "label": "Text",
             "name": "text",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -25,6 +26,7 @@
             "key": "field_62928801b5a14",
             "label": "Color",
             "name": "color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -72,5 +74,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654812969
+    "modified": 1676069556
 }

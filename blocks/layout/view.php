@@ -23,18 +23,22 @@ if ( ! empty( $block['className'] ) ) {
 
 $allowed_blocks = appp_get_allowed_view_blocks();
 
-$title           = get_field( 'title' );
-$logo            = get_field( 'logo' );
-$hide_toolbar    = get_field( 'hide_toolbar' );
-$toolbar_color   = get_field( 'toolbar_color' );
-$content_padding = get_field( 'padding' );
-$left_buttons    = get_field( 'left_buttons' );
-$right_buttons   = get_field( 'right_buttons' );
-$background      = get_field( 'background' );
-$padding         = get_field( 'padding' );
-$data_source     = get_field( 'data_source' );
-$display         = get_field( 'display' );
-$flex            = get_field( 'flex' );
+$title               = get_field( 'title' );
+$logo                = get_field( 'logo' );
+$hide_toolbar        = get_field( 'hide_toolbar' );
+$toolbar_color       = get_field( 'toolbar_color' );
+$content_padding     = get_field( 'padding' );
+$left_buttons        = get_field( 'left_buttons' );
+$right_buttons       = get_field( 'right_buttons' );
+$background          = get_field( 'background' );
+$background_image    = get_field( 'background_image' );
+$background_size     = get_field( 'background_size' );
+$background_size     = get_field( 'background_position' );
+$background_position = get_field( 'background_position' );
+$padding             = get_field( 'padding' );
+$data_source         = get_field( 'data_source' );
+$display             = get_field( 'display' );
+$flex                = get_field( 'flex' );
 
 $fullscreen = ! $hide_toolbar ? 'false' : 'true';
 
@@ -44,6 +48,13 @@ $style .= '--padding-start:' . ( $padding['padding_left'] ?? '0' ) . 'px; ';
 $style .= '--padding-top:' . ( $padding['padding_top'] ?? '0' ) . 'px; ';
 $style .= '--padding-end:' . ( $padding['padding_right'] ?? '0' ) . 'px; ';
 $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
+
+if ( $background_image ) {
+	$style .= '--background: url(' . $background_image . '); ';
+	$style .= 'background-size: ' . $background_size . '; ';
+	$style .= 'background-position: ' . $background_position . '; ';
+}
+
 
 ?>
 
@@ -179,8 +190,8 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 						<?php if ( $logo ) : ?>
 							<img src="<?php echo esc_url( wp_get_attachment_image_url( $logo, 'large' ) ); ?>" style="height: 40px; margin-top: 4px;" />
 						<?php else : ?>
-						<?php echo $title ? esc_attr( $title ) : ''; ?>
-						<?php endif ; ?>
+							<?php echo $title ? esc_attr( $title ) : ''; ?>
+						<?php endif; ?>
 					</ion-title>
 					<ion-buttons slot="end">
 						<?php

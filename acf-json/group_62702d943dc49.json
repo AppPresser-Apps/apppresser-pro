@@ -6,6 +6,7 @@
             "key": "field_62702da185ee8",
             "label": "REST API Source",
             "name": "rest_api_source",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -16,9 +17,7 @@
                 "id": ""
             },
             "choices": {
-                "none": "None",
-                "https:\/\/plugin-dev.local\/wp-json": "https:\/\/plugin-dev.local\/wp-json",
-                "https:\/\/catfact.ninja": "https:\/\/catfact.ninja"
+                "none": "None"
             },
             "default_value": "none",
             "allow_null": 0,
@@ -26,32 +25,13 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": "",
-            "endpoints": [
-                [
-                    {
-                        "endpoint_name": "Posts",
-                        "endpoint_path": "\/wp\/v2\/posts",
-                        "request_method": "GET",
-                        "headers": false,
-                        "parameters": false
-                    }
-                ],
-                [
-                    {
-                        "endpoint_name": "fact",
-                        "endpoint_path": "\/fact",
-                        "request_method": "GET",
-                        "headers": false,
-                        "parameters": false
-                    }
-                ]
-            ]
+            "placeholder": ""
         },
         {
             "key": "field_6274342b9b836",
             "label": "Endpoint",
             "name": "rest_api_endpoint",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -99,5 +79,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654812907
+    "modified": 1676069556
 }

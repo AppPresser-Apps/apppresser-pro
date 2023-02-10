@@ -6,6 +6,7 @@
             "key": "field_62fc148b62436",
             "label": "Design",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -23,6 +24,7 @@
             "key": "field_62fc149f62437",
             "label": "Color",
             "name": "color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -45,6 +47,7 @@
             "key": "field_62fc14d23dfe7",
             "label": "Segments",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -62,6 +65,7 @@
             "key": "field_62b6473f035d3",
             "label": "Segments",
             "name": "segments",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -76,11 +80,13 @@
             "max": 4,
             "layout": "block",
             "button_label": "Add Segment",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_62b64766035d4",
                     "label": "Label",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -94,7 +100,8 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_62b6473f035d3"
                 }
             ]
         }
@@ -117,5 +124,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660687982
+    "modified": 1676069557
 }

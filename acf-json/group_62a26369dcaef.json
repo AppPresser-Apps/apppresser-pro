@@ -6,6 +6,7 @@
             "key": "field_62a26372a8df8",
             "label": "Label",
             "name": "label",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -25,6 +26,7 @@
             "key": "field_62a26a2c505d6",
             "label": "Label Color",
             "name": "label_color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -49,6 +51,7 @@
             "key": "field_62a26f6c6e54a",
             "label": "Label Border",
             "name": "label_border",
+            "aria-label": "",
             "type": "select",
             "instructions": "How the bottom border should be displayed on the list header.",
             "required": 0,
@@ -75,6 +78,7 @@
             "key": "field_62a26a4e505d7",
             "label": "Button Label",
             "name": "button_label",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -94,6 +98,7 @@
             "key": "field_62a26a5b505d8",
             "label": "Button Color",
             "name": "color_button",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -133,5 +138,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660777738
+    "modified": 1676069556
 }

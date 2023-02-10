@@ -6,6 +6,7 @@
             "key": "field_62ccb3cefc401",
             "label": "Theme",
             "name": "themes",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "AppPresser provides several global theme options that are used throughout blocks to change the default theme of an entire application.",
             "required": 0,
@@ -20,11 +21,13 @@
             "max": 0,
             "layout": "row",
             "button_label": "Add Theme",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_62ccb78354418",
                     "label": "Theme Name",
                     "name": "theme_name",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 1,
@@ -38,12 +41,14 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62ccb3effc402",
                     "label": "Colors",
                     "name": "",
+                    "aria-label": "",
                     "type": "accordion",
                     "instructions": "",
                     "required": 0,
@@ -55,12 +60,14 @@
                     },
                     "open": 0,
                     "multi_expand": 0,
-                    "endpoint": 0
+                    "endpoint": 0,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62cf359986893",
                     "label": "Primary",
                     "name": "primary",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -71,11 +78,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf35ad86894",
                             "label": "Light",
                             "name": "primary_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -93,6 +102,7 @@
                             "key": "field_62cf35f786895",
                             "label": "Dark",
                             "name": "primary_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -112,6 +122,7 @@
                     "key": "field_62cf376a15a4e",
                     "label": "Secondary",
                     "name": "secondary",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -122,11 +133,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf376a15a4f",
                             "label": "Light",
                             "name": "secondary_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -144,6 +157,7 @@
                             "key": "field_62cf379315a51",
                             "label": "Dark",
                             "name": "secondary_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -163,6 +177,7 @@
                     "key": "field_62cf3c9f654df",
                     "label": "Tertiary",
                     "name": "tertiary",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -173,11 +188,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3c9f654e0",
                             "label": "Light",
                             "name": "tertiary_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -195,6 +212,7 @@
                             "key": "field_62cf3c9f654e1",
                             "label": "Dark",
                             "name": "tertiary_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -214,6 +232,7 @@
                     "key": "field_62cf3cd8654e2",
                     "label": "Success",
                     "name": "success",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -224,11 +243,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3cd8654e3",
                             "label": "Light",
                             "name": "success_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -246,6 +267,7 @@
                             "key": "field_62cf3cd8654e4",
                             "label": "Dark",
                             "name": "success_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -265,6 +287,7 @@
                     "key": "field_62cf3d07654e5",
                     "label": "Warning",
                     "name": "warning",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -275,11 +298,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3d07654e6",
                             "label": "Light",
                             "name": "warning_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -297,6 +322,7 @@
                             "key": "field_62cf3d07654e7",
                             "label": "Dark",
                             "name": "warning_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -316,6 +342,7 @@
                     "key": "field_62cf3d4a07437",
                     "label": "Danger",
                     "name": "danger",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -326,11 +353,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3d4a07438",
                             "label": "Light",
                             "name": "danger_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -348,6 +377,7 @@
                             "key": "field_62cf3d4a07439",
                             "label": "Dark",
                             "name": "danger_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -367,6 +397,7 @@
                     "key": "field_62cf3d740743a",
                     "label": "Dark",
                     "name": "dark",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -377,11 +408,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3d740743b",
                             "label": "Light",
                             "name": "dark_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -399,6 +432,7 @@
                             "key": "field_62cf3d740743c",
                             "label": "Dark",
                             "name": "dark_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -418,6 +452,7 @@
                     "key": "field_62cf3d9f0743d",
                     "label": "Medium",
                     "name": "medium",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -428,11 +463,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3d9f0743e",
                             "label": "Light",
                             "name": "medium_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -450,6 +487,7 @@
                             "key": "field_62cf3d9f0743f",
                             "label": "Dark",
                             "name": "medium_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -469,6 +507,7 @@
                     "key": "field_62cf3dc707440",
                     "label": "Light",
                     "name": "light",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -479,11 +518,13 @@
                         "id": ""
                     },
                     "layout": "row",
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62cf3dc707441",
                             "label": "Light",
                             "name": "light_light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -501,6 +542,7 @@
                             "key": "field_62cf3dc707442",
                             "label": "Dark",
                             "name": "light_dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -520,6 +562,7 @@
                     "key": "field_62ccb93a69705",
                     "label": "Custom Color",
                     "name": "custom_color",
+                    "aria-label": "",
                     "type": "repeater",
                     "instructions": "",
                     "required": 0,
@@ -534,11 +577,14 @@
                     "max": 0,
                     "layout": "row",
                     "button_label": "Add Color",
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_62ccb3cefc401",
                     "sub_fields": [
                         {
                             "key": "field_62ccb93a69706",
                             "label": "Name",
                             "name": "name",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 1,
@@ -552,12 +598,14 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": ""
+                            "maxlength": "",
+                            "parent_repeater": "field_62ccb93a69705"
                         },
                         {
                             "key": "field_62ccb93a69707",
                             "label": "Light",
                             "name": "light",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -569,12 +617,14 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "parent_repeater": "field_62ccb93a69705"
                         },
                         {
                             "key": "field_62cf3e800bab2",
                             "label": "Dark",
                             "name": "dark",
+                            "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
                             "required": 0,
@@ -586,7 +636,8 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "parent_repeater": "field_62ccb93a69705"
                         }
                     ]
                 },
@@ -594,6 +645,7 @@
                     "key": "field_62d0381550f27",
                     "label": "Advanced",
                     "name": "",
+                    "aria-label": "",
                     "type": "accordion",
                     "instructions": "",
                     "required": 0,
@@ -605,12 +657,14 @@
                     },
                     "open": 0,
                     "multi_expand": 0,
-                    "endpoint": 0
+                    "endpoint": 0,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03bc3c87c3",
                     "label": "Background Color",
                     "name": "background_color",
+                    "aria-label": "",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -622,12 +676,14 @@
                     },
                     "default_value": "#ffffff",
                     "enable_opacity": 0,
-                    "return_format": "string"
+                    "return_format": "string",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62fd6a1be2037",
                     "label": "Text Color",
                     "name": "text_color",
+                    "aria-label": "",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -639,12 +695,14 @@
                     },
                     "default_value": "#000000",
                     "enable_opacity": 0,
-                    "return_format": "string"
+                    "return_format": "string",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62fd69cac7cfd",
                     "label": "Background Color Dark Mode",
                     "name": "background_color_dark",
+                    "aria-label": "",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -656,12 +714,14 @@
                     },
                     "default_value": "#ffffff",
                     "enable_opacity": 0,
-                    "return_format": "string"
+                    "return_format": "string",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03bdfc87c4",
                     "label": "Text Color Dark Mode",
                     "name": "text_color_dark",
+                    "aria-label": "",
                     "type": "color_picker",
                     "instructions": "",
                     "required": 0,
@@ -673,12 +733,14 @@
                     },
                     "default_value": "#000000",
                     "enable_opacity": 0,
-                    "return_format": "string"
+                    "return_format": "string",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d0382150f28",
                     "label": "Font Family",
                     "name": "font_family",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -697,12 +759,14 @@
                     "ui": 0,
                     "return_format": "value",
                     "ajax": 0,
-                    "placeholder": ""
+                    "placeholder": "",
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d0398d0040c",
                     "label": "Safe Area Top",
                     "name": "safe_area_top",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -718,12 +782,14 @@
                     "append": "",
                     "min": 20,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03a890040d",
                     "label": "Safe Area Bottom",
                     "name": "safe_area_bottom",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -739,12 +805,14 @@
                     "append": "",
                     "min": 20,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03a970040e",
                     "label": "Safe Area Left",
                     "name": "safe_area_left",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -760,12 +828,14 @@
                     "append": "",
                     "min": 20,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03aa900410",
                     "label": "Safe Area Right",
                     "name": "safe_area_right",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -781,12 +851,14 @@
                     "append": "",
                     "min": 20,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03ace23453",
                     "label": "Margin",
                     "name": "ion_margin",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -802,12 +874,14 @@
                     "append": "",
                     "min": 0,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62d03af123454",
                     "label": "Padding",
                     "name": "ion_padding",
+                    "aria-label": "",
                     "type": "number",
                     "instructions": "",
                     "required": 0,
@@ -823,12 +897,14 @@
                     "append": "",
                     "min": 0,
                     "max": "",
-                    "step": 1
+                    "step": 1,
+                    "parent_repeater": "field_62ccb3cefc401"
                 },
                 {
                     "key": "field_62e6b27167779",
                     "label": "Border Radius",
                     "name": "border_radius",
+                    "aria-label": "",
                     "type": "range",
                     "instructions": "",
                     "required": 0,
@@ -843,7 +919,8 @@
                     "max": "",
                     "step": "",
                     "prepend": "",
-                    "append": ""
+                    "append": "",
+                    "parent_repeater": "field_62ccb3cefc401"
                 }
             ]
         }
@@ -866,5 +943,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1661011921
+    "modified": 1676069557
 }

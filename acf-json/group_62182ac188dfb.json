@@ -104,11 +104,7 @@
                 "id": ""
             },
             "choices": {
-                "default": "Default",
-                "Night Scene": "Night Scene",
-                "Click Host": "Click Host",
-                "Higgins": "Higgins",
-                "SMP": "SMP"
+                "default": "Default"
             },
             "default_value": "default",
             "allow_null": 0,
@@ -230,5 +226,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1675355877
+    "modified": 1676069555
 }

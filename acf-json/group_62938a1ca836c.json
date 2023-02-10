@@ -6,6 +6,7 @@
             "key": "field_62938a2ad6c41",
             "label": "Icon",
             "name": "icon",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1362,6 +1363,7 @@
             "key": "field_62938cc25c86b",
             "label": "Size",
             "name": "size",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1392,6 +1394,7 @@
             "key": "field_62938d1ca3f38",
             "label": "Color",
             "name": "color",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -1439,5 +1442,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654812983
+    "modified": 1676069556
 }

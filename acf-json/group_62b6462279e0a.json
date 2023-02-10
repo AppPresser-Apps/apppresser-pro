@@ -6,6 +6,7 @@
             "key": "field_62b6462db0fbe",
             "label": "Segment",
             "name": "segment",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -15,7 +16,9 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
+            "choices": {
+                "none": "None"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -43,5 +46,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1656181976
+    "modified": 1676069556
 }

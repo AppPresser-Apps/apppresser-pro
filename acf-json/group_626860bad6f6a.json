@@ -6,6 +6,7 @@
             "key": "field_626860c621905",
             "label": "Image Url",
             "name": "image_url",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -30,6 +31,7 @@
             "key": "field_629a77cc8629f",
             "label": "Alt Text",
             "name": "alt_text",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -49,6 +51,7 @@
             "key": "field_629a77eb83239",
             "label": "Size",
             "name": "image_size",
+            "aria-label": "",
             "type": "number",
             "instructions": "Image size in pixels.",
             "required": 0,
@@ -70,6 +73,7 @@
             "key": "field_629a786c8323a",
             "label": "Border Radius",
             "name": "border_radius",
+            "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -106,5 +110,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1660686212
+    "modified": 1676069556
 }

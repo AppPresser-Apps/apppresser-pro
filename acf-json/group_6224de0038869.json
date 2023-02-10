@@ -506,34 +506,6 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
-        },
-        {
-            "key": "field_63dc3bfb9a4ac",
-            "label": "Date Format (copy)",
-            "name": "date_format_copy",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Use accepted patterns listed here: <a href=\"https:\/\/date-fns.org\/v2.29.3\/docs\/format\">https:\/\/date-fns.org<\/a>",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_63b7030111969",
-                        "operator": "==",
-                        "value": "date"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "MMM do y p",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -554,5 +526,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675377661
+    "modified": 1676069557
 }

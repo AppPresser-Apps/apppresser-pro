@@ -44,7 +44,8 @@
                 "popover": "Popover",
                 "action_sheet": "Action Sheet",
                 "modal": "Modal",
-                "custom": "Custom"
+                "custom": "Custom Function",
+                "auth_null": "Unauthenticate"
             },
             "default_value": "none",
             "return_format": "value",
@@ -272,6 +273,7 @@
                     "max": 0,
                     "layout": "block",
                     "button_label": "Add Button",
+                    "rows_per_page": 20,
                     "sub_fields": [
                         {
                             "key": "field_62acfa1f98258",
@@ -1676,7 +1678,8 @@
                                 "popover": "Popover",
                                 "action_sheet": "Action Sheet",
                                 "modal": "Modal",
-                                "custom": "Custom"
+                                "auth_null": "Unauthenticate",
+                                "custom": "Custom Function"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -1715,22 +1718,9 @@
                             "placeholder": "",
                             "parent_repeater": "field_62acfa0f98257"
                         }
-                    ],
-                    "rows_per_page": 20
+                    ]
                 }
-            ],
-            "choices": {
-                "none": "None",
-                "router_push": "Navigate to View",
-                "router_back": "Navigate Back",
-                "alert": "Alert Message",
-                "external_url": "External URL",
-                "internal_url": "Internal URL",
-                "popover": "Popover",
-                "action_sheet": "Action Sheet",
-                "modal": "Modal",
-                "custom": "Custom"
-            }
+            ]
         },
         {
             "key": "field_62b239fc07feb",
@@ -1870,5 +1860,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670944404
+    "modified": 1676069557
 }

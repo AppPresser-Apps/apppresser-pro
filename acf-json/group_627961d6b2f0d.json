@@ -410,6 +410,7 @@
                     "max": 0,
                     "layout": "block",
                     "button_label": "Add Row",
+                    "rows_per_page": 20,
                     "sub_fields": [
                         {
                             "key": "field_62fe5bd20fe56",
@@ -435,8 +436,7 @@
                             "placeholder": "",
                             "parent_repeater": "field_62fe5bc50fe55"
                         }
-                    ],
-                    "rows_per_page": 20
+                    ]
                 }
             ]
         },
@@ -1478,5 +1478,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1671038314
+    "modified": 1676071052
 }
