@@ -83,6 +83,14 @@ function appp_gutenberg_register_files() {
 		)
 	);
 
+	wp_localize_script(
+		'appp-block-script',
+		'custom_data',
+		array(
+			'siteURL' => get_site_url(),
+		)
+	);
+
 }
 add_action( 'init', 'appp_gutenberg_register_files' );
 

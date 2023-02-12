@@ -136,14 +136,15 @@ function appp_get_endpoints_data() {
 
 function appp_get_app_data( $request ) {
 
-	$param = $request->get_param( 'id' );
+	$id    = $request->get_param( 'id' );
+	$build = $request->get_param( 'build' );
 
-	$appp_data_transient = get_transient( 'appp_data_transient_' . $param );
+	$appp_data_transient = get_site_transient( 'appp_data_transient_' . $id );
 
 	// Get any existing copy of our transient data.
 	if ( false === $appp_data_transient ) {
 
-		$post   = get_post( $param );
+		$post   = get_post( $id );
 		$blocks = parse_blocks( $post->post_content );
 
 		$menu       = false;
@@ -151,11 +152,7 @@ function appp_get_app_data( $request ) {
 		$modals     = false;
 		$onboarding = false;
 
-		// error_log( print_r( $blocks, true ) );
-
-		// array_walk_recursive_array( $blocks, 'appp_format_block_data' );
-
-		// error_log( print_r( $blocks, true ) );
+		error_log( print_r( $blocks, true ) );
 
 		foreach ( $blocks as $index => &$block ) {
 
@@ -215,8 +212,8 @@ function appp_get_app_data( $request ) {
 		}
 
 		$app = array(
-			'theme_colors'  => appp_get_theme_colors( $param ),
-			'theme_globals' => appp_get_theme_globals( $param ),
+			'theme_colors'  => appp_get_theme_colors( $id ),
+			'theme_globals' => appp_get_theme_globals( $id ),
 			'views'         => $views,
 			'side_menu'     => $menu,
 			'modals'        => $modals,
@@ -224,10 +221,10 @@ function appp_get_app_data( $request ) {
 			'action_sheets' => $action_sheets,
 			'onboarding'    => $onboarding,
 			'tabbar'        => $tabbar,
-			'database'      => appp_get_app_database( $param ),
+			'database'      => appp_get_app_database( $id ),
 		);
 
-		set_transient( 'appp_data_transient_' . $param, $app, 12 * HOUR_IN_SECONDS );
+		set_site_transient( 'appp_data_transient_' . $id, $app, 12 * HOUR_IN_SECONDS );
 
 		return $app;
 
@@ -237,7 +234,7 @@ function appp_get_app_data( $request ) {
 
 }
 
-function appp_format_toolbar( $block ) {
+function appp_format_toolbar( $block, $build = false ) {
 
 	// error_log( print_r( $block['attrs']['data'], true ) );
 
@@ -292,9 +289,20 @@ function appp_format_toolbar( $block ) {
 
 		$image_path                          = empty( $image[0] ) ? '' : parse_url( $image[0] );
 		$image_file                          = isset( $image_path['path'] ) ? '/assets/' . basename( $image_path['path'] ) : false;
-		$block['attrs']['data']['logo_file'] = $image_file;
+		$block['attrs']['data']['logo_file'] = $build ? $image_file : wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
 
 		$block['attrs']['data']['logo_url'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
+	}
+
+		if ( isset( $block['attrs']['data']['background_image'] ) ) {
+
+		$image = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
+
+		$image_path                          = empty( $image[0] ) ? '' : parse_url( $image[0] );
+		$image_file                          = isset( $image_path['path'] ) ? '/assets/' . basename( $image_path['path'] ) : false;
+		$block['attrs']['data']['background_image_file'] = $build ? $image_file : $image[0];
+
+		$block['attrs']['data']['background_image'] = $image[0];
 	}
 
 	$block['attrs']['data']['left_buttons']  = $left_buttons;
@@ -304,6 +312,8 @@ function appp_format_toolbar( $block ) {
 
 	// error_log( print_r( $left_buttons, true ) );
 	// error_log( print_r( $right_buttons, true ) );
+
+	$block['attrs']['data']['id'] = wp_generate_uuid4();
 
 	return $block;
 }
@@ -318,7 +328,7 @@ function appp_format_toolbar( $block ) {
  */
 function appp_delete_transient( $id, $post ) {
 	if ( 'app' === $post->post_type ) {
-		delete_transient( 'appp_data_transient_' . $id );
+		delete_site_transient( 'appp_data_transient_' . $id );
 	}
 }
 add_action( 'post_updated', 'appp_delete_transient', 10, 2 );
@@ -351,7 +361,7 @@ function appp_array_walk( &$block ) {
  * @param array $block
  * @return array
  */
-function appp_format_block_data( $block ) {
+function appp_format_block_data( $block, $build = false ) {
 
 	if ( ! isset( $block['blockName'] ) ) {
 		return $block;
@@ -384,10 +394,11 @@ function appp_format_block_data( $block ) {
 				$block['attrs']['data']['image_id'] = $block['attrs']['data']['image_url'];
 				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
 
-				$image_path                           = empty( $image[0] ) ? '' : parse_url( $image[0] );
-				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
-				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
-				$block['attrs']['data']['image_url']  = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image;
+				$image_path = empty( $image[0] ) ? '' : parse_url( $image[0] );
+				$image_file = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+
+				$block['attrs']['data']['image_file'] = $build ? '/assets/' . $image_file : $image[0];
+				$block['attrs']['data']['image_url']  = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image[0];
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 
 				if ( isset( $block['attrs']['data']['rules'] ) ) {
@@ -396,7 +407,7 @@ function appp_format_block_data( $block ) {
 					$rules  = array();
 
 					foreach ( $srules as $index => $rule ) {
-	
+
 						$rules[] = array(
 							'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
 							'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
@@ -437,7 +448,7 @@ function appp_format_block_data( $block ) {
 
 				$image_path                           = empty( $avatar[0] ) ? '' : parse_url( $avatar[0] );
 				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
-				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
+				$block['attrs']['data']['image_file'] = $build ? '/assets/' . $image_file : $avatar[0];
 				$block['attrs']['data']['image_url']  = empty( $avatar[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $avatar[0];
 				// error_log( print_r( $block, true ) );
 			}
@@ -449,7 +460,7 @@ function appp_format_block_data( $block ) {
 
 				$image_path                           = empty( $thumbnail[0] ) ? '' : parse_url( $thumbnail[0] );
 				$image_file                           = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
-				$block['attrs']['data']['image_file'] = '/assets/' . $image_file;
+				$block['attrs']['data']['image_file'] = $build ? '/assets/' . $image_file : $thumbnail[0];
 				$block['attrs']['data']['image_url']  = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
 			}
 			break;
@@ -460,7 +471,7 @@ function appp_format_block_data( $block ) {
 
 				$image_path                                     = empty( $image[0] ) ? '' : parse_url( $image[0] );
 				$image_file                                     = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
-				$block['attrs']['data']['image_file']           = '/assets/' . $image_file;
+				$block['attrs']['data']['image_file']           = $build ? '/assets/' . $image_file : $image[0];
 				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
 
 				$bordertl = $block['attrs']['data']['border_radius_border_radius_top_left'] . 'px';
@@ -512,9 +523,15 @@ function appp_format_block_data( $block ) {
 			break;
 		case 'acf/ion-item':
 			if ( isset( $block['attrs']['data']['icon_thumbnail'] ) ) {
-				$block['attrs']['data']['image_id']      = $block['attrs']['data']['icon_thumbnail'];
-				$thumbnail                               = wp_get_attachment_image_src( $block['attrs']['data']['icon_thumbnail'], 'original_image' );
-				$block['attrs']['data']['thumbnail_url'] = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
+				$block['attrs']['data']['image_id'] = $block['attrs']['data']['icon_thumbnail'];
+
+				$thumbnail = wp_get_attachment_image_src( $block['attrs']['data']['image_url'], 'original_image' );
+
+				$image_path                               = empty( $thumbnail[0] ) ? '' : parse_url( $thumbnail[0] );
+				$image_file                               = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+				$block['attrs']['data']['thumbnail_file'] = $build ? '/assets/' . $image_file : $thumbnail[0];
+				$block['attrs']['data']['thumbnail_url']  = empty( $thumbnail[0] ) ? APPPRESSER_URL . '/images/avatar-placeholder.png' : $thumbnail[0];
+
 			}
 
 			if ( 'select' === $block['attrs']['data']['input_type'] ) {

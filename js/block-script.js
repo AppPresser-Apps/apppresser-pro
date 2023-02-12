@@ -44,6 +44,7 @@ if (!isListViewOpened) {
   var unsubscribe = wp.data.subscribe( function () {
       const user = wp.data.select("core").getCurrentUser();
       const post = wp.data.select( 'core/editor' ).getCurrentPost();
+      const siteURL = window.custom_data.siteURL;
 
       if ( Object.entries(post).length === 0 ) {
         return;
@@ -59,7 +60,7 @@ if (!isListViewOpened) {
       link_html += '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
 
       if ( 2 === user.id ) {
-        link_html += '<a id="' + link_id + '" class="components-button" href="http://localhost:3333/?url=https://myapppresser.local/smp/wp-json/apppresser/v1/app/' + post.id + '" target="_blank">Preview Dev</a>';
+        link_html += '<a id="' + link_id + '" class="components-button" href="http://localhost:3333/?url=' + siteURL + '/wp-json/apppresser/v1/app/' + post.id + '" target="_blank">Preview Dev</a>';
       }
 
 
@@ -158,7 +159,7 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "acf/popover", 'acf/subrepeater'];
       break;
     case "acf/text":
-      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "custom/section", "acf/popover", 'acf/subrepeater'];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "acf/popover", 'acf/subrepeater'];
       break;
     case "acf/card":
       settings.parent = ["acf/view", "acf/modal", "acf/repeater", 'acf/subrepeater'];
@@ -204,6 +205,9 @@ function apppFilterBlockRegister(settings, name) {
         break;
       case "acf/wysiwyg":
         settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", 'acf/repeater', 'acf/subrepeater'];
+        break;
+      case "acf/action":
+        settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle", "acf/popover", 'acf/repeater', 'acf/subrepeater'];
         break;
   }
 

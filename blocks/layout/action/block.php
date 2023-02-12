@@ -19,6 +19,7 @@ if ( ! empty( $block['className'] ) ) {
 $allowed_blocks = appp_get_allowed_innerblocks();
 
 $allowed_blocks[] = 'acf/columns';
+$allowed_blocks[] = 'acf/side-menu';
 ?>
 
 <style>
