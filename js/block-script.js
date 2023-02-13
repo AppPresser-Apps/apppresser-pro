@@ -149,7 +149,7 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view"];
       break;
     case "acf/form":
-      settings.parent = ["acf/view"];
+      settings.parent = ["acf/view", 'acf/modal'];
       break;
     case "core/spacer":
       settings.category = "appp_layout";
@@ -159,7 +159,7 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "acf/popover", 'acf/subrepeater'];
       break;
     case "acf/text":
-      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/side-menu", "acf/repeater", "acf/popover", 'acf/subrepeater'];
+      settings.parent = ["acf/view", "acf/modal", "acf/onboard", "acf/form", "acf/side-menu", "acf/repeater", "acf/popover", 'acf/subrepeater'];
       break;
     case "acf/card":
       settings.parent = ["acf/view", "acf/modal", "acf/repeater", 'acf/subrepeater'];
