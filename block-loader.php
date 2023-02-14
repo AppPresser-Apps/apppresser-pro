@@ -762,7 +762,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'action',
 				'title'           => 'Action',
-				'description'     => 'Action block wraps an element to provide different navigation and functionality',
+				'description'     => 'Action block wraps an element to provide different navigation and functionality.',
 				'category'        => 'appp_layout',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
