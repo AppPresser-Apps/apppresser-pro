@@ -826,6 +826,72 @@ function appp_init_block_types() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'bp-activity',
+				'title'           => 'Activity Stream',
+				'description'     => '',
+				'category'        => 'appp_buddypress',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/activity.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'bp-groups',
+				'title'           => 'Groups',
+				'description'     => '',
+				'category'        => 'appp_buddypress',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/groups.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'bp-members',
+				'title'           => 'Members',
+				'description'     => '',
+				'category'        => 'appp_buddypress',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/members.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'form',
 				'title'           => 'Form Builder',
 				'description'     => 'An HTML form is used to collect user input. The user input is most often sent to a server for processing.',

@@ -364,7 +364,7 @@ function appp_get_theme_globals( $post_id ) {
 
 	$needed_object = array_values( $needed_object )[0];
 
-	$stepped = steppedColors( $needed_object['background_color'], $needed_object['text_color'] );
+	//$stepped = steppedColors( $needed_object['background_color'], $needed_object['text_color'] );
 
 	$globals = array(
 		'--ion-background-color' => $needed_object['background_color'],
@@ -380,7 +380,7 @@ function appp_get_theme_globals( $post_id ) {
 		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
 	);
 
-	$globals = array_merge( $globals, $stepped['rgbs'], $stepped['steps'] );
+	//$globals = array_merge( $globals, $stepped['rgbs'], $stepped['steps'] );
 
 	return $globals;
 }

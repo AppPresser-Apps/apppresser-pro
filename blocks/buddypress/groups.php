@@ -1,17 +1,17 @@
 <?php
 /**
- * Block Name: BP Profile
+ * Block Name: BP Groups
  *
- * Description: Edit and display BuddyPress profile fields.
+ * Description: Display BuddyPress groups.
  *
  * @package AppPresser
  */
 
 // Create id attribute value.
-$block_id = 'bp-profile-' . $block['id'];
+$block_id = 'bp-groups-' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
-$class_name = 'appp-bp-profile';
+$class_name = 'appp-bp-groups';
 if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
@@ -32,5 +32,5 @@ if ( ! empty( $block['className'] ) ) {
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-	<div>BuddyPress Profile Fields</div>
+	<div>BuddyPress Groups</div>
 </div>

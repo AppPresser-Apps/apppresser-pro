@@ -310,9 +310,6 @@ function appp_format_toolbar( $block, $build = false ) {
 
 	$block['attrs']['data']['hide_tabbar'] = isset( $block['attrs']['data']['hide_tabbar'] ) ? $block['attrs']['data']['hide_tabbar'] : '0';
 
-	// error_log( print_r( $left_buttons, true ) );
-	// error_log( print_r( $right_buttons, true ) );
-
 	$block['attrs']['data']['id'] = wp_generate_uuid4();
 
 	return $block;

@@ -1,0 +1,45 @@
+{
+    "key": "group_63eba2509e722",
+    "title": "BuddyPress Groups",
+    "fields": [
+        {
+            "key": "field_63eba251eb48a",
+            "label": "url",
+            "name": "url",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The url to the BuddyPress site.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/bp-groups"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1676387075
+}

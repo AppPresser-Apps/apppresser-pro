@@ -44,7 +44,7 @@ function appp_rgbToYIQ( $rgb ) {
  * @param integer $threshold
  * @return string
  */
-function appp_contrast( $hex, $threshold = 168 ) {
+function appp_contrast( $hex, $threshold = 178 ) {
 	$rgb = appp_hex2rgb( $hex );
 	return appp_rgbToYIQ( $rgb ) >= $threshold ? '#000000' : '#ffffff';
 }
@@ -216,7 +216,7 @@ function steppedColors( $background, $text ) {
 
 	for ( $i = 0; $i < 19; $i++ ) {
 
-		$blend = appp_blend_colors( $background, $text, ( ( $i + 1 ) * 5 ) / 100 );
+		$blend = appp_blend_colors( $text, $background, ( ( $i + 1 ) * 5 ) / 100 );
 		$color = appp_rgb2hex( $blend );
 		$steps['steps'][ '--ion-color-step-' . ( $i + 1 ) * 50 ] = $color;
 
