@@ -191,6 +191,32 @@
             "append": ""
         },
         {
+            "key": "field_63ecfddef336c",
+            "label": "Radius Pixel or Percent",
+            "name": "pixel_or_percent",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "px": "Pixel",
+                "%": "Percent"
+            },
+            "default_value": "px",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_6399f70dab915",
             "label": "Width",
             "name": "width",
@@ -292,6 +318,24 @@
             "endpoint": 0
         },
         {
+            "key": "field_63ecff8ed9b29",
+            "label": "Data (copy)",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
             "key": "field_629a86ffc8dd3",
             "label": "Token",
             "name": "token",
@@ -310,6 +354,26 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_63ecff9a6a46b",
+            "label": "Token (copy)",
+            "name": "token_copy",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Data token entered here will replace the src attribute of the image element.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -330,5 +394,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676071114
+    "modified": 1676476315
 }

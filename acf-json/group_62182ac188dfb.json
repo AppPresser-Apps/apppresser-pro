@@ -46,6 +46,26 @@
             "preview_size": "small-thumbnail"
         },
         {
+            "key": "field_63ee60575f2bf",
+            "label": "Description",
+            "name": "app_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_63ac759a85125",
             "label": "Database",
             "name": "app_database",
@@ -61,7 +81,8 @@
             },
             "choices": {
                 "none": "None",
-                "35684": "Tracker Database"
+                "35684": "Tracker Database",
+                "5": "Tracker Database"
             },
             "default_value": "none",
             "return_format": "value",
@@ -104,7 +125,8 @@
                 "id": ""
             },
             "choices": {
-                "default": "Default"
+                "default": "Default",
+                "SMP": "SMP"
             },
             "default_value": "default",
             "allow_null": 0,
@@ -226,5 +248,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1676069555
+    "modified": 1676566641
 }

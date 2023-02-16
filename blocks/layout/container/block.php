@@ -107,7 +107,9 @@ if ( $background_repeat ) {
 	$background_repeat = 'background-repeat: ' . $background_repeat . '; ';
 }
 
-if ( $background_position && $background_position !== 'custom' ) {
+if ( $background_position && $background_position === 'custom' ) {
+	$background_position = 'background-position: ' . $position . '; ';
+} else {
 	$background_position = 'background-position: ' . $background_position . '; ';
 }
 

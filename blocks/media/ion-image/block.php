@@ -20,6 +20,7 @@ if ( ! empty( $block['className'] ) ) {
 
 $image_url     = get_field( 'image_url' );
 $border_radius = get_field( 'border_radius' );
+$pixel_or_percent = get_field( 'pixel_or_percent' );
 $width         = get_field( 'width' );
 $width_amount  = get_field( 'width_amount' );
 
@@ -48,7 +49,7 @@ $image = $image_url ? $image_url : APPPRESSER_URL . '/images/image-placeholder.p
 		}
 
 		#<?php echo esc_attr( $block_id ); ?> ion-img {
-			border-radius: <?php echo esc_attr( $border_radius ); ?>px;
+			border-radius: <?php echo esc_attr( $border_radius ); ?><?php echo esc_attr( $pixel_or_percent ); ?>;
 			overflow: hidden;
 			margin-top: <?php echo esc_attr( $margin_top ); ?>px;
 			margin-right: <?php echo esc_attr( $margin_right ); ?>px;

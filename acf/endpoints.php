@@ -152,8 +152,6 @@ function appp_get_app_data( $request ) {
 		$modals     = false;
 		$onboarding = false;
 
-		error_log( print_r( $blocks, true ) );
-
 		foreach ( $blocks as $index => &$block ) {
 
 			if ( ! empty( $blocks[ $index ]['blockName'] ) ) {
