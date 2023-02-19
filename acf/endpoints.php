@@ -292,12 +292,12 @@ function appp_format_toolbar( $block, $build = false ) {
 		$block['attrs']['data']['logo_url'] = wp_get_attachment_image_url( $block['attrs']['data']['logo'], 'large' );
 	}
 
-		if ( isset( $block['attrs']['data']['background_image'] ) ) {
+	if ( isset( $block['attrs']['data']['background_image'] ) ) {
 
 		$image = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
 
-		$image_path                          = empty( $image[0] ) ? '' : parse_url( $image[0] );
-		$image_file                          = isset( $image_path['path'] ) ? '/assets/' . basename( $image_path['path'] ) : false;
+		$image_path                                      = empty( $image[0] ) ? '' : parse_url( $image[0] );
+		$image_file                                      = isset( $image_path['path'] ) ? '/assets/' . basename( $image_path['path'] ) : false;
 		$block['attrs']['data']['background_image_file'] = $build ? $image_file : $image[0];
 
 		$block['attrs']['data']['background_image'] = $image[0];
@@ -376,6 +376,27 @@ function appp_format_block_data( $block, $build = false ) {
 	unset( $block['innerContent'] );
 	unset( $block['innerHTML'] );
 
+	if ( isset( $block['attrs']['data']['rules'] ) ) {
+		// Creates an array from integer so we can loop through ACF data that isnt an array.
+		$srules = range( 0, ( $block['attrs']['data']['rules'] - 1 ) );
+		$rules  = array();
+
+		foreach ( $srules as $index => $rule ) {
+
+			$rules[] = array(
+				'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
+				'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
+			);
+
+			unset( $block['attrs']['data'][ 'rules_' . $index . '_rule' ] );
+			unset( $block['attrs']['data'][ 'rules_' . $index . '_plus' ] );
+		}
+
+		unset( $block['attrs']['data']['rules'] );
+
+		$block['attrs']['data']['visibility_rules'] = $rules;
+	}
+
 	switch ( $block['blockName'] ) {
 		case 'acf/text':
 			if ( isset( $block['attrs']['data']['text'] ) ) {
@@ -396,24 +417,24 @@ function appp_format_block_data( $block, $build = false ) {
 				$block['attrs']['data']['image_url']  = empty( $image ) ? APPPRESSER_URL . '/images/image-placeholder.png' : $image[0];
 				// error_log( print_r( $block['innerBlocks'][$index], true ) );
 
-				if ( isset( $block['attrs']['data']['rules'] ) ) {
-					// Creates an array from integer so we can loop through ACF data that isnt an array.
-					$srules = range( 0, ( $block['attrs']['data']['rules'] - 1 ) );
-					$rules  = array();
+				// if ( isset( $block['attrs']['data']['rules'] ) ) {
+				// Creates an array from integer so we can loop through ACF data that isnt an array.
+				// $srules = range( 0, ( $block['attrs']['data']['rules'] - 1 ) );
+				// $rules  = array();
 
-					foreach ( $srules as $index => $rule ) {
+				// foreach ( $srules as $index => $rule ) {
 
-						$rules[] = array(
-							'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
-							'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
-						);
+				// $rules[] = array(
+				// 'rule' => $block['attrs']['data'][ 'rules_' . $index . '_rule' ],
+				// 'plus' => $block['attrs']['data'][ 'rules_' . $index . '_plus' ],
+				// );
 
-						unset( $block['attrs']['data'][ 'rules_' . $index . '_rule' ] );
-						unset( $block['attrs']['data'][ 'rules_' . $index . '_plus' ] );
-					}
+				// unset( $block['attrs']['data'][ 'rules_' . $index . '_rule' ] );
+				// unset( $block['attrs']['data'][ 'rules_' . $index . '_plus' ] );
+				// }
 
-					$block['attrs']['data']['rules'] = $rules;
-				}
+				// $block['attrs']['data']['rules'] = $rules;
+				// }
 			}
 			break;
 		case 'acf/wysiwyg':
