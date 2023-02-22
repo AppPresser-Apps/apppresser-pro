@@ -54,7 +54,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "function custom() {\r\n    \/\/ write code here\r\n}",
+            "default_value": "",
             "placeholder": "",
             "mode": "javascript",
             "theme": "blackboard"
@@ -78,5 +78,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069557
+    "modified": 1677081065
 }

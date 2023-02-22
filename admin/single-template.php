@@ -8,5 +8,14 @@
  */
 
 get_header(); ?>
-    <app-root url="<?php echo esc_url( APPPRESSER_URL ); ?>" app-url="<?php echo 'https://apppresser.pages.dev?url=' . get_rest_url() . 'apppresser/v1/app/' . get_the_ID(); ?>"></app-root>
+
+    <?php $parts = wp_parse_url(site_url()) ; ?>
+    <?php $url = $parts['scheme'] . '://' . $parts['host']; ?>
+
+    <?php if ( 'local' === explode('.', $parts['host'] )[1] ) : ?>
+        <app-root url="<?php echo esc_url( $url ); ?>/preview" app-url="<?php echo 'https://localhost:3333?url=' . get_rest_url() . 'apppresser/v1/app/' . get_the_ID(); ?>"></app-root>
+    <? else : ?>
+        <app-root url="<?php echo esc_url( APPPRESSER_URL ); ?>" app-url="<?php echo 'https://app-preview.kdmqf589ak-wg96gmpk76oy.p.temp-site.link/?url=' . get_rest_url() . 'apppresser/v1/app/' . get_the_ID(); ?>"></app-root>
+    <?php endif ; ?>
+
 <?php get_footer(); ?>
