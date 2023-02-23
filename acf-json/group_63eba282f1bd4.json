@@ -21,6 +21,66 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_63f7a341f7058",
+            "label": "Group ID",
+            "name": "group_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Limit result set to activities created by a specific group",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63f7a3b8f7059",
+            "label": "User ID",
+            "name": "user_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Limit result set to activities created by a specific member",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_63f7ac1e0cb59",
+            "label": "Include",
+            "name": "include",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Ensure result set includes specific IDs. Comma separated user IDs",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -41,5 +101,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676387085
+    "modified": 1677175947
 }
