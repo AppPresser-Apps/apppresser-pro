@@ -804,7 +804,7 @@ function appp_init_block_types() {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'bp-profile',
+				'name'            => 'bp-profile-fields',
 				'title'           => 'Profile Fields',
 				'description'     => '',
 				'category'        => 'appp_buddypress',
@@ -820,7 +820,7 @@ function appp_init_block_types() {
 					'full_height'   => false,
 					'jsx'           => true,
 				),
-				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/profile.php',
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/profile-fields.php',
 			)
 		);
 
@@ -887,6 +887,28 @@ function appp_init_block_types() {
 					'jsx'           => true,
 				),
 				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/members.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'bp-profile',
+				'title'           => 'Member Profile',
+				'description'     => '',
+				'category'        => 'appp_buddypress',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				'parent'          => array( 'acf/view' ),
+				'icon'            => 'buddicons-buddypress-logo',
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/buddypress/profile.php',
 			)
 		);
 

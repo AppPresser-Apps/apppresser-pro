@@ -27,6 +27,13 @@
                 "operator": "==",
                 "value": "acf\/bp-profile"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/bp-profile-fields"
+            }
         ]
     ],
     "menu_order": 0,
@@ -38,5 +45,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069555
+    "modified": 1677190717
 }

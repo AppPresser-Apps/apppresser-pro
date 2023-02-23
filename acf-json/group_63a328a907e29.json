@@ -67,6 +67,13 @@
                 "operator": "==",
                 "value": "acf\/view"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/side-menu"
+            }
         ]
     ],
     "menu_order": 99,
@@ -78,5 +85,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677081065
+    "modified": 1677194606
 }

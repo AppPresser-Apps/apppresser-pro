@@ -2,13 +2,13 @@
 /**
  * Block Name: BP Profile
  *
- * Description: Edit and display BuddyPress profile fields.
+ * Description: Display BuddyPress profile.
  *
  * @package AppPresser
  */
 
 // Create id attribute value.
-$block_id = 'bp-profile-' . $block['id'];
+$block_id = 'bp-profile' . $block['id'];
 
 // Create class attribute allowing for custom "className" values.
 $class_name = 'appp-bp-profile';
@@ -16,21 +16,18 @@ if ( ! empty( $block['className'] ) ) {
 	$class_name .= ' ' . $block['className'];
 }
 
+$allowed_blocks = appp_get_allowed_innerblocks();
 ?>
 
 <style>
 	#<?php echo $block_id; ?> {
-        margin: 16px;
-		border: 1px solid #e0e0e0;
-		border-radius: 6px;
-		height: 180px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #cfcece;
 	}
 </style>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?>">
-	<div>BuddyPress Profile Fields</div>
+    <InnerBlocks 
+    templateInsertUpdatesSelection="false" 
+    templateLock="false" 
+    allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+    />
 </div>
