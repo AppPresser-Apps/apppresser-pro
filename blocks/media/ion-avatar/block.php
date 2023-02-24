@@ -19,12 +19,15 @@ if ( ! empty( $block['className'] ) ) {
 
 $image      = get_field( 'image_url' ) ? get_field( 'image_url' ) : APPPRESSER_URL . '/images/avatar-placeholder.png';
 $image_size = get_field( 'image_size' );
-$alt_text = get_field( 'alt_text' );
+$alt_text   = get_field( 'alt_text' );
+$border   = get_field( 'border' );
 
 $styles = '';
 
 $styles .= 'width: ' . $image_size . 'px; ';
 $styles .= 'height: ' . $image_size . 'px; ';
+$styles .= 'border: ' . $border['width'] . 'px solid ' . $border['color'] . '; ';
+
 ?>
 
 <div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
