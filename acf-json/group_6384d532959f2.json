@@ -441,6 +441,7 @@
                         "none": "None",
                         "router_push": "Navigate to View",
                         "router_back": "Navigate Back",
+                        "close_modal": "Close Modal",
                         "custom": "Custom"
                     },
                     "default_value": "none",
@@ -736,5 +737,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069556
+    "modified": 1677592912
 }
