@@ -754,14 +754,33 @@ function appp_format_block_data( $block, $build = false ) {
 			 */
 			foreach ( $stabs as $key ) {
 
-				$icon  = $block['attrs']['data'][ 'tabs_' . $key . '_icon' ];
-				$label = $block['attrs']['data'][ 'tabs_' . $key . '_label' ];
-				$route = $block['attrs']['data'][ 'tabs_' . $key . '_route' ];
+				$icon             = $block['attrs']['data'][ 'tabs_' . $key . '_icon' ];
+				$label            = $block['attrs']['data'][ 'tabs_' . $key . '_label' ];
+				$route            = $block['attrs']['data'][ 'tabs_' . $key . '_route' ];
+				$visibility       = $block['attrs']['data'][ 'tabs_' . $key . '_visibility' ];
+				$visibility_rules = $block['attrs']['data'][ 'tabs_' . $key . '_visibility_rules' ];
+
+				$srules = $visibility_rules > 0 ? range( 0, ( $visibility_rules - 1 ) ) : array();
+				$rules  = array();
+
+				foreach ( $srules as $rule ) {
+
+					$rules[] = array(
+						'rule' => $block['attrs']['data'][ 'tabs_' . $key . '_rules_' . $rule . '_rule' ],
+						'plus' => $block['attrs']['data'][ 'tabs_' . $key . '_rules_' . $rule . '_plus' ],
+					);
+
+					unset( $block['attrs']['data'][ 'tabs_' . $key . '_rules' ] );
+					unset( $block['attrs']['data'][ 'tabs_' . $key . '_rules_' . $rule . '_rule' ] );
+					unset( $block['attrs']['data'][ 'tabs_' . $key . '_rules_' . $rule . '_plus' ] );
+				}
 
 				$param[] = array(
-					'icon'  => $icon,
-					'label' => $label,
-					'route' => $route,
+					'icon'             => $icon,
+					'label'            => $label,
+					'route'            => $route,
+					'visibility'       => $visibility,
+					'rules'            => $srules,
 				);
 
 				$block['attrs']['data']['tabs'] = $param;
@@ -769,6 +788,8 @@ function appp_format_block_data( $block, $build = false ) {
 				unset( $block['attrs']['data'][ 'tabs_' . $key . '_icon' ] );
 				unset( $block['attrs']['data'][ 'tabs_' . $key . '_label' ] );
 				unset( $block['attrs']['data'][ 'tabs_' . $key . '_route' ] );
+				unset( $block['attrs']['data'][ 'tabs_' . $key . '_visibility' ] );
+				unset( $block['attrs']['data'][ 'tabs_' . $key . '_visibility_rules' ] );
 
 			}
 

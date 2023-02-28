@@ -60,7 +60,7 @@ if (!isListViewOpened) {
       link_html += '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
 
       if ( 2 === user.id ) {
-        link_html += '<a id="' + link_id + '" class="components-button" href="http://localhost:3333/?url=' + siteURL + '/wp-json/apppresser/v1/app/' + post.id + '" target="_blank">Preview Dev</a>';
+        link_html += '<a id="' + link_id + '" class="components-button" href="https://localhost:3333/?url=' + siteURL + '/wp-json/apppresser/v1/app/' + post.id + '" target="_blank">Preview Dev</a>';
       }
 
 
