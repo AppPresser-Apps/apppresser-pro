@@ -18,26 +18,6 @@
             },
             "default_value": "",
             "placeholder": ""
-        },
-        {
-            "key": "field_63fb8a8c4d766",
-            "label": "Exclude Fields",
-            "name": "exclude",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Comma separated list of field names.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -46,13 +26,6 @@
                 "param": "block",
                 "operator": "==",
                 "value": "acf\/bp-profile"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/bp-profile-fields"
             }
         ]
     ],
@@ -65,5 +38,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677429422
+    "modified": 1677687970
 }
