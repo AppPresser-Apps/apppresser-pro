@@ -9,7 +9,7 @@
             "aria-label": "",
             "type": "text",
             "instructions": "The url to the BuddyPress site.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -71,5 +71,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677188335
+    "modified": 1677689640
 }
