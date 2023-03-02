@@ -1446,6 +1446,36 @@
             "mime_types": ""
         },
         {
+            "key": "field_6400d41163e6c",
+            "label": "Thumbnail Size",
+            "name": "thumbnail_size",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "width of thumbnail. Default 56px.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_629cd5084cc01",
+                        "operator": "==",
+                        "value": "thumbnail"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 56,
+            "min": 0,
+            "max": 600,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_63ffd0bca190a",
             "label": "Token",
             "name": "token",
@@ -1530,11 +1560,13 @@
             "choices": {
                 "none": "None",
                 "date": "Format Date",
+                "styles": "Remove Styles",
+                "truncate": "Truncate",
                 "uppercase": "Uppercase",
                 "lowercase": "Lowercase"
             },
             "default_value": "none",
-            "return_format": "",
+            "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
@@ -3042,6 +3074,31 @@
             "placeholder": ""
         },
         {
+            "key": "field_6400c4c71a9d4",
+            "label": "Detail Icon Color",
+            "name": "detail_icon_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_62fd1b29d238b",
             "label": "Label Color",
             "name": "label_color",
@@ -4333,5 +4390,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677709545
+    "modified": 1677776015
 }

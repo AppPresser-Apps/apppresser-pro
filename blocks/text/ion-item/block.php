@@ -20,6 +20,7 @@ if ( ! empty( $block['className'] ) ) {
 $icon_type         = get_field( 'item_icon_type' );
 $icon              = get_field( 'icon' );
 $icon_thumbnail    = get_field( 'icon_thumbnail' );
+$thumbnail_size    = get_field( 'thumbnail_size' );
 $label             = get_field( 'label' );
 $description       = get_field( 'description' );
 $detail            = get_field( 'detail' ) ? 'true' : 'false';
@@ -27,14 +28,15 @@ $detail_icon       = get_field( 'icon_detail' );
 $lines             = get_field( 'lines' );
 $background_color  = get_field( 'background_color' );
 $icon_color        = get_field( 'icon_color' );
+$detail_icon_color = get_field( 'detail_icon_color' );
 $label_color       = get_field( 'label_color' );
 $label_position    = get_field( 'label_position' );
 $description_color = get_field( 'description_color' );
 $input_type        = get_field( 'input_type' );
 $toggle            = get_field( 'toggle' );
 $checkbox          = get_field( 'checkbox' );
-$padding_top          = get_field( 'padding_top' );
-$padding_bottom          = get_field( 'padding_bottom' );
+$padding_top       = get_field( 'padding_top' );
+$padding_bottom    = get_field( 'padding_bottom' );
 
 $select = get_field( 'select' );
 $input  = get_field( 'input' );
@@ -48,7 +50,9 @@ $required_text = empty( $input['required_text'] ) ? '*' : '';
 
 $is_required = $required ? $required_text : '';
 
-// error_log( print_r( $required_text, true ) );
+$thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/images/avatar-placeholder.png';
+
+//error_log( print_r( $icon_thumbnail, true ) );
 
 ?>
 
@@ -70,7 +74,7 @@ $is_required = $required ? $required_text : '';
 
 	<div class="clickable"></div>
 	
-	<ion-item style="width: 100%; --padding-top: <?php echo $padding_top; ?>px; --padding-bottom: <?php echo $padding_bottom; ?>px;" color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
+	<ion-item style="width: 100%; --padding-top: <?php echo $padding_top; ?>px; --padding-bottom: <?php echo $padding_bottom; ?>px; --detail-icon-color: var( --ion-color-<?php echo $detail_icon_color; ?>); --detail-icon-opacity: 1; " color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
 			  href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
 			  detail-icon="<?php echo '0' === $detail_icon ? 'false' : $detail_icon; ?>"
 			  lines="<?php echo $lines; ?>"
@@ -79,8 +83,8 @@ $is_required = $required ? $required_text : '';
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>
 		<?php if ( 'thumbnail' === $icon_type ) : ?>
-			<ion-thumbnail slot="start">
-				<ion-img src="<?php echo esc_url( $icon_thumbnail ); ?>"></ion-img>
+			<ion-thumbnail style="width: <?php echo $thumbnail_size; ?>px; height: <?php echo $thumbnail_size; ?>px" slot="start">
+				<ion-img src="<?php echo esc_url( $thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>
 
@@ -104,7 +108,7 @@ $is_required = $required ? $required_text : '';
 				echo '<ion-select>';
 
 				// foreach ( $select['options'] as $key => $value ) {
-				// 	echo '<ion-select-option value="' . $value['value'] . '">' . $value['label'] . '</ion-select-option>';
+				// echo '<ion-select-option value="' . $value['value'] . '">' . $value['label'] . '</ion-select-option>';
 				// }
 
 				echo '</ion-select>';
@@ -115,7 +119,7 @@ $is_required = $required ? $required_text : '';
 						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 					case 'textarea':
-						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . esc_attr($input['input_value']) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
+						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . esc_attr( $input['input_value'] ) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
 						break;
 					default:
 						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';

@@ -47,6 +47,7 @@ add_filter( 'acf/prepare_field/name=color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=background', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=background_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=icon_color', 'appp_acf_dynamic_colors' );
+add_filter( 'acf/prepare_field/name=detail_icon_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=label_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=description_color', 'appp_acf_dynamic_colors' );
 add_filter( 'acf/prepare_field/name=toolbar_color', 'appp_acf_dynamic_colors' );
@@ -71,7 +72,7 @@ function appp_add_custom_colors_select( $colors, $post ) {
 
 	// error_log( print_r( $needed_object, true ) );
 
-	if ( isset( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] ) ) {
+	if ( $needed_object && isset( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] ) ) {
 		foreach ( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] as $custom_color ) {
 			$value            = strtolower( str_replace( ' ', '-', $custom_color['name'] ) );
 			$colors[ $value ] = $custom_color['name'];
