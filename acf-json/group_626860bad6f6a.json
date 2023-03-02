@@ -28,6 +28,26 @@
             "mime_types": ""
         },
         {
+            "key": "field_63ffd04df8c32",
+            "label": "Token",
+            "name": "token",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Data token entered here will replace the src attribute of the image element.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_629a77cc8629f",
             "label": "Alt Text",
             "name": "alt_text",
@@ -110,5 +130,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069556
+    "modified": 1677709436
 }

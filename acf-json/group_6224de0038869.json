@@ -468,6 +468,7 @@
             "choices": {
                 "none": "None",
                 "date": "Format Date",
+                "styles": "Remove Styles",
                 "uppercase": "Uppercase",
                 "lowercase": "Lowercase"
             },
@@ -526,5 +527,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069557
+    "modified": 1677707001
 }

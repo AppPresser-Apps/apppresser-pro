@@ -1833,6 +1833,34 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_63ffb9d82487f",
+            "label": "Transient Data",
+            "name": "transient_data",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62a601b8b9399",
+                        "operator": "==",
+                        "value": "router_push"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "pass data object to state.",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -1860,5 +1888,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069557
+    "modified": 1677704775
 }
