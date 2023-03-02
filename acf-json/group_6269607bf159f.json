@@ -1413,6 +1413,34 @@
             "placeholder": ""
         },
         {
+            "key": "field_6400e330eee96",
+            "label": "Icon Alt",
+            "name": "icon_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_629cd5084cc01",
+                        "operator": "==",
+                        "value": "icon"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_629cd879bf417",
             "label": "Thumbnail",
             "name": "icon_thumbnail",
@@ -1472,6 +1500,64 @@
             "max": 600,
             "placeholder": "",
             "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6400de940fff0",
+            "label": "Thumbnail Radius",
+            "name": "thumbnail_radius",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "border radius of thumbnail. Default 0px.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_629cd5084cc01",
+                        "operator": "==",
+                        "value": "thumbnail"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "min": 0,
+            "max": 600,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6400e026f87a0",
+            "label": "Thumbnail Alt",
+            "name": "thumbnail_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_629cd5084cc01",
+                        "operator": "==",
+                        "value": "thumbnail"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
             "prepend": "",
             "append": ""
         },
@@ -4390,5 +4476,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677776015
+    "modified": 1677779795
 }

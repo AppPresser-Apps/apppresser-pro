@@ -21,6 +21,7 @@ $icon_type         = get_field( 'item_icon_type' );
 $icon              = get_field( 'icon' );
 $icon_thumbnail    = get_field( 'icon_thumbnail' );
 $thumbnail_size    = get_field( 'thumbnail_size' );
+$thumbnail_radius  = get_field( 'thumbnail_radius' );
 $label             = get_field( 'label' );
 $description       = get_field( 'description' );
 $detail            = get_field( 'detail' ) ? 'true' : 'false';
@@ -52,7 +53,7 @@ $is_required = $required ? $required_text : '';
 
 $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/images/avatar-placeholder.png';
 
-//error_log( print_r( $icon_thumbnail, true ) );
+// error_log( print_r( $icon_thumbnail, true ) );
 
 ?>
 
@@ -83,7 +84,7 @@ $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/i
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
 		<?php endif; ?>
 		<?php if ( 'thumbnail' === $icon_type ) : ?>
-			<ion-thumbnail style="width: <?php echo $thumbnail_size; ?>px; height: <?php echo $thumbnail_size; ?>px" slot="start">
+			<ion-thumbnail style="width: <?php echo $thumbnail_size; ?>px; height: <?php echo $thumbnail_size; ?>px; --border-radius: <?php echo $thumbnail_radius; ?>px" slot="start">
 				<ion-img src="<?php echo esc_url( $thumbnail ); ?>"></ion-img>
 			</ion-thumbnail>
 		<?php endif; ?>

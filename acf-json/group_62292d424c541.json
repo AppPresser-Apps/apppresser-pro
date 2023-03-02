@@ -28,6 +28,26 @@
             "mime_types": "jpg, jpeg, png, gif"
         },
         {
+            "key": "field_6400e3cfcd2ba",
+            "label": "Alt text",
+            "name": "alt_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_626c5c188499e",
             "label": "Layout",
             "name": "",
@@ -318,24 +338,6 @@
             "endpoint": 0
         },
         {
-            "key": "field_63ecff8ed9b29",
-            "label": "Data (copy)",
-            "name": "",
-            "aria-label": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 0,
-            "multi_expand": 0,
-            "endpoint": 0
-        },
-        {
             "key": "field_629a86ffc8dd3",
             "label": "Token",
             "name": "token",
@@ -354,26 +356,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_63ecff9a6a46b",
-            "label": "Token (copy)",
-            "name": "token_copy",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Data token entered here will replace the src attribute of the image element.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -394,5 +376,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676476315
+    "modified": 1677779942
 }

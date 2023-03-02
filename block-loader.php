@@ -698,7 +698,7 @@ function appp_init_block_types() {
 				'icon'            => 'layout',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
-				'parent'          => array( 'acf/view' ),
+				// 'parent'          => array( 'acf/view', 'acf' ),
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
