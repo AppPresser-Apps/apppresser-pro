@@ -722,7 +722,7 @@ function appp_init_block_types() {
 				'icon'            => 'columns',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
-				'parent'          => array( 'acf/view' ),
+				//'parent'          => array( 'acf/view' ),
 				'supports'        => array(
 					'mode'          => false,
 					'align'         => false,
