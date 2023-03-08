@@ -190,7 +190,7 @@ if ( $background_image ) {
 						<?php if ( $logo ) : ?>
 							<img src="<?php echo esc_url( wp_get_attachment_image_url( $logo, 'large' ) ); ?>" style="height: 40px; margin-top: 4px;" />
 						<?php else : ?>
-							<?php echo $title ? esc_attr( $title ) : ''; ?>
+							<?php echo $title !== '' ? esc_attr( $title ) : ''; ?>
 						<?php endif; ?>
 					</ion-title>
 					<ion-buttons slot="end">

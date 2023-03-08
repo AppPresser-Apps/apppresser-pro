@@ -83,6 +83,26 @@
             "append": ""
         },
         {
+            "key": "field_6408da068f162",
+            "label": "Activity Types",
+            "name": "activity_types",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "comma separated list of activity types.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_63f7cfdb751a3",
             "label": "Comment Icon",
             "name": "icon",
@@ -1498,5 +1518,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677689615
+    "modified": 1678301742
 }

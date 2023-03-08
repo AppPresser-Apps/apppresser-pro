@@ -74,11 +74,11 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Modal",
+            "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_62b2273726849",
@@ -3235,5 +3235,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1676069556
+    "modified": 1678304555
 }
