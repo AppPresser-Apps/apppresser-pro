@@ -17,15 +17,15 @@
                 "id": ""
             },
             "choices": {
-                "left": "Left",
+                "flex-start": "Left",
                 "center": "Center",
-                "right": "Right"
+                "flex-end": "Right"
             },
-            "default_value": "left",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
+            "default_value": "flex-start",
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": ""
         },
@@ -203,5 +203,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069556
+    "modified": 1678307037
 }
