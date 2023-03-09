@@ -3701,6 +3701,7 @@
                     "choices": {
                         "hard": "Hard Coded",
                         "api": "External API",
+                        "transient": "Transient",
                         "database": "Sqlite Database",
                         "preferences": "App Preferences"
                     },
@@ -4434,5 +4435,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678311644
+    "modified": 1678379548
 }

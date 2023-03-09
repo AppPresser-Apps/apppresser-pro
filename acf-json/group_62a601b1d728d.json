@@ -1853,6 +1853,26 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_640a06450c1bf",
+            "label": "Transient Data",
+            "name": "transient_data",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "pass data to the next view.",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -1880,5 +1900,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678307404
+    "modified": 1678378634
 }

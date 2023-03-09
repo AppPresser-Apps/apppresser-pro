@@ -41,6 +41,43 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_640a103b41871",
+            "label": "Advanced",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_640a104d41872",
+            "label": "Javascript",
+            "name": "javascript",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "This code will run on successful save of profile fields.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
         }
     ],
     "location": [
@@ -61,5 +98,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1677689664
+    "modified": 1678383087
 }
