@@ -139,10 +139,12 @@ function appp_get_app_data( $request ) {
 	$id    = $request->get_param( 'id' );
 	$build = $request->get_param( 'build' );
 
+	// error_log(print_r($build,true));
+
 	$appp_data_transient = get_site_transient( 'appp_data_transient_' . $id );
 
 	// Get any existing copy of our transient data.
-	if ( false === $appp_data_transient ) {
+	if ( false === $appp_data_transient || $build ) {
 
 		$post   = get_post( $id );
 		$blocks = parse_blocks( $post->post_content );
@@ -170,22 +172,22 @@ function appp_get_app_data( $request ) {
 
 				// This recusivley formats all innerBlock sub arrays.
 				if ( ! empty( $block ) ) {
-					appp_array_walk( $block );
+					appp_array_walk( $block, $build );
 				}
 
 				if ( 'acf/view' === $block['blockName'] ) {
-					$block   = appp_format_toolbar( $block );
+					$block   = appp_format_toolbar( $block, $build );
 					$views[] = $block;
 
 				}
 
 				if ( 'acf/side-menu' === $block['blockName'] ) {
-					$block = appp_format_toolbar( $block );
+					$block = appp_format_toolbar( $block, $build );
 					$menu  = $block;
 				}
 
 				if ( 'acf/modal' === $block['blockName'] ) {
-					$block    = appp_format_toolbar( $block );
+					$block    = appp_format_toolbar( $block, $build );
 					$modals[] = $block;
 				}
 
@@ -198,12 +200,12 @@ function appp_get_app_data( $request ) {
 				}
 
 				if ( 'acf/action-sheet' === $block['blockName'] ) {
-					$block           = appp_format_block_data( $block );
+					$block           = appp_format_block_data( $block, $build );
 					$action_sheets[] = $block;
 				}
 
 				if ( 'acf/ion-tabs' === $block['blockName'] ) {
-					$block    = appp_format_block_data( $block );
+					$block    = appp_format_block_data( $block, $build );
 					$tabbar[] = $block;
 				}
 			}
@@ -334,17 +336,17 @@ add_action( 'post_updated', 'appp_delete_transient', 10, 2 );
  * @param array $block
  * @return void
  */
-function appp_array_walk( &$block ) {
+function appp_array_walk( &$block, $build ) {
 
 	if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
 
 		foreach ( $block['innerBlocks'] as &$value ) {
 
-			$value = appp_format_block_data( $value );
+			$value = appp_format_block_data( $value, $build );
 
 			if ( isset( $value['innerBlocks'] ) && ! empty( $value['innerBlocks'] ) ) {
 
-				appp_array_walk( $value );
+				appp_array_walk( $value, $build );
 			}
 		}
 	}
@@ -485,10 +487,13 @@ function appp_format_block_data( $block, $build = false ) {
 				$block['attrs']['data']['image_id'] = $block['attrs']['data']['background_image'];
 				$image                              = wp_get_attachment_image_src( $block['attrs']['data']['background_image'], 'original_image' );
 
-				$image_path                                     = empty( $image[0] ) ? '' : parse_url( $image[0] );
-				$image_file                                     = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
-				$block['attrs']['data']['image_file']           = $build ? '/assets/' . $image_file : $image[0];
+				$image_path = isset( $image[0] ) ? parse_url( $image[0] ) : array();
+				$image_file = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
+
+				$block['attrs']['data']['image_file']           = $build && ! empty( $image_file ) ? '/assets/' . $image_file : isset( $image[0] );
 				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
+
+				$block['attrs']['data']['bg'] = $image;
 
 				$bordertl = $block['attrs']['data']['border_radius_border_radius_top_left'] . 'px';
 				$bordertr = $block['attrs']['data']['border_radius_border_radius_top_right'] . 'px';
@@ -523,7 +528,8 @@ function appp_format_block_data( $block, $build = false ) {
 
 			}
 
-			if ( isset( $block['attrs']['data']['background_gradient_colors'] ) ) {
+			if ( ! empty( $block['attrs']['data']['background_gradient'] ) && isset( $block['attrs']['data']['background_gradient_colors'] ) ) {
+
 				// Creates an array from integer so we can loop through ACF data that isnt an array.
 				$gradcolors = range( 0, ( $block['attrs']['data']['background_gradient_colors'] - 1 ) );
 				$gradients  = array();
@@ -776,11 +782,11 @@ function appp_format_block_data( $block, $build = false ) {
 				}
 
 				$param[] = array(
-					'icon'             => $icon,
-					'label'            => $label,
-					'route'            => $route,
-					'visibility'       => $visibility,
-					'rules'            => $srules,
+					'icon'       => $icon,
+					'label'      => $label,
+					'route'      => $route,
+					'visibility' => $visibility,
+					'rules'      => $srules,
 				);
 
 				$block['attrs']['data']['tabs'] = $param;
@@ -863,7 +869,7 @@ function appp_get_app_files( $request ) {
 		copy( $upload_dir['basedir'] . '/' . $meta['file'], $appp_dir . '/' . $file );
 	}
 
-	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param );
+	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
 	$body     = wp_remote_retrieve_body( $response );
 
 	$bytes = file_put_contents( $upload_dir['basedir'] . '/apppresser/app.json', $body );

@@ -47,9 +47,9 @@ $position = 'default' === $label_position ? '' : 'position="' . $label_position 
 $required = isset( $input['required'] ) ? 'required=true' : '';
 $disabled = isset( $input['disabled'] ) ? 'disabled=true' : '';
 
-$range_min = $input['range_min'];
-$range_max = $input['range_max'];
-$step_size = $input['step_size'];
+$range_min = isset( $input['range_min'] );
+$range_max = isset( $input['range_max'] );
+$step_size = isset( $input['step_size'] );
 
 $required_text = empty( $input['required_text'] ) ? '*' : '';
 
@@ -127,7 +127,7 @@ $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/i
 						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . esc_attr( $input['input_value'] ) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
 						break;
 					case 'range':
-						echo '<ion-range min=' . $range_min .'  max=' . $range_min .' step=' . $step_size . ' ></ion-range>';
+						echo '<ion-range min=' . $range_min . '  max=' . $range_min . ' step=' . $step_size . ' ></ion-range>';
 						break;
 					default:
 						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
