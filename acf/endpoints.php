@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * TODO: move functions to seperate files
+ */
 
 /**
  * Register acf feilds endpoint.
@@ -490,7 +493,7 @@ function appp_format_block_data( $block, $build = false ) {
 				$image_path = isset( $image[0] ) ? parse_url( $image[0] ) : array();
 				$image_file = isset( $image_path['path'] ) ? basename( $image_path['path'] ) : '';
 
-				$block['attrs']['data']['image_file']           = $build && ! empty( $image_file ) ? '/assets/' . $image_file : isset( $image[0] );
+				$block['attrs']['data']['image_file']           = $build ? '/assets/' . $image_file : $image[0];
 				$block['attrs']['data']['background_image_url'] = empty( $image[0] ) ? '' : $image[0];
 
 				$block['attrs']['data']['bg'] = $image;

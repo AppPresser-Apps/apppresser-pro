@@ -44,7 +44,7 @@ if ( 'hidden' === $visibility ) {
 }
 #<?php echo esc_attr( $block_id ); ?> .block-editor-inner-blocks > .block-editor-block-list__layout {
 	display: flex;
-	flex-direction: row;
+	flex-direction: row !important;
 	/* justify-content: center;
 	align-items: center; */
 }

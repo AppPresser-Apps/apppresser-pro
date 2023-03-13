@@ -31,7 +31,7 @@ if (!isListViewOpened) {
 }
 
  /**
-  * Add custom link to right toolbar to preview app
+  * Add custom links to right toolbar to preview / build app.
   */
 ( function ( wp ) {
 
@@ -41,7 +41,7 @@ if (!isListViewOpened) {
       return;
   }
 
-  var unsubscribe = wp.data.subscribe( function () {
+  wp.data.subscribe( function () {
       const user = wp.data.select("core").getCurrentUser();
       const post = wp.data.select( 'core/editor' ).getCurrentPost();
       const siteURL = window.custom_data.siteURL;
@@ -95,6 +95,7 @@ if (!isListViewOpened) {
  * Filtering the block data.
  * Assigning blocks to specific parents.
  * We need this because some blocks can only be used within another block.
+ * TODO: remove the allowed blocks from php files and place here. 
  */
 function apppFilterBlockRegister(settings, name) {
   switch (name) {

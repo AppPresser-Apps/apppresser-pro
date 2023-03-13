@@ -4138,8 +4138,8 @@
                 },
                 {
                     "key": "field_63d7e1ec0dd82",
-                    "label": "Value Source",
-                    "name": "value_source",
+                    "label": "Data Source",
+                    "name": "data_value_source",
                     "aria-label": "",
                     "type": "select",
                     "instructions": "",
@@ -4202,8 +4202,8 @@
                 },
                 {
                     "key": "field_63dbefac44e16",
-                    "label": "Transient",
-                    "name": "transient",
+                    "label": "Data Value",
+                    "name": "data_value",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -4435,5 +4435,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678379548
+    "modified": 1678727263
 }
