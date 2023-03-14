@@ -97,8 +97,8 @@
         },
         {
             "key": "field_63b44b2443ef1",
-            "label": "Database Name",
-            "name": "database_name",
+            "label": "Table Name",
+            "name": "table_name",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -124,9 +124,45 @@
             "append": ""
         },
         {
+            "key": "field_641084e23b75e",
+            "label": "Query Type",
+            "name": "query_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "database"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "insert": "Insert",
+                "update": "Update",
+                "delete": "Delete",
+                "raw": "Raw"
+            },
+            "default_value": "insert",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_63b6ee15ac163",
-            "label": "Database Query",
-            "name": "database_query",
+            "label": "WHERE Statement",
+            "name": "where_statement",
             "aria-label": "",
             "type": "acf_code_field",
             "instructions": "",
@@ -503,6 +539,41 @@
                     "placeholder": ""
                 },
                 {
+                    "key": "field_6410bef9529e0",
+                    "label": "Router Animation",
+                    "name": "router_animation",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63a07dcdf453f",
+                                "operator": "==",
+                                "value": "router_push"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "forward": "Forward",
+                        "backward": "Backward",
+                        "root": "Root"
+                    },
+                    "default_value": "forward",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
                     "key": "field_63a08ef100606",
                     "label": "custom",
                     "name": "custom",
@@ -756,5 +827,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678548278
+    "modified": 1678819173
 }

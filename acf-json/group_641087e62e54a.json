@@ -1,0 +1,182 @@
+{
+    "key": "group_641087e62e54a",
+    "title": "Database",
+    "fields": [
+        {
+            "key": "field_641087e63acde",
+            "label": "Version",
+            "name": "version",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "To update a database the version number must be increased.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": 1,
+            "max": "",
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_641087e63ace2",
+            "label": "Tables",
+            "name": "tables",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_63ac726fd070a",
+            "button_label": "Add Table",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_641087e63cc0b",
+                    "label": "Table Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_641087e63ace2"
+                },
+                {
+                    "key": "field_6410889df8901",
+                    "label": "Columns",
+                    "name": "columns",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add Column",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_641088abf8902",
+                            "label": "Column Name",
+                            "name": "column_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_6410889df8901"
+                        },
+                        {
+                            "key": "field_641088c0f8903",
+                            "label": "Column Type",
+                            "name": "column_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "text": "Text",
+                                "integer": "Integer",
+                                "null": "Null",
+                                "boolean": "Boolean",
+                                "blob": "Blob"
+                            },
+                            "default_value": "text",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_6410889df8901"
+                        }
+                    ],
+                    "parent_repeater": "field_641087e63ace2"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "app"
+            }
+        ]
+    ],
+    "menu_order": 99,
+    "position": "side",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1678805798
+}
