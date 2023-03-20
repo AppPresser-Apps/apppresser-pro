@@ -207,7 +207,7 @@ function appp_get_app_data( $request ) {
 
 				if ( 'acf/ion-tabs' === $block['blockName'] ) {
 					$block    = appp_format_block_data( $block, $build );
-					$tabbar[] = $block;
+					$tabbar[] = $block ? $block : array();
 				}
 			}
 		}
