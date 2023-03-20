@@ -154,6 +154,7 @@ function appp_get_app_data( $request ) {
 		$views      = false;
 		$modals     = false;
 		$onboarding = false;
+		$tabbar     = array();
 
 		foreach ( $blocks as $index => &$block ) {
 
