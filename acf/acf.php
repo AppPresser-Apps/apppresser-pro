@@ -329,8 +329,6 @@ function appp_get_theme_colors( $post_id ) {
 		}
 	}
 
-	error_log( print_r( $palette, true ) );
-
 	return $palette;
 }
 
