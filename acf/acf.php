@@ -308,35 +308,28 @@ function appp_get_theme_colors( $post_id ) {
 		'custom_color' => 'Custom color',
 	);
 
-	$theme  = get_field( 'theme_select', $post_id );
-	$themes = get_field( 'themes', 'option' );
-
-	$needed_object = array_filter(
-		$themes,
-		function ( $e ) use ( &$theme ) {
-			return $e['theme_name'] === $theme;
-		}
-	);
-
-	$needed_object = array_values( $needed_object )[0];
-
 	$palette = array();
 
 	foreach ( $colors as $key => $value ) {
 
 		if ( 'custom_color' === $key ) {
-			if ( ! empty( $needed_object[ $key ] ) ) {
-				foreach ( $needed_object[ $key ] as $key => $value ) {
+			$color = get_field( $key, $post_id );
+
+			if ( ! empty( $color ) ) {
+				foreach ( $color as $key => $value ) {
 					$name             = strtolower( str_replace( ' ', '-', $value['name'] ) );
 					$colors           = appp_process_colors( '--ion-color-' . $name, $value['light'] );
 					$palette[ $name ] = $colors;
 				}
 			}
 		} else {
-			$colors          = appp_process_colors( '--ion-color-' . $key, $needed_object[ $key ][ "{$key}_light" ] );
+			$color           = get_field( $key, $post_id );
+			$colors          = appp_process_colors( '--ion-color-' . $key, $color[ "{$key}_light" ] );
 			$palette[ $key ] = $colors;
 		}
 	}
+
+	error_log( print_r( $palette, true ) );
 
 	return $palette;
 }
@@ -352,35 +345,18 @@ function appp_get_app_database( $post_id ) {
 
 function appp_get_theme_globals( $post_id ) {
 
-	$theme  = get_field( 'theme_select', $post_id );
-	$themes = get_field( 'themes', 'option' );
-
-	$needed_object = array_filter(
-		$themes,
-		function ( $e ) use ( &$theme ) {
-			return $e['theme_name'] === $theme;
-		}
-	);
-
-	$needed_object = array_values( $needed_object )[0];
-
-	//$stepped = steppedColors( $needed_object['background_color'], $needed_object['text_color'] );
-
 	$globals = array(
-		'--ion-background-color' => $needed_object['background_color'],
-		'--ion-text-color'       => $needed_object['text_color'],
+		'--ion-background-color' => get_field( 'background_color', $post_id ),
+		'--ion-text-color'       => get_field( 'text_color', $post_id ),
 		// '--ion-font-family'      => $needed_object['font_family'],
 		// '--ion-safe-area-top'    => $needed_object['safe_area_top'] . 'px',
 		// '--ion-safe-area-bottom' => $needed_object['safe_area_bottom'] . 'px',
 		// '--ion-safe-area-left'   => $needed_object['safe_area_left'] . 'px',
 		// '--ion-safe-area-right'  => $needed_object['safe_area_right'] . 'px',
-		'--ion-margin'           => $needed_object['ion_margin'] . 'px',
-		'--ion-padding'          => $needed_object['ion_padding'] . 'px',
-		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
-		'--ion-border-radius'    => $needed_object['border_radius'] . 'px',
+		'--ion-margin'           => get_field( 'ion_margin', $post_id ) . 'px',
+		'--ion-padding'          => get_field( 'ion_padding', $post_id ) . 'px',
+		'--ion-border-radius'    => get_field( 'border_radius', $post_id ) . 'px',
 	);
-
-	//$globals = array_merge( $globals, $stepped['rgbs'], $stepped['steps'] );
 
 	return $globals;
 }

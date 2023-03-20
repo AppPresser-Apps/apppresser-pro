@@ -142,8 +142,6 @@ function appp_get_app_data( $request ) {
 	$id    = $request->get_param( 'id' );
 	$build = $request->get_param( 'build' );
 
-	// error_log(print_r($build,true));
-
 	$appp_data_transient = get_site_transient( 'appp_data_transient_' . $id );
 
 	// Get any existing copy of our transient data.

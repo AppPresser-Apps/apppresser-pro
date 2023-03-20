@@ -60,22 +60,12 @@ function appp_add_custom_colors_select( $colors, $post ) {
 		return array();
 	}
 
-	$theme  = get_field( 'theme_select', $post->ID );
-	$themes = get_field( 'themes', 'option' );
+	$custom_color = get_field( 'custom_color', $post->ID );
 
-	$needed_object = array_filter(
-		$themes,
-		function ( $e ) use ( &$theme ) {
-			return $e['theme_name'] === $theme;
-		}
-	);
-
-	// error_log( print_r( $needed_object, true ) );
-
-	if ( $needed_object && isset( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] ) ) {
-		foreach ( $needed_object[ array_key_first( $needed_object ) ]['custom_color'] as $custom_color ) {
-			$value            = strtolower( str_replace( ' ', '-', $custom_color['name'] ) );
-			$colors[ $value ] = $custom_color['name'];
+	if ( ! empty( $custom_color ) ) {
+		foreach ( $custom_color as $key => $color ) {
+			$value            = strtolower( str_replace( ' ', '-', $color['name'] ) );
+			$colors[ $value ] = $color['name'];
 		}
 	}
 
