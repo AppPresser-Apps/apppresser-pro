@@ -166,8 +166,8 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 		left: 0;
 		width: auto;
 		height: auto;
-		z-index:-3;
-		overflow: hidden;
+		/* z-index:-3;
+		overflow: hidden; */
 	}
 
 
@@ -197,7 +197,7 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 
 	#<?php echo esc_attr( $id ); ?> .block-editor-block-list__layout {
 		display: flex;
-		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?> !important;
+		flex-direction: <?php echo esc_attr( $flex['flex_direction'] ); ?>;
 		justify-content: <?php echo esc_attr( $flex['justify_content'] ); ?>;
 		align-items: <?php echo esc_attr( $flex['align_items'] ); ?>;
 		height: <?php echo $flexheight; ?>;
