@@ -338,7 +338,7 @@ function appp_get_app_database( $post_id ) {
 	// $data        = get_field( 'database', $database_id );
 
 	$data = array(
-		'name'    => get_field( 'database_id', $post_id ),
+		'id'      => get_field( 'database_id', $post_id ),
 		'version' => get_field( 'version', $post_id ),
 		'tables'  => get_field( 'tables', $post_id ),
 	);
