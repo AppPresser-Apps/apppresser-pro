@@ -3,6 +3,21 @@
     "title": "Database",
     "fields": [
         {
+            "key": "field_641c8dbc9b041",
+            "label": "Database ID",
+            "name": "database_id",
+            "aria-label": "",
+            "type": "unique_id",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
             "key": "field_641087e63acde",
             "label": "Version",
             "name": "version",
@@ -42,7 +57,7 @@
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "field_63ac726fd070a",
+            "collapsed": "field_641087e63cc0b",
             "button_label": "Add Table",
             "rows_per_page": 20,
             "sub_fields": [
@@ -81,7 +96,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "table",
+                    "layout": "block",
                     "min": 0,
                     "max": 0,
                     "collapsed": "",
@@ -138,6 +153,27 @@
                             "ajax": 0,
                             "placeholder": "",
                             "parent_repeater": "field_6410889df8901"
+                        },
+                        {
+                            "key": "field_641c7245598d8",
+                            "label": "Primary Key",
+                            "name": "primary_key",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "parent_repeater": "field_6410889df8901"
                         }
                     ],
                     "parent_repeater": "field_641087e63ace2"
@@ -178,5 +214,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1679327496
+    "modified": 1679593645
 }

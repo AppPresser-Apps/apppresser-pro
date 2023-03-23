@@ -21,6 +21,46 @@
             "esc_html": 0
         },
         {
+            "key": "field_641c8445ea721",
+            "label": "Bundle ID",
+            "name": "bundle_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_641c85628e19a",
+            "label": "App Name",
+            "name": "app_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "This is the app name that will show on device.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_62237c34a0cc1",
             "label": "Icon",
             "name": "app_icon",
@@ -126,7 +166,7 @@
             },
             "choices": {
                 "default": "Default",
-                "YGM": "YGM"
+                "SMP": "SMP"
             },
             "default_value": "default",
             "allow_null": 0,
@@ -228,6 +268,21 @@
                     "parent_repeater": "field_63dbe514f01a0"
                 }
             ]
+        },
+        {
+            "key": "field_641c8dbc9b041",
+            "label": "Database ID",
+            "name": "database_id",
+            "aria-label": "",
+            "type": "unique_id",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
         }
     ],
     "location": [
@@ -248,5 +303,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679328127
+    "modified": 1679593479
 }
