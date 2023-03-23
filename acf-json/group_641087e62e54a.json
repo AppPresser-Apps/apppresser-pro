@@ -3,21 +3,6 @@
     "title": "Database",
     "fields": [
         {
-            "key": "field_641c8dbc9b041",
-            "label": "Database ID",
-            "name": "database_id",
-            "aria-label": "",
-            "type": "unique_id",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
-        },
-        {
             "key": "field_641087e63acde",
             "label": "Version",
             "name": "version",
@@ -214,5 +199,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1679594533
+    "modified": 1679597558
 }
