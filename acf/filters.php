@@ -434,3 +434,22 @@ function appp_block_wrapper( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', 'appp_block_wrapper', 10, 2 );
+
+/**
+ * Allow Super Admin to view post when someone else is editing.
+ * TODO: enhance this with messages in admin that the post is being editied elsewhere and block saving.
+ *
+ * @return void
+ */
+function appp_post_edit_block() {
+	if ( is_super_admin() ) {
+		add_filter( 'wp_check_post_lock_window', '__return_false' );
+		add_filter(
+			'heartbeat_settings',
+			function( $settings ) {
+				return wp_parse_args( array( 'autostart' => false ), $settings );
+			}
+		);
+	}
+}
+add_action( 'load-post.php', 'appp_post_edit_block' );
