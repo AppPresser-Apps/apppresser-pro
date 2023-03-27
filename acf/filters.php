@@ -6,7 +6,7 @@
  * @return boolean
  */
 function appp_acf_show_admin( $show ) {
-	return current_user_can( 'manage_options' );
+	return current_user_can( 'update_core' );
 }
 add_filter( 'acf/settings/show_admin', 'appp_acf_show_admin' );
 
