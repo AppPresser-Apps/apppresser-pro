@@ -20,6 +20,7 @@ if ( ! empty( $block['className'] ) ) {
 
 $sub_title    = get_field( 'sub_title' );
 $title        = get_field( 'title' );
+$title_size   = get_field( 'title_size' );
 $content      = get_field( 'content' );
 $header_image = get_field( 'header_image' );
 $image_height = get_field( 'image_height' ) ?? 300;
@@ -37,12 +38,14 @@ $style .= 'font-family: var(--ion-font-family, inherit); font-size: 15px; font-w
 			<div style="background-image: url(<?php echo esc_url( APPPRESSER_URL . '/images/image-placeholder.png' ); ?>); height: <?php echo esc_attr( $image_height ); ?>px; background-size: cover; background-position: center; " data-bg-image=" <?php echo esc_attr( $header_image ); ?> "></div>
 			<ion-card-header>
 				<ion-card-subtitle><?php echo esc_attr( $sub_title ); ?></ion-card-subtitle>
-				<ion-card-title><?php echo esc_attr( $title ); ?></ion-card-title>
+				<ion-card-title style="font-size: <?php echo $title_size; ?>px;"><?php echo esc_attr( $title ); ?></ion-card-title>
 			</ion-card-header>
 
+			<?php if ( ! empty( $content ) ) : ?>
 			<ion-card-content>
 				<?php echo esc_attr( $content ); ?>
 			</ion-card-content>
+			<?php endif; ?>
 		</ion-card>
 	</div>
 </div>

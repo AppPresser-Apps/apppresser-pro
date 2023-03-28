@@ -66,8 +66,8 @@ if ( $padding ) {
 	#<?php echo esc_attr( $block_id ); ?> .block-editor-block-list__layout {
 		display: flex !important;
 		flex-direction: column !important;
-		justify-content: <?php echo esc_attr( $alignment ); ?>;
-		align-items: <?php echo esc_attr( $vertical ); ?>;
+		justify-content: <?php echo esc_attr( $vertical ); ?> ;
+		align-items: <?php echo esc_attr( $alignment ); ?>;
 		height: 100%;
 		width: 100%;
 	}

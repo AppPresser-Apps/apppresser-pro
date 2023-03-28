@@ -351,7 +351,7 @@ function appp_init_block_types() {
 			array(
 				'name'            => 'card',
 				'title'           => __( 'Card' ),
-				'description'     => __( 'Card' ),
+				'description'     => __( 'Cards are containers that are made up of a header, title, subtitle, and content.' ),
 				'render_template' => APPPRESSER_DIR . '/blocks/patterns/card.php',
 				'category'        => 'appp_patterns',
 				'icon'            => 'excerpt-view',

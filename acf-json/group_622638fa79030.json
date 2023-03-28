@@ -89,6 +89,27 @@
             "maxlength": ""
         },
         {
+            "key": "field_6422f88310ef9",
+            "label": "Title Size",
+            "name": "title_size",
+            "aria-label": "",
+            "type": "range",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 28,
+            "min": 0,
+            "max": 56,
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_62263948e081e",
             "label": "Content",
             "name": "content",
@@ -165,5 +186,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069556
+    "modified": 1680013611
 }

@@ -4166,9 +4166,9 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6307c374b3299",
-                    "label": "Value",
-                    "name": "input_value",
+                    "key": "field_63dbefac44e16",
+                    "label": "Data Value",
+                    "name": "data_value",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Database Format - table_name : table_column_name. App preferences use the format - preference_name : preference_value.",
@@ -4178,7 +4178,7 @@
                             {
                                 "field": "field_63d7e1ec0dd82",
                                 "operator": "==",
-                                "value": "database"
+                                "value": "transient"
                             }
                         ],
                         [
@@ -4186,34 +4186,6 @@
                                 "field": "field_63d7e1ec0dd82",
                                 "operator": "==",
                                 "value": "preferences"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_63dbefac44e16",
-                    "label": "Data Value",
-                    "name": "data_value",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_63d7e1ec0dd82",
-                                "operator": "==",
-                                "value": "transient"
                             }
                         ]
                     ],
@@ -4435,5 +4407,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678727263
+    "modified": 1680015289
 }
