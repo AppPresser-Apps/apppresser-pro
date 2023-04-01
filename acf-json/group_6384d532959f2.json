@@ -98,7 +98,7 @@
         {
             "key": "field_63b44b2443ef1",
             "label": "Table Name",
-            "name": "table_name",
+            "name": "table",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -827,5 +827,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678819173
+    "modified": 1680298224
 }
