@@ -179,3 +179,10 @@ function appp_preview_template( $template, $type, $templates ) {
 	return $template;
 }
 add_filter( 'single_template', 'appp_preview_template', 10, 3 );
+
+function appp_exclude_post_types_from_rcp( $post_types ) {
+	$post_types[] = 'app';
+		
+	return $post_types;
+}
+add_filter( 'rcp_metabox_excluded_post_types', 'appp_exclude_post_types_from_rcp' );
