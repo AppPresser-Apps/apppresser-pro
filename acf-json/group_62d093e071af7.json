@@ -463,8 +463,8 @@
         "tags",
         "send-trackbacks"
     ],
-    "active": true,
+    "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678804958
+    "modified": 1681058430
 }

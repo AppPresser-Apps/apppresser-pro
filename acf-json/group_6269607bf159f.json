@@ -4005,11 +4005,11 @@
                     "ui": 0
                 },
                 {
-                    "key": "field_638789164dfa8",
-                    "label": "Validation",
-                    "name": "validation",
+                    "key": "field_6307b6b1b8d3d",
+                    "label": "Type",
+                    "name": "input_type",
                     "aria-label": "",
-                    "type": "true_false",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -4018,67 +4018,27 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "validate input before form submission.",
-                    "default_value": 0,
+                    "choices": {
+                        "text": "Text",
+                        "password": "Password",
+                        "number": "Number",
+                        "tel": "Tel",
+                        "email": "Email",
+                        "url": "URL",
+                        "search": "Search",
+                        "time": "Time",
+                        "date": "Date",
+                        "datetime-local": "Date Time",
+                        "textarea": "Textarea",
+                        "range": "Range"
+                    },
+                    "default_value": "textarea",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
                     "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
-                },
-                {
-                    "key": "field_638789424dfa9",
-                    "label": "Validation Pattern",
-                    "name": "validation_pattern",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_638789164dfa8",
-                                "operator": "==",
-                                "value": "1"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_638cbc5b68960",
-                    "label": "Validation Error Message",
-                    "name": "validation_error_message",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_638789164dfa8",
-                                "operator": "==",
-                                "value": "1"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_6432de89327bd",
@@ -4160,42 +4120,6 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6307b6b1b8d3d",
-                    "label": "Type",
-                    "name": "input_type",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "text": "Text",
-                        "password": "Password",
-                        "number": "Number",
-                        "tel": "Tel",
-                        "email": "Email",
-                        "url": "URL",
-                        "search": "Search",
-                        "time": "Time",
-                        "date": "Date",
-                        "datetime-local": "Date Time",
-                        "textarea": "Textarea",
-                        "range": "Range"
-                    },
-                    "default_value": "textarea",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
                     "key": "field_6307b69db8d3c",
                     "label": "Placeholder",
                     "name": "placeholder",
@@ -4204,6 +4128,82 @@
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_638789164dfa8",
+                    "label": "Validation",
+                    "name": "validation",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "validate input before form submission.",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_638789424dfa9",
+                    "label": "Validation Pattern",
+                    "name": "validation_pattern",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_638789164dfa8",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_638cbc5b68960",
+                    "label": "Validation Error Message",
+                    "name": "validation_error_message",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_638789164dfa8",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -4486,5 +4486,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1681056748
+    "modified": 1681058285
 }
