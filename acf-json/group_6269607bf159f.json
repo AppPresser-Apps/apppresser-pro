@@ -3985,6 +3985,26 @@
                     "ui_off_text": ""
                 },
                 {
+                    "key": "field_6388eb8e6d7f5",
+                    "label": "Hidden",
+                    "name": "hidden",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 0
+                },
+                {
                     "key": "field_638789164dfa8",
                     "label": "Validation",
                     "name": "validation",
@@ -4061,24 +4081,83 @@
                     "append": ""
                 },
                 {
-                    "key": "field_6388eb8e6d7f5",
-                    "label": "Hidden",
-                    "name": "hidden",
+                    "key": "field_6432de89327bd",
+                    "label": "Auto Complete",
+                    "name": "autocomplete",
                     "aria-label": "",
-                    "type": "true_false",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63064c9ed0f4a",
+                                "operator": "==",
+                                "value": "input"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
-                    "default_value": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": "",
-                    "ui": 0
+                    "choices": {
+                        "off": "Off",
+                        "name": "Name",
+                        "email": "Email",
+                        "tel": "Phone",
+                        "url": "URL",
+                        "new-password": "New Password",
+                        "current-password": "Current Password"
+                    },
+                    "default_value": "off",
+                    "return_format": "",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6432e0766d052",
+                    "label": "Input Mode",
+                    "name": "inputmode",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63064c9ed0f4a",
+                                "operator": "==",
+                                "value": "input"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "None",
+                        "text": "Text",
+                        "numeric": "Numeric",
+                        "email": "Email",
+                        "tel": "Tel",
+                        "url": "URL",
+                        "search": "Search",
+                        "decimal": "Decimal"
+                    },
+                    "default_value": "none",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_6307b6b1b8d3d",
@@ -4407,5 +4486,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680015289
+    "modified": 1681056748
 }

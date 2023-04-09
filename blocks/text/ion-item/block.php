@@ -44,16 +44,16 @@ $input  = get_field( 'input' );
 
 $position = 'default' === $label_position ? '' : 'position="' . $label_position . '"';
 
-$required = isset( $input['required'] ) ? 'required=true' : '';
+$required = '1' === $input['required'] ? 'required=true' : '';
 $disabled = isset( $input['disabled'] ) ? 'disabled=true' : '';
 
 $range_min = isset( $input['range_min'] );
 $range_max = isset( $input['range_max'] );
 $step_size = isset( $input['step_size'] );
 
-$required_text = empty( $input['required_text'] ) ? '*' : '';
+$required_text = empty( $input['required_text'] ) ? '*' : $input['required_text'];
 
-$is_required = $required ? $required_text : '';
+$is_required = ! empty( $input['required'] ) ? $required_text : '';
 
 $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/images/avatar-placeholder.png';
 
