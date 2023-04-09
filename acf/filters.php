@@ -453,3 +453,13 @@ function appp_post_edit_block() {
 	}
 }
 add_action( 'load-post.php', 'appp_post_edit_block' );
+
+
+/**
+* Set Default Value on view route.
+*/
+add_filter('acf/load_field/name=view_route', function ($field) {
+    $default_value = '/' . time();   
+    $field['default_value'] = $default_value;
+    return $field;
+});

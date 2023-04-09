@@ -87,6 +87,17 @@ if ( ! class_exists( 'acf_code_field' ) ) :
 			*  Please note that you must also have a matching $defaults value for the field name (font_size)
 			*/
 
+			// description
+			acf_render_field_setting(
+				$field,
+				array(
+					'label'        => __( 'Descripiton Text', 'acf' ),
+					'instructions' => __( 'Appears below the Label', 'acf' ),
+					'type'         => 'text',
+					'name'         => 'description',
+				)
+			);
+
 			// default_value
 			acf_render_field_setting(
 				$field,
@@ -157,6 +168,9 @@ if ( ! class_exists( 'acf_code_field' ) ) :
 
 		function render_field( $field ) {
 
+			error_log(print_r('cccccccc',true));
+			error_log(print_r($field,true));
+
 			$this->field = $field;
 
 			$dir       = plugin_dir_url( __FILE__ );
@@ -172,6 +186,8 @@ if ( ! class_exists( 'acf_code_field' ) ) :
 			}
 
 			$atts['class'] = 'acf-code-field-box';
+
+			$e .= '<p class="description" style="padding-bottom: 4px;">' . $field['description'] . '</p>';
 
 			$e .= '<textarea ' . acf_esc_attr( $atts ) . ' >';
 			$e .= esc_textarea( $field['value'] );

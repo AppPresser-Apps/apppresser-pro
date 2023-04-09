@@ -54,6 +54,7 @@
                 "class": "",
                 "id": ""
             },
+            "description": "Write javascript functions here, they will be available to the action block.",
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
@@ -65,7 +66,7 @@
             "name": "code_onwillload",
             "aria-label": "",
             "type": "acf_code_field",
-            "instructions": "This code will run on view will load.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -73,6 +74,27 @@
                 "class": "",
                 "id": ""
             },
+            "description": "This code will run before the view renders.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
+        },
+        {
+            "key": "field_6432edd2a7738",
+            "label": "on Did Load",
+            "name": "code_ondidload",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "This code will run after the view renders.",
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
@@ -104,5 +126,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678982871
+    "modified": 1681060338
 }
