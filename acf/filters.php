@@ -208,7 +208,6 @@ function appp_acf_dynamic_database( $field ) {
 	}
 
 	return $field;
-
 }
 add_filter( 'acf/load_field', 'appp_acf_dynamic_database' );
 
@@ -256,7 +255,6 @@ function appp_filter_rest_api_layout_label( $title, $field, $layout, $i ) {
 	}
 
 	return $title;
-
 }
 add_filter( 'acf/fields/flexible_content/layout_title/name=integration', 'appp_filter_rest_api_layout_label', 10, 4 );
 
@@ -458,8 +456,11 @@ add_action( 'load-post.php', 'appp_post_edit_block' );
 /**
 * Set Default Value on view route.
 */
-add_filter('acf/load_field/name=view_route', function ($field) {
-    $default_value = '/' . time();   
-    $field['default_value'] = $default_value;
-    return $field;
-});
+add_filter(
+	'acf/load_field/name=view_route',
+	function ( $field ) {
+		$default_value          = '/' . time();
+		$field['default_value'] = $default_value;
+		return $field;
+	}
+);
