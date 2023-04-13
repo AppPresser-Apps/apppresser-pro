@@ -44,6 +44,9 @@ if (!isListViewOpened) {
   wp.data.subscribe( function () {
       const user = wp.data.select("core").getCurrentUser();
       const post = wp.data.select( 'core/editor' ).getCurrentPost();
+
+      console.log(post);
+
       const siteURL = window.custom_data.siteURL;
 
       if ( Object.entries(post).length === 0 ) {
@@ -77,7 +80,7 @@ if (!isListViewOpened) {
                 wp.apiFetch( { path: '/apppresser/v1/app-files/' + post.id } ).then( ( rsp ) => {
                 
                     var link = document.createElement("a");
-                    link.download = 'assets';
+                    link.download = post.slug;
                     link.href = rsp;
                     link.click();
 

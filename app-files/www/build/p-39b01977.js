@@ -1,0 +1,1 @@
+import{c as t}from"./p-c6c17ec1.js";const{state:a,onChange:c}=t({attachments:[]});c("attachments",(t=>{console.log("attachments data changed",t)}));const s=a;export{s as A}

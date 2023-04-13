@@ -52,7 +52,6 @@ function appp_app_endpoints() {
 			),
 		),
 	);
-
 }
 add_action( 'rest_api_init', 'appp_app_endpoints' );
 
@@ -99,7 +98,6 @@ function appp_get_app_datatable( $request ) {
 	}
 
 	return $data;
-
 }
 
 /**
@@ -118,7 +116,7 @@ function appp_get_endpoints_data() {
 			the_row();
 
 			// Case: Paragraph layout.
-			if ( get_row_layout() == 'rest_api' ) :
+			if ( get_row_layout() === 'rest_api' ) :
 
 				$base_url = get_sub_field( 'base_url' );
 
@@ -233,7 +231,6 @@ function appp_get_app_data( $request ) {
 	} else {
 		return $appp_data_transient;
 	}
-
 }
 
 function appp_format_toolbar( $block, $build = false ) {
@@ -855,49 +852,51 @@ function appp_get_app_files( $request ) {
 	$url        = site_url();
 	$upload_dir = wp_get_upload_dir();
 
-	if ( ! is_dir( $upload_dir['basedir'] . '/apppresser' ) ) {
-		wp_mkdir_p( $upload_dir['basedir'] . '/apppresser' );
-		chmod( $upload_dir['basedir'] . '/apppresser', 0755 );
+	if ( ! is_dir( $upload_dir['basedir'] . '/apppresser/' . $param ) ) {
+		wp_mkdir_p( $upload_dir['basedir'] . '/apppresser/' . $param );
+		chmod( $upload_dir['basedir'] . '/apppresser/' . $param, 0755 );
 	}
 
 	$medias     = get_attached_media( '', $param );
 	$upload_dir = wp_get_upload_dir();
-	$appp_dir   = $upload_dir['basedir'] . '/apppresser';
+	$appp_dir   = $upload_dir['basedir'] . '/apppresser/' . $param;
+
+	appp_delete_dir( $appp_dir );
+	appp_copy_folder( APPPRESSER_DIR . 'app-files', $appp_dir );
 
 	foreach ( $medias as $media ) {
 		$meta = wp_get_attachment_metadata( $media->ID );
 		$file = basename( $meta['file'] );
 
-		copy( $upload_dir['basedir'] . '/' . $meta['file'], $appp_dir . '/' . $file );
+		copy( $upload_dir['basedir'] . '/' . $meta['file'], $appp_dir . '/www/assets/' . $file );
 	}
 
 	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
 	$body     = wp_remote_retrieve_body( $response );
 
-	$bytes = file_put_contents( $upload_dir['basedir'] . '/apppresser/app.json', $body );
+	$bytes = file_put_contents( $appp_dir . '/www/assets/app.json', $body );
 
-	appp_copy_folder( APPPRESSER_DIR . 'app-assets', $appp_dir );
+	appp_zip_folder( 'appp-' . $param, $appp_dir, $appp_dir );
 
-	appp_zip_folder( $appp_dir, $upload_dir['basedir'] );
-
-	return $upload_dir['baseurl'] . '/assets.zip';
+	return $upload_dir['baseurl'] . '/apppresser/' . $param . '/appp-' . $param . '.zip';
 }
 
 /**
  * Zips up folder of app files.
  *
+ * @param string $file_name
  * @param string $root_path
  * @param string $upload_dir
  * @return void
  */
-function appp_zip_folder( $root_path, $upload_dir ) {
+function appp_zip_folder( $file_name, $root_path, $upload_dir ) {
 
 	// Initialize archive object.
 	$zip = new ZipArchive();
-	$zip->open( $upload_dir . '/assets.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE );
+	$zip->open( $upload_dir . '/' . $file_name . '.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE );
 
 	// Create recursive directory iterator.
-	/** @var SplFileInfo[] $files */
+	// @var SplFileInfo[] $files.
 	$files = new RecursiveIteratorIterator(
 		new RecursiveDirectoryIterator( $root_path ),
 		RecursiveIteratorIterator::LEAVES_ONLY
@@ -915,34 +914,60 @@ function appp_zip_folder( $root_path, $upload_dir ) {
 		}
 	}
 
-	// Zip archive will be created only after closing object.
+	// Zip archive will be created only after close.
 	$zip->close();
 }
 
 /**
  * Copy static app assets to app files folder.
  *
- * @param string $folder_path
- * @param string $dest_dir
+ * @param string $source
+ * @param string $target
  * @return void
  */
-function appp_copy_folder( $folder_path, $dest_dir ) {
-	// Create recursive directory iterator.
-	/** @var SplFileInfo[] $files */
-	$files = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator( $folder_path ),
-		RecursiveIteratorIterator::LEAVES_ONLY
-	);
+function appp_copy_folder( $source, $target ) {
 
-	foreach ( $files as $name => $file ) {
-		// Skip directories (they would be added automatically).
-		if ( ! $file->isDir() ) {
-			// Get real and relative path for current file.
-			$file_path     = $file->getRealPath();
-			$relative_path = substr( $file_path, strlen( $folder_path ) + 1 );
+	if ( is_dir( $source ) ) {
 
-			// Add current file to dest folder.
-			copy( $file_path, $dest_dir . '/' . basename( $relative_path ) );
+		@mkdir( $target );
+		$d = dir( $source );
+		while ( false !== ( $entry = $d->read() ) ) {
+			if ( '.' === $entry || '..' === $entry ) {
+				continue;
+			}
+			$_entry = $source . '/' . $entry;
+			if ( is_dir( $_entry ) ) {
+				appp_copy_folder( $_entry, $target . '/' . $entry );
+				continue;
+			}
+			copy( $_entry, $target . '/' . $entry );
+		}
+
+		$d->close();
+	} else {
+		copy( $source, $target );
+	}
+}
+
+/**
+ * Delete a folder recursivley
+ *
+ * @param string $dir_path
+ * @return void
+ */
+function appp_delete_dir( $dir_path ) {
+	if ( ! is_dir( $dir_path ) ) {
+		throw new InvalidArgumentException( "$dir_path must be a directory" );
+	}
+	if ( substr( $dir_path, strlen( $dir_path ) - 1, 1 ) !== '/' ) {
+		$dir_path .= '/';
+	}
+	$files = glob( $dir_path . '*', GLOB_MARK );
+	foreach ( $files as $file ) {
+		if ( is_dir( $file ) ) {
+			appp_delete_dir( $file );
+		} else {
+			unlink( $file );
 		}
 	}
 }

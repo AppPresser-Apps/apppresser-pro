@@ -1,0 +1,99 @@
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <title>AppPresser Pro</title> <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> <meta name="description" content=""> <meta name="theme-color" content="#16161d"> <meta name="format-detection" content="telephone=no"> <meta name="msapplication-tap-highlight" content="no"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Ionic PWA"> <meta name="apple-mobile-web-app-status-bar-style" content="black"> <meta http-equiv="x-ua-compatible" content="IE=Edge"> <script>
+      // Hack to get ionic to switch modes in an iframe.
+      function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+          var pair = vars[i].split("=");
+          if (pair[0] == variable) {
+            return pair[1];
+          }
+        } 
+      }
+
+      const mode = getQueryVariable("mode") ? getQueryVariable("mode") : 'ios';   
+      const html = document.getElementsByTagName('html');
+      html[0].setAttribute('mode', mode );
+
+    </script> <script type="module" src="./build/app.esm.js"></script> <script nomodule="" src="./build/app.js"></script> <link href="./build/p-ef4777eb.css" rel="stylesheet"> <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="manifest" href="./manifest.json"> --> <!-- Global functionality variables here for now, have issue with placing them in a file 
+      and accessing them from iframe. ionic has may have issue accessing them. 
+      Odd because the functions work just not global variables --> <script>
+      const repeater = {
+        reload: async (id)=> {
+          if (id) {
+            const el = document.querySelector(`#${id}`);
+            if (el) {
+              await el.reload();
+            }
+            console.log('reload repeater');
+            return;
+            
+          }
+          
+        },
+        filter: async (id, query)=> {
+          if (id) {
+            const el = document.querySelector(`#${id}`);
+            if (el) {
+              await el.filter(query);
+            }
+            
+          }
+          
+        }
+      }
+
+      const state = {
+        set: async (name, data)=> {
+          if (name) {
+            await customElements.whenDefined('app-root');
+            const root = document.querySelector('app-root');
+
+            root.setTransient(name, data);
+          }
+        },
+        get: async (name)=> {
+          if (name) {
+            await customElements.whenDefined('app-root');
+            const root = document.querySelector('app-root');
+
+            return await root.getTransient(name);
+          }
+        },
+        setApi: async (data)=> {
+          if (data) {
+            await customElements.whenDefined('app-root');
+            const root = document.querySelector('app-root');
+            root.setApi(data);
+          }
+        },
+        getApi: async ()=> {
+          await customElements.whenDefined('app-root');
+          const root = document.querySelector('app-root');
+
+          return await root.getApi();
+        }
+      }
+
+      const router = {
+        push: async (route, animation = 'push')=> {
+          if (route) {
+            await customElements.whenDefined('ion-router');
+            const el = document.querySelector('ion-router');
+            if (el) {
+              el.push(route, animation);
+            }
+            
+          }      
+        },
+        back: async ()=> {
+          await customElements.whenDefined('app-root');
+          const el = document.querySelector('app-root');
+          if (el) {
+            el.back();    
+          }
+        }
+      }
+    </script> <script type="application/javascript;charset=utf-8" src="./functions/functions.js"></script> </head> <body> <app-root></app-root> </body></html>
