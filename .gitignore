@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 vendors/.DS_Store
 app
+vendors/ionic-app/
