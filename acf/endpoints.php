@@ -459,7 +459,8 @@ function appp_format_block_data( $block, $build = false ) {
 			}
 			break;
 		case 'acf/iframe':
-			if ( isset( $block['attrs']['data']['url_parameters'] ) ) {
+			if ( isset( $block['attrs']['data']['url_parameters'] ) && ! empty( $block['attrs']['data']['url_parameters'] ) ) {
+
 				// Creates an array from integer so we can loop through ACF data that isnt an array.
 				$sparameters = range( 0, ( $block['attrs']['data']['url_parameters'] - 1 ) );
 				$parameters  = array();
@@ -473,6 +474,8 @@ function appp_format_block_data( $block, $build = false ) {
 				}
 
 				$block['attrs']['data']['url_parameters'] = $parameters;
+			} else {
+				$block['attrs']['data']['url_parameters'] = array();
 			}
 			break;
 		case 'acf/ion-avatar':
