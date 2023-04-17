@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "When clicked this preforms and action.",
+            "default_value": "When clicked this performs an action.",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -1900,5 +1900,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1678378634
+    "modified": 1681749279
 }

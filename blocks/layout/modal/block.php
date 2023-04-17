@@ -119,6 +119,10 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 		justify-content: flex-end;
 	}
 
+	.button-medium {
+		height: 40px;;
+	}
+
 	.load-repeater-<?php echo esc_attr( $id ); ?>.spin .spinr.dashicons {
 		animation: 1.5s linear infinite spinner;
 		/* transform: translate3d(-50%, -50%, 0); */
@@ -132,12 +136,12 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 
 	@keyframes spinner {
 		0% {
-		  transform: rotate(0deg);
+			transform: rotate(0deg);
 		}
 		100% {
-		  transform: rotate(360deg);
+			transform: rotate(360deg);
 		}
-	  }
+		}
 </style>
 
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $className ); ?>">
@@ -165,18 +169,18 @@ $style .= '--padding-bottom:' . ( $padding['padding_bottom'] ?? '0' ) . 'px; ';
 					if ( $left_buttons ) {
 						foreach ( $left_buttons as $button ) {
 							appp_process_left_button( $button );
-						};
-					};
+						}
+					}
 					?>
 				</ion-buttons>
-				<ion-title style="width:373px;"><?php echo $title ? esc_attr( $title ) : 'Modal'; ?></ion-title>
+				<ion-title style="min-width:373px;"><?php echo esc_attr( $title ); ?></ion-title>
 				<ion-buttons slot="end">
 					<?php
 					if ( $right_buttons ) {
 						foreach ( $right_buttons as $button ) {
 							appp_process_right_button( $button );
-						};
-					};
+						}
+					}
 					?>
 				</ion-buttons>
 			</ion-toolbar>
