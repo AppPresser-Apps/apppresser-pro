@@ -475,7 +475,7 @@ function appp_format_block_data( $block, $build = false ) {
 
 				$block['attrs']['data']['url_parameters'] = $parameters;
 			} else {
-				$block['attrs']['data']['url_parameters'] = array();
+				$block['attrs']['data']['url_parameters'] = new stdClass();
 			}
 			break;
 		case 'acf/ion-avatar':
