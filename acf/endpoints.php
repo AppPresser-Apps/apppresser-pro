@@ -134,13 +134,18 @@ function appp_get_endpoints_data() {
 
 	return $data;
 }
-
+/**
+ * Builds array of app config data and sets and returns transient
+ *
+ * @param WP_Rest_Request $request
+ * @return array
+ */
 function appp_get_app_data( $request ) {
 
 	$id    = $request->get_param( 'id' );
 	$build = $request->get_param( 'build' );
 
-	$appp_data_transient = get_site_transient( 'appp_data_transient_' . $id );
+	$appp_data_transient = get_site_transient( 'appp_data_transient_' . get_current_blog_id() . '_' . $id );
 
 	// Get any existing copy of our transient data.
 	if ( false === $appp_data_transient || $build ) {
@@ -224,7 +229,7 @@ function appp_get_app_data( $request ) {
 			'database'      => appp_get_app_database( $id ),
 		);
 
-		set_site_transient( 'appp_data_transient_' . $id, $app, 12 * HOUR_IN_SECONDS );
+		set_site_transient( 'appp_data_transient_' . get_current_blog_id() . '_' . $id, $app, 12 * HOUR_IN_SECONDS );
 
 		return $app;
 
@@ -324,7 +329,7 @@ function appp_format_toolbar( $block, $build = false ) {
  */
 function appp_delete_transient( $id, $post ) {
 	if ( 'app' === $post->post_type ) {
-		delete_site_transient( 'appp_data_transient_' . $id );
+		delete_site_transient( 'appp_data_transient_' . get_current_blog_id() . '_' . $id );
 	}
 }
 add_action( 'post_updated', 'appp_delete_transient', 10, 2 );
