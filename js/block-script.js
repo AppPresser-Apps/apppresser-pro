@@ -213,6 +213,9 @@ function apppFilterBlockRegister(settings, name) {
       case "acf/action":
         settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/ion-menu-toggle", "acf/popover", 'acf/repeater', 'acf/subrepeater', 'acf/form'];
         break;
+      case "acf/iframe":
+        settings.parent = ["acf/view", "acf/modal", 'acf/action'];
+        break;
   }
 
   return settings;

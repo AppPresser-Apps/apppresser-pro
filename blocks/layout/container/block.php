@@ -38,6 +38,8 @@ $height_amount       = get_field( 'height_amount' );
 $width               = get_field( 'width' );
 $width_amount        = get_field( 'width_amount' );
 
+$position        = get_field( 'position' );
+
 $bordertop    = get_field( 'border_top' );
 $borderright  = get_field( 'border_right' );
 $borderleft   = get_field( 'border_left' );
@@ -149,6 +151,12 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 ?>
 
 <style>
+
+#<?php echo esc_attr( $id ); ?> {
+	position: <?php echo $position; ?>;
+}
+
+
 
 	#<?php echo esc_attr( $id ); ?>::before {
 		content:"";

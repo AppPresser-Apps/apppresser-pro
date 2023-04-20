@@ -3195,7 +3195,7 @@
             "name": "input_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "The input name attribute for data sending and receiving.",
+            "instructions": "The input name and id attribute for data sending and receiving.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -4486,5 +4486,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1681058285
+    "modified": 1682009710
 }
