@@ -1,0 +1,1 @@
+import{c as a}from"./p-42947fc3.js";const{state:t,onChange:s}=a({data:{},detail:{},api:[],preferences:{},auth:!1,database:null,buddypress:{},activity:[],activity_item:{},transients:{},global:{}});export{s as o,t as s}

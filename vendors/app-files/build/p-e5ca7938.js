@@ -1,0 +1,1 @@
+import{r as a}from"./p-d6593782.js";var r,s,n;!function(a){a.Prompt="PROMPT",a.Camera="CAMERA",a.Photos="PHOTOS"}(r||(r={})),function(a){a.Rear="REAR",a.Front="FRONT"}(s||(s={})),function(a){a.Uri="uri",a.Base64="base64",a.DataUrl="dataUrl"}(n||(n={}));const o=a("Camera",{web:()=>import("./p-face2fce.js").then((a=>new a.CameraWeb))});export{r as C,o as a,n as b,s as c}

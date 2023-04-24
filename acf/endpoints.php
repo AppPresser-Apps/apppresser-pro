@@ -887,7 +887,7 @@ function appp_get_app_files( $request ) {
 	$appp_dir   = $upload_dir['basedir'] . '/apppresser/' . $param;
 
 	appp_delete_dir( $appp_dir );
-	appp_copy_folder( APPPRESSER_DIR . 'app-files', $appp_dir );
+	appp_copy_folder( APPPRESSER_DIR . 'vendors/app-files', $appp_dir );
 
 	foreach ( $medias as $media ) {
 		$meta = wp_get_attachment_metadata( $media->ID );
