@@ -15,7 +15,7 @@
       const html = document.getElementsByTagName('html');
       html[0].setAttribute('mode', mode );
 
-    </script> <script type="module" src="./build/app.esm.js"></script> <script nomodule="" src="./build/app.js"></script> <link href="./build/app.css" rel="stylesheet"> <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    </script> <script type="module" src="./build/app.esm.js"></script> <script nomodule="" src="./build/app.js"></script> <link href="./build/p-f4d3ef86.css" rel="stylesheet"> <!-- <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="manifest" href="./manifest.json"> --> <!-- Global functionality variables here for now, have issue with placing them in a file 
       and accessing them from iframe. ionic has may have issue accessing them. 
@@ -96,13 +96,4 @@
           }
         }
       }
-    </script> <script type="application/javascript;charset=utf-8" src="./functions/functions.js"></script> </head> <body> <app-root></app-root> <script>
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  // auto-unregister service worker during dev mode
-  navigator.serviceWorker.getRegistration().then(function(registration) {
-  if (registration) {
-    registration.unregister().then(function() { location.reload(true) });
-  }
-  });
-}
-</script></body></html>
+    </script> <script type="application/javascript;charset=utf-8" src="./functions/functions.js"></script> </head> <body> <app-root></app-root> </body></html>
