@@ -3405,13 +3405,13 @@ const AcfForm = class {
     const postUrl = this.data.attrs.data.post_url;
     const debug = this.data.attrs.data.debug;
     const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
+    //'Content-Type': 'application/x-www-form-urlencoded',
     };
     const request = {
       url: postUrl,
       headers: headers,
       shouldEncodeUrlParams: true,
-      data: formdata,
+      params: formdata,
     };
     try {
       const rsp = await post(request);
