@@ -360,6 +360,80 @@
             ]
         },
         {
+            "key": "field_644ae4c99a3dd",
+            "label": "Parameters (copy)",
+            "name": "parameters_copy",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63b448da9c919",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_6388c07ec344a",
+            "button_label": "Add Parameter",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_644ae4c99a3de",
+                    "label": "Key",
+                    "name": "key",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4c99a3dd"
+                },
+                {
+                    "key": "field_644ae4c99a3df",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4c99a3dd"
+                }
+            ]
+        },
+        {
             "key": "field_6388ecff8852a",
             "label": "Hidden Inputs",
             "name": "hidden_inputs",
@@ -827,5 +901,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680298224
+    "modified": 1682629835
 }

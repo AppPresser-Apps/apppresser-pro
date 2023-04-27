@@ -40,47 +40,8 @@
                 "none": "None",
                 "simple": "Simple Table",
                 "api": "External API",
-                "database": "Sqlite Database"
-            },
-            "default_value": "none",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_62cc553898e9b",
-            "label": "API Source",
-            "name": "data_source",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_63ac8ba2eb7f3",
-                        "operator": "==",
-                        "value": "api"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "database": "Database",
-                "764": "Random Joke",
-                "763": "Cat facts",
-                "762": "SMP News",
-                "758": "Local Data",
-                "608": "SMP Fraud schemes",
-                "35748": "SMP Help"
+                "database": "Sqlite Database",
+                "custom": "Custom"
             },
             "default_value": "none",
             "return_format": "value",
@@ -179,6 +140,105 @@
             "placeholder": ""
         },
         {
+            "key": "field_644ae506db748",
+            "label": "API URL",
+            "name": "api_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_644ae4aaaf546",
+            "label": "Headers",
+            "name": "headers",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_6388c053c3447",
+            "button_label": "Add Header",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_644ae4aaaf547",
+                    "label": "Key",
+                    "name": "key",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4aaaf546"
+                },
+                {
+                    "key": "field_644ae4aaaf548",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4aaaf546"
+                }
+            ]
+        },
+        {
             "key": "field_62cc55a398e9c",
             "label": "Custom Data",
             "name": "data_custom",
@@ -189,9 +249,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_62cc553898e9b",
+                        "field": "field_63ac8ba2eb7f3",
                         "operator": "==",
-                        "value": "none"
+                        "value": "custom"
                     }
                 ]
             ],
@@ -200,10 +260,85 @@
                 "class": "",
                 "id": ""
             },
+            "description": "",
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
             "theme": "monokai"
+        },
+        {
+            "key": "field_644ae4c99a3dd",
+            "label": "Parameters",
+            "name": "parameters",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ac8ba2eb7f3",
+                        "operator": "==",
+                        "value": "api"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_6388c07ec344a",
+            "button_label": "Add Parameter",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_644ae4c99a3de",
+                    "label": "Key",
+                    "name": "key",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4c99a3dd"
+                },
+                {
+                    "key": "field_644ae4c99a3df",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_644ae4c99a3dd"
+                }
+            ]
         },
         {
             "key": "field_63c6becceb934",
@@ -300,5 +435,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069557
+    "modified": 1682630364
 }
