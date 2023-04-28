@@ -1,6 +1,6 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import './index-7c8dd725.js';
-import { B as BuddyPressService } from './buddypress.service-c2cdbfd6.js';
+import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
 import { p as processTokens, s as split_rule } from './tokens-4662bc6d.js';
 import { s as state } from './store-b76a13b4.js';
 import { m as modalController } from './overlays-ef00d22b.js';
@@ -17,7 +17,7 @@ import './ionic-global-74a19eaa.js';
 import './config-af47d636.js';
 import './index-ed30b664.js';
 import './hardware-back-button-fa04d6e9.js';
-import './utils-d99cd4f7.js';
+import './utils-2a278bd0.js';
 import './index-6dc587d2.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';

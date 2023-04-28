@@ -1,9 +1,9 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-76200983.js';
-import { o as objectToUrlParams } from './utils-d99cd4f7.js';
+import { r as renderComponent } from './content-9f66df1d.js';
+import { o as objectToUrlParams } from './utils-2a278bd0.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
 import { s as state } from './store-b76a13b4.js';
-import './actions-d2c0e63a.js';
+import './actions-8b022832.js';
 import './index-6dc587d2.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';
@@ -103,20 +103,19 @@ const AcfRepeater = class {
     if ('simple' === attr.data_source.database_type) {
       this.items = [...attr.local_data];
     }
-    if ('external' === attr.data_source.database_type) {
+    if ('api' === attr.data_type) {
       let blocks = [];
-      let params = {
-        _embed: true
-      };
-      if (attr.data_source.parameters) {
-        attr.data_source.parameters.map(param => {
+      let params = {};
+      if (Array.isArray(attr.parameters)) {
+        attr.parameters.map(param => {
           params[param.key] = processTokens(param.value, this.api);
         });
       }
-      let rsp = await this.dataService.getData(attr.data_source.rest_url, params);
+      let rsp = await this.dataService.getData(attr.api_url, params);
       if (!Array.isArray(rsp)) {
         rsp = [rsp];
       }
+      console.log(rsp);
       //const rsp = await fetch( attr.data_source.rest_url + '?_embed');
       //const arr = await rsp.json();
       rsp.map(async (item) => {

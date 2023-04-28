@@ -1,7 +1,7 @@
 import { r as registerInstance, l as h, m as Host } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-c2cdbfd6.js';
+import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
 import { s as state } from './store-b76a13b4.js';
-import './utils-d99cd4f7.js';
+import './utils-2a278bd0.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';

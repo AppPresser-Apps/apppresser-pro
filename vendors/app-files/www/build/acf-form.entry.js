@@ -1,11 +1,11 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-76200983.js';
-import { r as runAction } from './actions-d2c0e63a.js';
+import { r as renderComponent } from './content-9f66df1d.js';
+import { r as runAction } from './actions-8b022832.js';
 import { P as Preferences } from './index-6dc587d2.js';
 import { s as state } from './store-b76a13b4.js';
 import { c as processHidden, d as processOptions } from './tokens-4662bc6d.js';
 import { a as CapacitorHttp } from './index-0b091f9f.js';
-import './utils-d99cd4f7.js';
+import './utils-2a278bd0.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -3402,16 +3402,16 @@ const AcfForm = class {
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
+    console.log('formdata', formdata);
     const postUrl = this.data.attrs.data.post_url;
     const debug = this.data.attrs.data.debug;
     const headers = {
-    //'Content-Type': 'application/x-www-form-urlencoded',
+      "Content-Type": "application/x-www-form-urlencoded",
     };
     const request = {
       url: postUrl,
       headers: headers,
-      shouldEncodeUrlParams: true,
-      params: formdata,
+      data: formdata,
     };
     try {
       const rsp = await post(request);
@@ -3483,7 +3483,7 @@ const AcfForm = class {
     if ('1' === attr.success_save_response) {
       await Preferences.set({
         key: attr.form_name,
-        value: JSON.stringify(response),
+        value: JSON.stringify(response === null || response === void 0 ? void 0 : response.data),
       });
     }
     if ('none' !== attr.success_form_action) {

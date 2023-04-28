@@ -1,6 +1,6 @@
 import { r as registerInstance, t as createEvent, l as h } from './index-6c5afe2f.js';
 import './index-7c8dd725.js';
-import { B as BuddyPressService } from './buddypress.service-c2cdbfd6.js';
+import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
 import { s as state } from './store-b76a13b4.js';
 import { A as AttachmentStore } from './state-9b24d0d5.js';
 import { l as loadingController } from './overlays-ef00d22b.js';
@@ -17,7 +17,7 @@ import './ionic-global-74a19eaa.js';
 import './config-af47d636.js';
 import './index-ed30b664.js';
 import './hardware-back-button-fa04d6e9.js';
-import './utils-d99cd4f7.js';
+import './utils-2a278bd0.js';
 import './index-6dc587d2.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';

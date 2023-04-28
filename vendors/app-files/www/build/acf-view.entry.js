@@ -1,12 +1,12 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-a90bf1b5.js';
-import { v as visibility, r as renderComponent } from './content-76200983.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-237f2cab.js';
+import { v as visibility, r as renderComponent } from './content-9f66df1d.js';
 import { s as state, o as onChange } from './store-b76a13b4.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';
-import './actions-d2c0e63a.js';
-import './utils-d99cd4f7.js';
+import './actions-8b022832.js';
+import './utils-2a278bd0.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -93,7 +93,7 @@ const AcfView = class {
       const { value } = await Preferences.get({ key: pref.trim() });
       if (value !== null) {
         //items[`${pref.trim()}`] = JSON.parse(value);
-        state.preferences[`${pref.trim()}`] = JSON.parse(value).data;
+        state.preferences[`${pref.trim()}`] = JSON.parse(value);
       }
     });
   }
