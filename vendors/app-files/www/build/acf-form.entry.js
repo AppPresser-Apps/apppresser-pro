@@ -3411,7 +3411,7 @@ const AcfForm = class {
     const debug = this.data.attrs.data.debug;
     const action = this.data.attrs.data.success_form_action;
     const headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
+    //"Content-Type": "application/x-www-form-urlencoded",
     };
     const request = {
       url: postUrl,
