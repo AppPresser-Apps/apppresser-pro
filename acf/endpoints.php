@@ -364,6 +364,7 @@ function appp_array_walk( &$block, $build ) {
  */
 function appp_format_block_data( $block, $build = false ) {
 
+
 	if ( ! isset( $block['blockName'] ) ) {
 		return $block;
 	}
@@ -690,6 +691,9 @@ function appp_format_block_data( $block, $build = false ) {
 			break;
 
 		case 'acf/form':
+
+			//error_log(print_r($block['attrs']['data'], true));
+	
 			$sinputs  = range( 0, ( $block['attrs']['data']['hidden_inputs'] - 1 ) );
 			$sheaders = range( 0, ( $block['attrs']['data']['headers'] - 1 ) );
 			$sparams  = range( 0, ( $block['attrs']['data']['parameters'] - 1 ) );
@@ -723,10 +727,13 @@ function appp_format_block_data( $block, $build = false ) {
 			/**
 			 * Format headers into array.
 			 */
-			foreach ( $sheaders as $key ) {
+			foreach ( $sheaders as $index ) {
 
-				$key   = $block['attrs']['data'][ 'headers_' . $key . '_key' ];
-				$value = $block['attrs']['data'][ 'headers_' . $key . '_value' ];
+				$key   = $block['attrs']['data'][ 'headers_' . $index . '_key' ];
+				$value = $block['attrs']['data'][ 'headers_' . $index . '_value' ];
+
+				error_log(print_r($key, true));
+				error_log(print_r($value, true));
 
 				if ( ! empty( $key ) && ! empty( $value ) ) {
 
@@ -741,8 +748,8 @@ function appp_format_block_data( $block, $build = false ) {
 					$block['attrs']['data']['headers'] = array();
 				}
 
-				unset( $block['attrs']['data'][ 'headers_' . $key . '_key' ] );
-				unset( $block['attrs']['data'][ 'headers_' . $key . '_value' ] );
+				unset( $block['attrs']['data'][ 'headers_' . $index . '_key' ] );
+				unset( $block['attrs']['data'][ 'headers_' . $index . '_value' ] );
 
 			}
 

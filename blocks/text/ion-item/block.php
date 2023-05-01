@@ -44,7 +44,7 @@ $input  = get_field( 'input' );
 
 $position = 'default' === $label_position ? '' : 'position="' . $label_position . '"';
 
-$required = '1' === $input['required'] ? 'required=true' : '';
+$required = isset( $input['required'] ) && '1' === $input['required'] ? 'required=true' : '';
 $disabled = isset( $input['disabled'] ) ? 'disabled=true' : '';
 
 $range_min = isset( $input['range_min'] );
@@ -80,9 +80,9 @@ $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/i
 	<div class="clickable"></div>
 	
 	<ion-item style="width: 100%; --padding-top: <?php echo $padding_top; ?>px; --padding-bottom: <?php echo $padding_bottom; ?>px; --detail-icon-color: var( --ion-color-<?php echo $detail_icon_color; ?>); --detail-icon-opacity: 1; " color="<?php echo esc_attr( 'default' !== $background_color ? $background_color : '' ); ?>" 
-			  href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
-			  detail-icon="<?php echo '0' === $detail_icon ? 'false' : $detail_icon; ?>"
-			  lines="<?php echo $lines; ?>"
+				href="#" detail="<?php echo '0' === $detail_icon ? 'false' : 'true'; ?>" 
+				detail-icon="<?php echo '0' === $detail_icon ? 'false' : $detail_icon; ?>"
+				lines="<?php echo $lines; ?>"
 	>
 		<?php if ( 'icon' === $icon_type ) : ?>
 			<ion-icon color="<?php echo esc_attr( 'default' !== $icon_color ? $icon_color : '' ); ?>" size="large" slot="start" name="<?php echo esc_attr( $icon ); ?>"></ion-icon>
@@ -121,16 +121,16 @@ $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/i
 			case 'input':
 				switch ( $input['input_type'] ) {
 					case 'number':
-						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 					case 'textarea':
-						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . esc_attr( $input['input_value'] ) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
+						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . esc_attr( $input['input_value'] ) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
 						break;
 					case 'range':
 						echo '<ion-range min=' . $range_min . '  max=' . $range_min . ' step=' . $step_size . ' ></ion-range>';
 						break;
 					default:
-						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . $input['input_type'] . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . $input['input_value'] . '"></ion-input>';
 						break;
 				}
 

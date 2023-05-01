@@ -3381,18 +3381,31 @@ const AcfForm = class {
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
-    const postUrl = this.data.attrs.data.post_url;
+    let postUrl = new URL(this.data.attrs.data.post_url);
     const debug = this.data.attrs.data.debug;
     const action = this.data.attrs.data.success_form_action;
-    //const params = new URLSearchParams(formdata);
+    const headers = this.data.attrs.data.headers;
+    const parameters = this.data.attrs.data.parameters;
     const options = {
       method: 'POST',
-      headers: {
-        cookie: 'PHPSESSID=k4qsmkkqk3ollsegu8lhk1al2q; iclub-mid=Z0998500; TS01c8ac22=019fbe4a58c36729fb414c18bf9d46859d726dbd7422f2473cfecb6f237ab05340bccf76af67e4e5c3f6339504dacf7092a5360ba982573deb83c8fca8a4d43e5a567b00105540f98b4189e40309e472a0bf957d0d; TS012a036a=019fbe4a58e14ce2745714b1b1f13c16a6e984e2a322f2473cfecb6f237ab05340bccf76afc231d0d55ecd9b48896e9eb941a2a4eeb2def4a7a525929735087c0748c6f1b2; wordpress_logged_in_421b975706802f46a5f677204d6233e5=Z0998500%257C1684173322%257CASuTmHZhFEDBT1HPi0nxhcXryipgKO7Wx2fiCJWuWgz%257C871ab1e8fceed321670fa9e2827da80b2d356057c2285a1e24169447894d6259',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams(formdata)
+      headers: {},
+      body: formdata
     };
+    // Set headers.
+    headers.map(header => {
+      options.headers[header.key] = header.value;
+      // Set body based on content type.
+      switch (header.value) {
+        case 'application/json':
+          options.body = JSON.stringify(formdata);
+          break;
+      }
+    });
+    // Set parameters.
+    parameters.map(param => {
+      postUrl.searchParams.set(param.key, param.value);
+    });
+    console.log(postUrl, options);
     try {
       const response = await fetch(postUrl, options);
       const rsp = await response.json();
