@@ -732,9 +732,6 @@ function appp_format_block_data( $block, $build = false ) {
 				$key   = $block['attrs']['data'][ 'headers_' . $index . '_key' ];
 				$value = $block['attrs']['data'][ 'headers_' . $index . '_value' ];
 
-				error_log(print_r($key, true));
-				error_log(print_r($value, true));
-
 				if ( ! empty( $key ) && ! empty( $value ) ) {
 
 					$param[] = array(
