@@ -43,6 +43,9 @@ export const apppresser = {
   setTransient: async (key, value) => {
     state.transients[key] = value;
   },
+  setState: async (key, value) => {
+    state[key] = value;
+  },
   // Adjust the devices text zoom settings.
   textSize: async value => {
     console.log(value);
@@ -95,6 +98,13 @@ export const apppresser = {
     });
 
     modal.present();
+  },
+  dismissModal: async ()=> {
+    await customElements.whenDefined('ion-modal');
+    const modal = document.querySelector('ion-modal');
+    if (modal) {
+      await modal.dismiss();
+    }
   },
   router: {
     push: async (route, animation: any = 'push')=> {

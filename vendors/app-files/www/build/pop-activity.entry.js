@@ -1,6 +1,6 @@
 import { r as registerInstance, t as createEvent, l as h, m as Host } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
-import './utils-2a278bd0.js';
+import { B as BuddyPressService } from './buddypress.service-dea6451c.js';
+import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';

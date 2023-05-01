@@ -1,1 +1,0 @@
-import{W as s}from"./p-d6593782.js";import"./p-2d180048.js";class o extends s{async show(s){}async hide(s){}}export{o as SplashScreenWeb}

@@ -1,11 +1,11 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-9f66df1d.js';
-import { r as runAction } from './actions-8b022832.js';
+import { r as renderComponent } from './content-62a4cfe3.js';
+import { r as runAction } from './actions-f71457bb.js';
 import { P as Preferences } from './index-6dc587d2.js';
 import { s as state } from './store-b76a13b4.js';
 import { c as processHidden, d as processOptions } from './tokens-4662bc6d.js';
 import { a as CapacitorHttp } from './index-0b091f9f.js';
-import './utils-2a278bd0.js';
+import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -3128,15 +3128,22 @@ var mod = /*#__PURE__*/Object.freeze({
     ZodError: ZodError
 });
 
-// Example of a GET request
+/**
+ * HTTP GET request
+ *
+ * @param options HttpOptions
+ * @returns HttpResponse
+ */
 const get = async (options) => {
   const response = await CapacitorHttp.get(options);
   return response;
-  // or...
-  // const response = await CapacitorHttp.request({ ...options, method: 'GET' })
 };
-// Example of a POST request. Note: data
-// can be passed as a raw JS Object (must be JSON serializable)
+/**
+ * HTTP POST request
+ *
+ * @param options HttpOptions
+ * @returns HttpResponse
+ */
 const post = async (options) => {
   // const options = {
   //   url: 'https://example.com/my/api',
@@ -3145,8 +3152,6 @@ const post = async (options) => {
   // };
   const response = await CapacitorHttp.post(options);
   return response;
-  // or...
-  // const response = await CapacitorHttp.request({ ...options, method: 'POST' })
 };
 
 const acfFormCss = "acf-form{display:block}.ion-invalid ion-note{display:block !important}acf-form ion-datetime-button::part(native){background:#dbdbdb !important;color:rgb(79, 80, 80) !important}";
@@ -3402,9 +3407,9 @@ const AcfForm = class {
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
-    console.log('formdata', formdata);
     const postUrl = this.data.attrs.data.post_url;
     const debug = this.data.attrs.data.debug;
+    const action = this.data.attrs.data.success_form_action;
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
     };
@@ -3415,11 +3420,20 @@ const AcfForm = class {
     };
     try {
       const rsp = await post(request);
+      //console.log('formdata', formdata, request, rsp);
       if ('1' === debug) {
         this.debugAlert(JSON.stringify(rsp));
       }
       if (rsp.status < 400) {
-        this.responseAlert('success', rsp, formdata);
+        if ('custom' === action) {
+          this.data.attrs.action = 'custom';
+          this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
+          this.data.attrs.response = rsp;
+          runAction(this.data.attrs);
+        }
+        else {
+          this.responseAlert('success', rsp.data, formdata);
+        }
       }
       else {
         this.responseAlert('error', {}, {});
@@ -3427,6 +3441,7 @@ const AcfForm = class {
     }
     catch (error) {
       console.log(error);
+      this.responseAlert('error', {}, {});
     }
     return;
   }

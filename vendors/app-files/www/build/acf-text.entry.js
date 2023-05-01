@@ -1,6 +1,6 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
-import { f as formatText } from './utils-2a278bd0.js';
+import { f as formatText } from './utils-bf14ef3c.js';
 import './global-e1c7e609.js';
 import './store-b76a13b4.js';
 import './index-7106c220.js';

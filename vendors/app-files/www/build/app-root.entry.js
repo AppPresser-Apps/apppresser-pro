@@ -1,15 +1,15 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-b76a13b4.js';
 import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-237f2cab.js';
-import { r as renderComponent } from './content-9f66df1d.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-6f0b43d7.js';
+import { r as renderComponent } from './content-62a4cfe3.js';
 import { r as registerPlugin, C as Capacitor } from './index-0b091f9f.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
 import './index-7c8dd725.js';
 import { m as modalController } from './overlays-ef00d22b.js';
 import './index-7106c220.js';
-import './actions-8b022832.js';
-import './utils-2a278bd0.js';
+import './actions-f71457bb.js';
+import './utils-bf14ef3c.js';
 import './global-e1c7e609.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -791,7 +791,21 @@ const CapacitorSQLite = registerPlugin('CapacitorSQLite', {
 });
 
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+/**
+ * Database Service
+ *
+ * @class DatabaseService
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 class DatabaseService {
+  /**
+   * Creates an instance of DatabaseService.
+   *
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   constructor() {
     this.isWeb = false;
     this._db = null;
@@ -801,6 +815,14 @@ class DatabaseService {
     this.sqlite = new SQLiteConnection(CapacitorSQLite);
     this.db_data = state.data.database;
   }
+  /**
+   * Initialize the database
+   *
+   * @param dbname
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   async initialize(dbname) {
     if (dbname) {
       this.dbname = dbname;
@@ -826,6 +848,14 @@ class DatabaseService {
       console.log(`database.service initialize Error: ${JSON.stringify(err)}`);
     }
   }
+  /**
+   * Create the database
+   *
+   * @param dbname
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   async load() {
     await state.database._db.open();
     const { version } = await state.database._db.getVersion();
@@ -840,9 +870,16 @@ class DatabaseService {
         await this.addTables();
       }
     }
-    //this._db.close();
     console.log(`$$$ load successful`);
   }
+  /**
+   * Delete the database
+   *
+   * @param dbname
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   async deleteDb() {
     try {
       if (state.database._db !== null) {
@@ -861,8 +898,12 @@ class DatabaseService {
   }
   /**
    * Add table
+   *
    * @param table
    * @returns
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async addTable(table) {
     try {
@@ -891,7 +932,11 @@ class DatabaseService {
     }
   }
   /**
-   * Process columns add any tables.
+   * Process columns add any tables
+   *
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async addTables() {
     let queries = [];
@@ -899,7 +944,7 @@ class DatabaseService {
       this.db_data.tables.map(async (table) => {
         if (table.columns.length > 0) {
           let columns = '';
-          table.columns.map(column => {
+          table.columns.map((column) => {
             columns += `${column.column_name.trim()} ${column.column_type.trim().toUpperCase()}${column.primary_key === true ? ' PRIMARY KEY' : ''}, `;
           });
           queries.push(`CREATE TABLE IF NOT EXISTS ${table.name.trim()} (${columns.substring(0, columns.length - 2)});`);
@@ -914,7 +959,11 @@ class DatabaseService {
     }
   }
   /**
-   * Process columns add any tables.
+   * Process columns add update tables
+   *
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async alterTables() {
     let queries = '';
@@ -922,7 +971,7 @@ class DatabaseService {
       this.db_data.tables.map(async (table) => {
         if (table.columns.length > 0) {
           let columns = '';
-          table.columns.map(column => {
+          table.columns.map((column) => {
             columns += `ADD COLUMN ${column.column_name.trim()} ${column.column_type.trim().toUpperCase()}${column.primary_key === true ? ' PRIMARY KEY' : ''}, `;
           });
           queries += `ALTER TABLE ${table.name.trim()} ${columns.substring(0, columns.length - 2)}; `;
@@ -943,8 +992,12 @@ class DatabaseService {
   }
   /**
    * Run sql query to return data
+   *
    * @param statement
    * @returns
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async query(statement) {
     console.log(state.database._db, this.sqlite, statement);
@@ -962,8 +1015,12 @@ class DatabaseService {
   }
   /**
    * Execure raw sql query.
+   *
    * @param statement
    * @returns
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async execute(statement) {
     if (statement) {
@@ -983,9 +1040,13 @@ class DatabaseService {
   }
   /**
    * Insert row into database.
+   *
    * @param attr
    * @param data
    * @returns
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async insert(attr, data) {
     console.log('insert', attr, data);
@@ -1015,9 +1076,13 @@ class DatabaseService {
   }
   /**
    * Insert row into database.
+   *
    * @param attr
    * @param data
    * @returns
+   * @memberof DatabaseService
+   * @since 1.0.0
+   * @version 1.0.0
    */
   async update(attr, data) {
     console.log('update', attr, data, state.data);
@@ -1217,6 +1282,9 @@ const apppresser = {
   setTransient: async (key, value) => {
     state.transients[key] = value;
   },
+  setState: async (key, value) => {
+    state[key] = value;
+  },
   // Adjust the devices text zoom settings.
   textSize: async (value) => {
     console.log(value);
@@ -1265,6 +1333,13 @@ const apppresser = {
       componentProps: { data: block[0], api: {} }
     });
     modal.present();
+  },
+  dismissModal: async () => {
+    await customElements.whenDefined('ion-modal');
+    const modal = document.querySelector('ion-modal');
+    if (modal) {
+      await modal.dismiss();
+    }
   },
   router: {
     push: async (route, animation = 'push') => {

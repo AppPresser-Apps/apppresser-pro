@@ -1,7 +1,7 @@
 import { r as registerInstance, l as h, m as Host } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
-import { r as renderComponent } from './content-9f66df1d.js';
-import './utils-2a278bd0.js';
+import { B as BuddyPressService } from './buddypress.service-dea6451c.js';
+import { r as renderComponent } from './content-62a4cfe3.js';
+import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -24,7 +24,7 @@ import './index-7106c220.js';
 import './index-6dc587d2.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';
-import './actions-8b022832.js';
+import './actions-f71457bb.js';
 import './tokens-4662bc6d.js';
 
 const appProfileCss = ":host{display:block}";

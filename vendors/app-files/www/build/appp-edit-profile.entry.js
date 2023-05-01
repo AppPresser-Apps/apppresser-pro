@@ -1,9 +1,9 @@
 import { r as registerInstance, t as createEvent, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-877a70b5.js';
+import { B as BuddyPressService } from './buddypress.service-dea6451c.js';
 import './index-7c8dd725.js';
 import { P as Preferences } from './index-6dc587d2.js';
 import { t as toastController } from './overlays-ef00d22b.js';
-import './utils-2a278bd0.js';
+import './utils-bf14ef3c.js';
 import './store-b76a13b4.js';
 import './index-7106c220.js';
 import './utils-31c050e6.js';

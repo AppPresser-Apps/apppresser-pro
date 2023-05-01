@@ -1,12 +1,12 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-237f2cab.js';
-import { v as visibility, r as renderComponent } from './content-9f66df1d.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-6f0b43d7.js';
+import { v as visibility, r as renderComponent } from './content-62a4cfe3.js';
 import { s as state, o as onChange } from './store-b76a13b4.js';
 import './index-0b091f9f.js';
 import './global-e1c7e609.js';
-import './actions-8b022832.js';
-import './utils-2a278bd0.js';
+import './actions-f71457bb.js';
+import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -40,19 +40,53 @@ const AcfView = class {
     this.attrs = undefined;
     this.loaded = false;
   }
+  /**
+   * Runs code before the view renders.
+   * @returns void
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   componentWillLoad() {
     // TextZoom.get().then((e)=> {
     //   console.log('TextZoom', e);
     // })
     this.loadView();
   }
-  async loadView() {
-    this.addCode();
+  /**
+   * Runs code after the view renders.
+   * @returns {Promise<void>}
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
+  componentDidLoad() {
     const attr = this.data ? this.data.attrs.data : null;
+    console.log('app data', state.data);
+    console.log('view data', this.data);
+    console.log('state prefs', state.preferences);
+    this.style();
+    this.runCode(attr.code_ondidload);
+  }
+  /**
+   * Runs code before the view renders.
+   * @returns void
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
+  async loadView() {
+    // Add code to the view
+    this.addCode();
+    // Get the view's attributes
+    const attr = this.data ? this.data.attrs.data : null;
+    // Get the view's API
     this.api = state.api;
+    // Load the view's preferences
     if (attr && attr.preferences) {
       await this.loadPreferences(attr.preferences);
     }
+    // Load the view's props
     if (attr && attr.path) {
       const pathslug = window.location.pathname.replace(attr.view_route, '');
       const path = this.parsePath(attr.path);
@@ -61,25 +95,45 @@ const AcfView = class {
         this.props[item] = loc.segments[key];
       });
     }
+    // Update the view's API when it changes
     onChange('api', value => {
       setTimeout(() => {
         this.api = Object.assign({}, value);
       }, 100);
     });
+    // Run code before the view loads
     await this.runCode(attr.code_onwillload);
+    // Set the view as loaded
     this.loaded = true;
   }
-  // Runs javascript code.
+  /**
+   * Runs custom javascript code.
+   *
+   * @param code
+   * @returns any
+   *
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   async runCode(code) {
     if (code !== '') {
       const method = new Function('data', 'appp', 'bp', code);
       const rsp = await method(this.data, window.appp, window.bp);
-      return (rsp === undefined || rsp === null) ? this.data : rsp;
+      return rsp === undefined || rsp === null ? this.data : rsp;
     }
     else {
       return this.data;
     }
   }
+  /**
+   * Adds javascript script code to the view.
+   *
+   * @returns void
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   addCode() {
     if (this.data && this.data.attrs.data.javascript !== '') {
       var JS = document.createElement('script');
@@ -87,6 +141,16 @@ const AcfView = class {
       this.host.appendChild(JS);
     }
   }
+  /**
+   * Loads the view's preferences.
+   * Preferences are stored in the Capacitor Preferences plugin.
+   *
+   * @param preferences
+   * @returns
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   async loadPreferences(preferences) {
     const prefsArray = preferences.split(',');
     prefsArray.map(async (pref) => {
@@ -97,20 +161,17 @@ const AcfView = class {
       }
     });
   }
-  componentDidLoad() {
-    const attr = this.data ? this.data.attrs.data : null;
-    console.log('app data', state.data);
-    console.log('view data', this.data);
-    console.log('state prefs', state.preferences);
-    this.style();
-    this.runCode(attr.code_ondidload);
-  }
   /**
    * Removes the prefix segments from the path segments.
-   *
-   * Return:
    * - null when the path segments do not start with the passed prefix,
    * - the path segments after the prefix otherwise.
+   *
+   * @param prefix
+   * @param segments
+   * @returns
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
    */
   removePrefix(prefix, segments) {
     if (prefix.length > segments.length) {
@@ -129,7 +190,15 @@ const AcfView = class {
     }
     return segments.slice(prefix.length);
   }
-  ;
+  /**
+   * Parses the path into segments and query string.
+   *
+   * @param path
+   * @returns object with segments and query string
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   parsePath(path) {
     let segments = [''];
     let queryString;
@@ -141,24 +210,40 @@ const AcfView = class {
       }
       segments = path
         .split('/')
-        .map((s) => s.trim())
-        .filter((s) => s.length > 0);
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
       if (segments.length === 0) {
         segments = [''];
       }
     }
     return { segments, queryString };
   }
-  ;
+  /**
+   * Navigates to the passed route.
+   *
+   * @param route
+   * @returns void
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   navchange(route) {
     const router = document.querySelector('ion-router');
     router.push(route, 'root');
   }
+  /**
+   * Sets the view's style.
+   *
+   * @returns void
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   style() {
     const attrs = this.data.attrs.data;
     this.host.id = 'view-' + attrs.id;
     // const content = this.host.querySelector(`#view-content`);
-    // const innerScroll = content.shadowRoot.querySelector('.inner-scroll'); 
+    // const innerScroll = content.shadowRoot.querySelector('.inner-scroll');
     // if ( 'background_image_file' in attrs && ( attrs.background_image_file !== null || attrs.background_image_file !== '' ) ) {
     //   (innerScroll as any).style.background = `url(${attrs.background_image_file})`;
     //   (innerScroll as any).style.backgroundSize = attrs.background_size;
@@ -179,14 +264,30 @@ const AcfView = class {
     styleDiv.innerHTML = css;
     this.host.appendChild(styleDiv);
   }
+  /**
+   * Renders the view's tabs.
+   *
+   * @param item
+   * @returns any
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   renderTab(item) {
     if (visibility(item, this.api)) {
       return (h("ion-tab-button", { tab: "tab-speaker", onClick: () => this.navchange(item.route) }, h("ion-icon", { name: item.icon, "aria-hidden": "true" }), item.label !== '' && h("ion-label", null, item.label)));
     }
   }
+  /**
+   * Renders the view.
+   *
+   * @returns jsx
+   * @memberof AcfView
+   * @since 1.0.0
+   * @version 1.0.0
+   */
   render() {
-    return (h(Host, null, this.data && this.data.attrs.data.hide_toolbar !== '1' && h("ion-header", null, h("ion-toolbar", { color: this.data && this.data.attrs.data.toolbar_color }, h("ion-buttons", { slot: "start" }, this.data.attrs.data.left_buttons.length > 0 && this.data.attrs.data.left_buttons.map(button => (renderLeftButtons(button, this.api)))), h("ion-title", { innerHTML: this.data && renderTitle(this.data) }), h("ion-buttons", { slot: "end" }, this.data.attrs.data.right_buttons.length > 0 && this.data.attrs.data.right_buttons.map(button => (renderRightButtons(button, this.api)))))), h("ion-content", { id: "view-content", color: this.data && this.data.attrs.data.background }, h("div", { id: "content-wrap" }, this.loaded && this.data && this.data.innerBlocks.map(block => (renderComponent(block, this.api, this.props))))), state.data.tabbar && state.data.tabbar.length > 0 && '0' === this.data.attrs.data.hide_tabbar &&
-      h("ion-tab-bar", { slot: "bottom", color: state.data.tabbar[0].attrs.data.color }, state.data.tabbar[0].attrs.data.tabs.map(item => (this.renderTab(item))))));
+    return (h(Host, null, this.data && this.data.attrs.data.hide_toolbar !== '1' && (h("ion-header", null, h("ion-toolbar", { color: this.data && this.data.attrs.data.toolbar_color }, h("ion-buttons", { slot: "start" }, this.data.attrs.data.left_buttons.length > 0 && this.data.attrs.data.left_buttons.map((button) => renderLeftButtons(button, this.api))), h("ion-title", { innerHTML: this.data && renderTitle(this.data) }), h("ion-buttons", { slot: "end" }, this.data.attrs.data.right_buttons.length > 0 && this.data.attrs.data.right_buttons.map((button) => renderRightButtons(button, this.api)))))), h("ion-content", { id: "view-content", color: this.data && this.data.attrs.data.background }, h("div", { id: "content-wrap" }, this.loaded && this.data && this.data.innerBlocks.map((block) => renderComponent(block, this.api, this.props)))), state.data.tabbar && state.data.tabbar.length > 0 && '0' === this.data.attrs.data.hide_tabbar && (h("ion-tab-bar", { slot: "bottom", color: state.data.tabbar[0].attrs.data.color }, state.data.tabbar[0].attrs.data.tabs.map((item) => this.renderTab(item))))));
   }
   get host() { return getElement(this); }
 };
