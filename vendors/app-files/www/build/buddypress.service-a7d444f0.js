@@ -1,6 +1,6 @@
 import { o as objectToUrlParams } from './utils-bf14ef3c.js';
 import { s as state } from './store-b76a13b4.js';
-import { P as Preferences } from './index-6dc587d2.js';
+import { P as Preferences } from './index-c532d7cb.js';
 
 /**
  * BuddyPress API Class

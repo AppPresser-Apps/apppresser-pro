@@ -1,11 +1,11 @@
 import { d as dismissModal, p as presentModal, a as presentActionSheet, b as presentPopover, c as presentAlert } from './utils-bf14ef3c.js';
 import { s as state } from './store-b76a13b4.js';
-import { P as Preferences } from './index-6dc587d2.js';
-import { r as registerPlugin } from './index-0b091f9f.js';
+import { P as Preferences } from './index-c532d7cb.js';
+import { r as registerPlugin } from './index-0f2ea1ed.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
 
 const Browser = registerPlugin('Browser', {
-    web: () => import('./web-b940a692.js').then(m => new m.BrowserWeb()),
+    web: () => import('./web-6d356da9.js').then(m => new m.BrowserWeb()),
 });
 
 async function runAction(data) {

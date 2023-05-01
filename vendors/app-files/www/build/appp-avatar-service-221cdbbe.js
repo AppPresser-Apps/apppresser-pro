@@ -1,5 +1,5 @@
-import { C as CameraSource, a as Camera, b as CameraResultType } from './index-b3330d71.js';
-import { P as Preferences } from './index-6dc587d2.js';
+import { C as CameraSource, a as Camera, b as CameraResultType } from './index-904fce70.js';
+import { P as Preferences } from './index-c532d7cb.js';
 import './index-7c8dd725.js';
 import { E as Env } from './index-6c5afe2f.js';
 import { a as isPlatform } from './ionic-global-74a19eaa.js';

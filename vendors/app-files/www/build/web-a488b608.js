@@ -1,5 +1,5 @@
-import { W as WebPlugin, b as CapacitorException } from './index-0b091f9f.js';
-import { C as CameraSource, c as CameraDirection } from './index-b3330d71.js';
+import { W as WebPlugin, a as CapacitorException } from './index-0f2ea1ed.js';
+import { C as CameraSource, c as CameraDirection } from './index-904fce70.js';
 import './global-e1c7e609.js';
 
 class CameraWeb extends WebPlugin {

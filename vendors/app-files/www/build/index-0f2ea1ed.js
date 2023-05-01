@@ -678,4 +678,4 @@ const CapacitorHttp = registerPlugin('CapacitorHttp', {
     web: () => new CapacitorHttpPluginWeb(),
 });
 
-export { Capacitor as C, WebPlugin as W, CapacitorHttp as a, CapacitorException as b, registerPlugin as r };
+export { Capacitor as C, WebPlugin as W, CapacitorException as a, registerPlugin as r };

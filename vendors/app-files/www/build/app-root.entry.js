@@ -1,14 +1,14 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-b76a13b4.js';
-import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-6f0b43d7.js';
-import { r as renderComponent } from './content-62a4cfe3.js';
-import { r as registerPlugin, C as Capacitor } from './index-0b091f9f.js';
+import { P as Preferences } from './index-c532d7cb.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-7ada3329.js';
+import { r as renderComponent } from './content-13f7c228.js';
+import { r as registerPlugin, C as Capacitor } from './index-0f2ea1ed.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
 import './index-7c8dd725.js';
 import { m as modalController } from './overlays-ef00d22b.js';
 import './index-7106c220.js';
-import './actions-f71457bb.js';
+import './actions-a25fe53a.js';
 import './utils-bf14ef3c.js';
 import './global-e1c7e609.js';
 import './utils-31c050e6.js';
@@ -786,7 +786,7 @@ class SQLiteDBConnection {
 }
 
 const CapacitorSQLite = registerPlugin('CapacitorSQLite', {
-    web: () => import('./web-e2e8a0c8.js').then(m => new m.CapacitorSQLiteWeb()),
+    web: () => import('./web-27931f14.js').then(m => new m.CapacitorSQLiteWeb()),
     electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite,
 });
 
@@ -1109,13 +1109,13 @@ class DatabaseService {
 }
 
 const Device = registerPlugin('Device', {
-    web: () => import('./web-043d2802.js').then(m => new m.DeviceWeb()),
+    web: () => import('./web-db42dee1.js').then(m => new m.DeviceWeb()),
 });
 
 /// <reference types="@capacitor/cli" />
 
 const SplashScreen = registerPlugin('SplashScreen', {
-    web: () => import('./web-6ee4cdfe.js').then(m => new m.SplashScreenWeb()),
+    web: () => import('./web-8b9e2d6c.js').then(m => new m.SplashScreenWeb()),
 });
 
 const buddypress = {

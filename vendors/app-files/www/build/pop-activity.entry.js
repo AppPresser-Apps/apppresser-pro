@@ -1,5 +1,5 @@
 import { r as registerInstance, t as createEvent, l as h, m as Host } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-dea6451c.js';
+import { B as BuddyPressService } from './buddypress.service-a7d444f0.js';
 import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
@@ -20,8 +20,8 @@ import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
 import './store-b76a13b4.js';
 import './index-7106c220.js';
-import './index-6dc587d2.js';
-import './index-0b091f9f.js';
+import './index-c532d7cb.js';
+import './index-0f2ea1ed.js';
 import './global-e1c7e609.js';
 
 const popActivityCss = "pop-activity{display:block}";

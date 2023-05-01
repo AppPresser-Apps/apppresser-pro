@@ -1,10 +1,9 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-62a4cfe3.js';
-import { r as runAction } from './actions-f71457bb.js';
-import { P as Preferences } from './index-6dc587d2.js';
+import { r as renderComponent } from './content-13f7c228.js';
+import { r as runAction } from './actions-a25fe53a.js';
+import { P as Preferences } from './index-c532d7cb.js';
 import { s as state } from './store-b76a13b4.js';
 import { c as processHidden, d as processOptions } from './tokens-4662bc6d.js';
-import { a as CapacitorHttp } from './index-0b091f9f.js';
 import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
@@ -23,8 +22,9 @@ import './hardware-back-button-fa04d6e9.js';
 import './overlays-ef00d22b.js';
 import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
-import './index-7106c220.js';
+import './index-0f2ea1ed.js';
 import './global-e1c7e609.js';
+import './index-7106c220.js';
 
 var util;
 (function (util) {
@@ -3128,32 +3128,6 @@ var mod = /*#__PURE__*/Object.freeze({
     ZodError: ZodError
 });
 
-/**
- * HTTP GET request
- *
- * @param options HttpOptions
- * @returns HttpResponse
- */
-const get = async (options) => {
-  const response = await CapacitorHttp.get(options);
-  return response;
-};
-/**
- * HTTP POST request
- *
- * @param options HttpOptions
- * @returns HttpResponse
- */
-const post = async (options) => {
-  // const options = {
-  //   url: 'https://example.com/my/api',
-  //   headers: { 'X-Fake-Header': 'Fake-Value' },
-  //   data: { foo: 'bar' },
-  // };
-  const response = await CapacitorHttp.post(options);
-  return response;
-};
-
 const acfFormCss = "acf-form{display:block}.ion-invalid ion-note{display:block !important}acf-form ion-datetime-button::part(native){background:#dbdbdb !important;color:rgb(79, 80, 80) !important}";
 
 const AcfForm = class {
@@ -3410,29 +3384,32 @@ const AcfForm = class {
     const postUrl = this.data.attrs.data.post_url;
     const debug = this.data.attrs.data.debug;
     const action = this.data.attrs.data.success_form_action;
-    const headers = {
-    //"Content-Type": "application/x-www-form-urlencoded",
-    };
-    const request = {
-      url: postUrl,
-      headers: headers,
-      data: formdata,
+    //const params = new URLSearchParams(formdata);
+    const options = {
+      method: 'POST',
+      headers: {
+        cookie: 'PHPSESSID=k4qsmkkqk3ollsegu8lhk1al2q; iclub-mid=Z0998500; TS01c8ac22=019fbe4a58c36729fb414c18bf9d46859d726dbd7422f2473cfecb6f237ab05340bccf76af67e4e5c3f6339504dacf7092a5360ba982573deb83c8fca8a4d43e5a567b00105540f98b4189e40309e472a0bf957d0d; TS012a036a=019fbe4a58e14ce2745714b1b1f13c16a6e984e2a322f2473cfecb6f237ab05340bccf76afc231d0d55ecd9b48896e9eb941a2a4eeb2def4a7a525929735087c0748c6f1b2; wordpress_logged_in_421b975706802f46a5f677204d6233e5=Z0998500%257C1684173322%257CASuTmHZhFEDBT1HPi0nxhcXryipgKO7Wx2fiCJWuWgz%257C871ab1e8fceed321670fa9e2827da80b2d356057c2285a1e24169447894d6259',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams(formdata)
     };
     try {
-      const rsp = await post(request);
-      //console.log('formdata', formdata, request, rsp);
+      const response = await fetch(postUrl, options);
+      const rsp = await response.json();
+      console.log('rsp', rsp);
       if ('1' === debug) {
         this.debugAlert(JSON.stringify(rsp));
       }
-      if (rsp.status < 400) {
+      if (response.status < 400) {
         if ('custom' === action) {
           this.data.attrs.action = 'custom';
           this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
-          this.data.attrs.response = rsp;
+          this.data.attrs.response = response;
+          this.data.attrs.response.data = rsp;
           runAction(this.data.attrs);
         }
         else {
-          this.responseAlert('success', rsp.data, formdata);
+          this.responseAlert('success', rsp, formdata);
         }
       }
       else {
