@@ -339,6 +339,17 @@ function appp_get_app_database( $post_id ) {
 
 }
 
+function appp_get_app_attrs( $post_id ) {
+
+	$data = array(
+		'biometric_auth' => get_field( 'biometric_auth', $post_id ),
+		'biometric_auth_view'  => get_field( 'biometric_auth_view', $post_id ),
+	);
+
+	return $data;
+
+}
+
 function appp_get_theme_globals( $post_id ) {
 
 	$globals = array(

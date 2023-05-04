@@ -1,11 +1,11 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import { P as Preferences } from './index-c532d7cb.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-7ada3329.js';
-import { v as visibility, r as renderComponent } from './content-13f7c228.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-0cd58b05.js';
+import { v as visibility, r as renderComponent } from './content-a33d4ccf.js';
 import { s as state, o as onChange } from './store-b76a13b4.js';
 import './index-0f2ea1ed.js';
 import './global-e1c7e609.js';
-import './actions-a25fe53a.js';
+import './actions-c657bd6a.js';
 import './utils-bf14ef3c.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';

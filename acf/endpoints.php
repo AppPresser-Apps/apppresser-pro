@@ -227,6 +227,7 @@ function appp_get_app_data( $request ) {
 			'onboarding'    => $onboarding,
 			'tabbar'        => $tabbar,
 			'database'      => appp_get_app_database( $id ),
+			'app_attrs'     => appp_get_app_attrs( $id ),
 		);
 
 		set_site_transient( 'appp_data_transient_' . get_current_blog_id() . '_' . $id, $app, 12 * HOUR_IN_SECONDS );

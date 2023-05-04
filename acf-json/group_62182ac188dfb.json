@@ -101,16 +101,16 @@
             },
             "default_value": "",
             "maxlength": "",
-            "rows": "",
+            "rows": 4,
             "placeholder": "",
             "new_lines": ""
         },
         {
-            "key": "field_63ac759a85125",
-            "label": "Database",
-            "name": "app_database",
+            "key": "field_6453d2db1e202",
+            "label": "Biometric Auth",
+            "name": "biometric_auth",
             "aria-label": "",
-            "type": "select",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -119,18 +119,39 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "none": "None",
-                "35684": "Tracker Database",
-                "5": "Tracker Database"
-            },
-            "default_value": "none",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
+            "message": "This will trigger biometric authentication before app loads. Note: this will only display if the user has bio authentication turned on in the device settings",
+            "default_value": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_6453d3371e203",
+            "label": "Biometric Auth View",
+            "name": "biometric_auth_view",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Enter the route of the view that should display instead of the root \"\/\" view.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6453d2db1e202",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_62cd8407849dc",
@@ -165,8 +186,7 @@
                 "id": ""
             },
             "choices": {
-                "default": "Default",
-                "SMP": "SMP"
+                "default": "Default"
             },
             "default_value": "default",
             "allow_null": 0,
@@ -268,21 +288,6 @@
                     "parent_repeater": "field_63dbe514f01a0"
                 }
             ]
-        },
-        {
-            "key": "field_641c8dbc9b041",
-            "label": "Database ID",
-            "name": "database_id",
-            "aria-label": "",
-            "type": "unique_id",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
         }
     ],
     "location": [
@@ -303,5 +308,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1679593479
+    "modified": 1683215757
 }

@@ -1,14 +1,15 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-b76a13b4.js';
 import { P as Preferences } from './index-c532d7cb.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-7ada3329.js';
-import { r as renderComponent } from './content-13f7c228.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-0cd58b05.js';
+import { r as renderComponent } from './content-a33d4ccf.js';
 import { r as registerPlugin, C as Capacitor } from './index-0f2ea1ed.js';
 import { p as processTokens } from './tokens-4662bc6d.js';
+import { A as App } from './index-5795d411.js';
 import './index-7c8dd725.js';
 import { m as modalController } from './overlays-ef00d22b.js';
+import { a as resumeBioMetrics, c as checkBioMetrics } from './actions-c657bd6a.js';
 import './index-7106c220.js';
-import './actions-a25fe53a.js';
 import './utils-bf14ef3c.js';
 import './global-e1c7e609.js';
 import './utils-31c050e6.js';
@@ -1387,6 +1388,10 @@ const appRootCss = "";
 const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
+    this.biometrics = true;
+    this.resume = () => {
+      resumeBioMetrics();
+    };
     this.data = undefined;
   }
   componentWillLoad() {
@@ -1401,6 +1406,11 @@ const AppRoot = class {
       await db.load();
       console.log('DatabaseService', state.database);
       SplashScreen.hide();
+      if (this.biometrics) {
+        App.addListener('resume', () => {
+          this.resume();
+        });
+      }
     }, 500);
   }
   async loadJS() {
@@ -1476,6 +1486,7 @@ const AppRoot = class {
       const rsp = await fetch('/assets/app.json');
       data = await rsp.json();
     }
+    data['device'] = info;
     const globals = data.theme_globals;
     for (const key in globals) {
       document.documentElement.style.setProperty(key, globals[key]);
@@ -1551,6 +1562,11 @@ const AppRoot = class {
       return [
         h("ion-route", { url: 'data' in item.attrs ? attr.view_route : '/' + item.attrs.id, component: "acf-view", componentProps: { data: item } }),
         attr.path && h("ion-route", { url: 'data' in item.attrs ? attr.view_route + attr.path : '/' + item.attrs.id, component: "acf-view", componentProps: { data: item } })
+      ];
+    }
+    if (this.data.app_attrs.biometric_auth && checkBioMetrics() && !state.auth) {
+      return [
+        h("ion-route-redirect", { from: "/", to: this.data.app_attrs.biometric_auth_view })
       ];
     }
   }

@@ -1,7 +1,7 @@
 import { r as registerInstance, t as createEvent, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
 import './index-7c8dd725.js';
 import { s as state } from './store-b76a13b4.js';
-import { B as BuddyPressService } from './buddypress.service-a7d444f0.js';
+import { B as BuddyPressService } from './buddypress.service-d28dd3ea.js';
 import { m as modalController } from './overlays-ef00d22b.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';

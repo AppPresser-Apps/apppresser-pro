@@ -281,6 +281,7 @@ class BuddyPressService {
   }
   async getUserId() {
     const userData = (await Preferences.get({ key: 'auth' })).value;
+    console.log('userData', userData);
     return JSON.parse(userData).user_id;
   }
   async getAuthHeaders() {

@@ -1,6 +1,6 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-13f7c228.js';
-import { r as runAction } from './actions-a25fe53a.js';
+import { r as renderComponent } from './content-a33d4ccf.js';
+import { r as runAction } from './actions-c657bd6a.js';
 import { P as Preferences } from './index-c532d7cb.js';
 import { s as state } from './store-b76a13b4.js';
 import { c as processHidden, d as processOptions } from './tokens-4662bc6d.js';
@@ -3399,6 +3399,9 @@ const AcfForm = class {
         case 'application/json':
           options.body = JSON.stringify(formdata);
           break;
+        case 'application/x-www-form-urlencoded':
+          options.body = new URLSearchParams(formdata);
+          break;
       }
     });
     // Set parameters.
@@ -3423,6 +3426,13 @@ const AcfForm = class {
         }
         else {
           this.responseAlert('success', rsp, formdata);
+        }
+        const attr = this.data.attrs.data;
+        if ('1' === attr.success_save_response) {
+          await Preferences.set({
+            key: attr.form_name,
+            value: JSON.stringify(rsp),
+          });
         }
       }
       else {
@@ -3483,14 +3493,8 @@ const AcfForm = class {
    * @param response
    * @param formdata
    */
-  async responseAction(response, formdata) {
+  async responseAction(_response, formdata) {
     const attr = this.data.attrs.data;
-    if ('1' === attr.success_save_response) {
-      await Preferences.set({
-        key: attr.form_name,
-        value: JSON.stringify(response === null || response === void 0 ? void 0 : response.data),
-      });
-    }
     if ('none' !== attr.success_form_action) {
       attr['custom_action'] = attr.success_custom;
       attr['route'] = attr.success_route;
