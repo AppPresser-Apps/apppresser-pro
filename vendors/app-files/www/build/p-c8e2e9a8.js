@@ -1,0 +1,1 @@
+import{r as e}from"./p-94c4dcf6.js";const r=e("Preferences",{web:()=>import("./p-9933acfa.js").then((e=>new e.PreferencesWeb))});export{r as P}

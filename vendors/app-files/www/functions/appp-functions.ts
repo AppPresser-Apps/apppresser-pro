@@ -46,6 +46,9 @@ export const apppresser = {
   setState: async (key, value) => {
     state[key] = value;
   },
+  updateState: async (key, value) => {
+    state[key] = {...state[key], ...value};
+  },
   // Adjust the devices text zoom settings.
   textSize: async value => {
     console.log(value);

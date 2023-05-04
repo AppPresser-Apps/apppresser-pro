@@ -1,0 +1,19 @@
+activity-replies {
+  display: block;
+}
+
+.activity-replies {
+  overflow: hidden;
+}
+
+.activity-replies ion-item {
+  --background: transparent !important;
+}
+
+.activity-replies ion-item > div {
+  padding-left: 20px;
+}
+
+.activity-replies ion-item:last-child {
+  margin-bottom: -0.55px;
+}

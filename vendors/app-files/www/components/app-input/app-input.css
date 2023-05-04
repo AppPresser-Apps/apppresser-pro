@@ -1,0 +1,22 @@
+
+app-input {
+  display: block;
+}
+app-input .in-item {
+  max-width: 100% !important;
+}
+
+ion-item ion-note {
+  display: none;
+  font-size: 14px;
+  color: red;
+  padding-bottom: 10px;
+}
+
+ion-item.is_valid ion--note {
+  display: none;
+}
+
+ion-item.not_valid ion--note {
+  display: block;
+}

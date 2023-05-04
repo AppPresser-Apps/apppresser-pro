@@ -1,0 +1,12 @@
+acf-form{
+  display: block;
+}
+
+.ion-invalid ion-note {
+  display: block !important;
+}
+
+acf-form ion-datetime-button::part(native) {
+  background: #dbdbdb !important;
+  color: rgb(79, 80, 80) !important;
+}

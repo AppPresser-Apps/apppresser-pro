@@ -1,0 +1,13 @@
+activity-item {
+  display: block;
+}
+
+.activity-actions {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.activity-inner {
+  font-weight: 400;
+}

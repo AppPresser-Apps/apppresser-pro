@@ -1,0 +1,12 @@
+reply-item {
+  display: block;
+}
+
+.activity-reply-content p {
+  margin: 4px 0px 10px 0;
+  font-size: 12px;
+}
+
+reply-item ion-icon {
+  font-size: 13px;
+}

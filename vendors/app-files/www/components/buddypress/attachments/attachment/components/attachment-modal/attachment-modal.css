@@ -1,0 +1,7 @@
+attachment-modal {
+  display: block;
+}
+
+.attachment-modal {
+  --background: rgba(0,0,0,0.7);
+}
