@@ -1564,7 +1564,7 @@ const AppRoot = class {
         attr.path && h("ion-route", { url: 'data' in item.attrs ? attr.view_route + attr.path : '/' + item.attrs.id, component: "acf-view", componentProps: { data: item } })
       ];
     }
-    if (this.data.app_attrs.biometric_auth && checkBioMetrics() && !state.auth) {
+    if (this.data.app_attrs.biometric_auth && checkBioMetrics() && state.auth) {
       return [
         h("ion-route-redirect", { from: "/", to: this.data.app_attrs.biometric_auth_view })
       ];
