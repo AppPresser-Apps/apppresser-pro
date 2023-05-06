@@ -1,7 +1,7 @@
 import { Component, Host, h, ComponentInterface, Prop, Element, State } from '@stencil/core';
 import { renderComponent } from '../../helpers/content';
 import { runAction } from '../../helpers/actions';
-import { Preferences } from '@capacitor/preferences';
+//import { Preferences } from '@capacitor/preferences';
 import { z } from 'zod';
 import { state } from '../../services/store';
 import { processOptions, processHidden } from '../../helpers/tokens';
@@ -161,13 +161,16 @@ export class AcfForm implements ComponentInterface {
     const isValid = Object.entries(this.formdata).filter(([_key, value]) => value === null);
 
     if (isValid.length <= 0) {
-      this.button.disabled = true;
+      if ( this.button ) {
+        this.button.disabled = true;
+      }
 
       if ('database' === this.data.attrs.data.form_type) {
         this.saveForm(this.formdata);
       }
 
       if ('api' === this.data.attrs.data.form_type) {
+        console.log('form submit');
         this.submitForm(this.formdata);
       }
 
@@ -180,7 +183,10 @@ export class AcfForm implements ComponentInterface {
      * Disable submit button for 2 seconds.
      */
     setTimeout(() => {
-      this.button.disabled = false;
+      if ( this.button ) {
+        this.button.disabled = false;
+      }
+      
     }, 2000);
   }
 
@@ -313,14 +319,16 @@ export class AcfForm implements ComponentInterface {
    */
   async submitForm(formdata) {
 
+    console.log(formdata);
+
     // Preprocess form data before sending to surver.
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
 
     let postUrl = new URL(this.data.attrs.data.post_url);
-    const debug = this.data.attrs.data.debug;
-    const action = this.data.attrs.data.success_form_action;
+    //const debug = this.data.attrs.data.debug;
+    //const action = this.data.attrs.data.success_form_action;
     const headers = this.data.attrs.data.headers;
     const parameters = this.data.attrs.data.parameters;
 
@@ -340,8 +348,10 @@ export class AcfForm implements ComponentInterface {
           options.body = JSON.stringify(formdata);
           break;
         case 'application/x-www-form-urlencoded':
-          options.body = new URLSearchParams(formdata);
-          break;
+
+        const formData = new URLSearchParams(formdata);
+        options.body = formData.toString();
+        break;
       }
 
      });
@@ -355,47 +365,50 @@ export class AcfForm implements ComponentInterface {
 
     try {
 
-      const response = await fetch(postUrl, options);
+      // const response = await fetch(postUrl, options);
 
-      const rsp = await response.json();
+      // console.log('rsp', response);
 
-      console.log('rsp', rsp);
+      // const rsp = await response.json();
 
-      if ('1' === debug) {
-        this.debugAlert(JSON.stringify(rsp));
-      }
+      // console.log('rsp', rsp);
 
-      if (response.status < 400) {
+      // if ('1' === debug) {
+      //   this.debugAlert(JSON.stringify(rsp));
+      // }
 
-        if ('custom' === action) {
-          this.data.attrs.action = 'custom';
-          this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
-          this.data.attrs.response = response;
-          this.data.attrs.response.data = rsp;
-          runAction(this.data.attrs);
-        } else {
-          this.responseAlert('success', rsp, formdata);
-        }
+      // if (response.status < 400) {
 
-        const attr = this.data.attrs.data;
+      //   if ('custom' === action) {
+      //     this.data.attrs.action = 'custom';
+      //     this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
+      //     this.data.attrs.response = response;
+      //     this.data.attrs.response.data = rsp;
+      //     runAction(this.data.attrs);
+      //   } else {
+      //     this.responseAlert('success', rsp, formdata);
+      //   }
 
-        if ('1' === attr.success_save_response) {
-          await Preferences.set({
-            key: attr.form_name,
-            value: JSON.stringify(rsp),
-          });
-        }
+      //   const attr = this.data.attrs.data;
 
-      } else {
-        this.responseAlert('error', {}, {});
-      }
+      //   if ('1' === attr.success_save_response) {
+      //     await Preferences.set({
+      //       key: attr.form_name,
+      //       value: JSON.stringify(rsp),
+      //     });
+      //   }
+
+      // } else {
+      //   this.responseAlert('error', {}, {});
+      // }
 
     } catch (error) {
       console.log(error);
       this.responseAlert('error', {}, {});
     }
 
-    return;
+    console.log('submit true');
+    return true;
   }
 
   /**

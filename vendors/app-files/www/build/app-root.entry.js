@@ -1,16 +1,16 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
-import { s as state } from './store-b76a13b4.js';
+import { s as state } from './store-a75d6c94.js';
 import { P as Preferences } from './index-c532d7cb.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-0cd58b05.js';
-import { r as renderComponent } from './content-a33d4ccf.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-743c1d21.js';
+import { r as renderComponent } from './content-42412ca5.js';
 import { r as registerPlugin, C as Capacitor } from './index-0f2ea1ed.js';
-import { p as processTokens } from './tokens-4662bc6d.js';
+import { p as processTokens } from './tokens-e7de6c68.js';
 import { A as App } from './index-5795d411.js';
 import './index-7c8dd725.js';
 import { m as modalController } from './overlays-ef00d22b.js';
-import { a as resumeBioMetrics, c as checkBioMetrics } from './actions-c657bd6a.js';
+import { a as resumeBioMetrics, c as checkBioMetrics } from './actions-5653ed67.js';
 import './index-7106c220.js';
-import './utils-bf14ef3c.js';
+import './utils-9417d402.js';
 import './global-e1c7e609.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -1286,6 +1286,9 @@ const apppresser = {
   setState: async (key, value) => {
     state[key] = value;
   },
+  updateState: async (key, value) => {
+    state[key] = Object.assign(Object.assign({}, state[key]), value);
+  },
   // Adjust the devices text zoom settings.
   textSize: async (value) => {
     console.log(value);
@@ -1564,7 +1567,7 @@ const AppRoot = class {
         attr.path && h("ion-route", { url: 'data' in item.attrs ? attr.view_route + attr.path : '/' + item.attrs.id, component: "acf-view", componentProps: { data: item } })
       ];
     }
-    if (this.data.app_attrs.biometric_auth && checkBioMetrics() && state.auth) {
+    if (this.data.app_attrs.biometric_auth && checkBioMetrics() && state.auth && state.biometric) {
       return [
         h("ion-route-redirect", { from: "/", to: this.data.app_attrs.biometric_auth_view })
       ];

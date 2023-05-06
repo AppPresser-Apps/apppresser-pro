@@ -1,10 +1,9 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-a33d4ccf.js';
-import { r as runAction } from './actions-c657bd6a.js';
-import { P as Preferences } from './index-c532d7cb.js';
-import { s as state } from './store-b76a13b4.js';
-import { c as processHidden, d as processOptions } from './tokens-4662bc6d.js';
-import './utils-bf14ef3c.js';
+import { r as renderComponent } from './content-42412ca5.js';
+import { r as runAction } from './actions-5653ed67.js';
+import { s as state } from './store-a75d6c94.js';
+import { c as processHidden, d as processOptions } from './tokens-e7de6c68.js';
+import './utils-9417d402.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -22,6 +21,7 @@ import './hardware-back-button-fa04d6e9.js';
 import './overlays-ef00d22b.js';
 import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
+import './index-c532d7cb.js';
 import './index-0f2ea1ed.js';
 import './global-e1c7e609.js';
 import './index-7106c220.js';
@@ -3252,11 +3252,14 @@ const AcfForm = class {
     }
     const isValid = Object.entries(this.formdata).filter(([_key, value]) => value === null);
     if (isValid.length <= 0) {
-      this.button.disabled = true;
+      if (this.button) {
+        this.button.disabled = true;
+      }
       if ('database' === this.data.attrs.data.form_type) {
         this.saveForm(this.formdata);
       }
       if ('api' === this.data.attrs.data.form_type) {
+        console.log('form submit');
         this.submitForm(this.formdata);
       }
       if ('local' === this.data.attrs.data.form_type) {
@@ -3266,7 +3269,9 @@ const AcfForm = class {
      * Disable submit button for 2 seconds.
      */
     setTimeout(() => {
-      this.button.disabled = false;
+      if (this.button) {
+        this.button.disabled = false;
+      }
     }, 2000);
   }
   /**
@@ -3377,13 +3382,14 @@ const AcfForm = class {
    * @param formdata
    */
   async submitForm(formdata) {
+    console.log(formdata);
     // Preprocess form data before sending to surver.
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
     let postUrl = new URL(this.data.attrs.data.post_url);
-    const debug = this.data.attrs.data.debug;
-    const action = this.data.attrs.data.success_form_action;
+    //const debug = this.data.attrs.data.debug;
+    //const action = this.data.attrs.data.success_form_action;
     const headers = this.data.attrs.data.headers;
     const parameters = this.data.attrs.data.parameters;
     const options = {
@@ -3400,7 +3406,8 @@ const AcfForm = class {
           options.body = JSON.stringify(formdata);
           break;
         case 'application/x-www-form-urlencoded':
-          options.body = new URLSearchParams(formdata);
+          const formData = new URLSearchParams(formdata);
+          options.body = formData.toString();
           break;
       }
     });
@@ -3410,40 +3417,40 @@ const AcfForm = class {
     });
     console.log(postUrl, options);
     try {
-      const response = await fetch(postUrl, options);
-      const rsp = await response.json();
-      console.log('rsp', rsp);
-      if ('1' === debug) {
-        this.debugAlert(JSON.stringify(rsp));
-      }
-      if (response.status < 400) {
-        if ('custom' === action) {
-          this.data.attrs.action = 'custom';
-          this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
-          this.data.attrs.response = response;
-          this.data.attrs.response.data = rsp;
-          runAction(this.data.attrs);
-        }
-        else {
-          this.responseAlert('success', rsp, formdata);
-        }
-        const attr = this.data.attrs.data;
-        if ('1' === attr.success_save_response) {
-          await Preferences.set({
-            key: attr.form_name,
-            value: JSON.stringify(rsp),
-          });
-        }
-      }
-      else {
-        this.responseAlert('error', {}, {});
-      }
+      // const response = await fetch(postUrl, options);
+      // console.log('rsp', response);
+      // const rsp = await response.json();
+      // console.log('rsp', rsp);
+      // if ('1' === debug) {
+      //   this.debugAlert(JSON.stringify(rsp));
+      // }
+      // if (response.status < 400) {
+      //   if ('custom' === action) {
+      //     this.data.attrs.action = 'custom';
+      //     this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
+      //     this.data.attrs.response = response;
+      //     this.data.attrs.response.data = rsp;
+      //     runAction(this.data.attrs);
+      //   } else {
+      //     this.responseAlert('success', rsp, formdata);
+      //   }
+      //   const attr = this.data.attrs.data;
+      //   if ('1' === attr.success_save_response) {
+      //     await Preferences.set({
+      //       key: attr.form_name,
+      //       value: JSON.stringify(rsp),
+      //     });
+      //   }
+      // } else {
+      //   this.responseAlert('error', {}, {});
+      // }
     }
     catch (error) {
       console.log(error);
       this.responseAlert('error', {}, {});
     }
-    return;
+    console.log('submit true');
+    return true;
   }
   /**
    * Runs javascript code before form submited;

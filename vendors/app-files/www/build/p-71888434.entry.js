@@ -1,1 +1,0 @@
-import{r as t,h as a,H as s}from"./p-7ebfe9a9.js";const p=class{constructor(a){t(this,a)}render(){return a(s,null,a("slot",null))}};p.style="appp-attachment{display:block}";export{p as appp_attachment}

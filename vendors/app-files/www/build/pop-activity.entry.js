@@ -1,6 +1,6 @@
 import { r as registerInstance, t as createEvent, l as h, m as Host } from './index-6c5afe2f.js';
-import { B as BuddyPressService } from './buddypress.service-d28dd3ea.js';
-import './utils-bf14ef3c.js';
+import { B as BuddyPressService } from './buddypress.service-c23bcea2.js';
+import './utils-9417d402.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';
@@ -18,7 +18,7 @@ import './hardware-back-button-fa04d6e9.js';
 import './overlays-ef00d22b.js';
 import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
-import './store-b76a13b4.js';
+import './store-a75d6c94.js';
 import './index-7106c220.js';
 import './index-c532d7cb.js';
 import './index-0f2ea1ed.js';
