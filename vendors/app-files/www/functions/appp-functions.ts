@@ -1,6 +1,7 @@
 import { Preferences } from '@capacitor/preferences';
 import { modalController } from '@ionic/core';
 import { state } from '../services/store';
+import { getBioMetrics } from '../services/biometrics';
 
 export const apppresser = {
   // Refresh auth, gets and saves udated user data.
@@ -84,8 +85,13 @@ export const apppresser = {
     alert.message = data.message || '';
     alert.buttons = data.buttons || ['OK'];
 
+    alert.addEventListener('ionAlertDidDismiss', (e) => {
+      console.log(e);
+    });
+
     document.body.appendChild(alert);
     await alert.present();
+
   },
   modal: async (data)=> {
     const block = state.data['modals'].filter(function(obj) {
@@ -108,6 +114,9 @@ export const apppresser = {
     if (modal) {
       await modal.dismiss();
     }
+  },
+  getBiometrics: async ()=> {
+    return getBioMetrics();
   },
   router: {
     push: async (route, animation: any = 'push')=> {

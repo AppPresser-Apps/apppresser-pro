@@ -1,6 +1,6 @@
 import { r as registerInstance, l as h, m as Host } from './index-6c5afe2f.js';
-import { P as Preferences } from './index-c532d7cb.js';
-import './index-0f2ea1ed.js';
+import { P as Preferences } from './index-6dc587d2.js';
+import './index-0b091f9f.js';
 import './global-e1c7e609.js';
 
 const popUserCss = "pop-user{display:block}";

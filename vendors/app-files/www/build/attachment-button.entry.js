@@ -1,10 +1,10 @@
 import { r as registerInstance, l as h, m as Host } from './index-6c5afe2f.js';
-import { C as CameraSource, a as Camera, b as CameraResultType } from './index-904fce70.js';
+import { C as CameraSource, a as Camera, b as CameraResultType } from './index-b3330d71.js';
 import './index-7c8dd725.js';
 import { A as AttachmentStore } from './state-9b24d0d5.js';
 import { a as isPlatform } from './ionic-global-74a19eaa.js';
 import { b as actionSheetController } from './overlays-ef00d22b.js';
-import './index-0f2ea1ed.js';
+import './index-0b091f9f.js';
 import './global-e1c7e609.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';

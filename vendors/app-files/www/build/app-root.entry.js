@@ -1,14 +1,14 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-a75d6c94.js';
-import { P as Preferences } from './index-c532d7cb.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-743c1d21.js';
-import { r as renderComponent } from './content-42412ca5.js';
-import { r as registerPlugin, C as Capacitor } from './index-0f2ea1ed.js';
+import { P as Preferences } from './index-6dc587d2.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-2e3c93aa.js';
+import { r as renderComponent } from './content-1a55d0b0.js';
+import { r as registerPlugin, C as Capacitor } from './index-0b091f9f.js';
 import { p as processTokens } from './tokens-e7de6c68.js';
-import { A as App } from './index-5795d411.js';
+import { A as App } from './index-51faf1fd.js';
 import './index-7c8dd725.js';
+import { g as getBioMetrics, a as resumeBioMetrics, c as checkBioMetrics } from './actions-6076584d.js';
 import { m as modalController } from './overlays-ef00d22b.js';
-import { a as resumeBioMetrics, c as checkBioMetrics } from './actions-5653ed67.js';
 import './index-7106c220.js';
 import './utils-9417d402.js';
 import './global-e1c7e609.js';
@@ -787,7 +787,7 @@ class SQLiteDBConnection {
 }
 
 const CapacitorSQLite = registerPlugin('CapacitorSQLite', {
-    web: () => import('./web-27931f14.js').then(m => new m.CapacitorSQLiteWeb()),
+    web: () => import('./web-e2e8a0c8.js').then(m => new m.CapacitorSQLiteWeb()),
     electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite,
 });
 
@@ -1110,13 +1110,13 @@ class DatabaseService {
 }
 
 const Device = registerPlugin('Device', {
-    web: () => import('./web-db42dee1.js').then(m => new m.DeviceWeb()),
+    web: () => import('./web-043d2802.js').then(m => new m.DeviceWeb()),
 });
 
 /// <reference types="@capacitor/cli" />
 
 const SplashScreen = registerPlugin('SplashScreen', {
-    web: () => import('./web-8b9e2d6c.js').then(m => new m.SplashScreenWeb()),
+    web: () => import('./web-6ee4cdfe.js').then(m => new m.SplashScreenWeb()),
 });
 
 const buddypress = {
@@ -1322,6 +1322,9 @@ const apppresser = {
     alert.subHeader = data.subheader || '';
     alert.message = data.message || '';
     alert.buttons = data.buttons || ['OK'];
+    alert.addEventListener('ionAlertDidDismiss', (e) => {
+      console.log(e);
+    });
     document.body.appendChild(alert);
     await alert.present();
   },
@@ -1344,6 +1347,9 @@ const apppresser = {
     if (modal) {
       await modal.dismiss();
     }
+  },
+  getBiometrics: async () => {
+    return getBioMetrics();
   },
   router: {
     push: async (route, animation = 'push') => {
@@ -1391,7 +1397,7 @@ const appRootCss = "";
 const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    this.biometrics = true;
+    this.biometrics = false;
     this.resume = () => {
       resumeBioMetrics();
     };
@@ -1409,11 +1415,12 @@ const AppRoot = class {
       await db.load();
       console.log('DatabaseService', state.database);
       SplashScreen.hide();
-      if (this.biometrics) {
-        App.addListener('resume', () => {
+      App.addListener('resume', async () => {
+        const { value } = await Preferences.get({ key: 'biometric' });
+        if (value) {
           this.resume();
-        });
-      }
+        }
+      });
     }, 500);
   }
   async loadJS() {

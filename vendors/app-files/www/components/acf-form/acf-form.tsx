@@ -1,11 +1,11 @@
 import { Component, Host, h, ComponentInterface, Prop, Element, State } from '@stencil/core';
 import { renderComponent } from '../../helpers/content';
 import { runAction } from '../../helpers/actions';
-//import { Preferences } from '@capacitor/preferences';
+import { Preferences } from '@capacitor/preferences';
 import { z } from 'zod';
 import { state } from '../../services/store';
 import { processOptions, processHidden } from '../../helpers/tokens';
-//import { post } from '../../services/http';
+import { post } from '../../services/http';
 
 @Component({
   tag: 'acf-form',
@@ -39,7 +39,7 @@ export class AcfForm implements ComponentInterface {
     this.button = this.el.querySelector('ion-button');
 
     if (this.button) {
-      this.button.addEventListener('click', async () => {
+      this.button.addEventListener('click', () => {
         this.processForm();
       });
     }
@@ -326,31 +326,31 @@ export class AcfForm implements ComponentInterface {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
 
-    let postUrl = new URL(this.data.attrs.data.post_url);
-    //const debug = this.data.attrs.data.debug;
-    //const action = this.data.attrs.data.success_form_action;
+    let postUrl = this.data.attrs.data.post_url;
+    const debug = this.data.attrs.data.debug;
+    const action = this.data.attrs.data.success_form_action;
     const headers = this.data.attrs.data.headers;
     const parameters = this.data.attrs.data.parameters;
 
-    const options = {
-      method: 'POST',
+    const option = {
+      url: postUrl,
       headers: {},
-      body: formdata
+      data: formdata,
     };
     
     // Set headers.
     headers.map( header => {    
-      options.headers[header.key] = header.value;
+      option.headers[header.key] = header.value;
 
       // Set body based on content type.
       switch(header.value) {
         case 'application/json':
-          options.body = JSON.stringify(formdata);
+          option.data = JSON.stringify(formdata);
           break;
         case 'application/x-www-form-urlencoded':
 
         const formData = new URLSearchParams(formdata);
-        options.body = formData.toString();
+        option.data = formData.toString();
         break;
       }
 
@@ -361,46 +361,44 @@ export class AcfForm implements ComponentInterface {
       postUrl.searchParams.set(param.key, param.value);
     });
 
-    console.log(postUrl, options);
+    console.log(postUrl, option);
 
     try {
 
-      // const response = await fetch(postUrl, options);
+      const response = await post(option);
 
-      // console.log('rsp', response);
+      const rsp = response.data;
 
-      // const rsp = await response.json();
+      console.log('response', rsp);
 
-      // console.log('rsp', rsp);
+      if ('1' === debug) {
+        this.debugAlert(JSON.stringify(rsp));
+      }
 
-      // if ('1' === debug) {
-      //   this.debugAlert(JSON.stringify(rsp));
-      // }
+      if (response.status < 400) {
 
-      // if (response.status < 400) {
+        if ('custom' === action) {
+          this.data.attrs.action = 'custom';
+          this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
+          this.data.attrs.response = response;
+          this.data.attrs.response.data = rsp;
+          runAction(this.data.attrs);
+        } else {
+          this.responseAlert('success', rsp, formdata);
+        }
 
-      //   if ('custom' === action) {
-      //     this.data.attrs.action = 'custom';
-      //     this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
-      //     this.data.attrs.response = response;
-      //     this.data.attrs.response.data = rsp;
-      //     runAction(this.data.attrs);
-      //   } else {
-      //     this.responseAlert('success', rsp, formdata);
-      //   }
+        const attr = this.data.attrs.data;
 
-      //   const attr = this.data.attrs.data;
+        if ('1' === attr.success_save_response) {
+          await Preferences.set({
+            key: attr.form_name,
+            value: JSON.stringify(rsp),
+          });
+        }
 
-      //   if ('1' === attr.success_save_response) {
-      //     await Preferences.set({
-      //       key: attr.form_name,
-      //       value: JSON.stringify(rsp),
-      //     });
-      //   }
-
-      // } else {
-      //   this.responseAlert('error', {}, {});
-      // }
+      } else {
+        this.responseAlert('error', {}, {});
+      }
 
     } catch (error) {
       console.log(error);
@@ -408,7 +406,7 @@ export class AcfForm implements ComponentInterface {
     }
 
     console.log('submit true');
-    return true;
+    return;
   }
 
   /**

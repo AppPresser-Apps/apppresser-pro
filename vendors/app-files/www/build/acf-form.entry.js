@@ -1,8 +1,10 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { r as renderComponent } from './content-42412ca5.js';
-import { r as runAction } from './actions-5653ed67.js';
+import { r as renderComponent } from './content-1a55d0b0.js';
+import { r as runAction } from './actions-6076584d.js';
+import { P as Preferences } from './index-6dc587d2.js';
 import { s as state } from './store-a75d6c94.js';
 import { c as processHidden, d as processOptions } from './tokens-e7de6c68.js';
+import { a as CapacitorHttp } from './index-0b091f9f.js';
 import './utils-9417d402.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
@@ -21,10 +23,8 @@ import './hardware-back-button-fa04d6e9.js';
 import './overlays-ef00d22b.js';
 import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
-import './index-c532d7cb.js';
-import './index-0f2ea1ed.js';
-import './global-e1c7e609.js';
 import './index-7106c220.js';
+import './global-e1c7e609.js';
 
 var util;
 (function (util) {
@@ -3128,6 +3128,32 @@ var mod = /*#__PURE__*/Object.freeze({
     ZodError: ZodError
 });
 
+/**
+ * HTTP GET request
+ *
+ * @param options HttpOptions
+ * @returns HttpResponse
+ */
+const get = async (options) => {
+  const response = await CapacitorHttp.get(options);
+  return response;
+};
+/**
+ * HTTP POST request
+ *
+ * @param options HttpOptions
+ * @returns HttpResponse
+ */
+const post = async (options) => {
+  // const options = {
+  //   url: 'https://example.com/my/api',
+  //   headers: { 'X-Fake-Header': 'Fake-Value' },
+  //   data: { foo: 'bar' },
+  // };
+  const response = await CapacitorHttp.post(options);
+  return response;
+};
+
 const acfFormCss = "acf-form{display:block}.ion-invalid ion-note{display:block !important}acf-form ion-datetime-button::part(native){background:#dbdbdb !important;color:rgb(79, 80, 80) !important}";
 
 const AcfForm = class {
@@ -3152,7 +3178,7 @@ const AcfForm = class {
   buttonEvent() {
     this.button = this.el.querySelector('ion-button');
     if (this.button) {
-      this.button.addEventListener('click', async () => {
+      this.button.addEventListener('click', () => {
         this.processForm();
       });
     }
@@ -3387,27 +3413,27 @@ const AcfForm = class {
     if (this.data.attrs.data.on_submit_code !== '') {
       formdata = await this.onSubmitMethod(this.data.attrs.data.on_submit_code, formdata);
     }
-    let postUrl = new URL(this.data.attrs.data.post_url);
-    //const debug = this.data.attrs.data.debug;
-    //const action = this.data.attrs.data.success_form_action;
+    let postUrl = this.data.attrs.data.post_url;
+    const debug = this.data.attrs.data.debug;
+    const action = this.data.attrs.data.success_form_action;
     const headers = this.data.attrs.data.headers;
     const parameters = this.data.attrs.data.parameters;
-    const options = {
-      method: 'POST',
+    const option = {
+      url: postUrl,
       headers: {},
-      body: formdata
+      data: formdata,
     };
     // Set headers.
     headers.map(header => {
-      options.headers[header.key] = header.value;
+      option.headers[header.key] = header.value;
       // Set body based on content type.
       switch (header.value) {
         case 'application/json':
-          options.body = JSON.stringify(formdata);
+          option.data = JSON.stringify(formdata);
           break;
         case 'application/x-www-form-urlencoded':
           const formData = new URLSearchParams(formdata);
-          options.body = formData.toString();
+          option.data = formData.toString();
           break;
       }
     });
@@ -3415,42 +3441,43 @@ const AcfForm = class {
     parameters.map(param => {
       postUrl.searchParams.set(param.key, param.value);
     });
-    console.log(postUrl, options);
+    console.log(postUrl, option);
     try {
-      // const response = await fetch(postUrl, options);
-      // console.log('rsp', response);
-      // const rsp = await response.json();
-      // console.log('rsp', rsp);
-      // if ('1' === debug) {
-      //   this.debugAlert(JSON.stringify(rsp));
-      // }
-      // if (response.status < 400) {
-      //   if ('custom' === action) {
-      //     this.data.attrs.action = 'custom';
-      //     this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
-      //     this.data.attrs.response = response;
-      //     this.data.attrs.response.data = rsp;
-      //     runAction(this.data.attrs);
-      //   } else {
-      //     this.responseAlert('success', rsp, formdata);
-      //   }
-      //   const attr = this.data.attrs.data;
-      //   if ('1' === attr.success_save_response) {
-      //     await Preferences.set({
-      //       key: attr.form_name,
-      //       value: JSON.stringify(rsp),
-      //     });
-      //   }
-      // } else {
-      //   this.responseAlert('error', {}, {});
-      // }
+      const response = await post(option);
+      const rsp = response.data;
+      console.log('response', rsp);
+      if ('1' === debug) {
+        this.debugAlert(JSON.stringify(rsp));
+      }
+      if (response.status < 400) {
+        if ('custom' === action) {
+          this.data.attrs.action = 'custom';
+          this.data.attrs.data.custom_action = this.data.attrs.data.success_custom;
+          this.data.attrs.response = response;
+          this.data.attrs.response.data = rsp;
+          runAction(this.data.attrs);
+        }
+        else {
+          this.responseAlert('success', rsp, formdata);
+        }
+        const attr = this.data.attrs.data;
+        if ('1' === attr.success_save_response) {
+          await Preferences.set({
+            key: attr.form_name,
+            value: JSON.stringify(rsp),
+          });
+        }
+      }
+      else {
+        this.responseAlert('error', {}, {});
+      }
     }
     catch (error) {
       console.log(error);
       this.responseAlert('error', {}, {});
     }
     console.log('submit true');
-    return true;
+    return;
   }
   /**
    * Runs javascript code before form submited;

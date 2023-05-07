@@ -1,9 +1,9 @@
 import { r as registerInstance, l as h, m as Host, q as getElement } from './index-6c5afe2f.js';
-import { A as ApppAvatarService } from './appp-avatar-service-221cdbbe.js';
-import './index-904fce70.js';
-import './index-0f2ea1ed.js';
+import { A as ApppAvatarService } from './appp-avatar-service-58e1fcfe.js';
+import './index-b3330d71.js';
+import './index-0b091f9f.js';
 import './global-e1c7e609.js';
-import './index-c532d7cb.js';
+import './index-6dc587d2.js';
 import './index-7c8dd725.js';
 import './utils-31c050e6.js';
 import './animation-6410f855.js';

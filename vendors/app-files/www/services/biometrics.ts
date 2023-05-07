@@ -66,10 +66,6 @@ async function checkResumeTime(): Promise<void> {
       }
   } else {
     updateResumeTime();
-    const bio = checkBioMetrics();
-    if (bio) {
-        state.biometric = true;
-    }
   }
 
 
@@ -109,5 +105,7 @@ function timestamp_diff(timestamp, _diff): number {
 
   console.log('difference = ' + daysDifference + ' day/s ' + hoursDifference + ' hour/s ' + minutesDifference + ' minute/s ' + secondsDifference + ' second/s ');
 
-  return minutesDifference;
+  console.log(Math.round( ( (today - timestamp) % 3600000) / 60000 ));
+
+  return Math.round( ( (today - timestamp) % 3600000) / 60000 );
 }

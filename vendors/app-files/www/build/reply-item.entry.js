@@ -1,6 +1,6 @@
 import { r as registerInstance, l as h } from './index-6c5afe2f.js';
 import { s as state } from './store-a75d6c94.js';
-import { B as BuddyPressService } from './buddypress.service-c23bcea2.js';
+import { B as BuddyPressService } from './buddypress.service-b7221063.js';
 import './index-7106c220.js';
 import './utils-9417d402.js';
 import './index-7c8dd725.js';
@@ -20,8 +20,8 @@ import './hardware-back-button-fa04d6e9.js';
 import './overlays-ef00d22b.js';
 import './framework-delegate-c3343c4d.js';
 import './index-2ee22356.js';
-import './index-c532d7cb.js';
-import './index-0f2ea1ed.js';
+import './index-6dc587d2.js';
+import './index-0b091f9f.js';
 import './global-e1c7e609.js';
 
 const replyItemCss = "reply-item{display:block}.activity-reply-content p{margin:4px 0px 10px 0;font-size:12px}reply-item ion-icon{font-size:13px}";
