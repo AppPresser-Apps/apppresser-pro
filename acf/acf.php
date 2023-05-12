@@ -39,7 +39,6 @@ function appp_load_route_field_choices( $field ) {
 	}
 
 	return $field;
-
 }
 add_filter( 'acf/load_field/name=route', 'appp_load_route_field_choices' );
 
@@ -66,7 +65,6 @@ function appp_load_popover_field_choices( $field ) {
 	}
 
 	return $field;
-
 }
 add_filter( 'acf/load_field/name=popover', 'appp_load_popover_field_choices' );
 
@@ -92,7 +90,6 @@ function appp_load_theme_field_choices( $field ) {
 	$field['choices'] = $choices;
 
 	return $field;
-
 }
 add_filter( 'acf/load_field/name=theme_select', 'appp_load_theme_field_choices' );
 
@@ -120,7 +117,6 @@ function appp_load_modal_field_choices( $field ) {
 	}
 
 	return $field;
-
 }
 add_filter( 'acf/load_field/name=modal_item', 'appp_load_modal_field_choices' );
 
@@ -199,7 +195,6 @@ function appp_process_left_button( $button ) {
 			break;
 
 	}
-
 }
 
 /**
@@ -221,7 +216,6 @@ function appp_process_right_button( $button ) {
 			break;
 
 	}
-
 }
 
 /**
@@ -276,7 +270,6 @@ function appp_localize_scripts() {
 			'themes'         => wp_json_encode( get_field( 'themes', 'option' ) ),
 		)
 	);
-
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_localize_scripts' );
 
@@ -336,18 +329,17 @@ function appp_get_app_database( $post_id ) {
 	);
 
 	return $data;
-
 }
 
 function appp_get_app_attrs( $post_id ) {
 
 	$data = array(
-		'biometric_auth' => get_field( 'biometric_auth', $post_id ),
-		'biometric_auth_view'  => get_field( 'biometric_auth_view', $post_id ),
+		'biometric_auth'      => get_field( 'biometric_auth', $post_id ),
+		'biometric_auth_view' => get_field( 'biometric_auth_view', $post_id ),
+		'on_resume_code'      => get_field( 'on_resume', $post_id ),
 	);
 
 	return $data;
-
 }
 
 function appp_get_theme_globals( $post_id ) {
@@ -388,7 +380,6 @@ function appp_acf_json_save_point( $path ) {
 
 	// return.
 	return $path;
-
 }
 add_filter( 'acf/settings/save_json', 'appp_acf_json_save_point' );
 
@@ -408,6 +399,5 @@ function appp_acf_json_load_point( $paths ) {
 
 	// return.
 	return $paths;
-
 }
 add_filter( 'acf/settings/load_json', 'appp_acf_json_load_point' );

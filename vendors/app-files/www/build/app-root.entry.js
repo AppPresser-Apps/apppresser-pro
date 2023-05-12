@@ -1,13 +1,13 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-a75d6c94.js';
 import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-a7d19d0f.js';
-import { r as renderComponent } from './content-e1021ecf.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-4ccd3941.js';
+import { r as renderComponent } from './content-9488f805.js';
 import { r as registerPlugin, C as Capacitor } from './index-0b091f9f.js';
 import { p as processTokens } from './tokens-e7de6c68.js';
 import { A as App } from './index-51faf1fd.js';
 import './index-7c8dd725.js';
-import { g as getBioMetrics, a as authBiometrics, b as resumeBioMetrics, c as checkBioMetrics } from './actions-67114a48.js';
+import { g as getBioMetrics, a as authBiometrics, b as resumeBioMetrics, c as checkBioMetrics } from './actions-21958fd0.js';
 import { m as modalController } from './overlays-ef00d22b.js';
 import './index-7106c220.js';
 import './utils-9417d402.js';
@@ -1401,7 +1401,15 @@ const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.biometrics = false;
+    /**
+     * Resume the app function
+     * @returns
+     * @memberof AppRoot
+     * @since 1.0.0
+     * @version 1.0.0
+     */
     this.resume = async () => {
+      console.log('resume');
       const { value } = await Preferences.get({ key: 'biometric' });
       if (value) {
         resumeBioMetrics();
@@ -1421,6 +1429,13 @@ const AppRoot = class {
       await db.load();
       console.log('DatabaseService', state.database);
       SplashScreen.hide();
+      // Set resume timestamp on app load
+      const { value } = await Preferences.get({ key: 'resumetimestamp' });
+      if (!value) {
+        const timestamp = Date.now();
+        await Preferences.set({ key: 'resumetimestamp', value: `${timestamp}` });
+        console.log(timestamp, value);
+      }
       App.addListener('resume', () => {
         this.resume();
       });
@@ -1477,6 +1492,26 @@ const AppRoot = class {
       modal.dismiss();
     }
     console.log(e);
+  }
+  /**
+    * Runs custom javascript code.
+    *
+    * @param code
+    * @returns any
+    *
+    * @memberof AppRoot
+    * @since 1.0.0
+    * @version 1.0.0
+    */
+  async runCode(code) {
+    if (code !== '') {
+      const method = new Function('data', 'appp', 'bp', code);
+      const rsp = await method(this.data, window.appp, window.bp);
+      return rsp === undefined || rsp === null ? this.data : rsp;
+    }
+    else {
+      return this.data;
+    }
   }
   async authenticate() {
     const { value } = await Preferences.get({ key: 'auth' });
