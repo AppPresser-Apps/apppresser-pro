@@ -1,13 +1,13 @@
 import { r as registerInstance, i as Build, l as h, q as getElement } from './index-6c5afe2f.js';
 import { s as state } from './store-a75d6c94.js';
 import { P as Preferences } from './index-6dc587d2.js';
-import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-2e3c93aa.js';
-import { r as renderComponent } from './content-1a55d0b0.js';
+import { r as renderLeftButtons, a as renderTitle, b as renderRightButtons } from './toolbar-a7d19d0f.js';
+import { r as renderComponent } from './content-e1021ecf.js';
 import { r as registerPlugin, C as Capacitor } from './index-0b091f9f.js';
 import { p as processTokens } from './tokens-e7de6c68.js';
 import { A as App } from './index-51faf1fd.js';
 import './index-7c8dd725.js';
-import { g as getBioMetrics, a as resumeBioMetrics, c as checkBioMetrics } from './actions-6076584d.js';
+import { g as getBioMetrics, a as authBiometrics, b as resumeBioMetrics, c as checkBioMetrics } from './actions-67114a48.js';
 import { m as modalController } from './overlays-ef00d22b.js';
 import './index-7106c220.js';
 import './utils-9417d402.js';
@@ -1266,18 +1266,18 @@ const apppresser = {
   },
   // Sets a preference in the app preferences.
   setPreference: async (key, value) => {
-    console.log(key, value);
+    console.log('setPreference', key, value);
     await Preferences.set({ key: key, value: JSON.stringify(value) });
   },
   // Gets a preference from the app preferences.
   getPreference: async (key) => {
-    console.log(key);
+    console.log('getPreference', key);
     const { value } = await Preferences.get({ key: key });
     return value ? JSON.parse(value) : false;
   },
   // Removes a preference in the app preferences.
   removePreference: async (key) => {
-    console.log(key);
+    console.log('removePreference', key);
     return await Preferences.remove({ key: key });
   },
   setTransient: async (key, value) => {
@@ -1349,7 +1349,10 @@ const apppresser = {
     }
   },
   getBiometrics: async () => {
-    return getBioMetrics();
+    return await getBioMetrics();
+  },
+  authBiometrics: async () => {
+    return await authBiometrics();
   },
   router: {
     push: async (route, animation = 'push') => {
@@ -1398,8 +1401,11 @@ const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.biometrics = false;
-    this.resume = () => {
-      resumeBioMetrics();
+    this.resume = async () => {
+      const { value } = await Preferences.get({ key: 'biometric' });
+      if (value) {
+        resumeBioMetrics();
+      }
     };
     this.data = undefined;
   }
@@ -1415,11 +1421,8 @@ const AppRoot = class {
       await db.load();
       console.log('DatabaseService', state.database);
       SplashScreen.hide();
-      App.addListener('resume', async () => {
-        const { value } = await Preferences.get({ key: 'biometric' });
-        if (value) {
-          this.resume();
-        }
+      App.addListener('resume', () => {
+        this.resume();
       });
     }, 500);
   }

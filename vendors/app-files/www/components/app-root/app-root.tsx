@@ -22,7 +22,7 @@ export class AppRoot implements ComponentInterface  {
 
   @State() data;
 
-  biometrics: boolean = true;
+  biometrics: boolean = false;
 
   componentWillLoad() {
 
@@ -41,12 +41,13 @@ export class AppRoot implements ComponentInterface  {
       console.log('DatabaseService', state.database);
       SplashScreen.hide();
 
-      if ( this.biometrics ) {
-        App.addListener('resume', ()=> {
-          this.resume();
+        App.addListener('resume', async ()=> {
+          const { value } = await Preferences.get({ key: 'biometric' });
+          console.log('resume', value);
+          if ( value ) {
+            this.resume();
+          }
         });
-  
-      }
 
     }, 500);
    

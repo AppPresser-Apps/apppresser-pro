@@ -63,12 +63,14 @@ export async function runAction(data?) {
           break;
         case 'biometric_auth':
           const bio = await authBiometrics();
-          console.log(bio);
+          console.log('biometric_auth', bio);
           state.data = {...state.data, ...{login: true}}
-          state.auth = bio;
-          setTimeout(() => {
-            routerPush('/', 'root');
-          }, 500);
+          //state.auth = true;
+          if (bio ) {
+            setTimeout(() => {
+                routerPush('/', 'root');
+            }, 500);
+          }
           
           break
         default:

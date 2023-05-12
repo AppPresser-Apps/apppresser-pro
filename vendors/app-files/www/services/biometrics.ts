@@ -17,6 +17,18 @@ export async function checkBioMetrics(): Promise<boolean> {
 }
 
 /**
+ * Gets biometrics data
+ * @returns 
+ */
+export async function getBioMetrics() {
+  if ('web' === (state.data as any).device.platform) {
+    await BiometricAuth.setBiometryType('faceId');
+  }
+  const bio = await BiometricAuth.checkBiometry();
+  return bio;
+}
+
+/**
  * Authenticate with biometrics
  *
  * @returns boolean

@@ -1,0 +1,45 @@
+{
+    "key": "group_645e9b54696a4",
+    "title": "Advanced",
+    "fields": [
+        {
+            "key": "field_645e9adf29fbb",
+            "label": "On Resume",
+            "name": "on_resume",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "Code will run on every app resume.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "app"
+            }
+        ]
+    ],
+    "menu_order": 999,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1683921962
+}

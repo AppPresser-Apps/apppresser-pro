@@ -1,7 +1,7 @@
 import { Preferences } from '@capacitor/preferences';
 import { modalController } from '@ionic/core';
 import { state } from '../services/store';
-import { getBioMetrics } from '../services/biometrics';
+import { getBioMetrics, authBiometrics } from '../services/biometrics';
 
 export const apppresser = {
   // Refresh auth, gets and saves udated user data.
@@ -27,18 +27,18 @@ export const apppresser = {
   },
  // Sets a preference in the app preferences.
   setPreference: async (key, value) => {
-    console.log(key, value);
+    console.log('setPreference', key, value);
     await Preferences.set({ key: key, value: JSON.stringify(value) });
   },
   // Gets a preference from the app preferences.
   getPreference: async key => {
-    console.log(key);
+    console.log('getPreference', key);
     const { value } = await Preferences.get({ key: key });
     return value ? JSON.parse( value ): false;
   },
   // Removes a preference in the app preferences.
   removePreference: async key => {
-    console.log(key);
+    console.log('removePreference', key);
     return await Preferences.remove({ key: key });
   },
   setTransient: async (key, value) => {
@@ -116,7 +116,10 @@ export const apppresser = {
     }
   },
   getBiometrics: async ()=> {
-    return getBioMetrics();
+    return await getBioMetrics();
+  },
+  authBiometrics : async ()=> {
+    return await authBiometrics();
   },
   router: {
     push: async (route, animation: any = 'push')=> {
