@@ -1354,6 +1354,9 @@ const apppresser = {
   authBiometrics: async () => {
     return await authBiometrics();
   },
+  resumeBioMetrics: async () => {
+    return await resumeBioMetrics();
+  },
   router: {
     push: async (route, animation = 'push') => {
       if (route) {
@@ -1410,10 +1413,7 @@ const AppRoot = class {
      */
     this.resume = async () => {
       console.log('resume');
-      const { value } = await Preferences.get({ key: 'biometric' });
-      if (value) {
-        resumeBioMetrics();
-      }
+      this.runCode(this.data.app_attrs.on_resume_code);
     };
     this.data = undefined;
   }

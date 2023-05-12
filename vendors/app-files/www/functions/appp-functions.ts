@@ -1,7 +1,7 @@
 import { Preferences } from '@capacitor/preferences';
 import { modalController } from '@ionic/core';
 import { state } from '../services/store';
-import { getBioMetrics, authBiometrics } from '../services/biometrics';
+import { getBioMetrics, authBiometrics, resumeBioMetrics } from '../services/biometrics';
 
 export const apppresser = {
   // Refresh auth, gets and saves udated user data.
@@ -120,6 +120,9 @@ export const apppresser = {
   },
   authBiometrics : async ()=> {
     return await authBiometrics();
+  },
+  resumeBioMetrics: async ()=> {
+    return await resumeBioMetrics();
   },
   router: {
     push: async (route, animation: any = 'push')=> {
