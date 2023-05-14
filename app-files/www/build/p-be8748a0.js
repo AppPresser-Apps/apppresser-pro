@@ -1,0 +1,1 @@
+import{r as p}from"./p-d6593782.js";const e=p("App",{web:()=>import("./p-cd162eed.js").then((p=>new p.AppWeb))});export{e as A}

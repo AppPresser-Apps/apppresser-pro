@@ -1,0 +1,1 @@
+import{A as e}from"./p-be8748a0.js";import{W as s}from"./p-d6593782.js";class t extends s{addResumeListener(s){return e.addListener("appStateChange",(({isActive:e})=>{e&&this.checkBiometry().then((e=>{s(e)})).catch(console.error)}))}}export{t as B}
