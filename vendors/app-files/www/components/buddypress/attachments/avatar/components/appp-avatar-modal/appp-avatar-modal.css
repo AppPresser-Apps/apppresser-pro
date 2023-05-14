@@ -1,6 +1,0 @@
-/** Cropper.js styles, used for avatar cropping **/
-@import "~cropperjs/dist/cropper.min.css";
-
-appp-avatar-modal {
-    display: block;
-}

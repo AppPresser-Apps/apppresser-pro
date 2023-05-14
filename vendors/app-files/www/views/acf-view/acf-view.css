@@ -1,7 +1,0 @@
-:host {
-  display: block;
-}
-
-ion-popover::part(content) {
-  min-width: 70% !important;
-}
