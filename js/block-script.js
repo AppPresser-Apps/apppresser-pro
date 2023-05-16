@@ -77,7 +77,7 @@ if (!isListViewOpened) {
               document.getElementById( download_id ).addEventListener( 'click', ()=> {
                 console.log('dowload app', post.id);
 
-                wp.apiFetch( { path: '/apppresser/v1/app-files/' + post.id } ).then( ( rsp ) => {
+                wp.apiFetch( { path: '/apppresser/v1/app-assets/' + post.id } ).then( ( rsp ) => {
                 
                     var link = document.createElement("a");
                     link.download = post.slug;

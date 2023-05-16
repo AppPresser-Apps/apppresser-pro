@@ -52,6 +52,23 @@ function appp_app_endpoints() {
 			),
 		),
 	);
+
+	register_rest_route(
+		'apppresser/v1',
+		'/app-assets/(?P<id>\d+)',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'appp_get_app_assets',
+			'args'                => array(
+				'id' => array(
+					'validate_callback' => function( $param, $request, $key ) {
+						return true;
+					},
+				),
+			),
+		),
+	);
 }
 add_action( 'rest_api_init', 'appp_app_endpoints' );
 
@@ -907,6 +924,54 @@ function appp_get_app_files( $request ) {
 	$bytes = file_put_contents( $appp_dir . '/www/assets/app.json', $body );
 
 	appp_zip_folder( 'appp-' . $param, $appp_dir, $appp_dir );
+
+	return $upload_dir['baseurl'] . '/apppresser/' . $param . '/appp-' . $param . '.zip';
+}
+
+/**
+ * Api endpoint handler for compiling folder of app assets.
+ *
+ * @param WP_Rest_Request $request
+ * @return void
+ */
+function appp_get_app_assets( $request ) {
+
+	$param = $request->get_param( 'id' );
+
+	if ( ! $param ) {
+		return;
+	}
+
+	add_filter( 'https_ssl_verify', '__return_false' );
+
+	$url        = site_url();
+	$upload_dir = wp_get_upload_dir();
+
+	if ( ! is_dir( $upload_dir['basedir'] . '/apppresser/' . $param ) ) {
+		wp_mkdir_p( $upload_dir['basedir'] . '/apppresser/' . $param );
+		chmod( $upload_dir['basedir'] . '/apppresser/' . $param, 0755 );
+	}
+
+	$medias     = get_attached_media( '', $param );
+	$upload_dir = wp_get_upload_dir();
+	$appp_dir   = $upload_dir['basedir'] . '/apppresser/' . $param;
+
+	appp_delete_dir( $appp_dir );
+	appp_copy_folder( APPPRESSER_DIR . 'app-files/www/assets', $appp_dir . '/assets' );
+
+	foreach ( $medias as $media ) {
+		$meta = wp_get_attachment_metadata( $media->ID );
+
+		$fullsize_path = get_attached_file( $media->ID ); // Full path
+		$file = basename( get_attached_file( $media->ID ) ); // Just the file name
+
+		copy( $fullsize_path, $appp_dir . '/assets/' . $file );
+	}
+
+	// $response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
+	// $body     = wp_remote_retrieve_body( $response );
+
+	appp_zip_folder( 'appp-' . $param, $appp_dir . '/assets', $appp_dir );
 
 	return $upload_dir['baseurl'] . '/apppresser/' . $param . '/appp-' . $param . '.zip';
 }
