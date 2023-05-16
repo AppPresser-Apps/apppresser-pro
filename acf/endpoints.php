@@ -968,8 +968,10 @@ function appp_get_app_assets( $request ) {
 		copy( $fullsize_path, $appp_dir . '/assets/' . $file );
 	}
 
-	// $response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
-	// $body     = wp_remote_retrieve_body( $response );
+	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
+	$body     = wp_remote_retrieve_body( $response );
+
+	$bytes = file_put_contents( $appp_dir . '/assets/app.json', $body );
 
 	appp_zip_folder( 'appp-' . $param, $appp_dir . '/assets', $appp_dir );
 
