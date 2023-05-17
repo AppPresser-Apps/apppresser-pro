@@ -65,8 +65,7 @@
                 "action_sheet": "Action Sheet",
                 "modal": "Modal",
                 "custom": "Custom Function",
-                "auth_null": "Unauthenticate",
-                "biometric_auth": "Biometric Auth"
+                "auth_null": "Unauthenticate"
             },
             "default_value": "none",
             "return_format": "value",
@@ -1901,5 +1900,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1683220122
+    "modified": 1684349198
 }
