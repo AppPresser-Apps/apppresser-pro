@@ -73,7 +73,7 @@
             "name": "form_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "Name used for saving data response to app preferences.",
+            "instructions": "",
             "required": 1,
             "conditional_logic": [
                 [
@@ -356,80 +356,6 @@
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_6388c07ec3449"
-                }
-            ]
-        },
-        {
-            "key": "field_644ae4c99a3dd",
-            "label": "Parameters (copy)",
-            "name": "parameters_copy",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_63b448da9c919",
-                        "operator": "==",
-                        "value": "api"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "field_6388c07ec344a",
-            "button_label": "Add Parameter",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_644ae4c99a3de",
-                    "label": "Key",
-                    "name": "key",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_644ae4c99a3dd"
-                },
-                {
-                    "key": "field_644ae4c99a3df",
-                    "label": "Value",
-                    "name": "value",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_644ae4c99a3dd"
                 }
             ]
         },
@@ -734,6 +660,34 @@
                     "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": ""
+                },
+                {
+                    "key": "field_6473b526f7249",
+                    "label": "Preference Key",
+                    "name": "preference_key",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Name of preference key. Retrieve data from app preferences with this key.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63a08bc6738c0",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -901,5 +855,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682629835
+    "modified": 1685304878
 }
