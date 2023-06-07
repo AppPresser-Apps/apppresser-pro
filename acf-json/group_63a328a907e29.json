@@ -54,7 +54,7 @@
                 "class": "",
                 "id": ""
             },
-            "description": "Write javascript functions here, they will be available to the action block.",
+            "description": "Write javascript functions here, they will be available to the action block and after the view loads.",
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
@@ -126,5 +126,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1681060338
+    "modified": 1686151091
 }
