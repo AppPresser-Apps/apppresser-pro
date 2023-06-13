@@ -99,6 +99,26 @@
             "placeholder": "",
             "mode": "javascript",
             "theme": "blackboard"
+        },
+        {
+            "key": "field_6487b4941fc18",
+            "label": "on Did unLoad",
+            "name": "code_ondidunload",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "This code will run after the view is removed.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
         }
     ],
     "location": [
@@ -126,5 +146,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1686151091
+    "modified": 1686615222
 }

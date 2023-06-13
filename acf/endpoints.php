@@ -5,7 +5,7 @@
  */
 
 /**
- * Register acf feilds endpoint.
+ * Register acf field endpoints.
  */
 function appp_app_endpoints() {
 
@@ -132,7 +132,6 @@ function appp_get_endpoints_data() {
 		while ( have_rows( 'integration', 'options' ) ) :
 			the_row();
 
-			// Case: Paragraph layout.
 			if ( get_row_layout() === 'rest_api' ) :
 
 				$base_url = get_sub_field( 'base_url' );
@@ -258,8 +257,6 @@ function appp_get_app_data( $request ) {
 
 function appp_format_toolbar( $block, $build = false ) {
 
-	// error_log( print_r( $block['attrs']['data'], true ) );
-
 	$lbtns = isset( $block['attrs']['data']['left_buttons'] ) && ! empty( $block['attrs']['data']['left_buttons'] ) ? $block['attrs']['data']['left_buttons'] : array();
 	$rbtns = isset( $block['attrs']['data']['right_buttons'] ) && ! empty( $block['attrs']['data']['right_buttons'] ) ? $block['attrs']['data']['right_buttons'] : array();
 
@@ -267,8 +264,6 @@ function appp_format_toolbar( $block, $build = false ) {
 	$right_buttons = array();
 
 	foreach ( $lbtns as $key => $button ) {
-
-		// error_log( print_r( $button, true ) );
 
 		if ( 'button' === $button ) {
 			$left_buttons[] = array(
@@ -801,7 +796,7 @@ function appp_format_block_data( $block, $build = false ) {
 
 			$block['attrs']['data']['tabs'] = array();
 
-				/**
+			/**
 			 * Format params into array.
 			 */
 			foreach ( $stabs as $key ) {
@@ -852,7 +847,7 @@ function appp_format_block_data( $block, $build = false ) {
 
 			$block['attrs']['data']['accordions'] = array();
 
-				/**
+			/**
 			 * Format params into array.
 			 */
 			foreach ( $saccordian as $key ) {
@@ -938,27 +933,34 @@ function appp_get_app_assets( $request ) {
 
 	$param = $request->get_param( 'id' );
 
+	// If no param, bail.
 	if ( ! $param ) {
 		return;
 	}
 
+	// Disable SSL verification.
 	add_filter( 'https_ssl_verify', '__return_false' );
 
 	$url        = site_url();
 	$upload_dir = wp_get_upload_dir();
 
+	// Make folder in site uploads for the app files.
 	if ( ! is_dir( $upload_dir['basedir'] . '/apppresser/' . $param ) ) {
 		wp_mkdir_p( $upload_dir['basedir'] . '/apppresser/' . $param );
 		chmod( $upload_dir['basedir'] . '/apppresser/' . $param, 0755 );
 	}
 
+	// Get all media files attached to the app.
 	$medias     = get_attached_media( '', $param );
 	$upload_dir = wp_get_upload_dir();
 	$appp_dir   = $upload_dir['basedir'] . '/apppresser/' . $param;
 
+	// Delete the app folder if it exists.
 	appp_delete_dir( $appp_dir );
+	// Copy the app files to the app folder.
 	appp_copy_folder( APPPRESSER_DIR . 'app-files/www/assets', $appp_dir . '/assets' );
 
+	// Copy the media files to the app folder.
 	foreach ( $medias as $media ) {
 		$meta = wp_get_attachment_metadata( $media->ID );
 
@@ -968,13 +970,17 @@ function appp_get_app_assets( $request ) {
 		copy( $fullsize_path, $appp_dir . '/assets/' . $file );
 	}
 
+	// Get the app.json file from the API.
 	$response = wp_remote_get( $url . '/wp-json/apppresser/v1/app/' . $param . '?build=true' );
 	$body     = wp_remote_retrieve_body( $response );
 
+	// Save the app.json file to the app folder.
 	$bytes = file_put_contents( $appp_dir . '/assets/app.json', $body );
 
+	// Zip up the app folder.
 	appp_zip_folder( 'appp-' . $param, $appp_dir . '/assets', $appp_dir );
 
+	// Return the url to the zip file.
 	return $upload_dir['baseurl'] . '/apppresser/' . $param . '/appp-' . $param . '.zip';
 }
 
