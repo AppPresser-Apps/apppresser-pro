@@ -3,6 +3,26 @@
     "title": "Advanced",
     "fields": [
         {
+            "key": "field_648cc675d0fa8",
+            "label": "Javascript",
+            "name": "javascript",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "Write javascript functions here, they will be available after the app loads.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
+        },
+        {
             "key": "field_645e9adf29fbb",
             "label": "On Resume",
             "name": "on_resume",
@@ -41,5 +61,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1683921962
+    "modified": 1686947503
 }
