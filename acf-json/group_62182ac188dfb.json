@@ -137,7 +137,7 @@
             "name": "",
             "aria-label": "",
             "type": "accordion",
-            "instructions": "Enter key value variable. State variables can be accessed from code blocks with appp.getState(key)",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -155,7 +155,7 @@
             "name": "variables",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Enter key value variable. State variables can be accessed from code blocks with appp.getState(key)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -309,5 +309,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1687197471
+    "modified": 1687200108
 }
