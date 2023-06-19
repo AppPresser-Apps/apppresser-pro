@@ -34,7 +34,27 @@
                 "class": "",
                 "id": ""
             },
-            "description": "Code will run when element is rendered.",
+            "description": "Code will run before element is rendered.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
+        },
+        {
+            "key": "field_6490a045469c8",
+            "label": "On Did Load",
+            "name": "code_ondidload",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "Code will run after element has rendered.",
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
@@ -101,5 +121,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1687199731
+    "modified": 1687199855
 }
