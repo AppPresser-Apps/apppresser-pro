@@ -106,54 +106,6 @@
             "new_lines": ""
         },
         {
-            "key": "field_6453d2db1e202",
-            "label": "Biometric Auth",
-            "name": "biometric_auth",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "This will trigger biometric authentication before app loads. Note: this will only display if the user has bio authentication turned on in the device settings",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_6453d3371e203",
-            "label": "Biometric Auth View",
-            "name": "biometric_auth_view",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Enter the route of the view that should display instead of the root \"\/\" view.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6453d2db1e202",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_62cd8407849dc",
             "label": "Design",
             "name": "",
@@ -289,6 +241,72 @@
                     "parent_repeater": "field_63dbe514f01a0"
                 }
             ]
+        },
+        {
+            "key": "field_6490947b01a5d",
+            "label": "Features",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6490949101a5e",
+            "label": "Biometric Authentication",
+            "name": "biometric_auth",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_649094b601a5f",
+            "label": "Biometric Auth View",
+            "name": "biometric_auth_view",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Enter the route to the view that will display when Bio metric auth is activated.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6490949101a5e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -309,5 +327,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1683921812
+    "modified": 1687196940
 }
