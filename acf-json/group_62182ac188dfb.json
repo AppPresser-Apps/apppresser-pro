@@ -106,24 +106,6 @@
             "new_lines": ""
         },
         {
-            "key": "field_62cd8407849dc",
-            "label": "Design",
-            "name": "",
-            "aria-label": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 0,
-            "multi_expand": 0,
-            "endpoint": 0
-        },
-        {
             "key": "field_62cd844e849dd",
             "label": "Theme",
             "name": "theme_select",
@@ -155,7 +137,7 @@
             "name": "",
             "aria-label": "",
             "type": "accordion",
-            "instructions": "",
+            "instructions": "Enter key value variable. State variables can be accessed from code blocks with appp.getState(key)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -327,5 +309,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1687196940
+    "modified": 1687197471
 }
