@@ -65,50 +65,8 @@
         [
             {
                 "param": "block",
-                "operator": "!=",
-                "value": "acf\/view"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/modal"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/popover"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/action-sheet"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/action"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/accordion"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "!=",
-                "value": "acf\/accordion"
+                "operator": "==",
+                "value": "acf\/card"
             }
         ]
     ],
@@ -121,5 +79,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1687278964
+    "modified": 1687279099
 }
