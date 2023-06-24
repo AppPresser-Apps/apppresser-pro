@@ -719,7 +719,7 @@ function appp_init_block_types() {
 				'category'        => 'appp_layout',
 				'mode'            => 'preview',
 				'align'           => 'center',
-				'icon'            => 'layout',
+				'icon'            => 'visibility',
 				'usesContext'     => array( 'acf/fields' ),
 				'post_types'      => array( 'app' ),
 				// 'parent'          => array( 'acf/view', 'acf' ),
