@@ -153,7 +153,7 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view"];
       break;
     case "acf/form":
-      settings.parent = ["acf/view", 'acf/modal'];
+      settings.parent = ["acf/view", 'acf/modal', 'acf/conditional'];
       break;
     case "core/spacer":
       settings.category = "appp_layout";

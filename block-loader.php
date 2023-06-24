@@ -713,6 +713,30 @@ function appp_init_block_types() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'conditional',
+				'title'           => 'Conditional',
+				'description'     => 'Conditional block wraps an element to provide display options based on a condition.',
+				'category'        => 'appp_layout',
+				'mode'            => 'preview',
+				'align'           => 'center',
+				'icon'            => 'layout',
+				'usesContext'     => array( 'acf/fields' ),
+				'post_types'      => array( 'app' ),
+				// 'parent'          => array( 'acf/view', 'acf' ),
+				'supports'        => array(
+					'mode'          => false,
+					'align'         => false,
+					'align_text'    => false,
+					'align_content' => false,
+					'full_height'   => false,
+					'jsx'           => true,
+				),
+				'render_template' => APPPRESSER_DIR . 'blocks/layout/conditional/block.php',
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'columns',
 				'title'           => 'Columns',
 				'description'     => 'Wrapper block to allow inner blocks to be formatted into columns.',
