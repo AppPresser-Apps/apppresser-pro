@@ -82,6 +82,7 @@
             },
             "choices": {
                 "exists": "Exists",
+                "not_exists": "Not Exists",
                 "equals": "Equals",
                 "not_equals": "Not Equals"
             },
@@ -140,5 +141,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1687646384
+    "modified": 1687646889
 }
