@@ -3,6 +3,26 @@
     "title": "Conditional",
     "fields": [
         {
+            "key": "field_6499b48170f19",
+            "label": "ID",
+            "name": "id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Add an ID to run event functions on this conditional.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_64976e293e5d4",
             "label": "Type",
             "name": "type",
@@ -141,5 +161,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1687646889
+    "modified": 1687794890
 }
