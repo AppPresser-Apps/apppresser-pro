@@ -103,7 +103,7 @@ if (!isListViewOpened) {
                     Accept: 'application/vnd.github+json',
                     'Content-Type': 'application/json',
                     'X-GitHub-Api-Version': '2022-11-28',
-                    Authorization: 'Bearer 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'
+                    Authorization: 'Bearer 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'
                   },
                   body: '{"ref":"' + meta.build_type +'","inputs":{"message":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'"}}'
                 };
