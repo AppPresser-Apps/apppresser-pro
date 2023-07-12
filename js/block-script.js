@@ -81,8 +81,7 @@ if (!isListViewOpened) {
               }
 
               document.getElementById( download_id ).addEventListener( 'click', ()=> {
-                console.log('dowload app', post.id);
-
+           
                 wp.apiFetch( { path: '/apppresser/v1/app-assets/' + post.id } ).then( ( rsp ) => {
                 
                     var link = document.createElement("a");
@@ -95,7 +94,6 @@ if (!isListViewOpened) {
               })
 
               document.getElementById( build_id ).addEventListener( 'click', ()=> {
-                console.log('build app', post.id);
 
                 const options = {
                   method: 'POST',
@@ -107,11 +105,8 @@ if (!isListViewOpened) {
                   },
                   body: '{"ref":"' + meta.build_type +'","inputs":{"message":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'"}}'
                 };
-
-                console.log('build app', options);
-                
+     
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
-                  .then(response => response.json())
                   .then(response => console.log(response))
                   .catch(err => console.error(err));
 
