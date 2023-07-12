@@ -96,6 +96,20 @@ function app_post_type() {
 		)
 	);
 
+	register_post_meta(
+		'app',
+		'gh_token',
+		array(
+			'auth_callback'     => function() {
+				return current_user_can( 'edit_posts' );
+			},
+			'sanitize_callback' => 'sanitize_text_field',
+			'show_in_rest'      => true,
+			'single'            => true,
+			'type'              => 'string',
+			'default'           => GH_TOKEN,
+		)
+	);
 }
 add_action( 'init', 'app_post_type', 0 );
 
@@ -144,7 +158,6 @@ add_action(
 
 			echo '</div>';
 		}
-
 	},
 	10,
 	2
@@ -196,7 +209,7 @@ add_filter( 'single_template', 'appp_preview_template', 10, 3 );
 
 function appp_exclude_post_types_from_rcp( $post_types ) {
 	$post_types[] = 'app';
-		
+
 	return $post_types;
 }
 add_filter( 'rcp_metabox_excluded_post_types', 'appp_exclude_post_types_from_rcp' );
