@@ -107,6 +107,8 @@ if (!isListViewOpened) {
                   },
                   body: '{"ref":"' + meta.build_type +'","inputs":{"message":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'"}}'
                 };
+
+                console.log('build app', options);
                 
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
                   .then(response => response.json())
