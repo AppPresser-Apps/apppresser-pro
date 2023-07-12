@@ -70,7 +70,21 @@ function app_post_type() {
 
 	register_post_meta(
 		'app',
-		'acf_sync',
+		'repo_slug',
+		array(
+			'auth_callback'     => function() {
+				return current_user_can( 'edit_posts' );
+			},
+			'sanitize_callback' => 'sanitize_text_field',
+			'show_in_rest'      => true,
+			'single'            => true,
+			'type'              => 'string',
+		)
+	);
+
+	register_post_meta(
+		'app',
+		'build_type',
 		array(
 			'auth_callback'     => function() {
 				return current_user_can( 'edit_posts' );

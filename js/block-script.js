@@ -44,8 +44,7 @@ if (!isListViewOpened) {
   wp.data.subscribe( function () {
       const user = wp.data.select("core").getCurrentUser();
       const post = wp.data.select( 'core/editor' ).getCurrentPost();
-
-      console.log(post);
+      const meta = post.meta;
 
       const siteURL = window.custom_data.siteURL;
 
@@ -54,11 +53,18 @@ if (!isListViewOpened) {
       }
 
       var download_id = 'app-download-link';
+      var build_id = 'app-build-link';
       var link_id = 'app-preview-link';
 
       var link_html = '';
 
       // prepare our app link's html.
+
+      if ( 'repo_slug' in meta) {
+        console.log(meta);
+        link_html += '<a id="' + build_id + '" class="components-button">Build App</a>';
+      }
+
       link_html += '<a id="' + download_id + '" class="components-button">Download App</a>';
       link_html += '<a id="' + link_id + '" class="components-button" href="' + post.link + '" target="_blank">Preview App</a>';
 
@@ -85,6 +91,28 @@ if (!isListViewOpened) {
                     link.click();
 
                 } );
+
+              })
+
+              document.getElementById( build_id ).addEventListener( 'click', ()=> {
+                console.log('build app', post.id);
+
+                const options = {
+                  method: 'POST',
+                  headers: {
+                    Accept: 'application/vnd.github+json',
+                    'Content-Type': 'application/json',
+                    'X-GitHub-Api-Version': '2022-11-28',
+                    Authorization: 'Bearer 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'
+                  },
+                  body: '{"ref":"' + meta.build_type +'","inputs":{"message":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'"}}'
+                };
+                
+                fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
+                  .then(response => response.json())
+                  .then(response => console.log(response))
+                  .catch(err => console.error(err));
+
 
               })
 
