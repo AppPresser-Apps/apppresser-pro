@@ -96,6 +96,8 @@ function app_post_type() {
 		)
 	);
 
+	$token = GH_TOKEN;
+
 	register_post_meta(
 		'app',
 		'gh_token',
@@ -107,7 +109,7 @@ function app_post_type() {
 			'show_in_rest'      => true,
 			'single'            => true,
 			'type'              => 'string',
-			'default'           => GH_TOKEN,
+			'default'           => $token,
 		)
 	);
 }
