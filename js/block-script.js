@@ -94,6 +94,10 @@ if (!isListViewOpened) {
 
               document.getElementById( build_id ).addEventListener( 'click', ()=> {
 
+                if (! confirm('Are you sure you want to stsrt a build?')) {
+                  return;
+                } 
+
                 const buildDate = wp.data.select('core/editor').getEditedPostAttribute('meta').build_date;
                 const buildDateTimestamp = new Date(buildDate).getTime();
                 const currentTimestamp = Date.now();
