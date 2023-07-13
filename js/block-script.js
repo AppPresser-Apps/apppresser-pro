@@ -94,7 +94,7 @@ if (!isListViewOpened) {
 
               document.getElementById( build_id ).addEventListener( 'click', ()=> {
 
-                if (! confirm('Are you sure you want to stsrt a build?')) {
+                if (! confirm('Are you sure you want to start a build?')) {
                   return;
                 } 
 
