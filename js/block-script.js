@@ -61,7 +61,6 @@ if (!isListViewOpened) {
       // prepare our app link's html.
 
       if ( 'repo_slug' in meta) {
-        console.log(meta);
         link_html += '<a id="' + build_id + '" class="components-button">Build App</a>';
       }
 
@@ -95,6 +94,17 @@ if (!isListViewOpened) {
 
               document.getElementById( build_id ).addEventListener( 'click', ()=> {
 
+                const buildDate = wp.data.select('core/editor').getEditedPostAttribute('meta').build_date;
+                const buildDateTimestamp = new Date(buildDate).getTime();
+                const currentTimestamp = Date.now();
+                const differenceInMinutes = Math.floor((currentTimestamp - buildDateTimestamp) / (1000 * 60));
+                console.log(differenceInMinutes);
+
+                if (differenceInMinutes < 5) {
+                  alert('You must wait 5 minutes between builds.');
+                  return;
+                }
+
                 const options = {
                   method: 'POST',
                   headers: {
@@ -109,13 +119,13 @@ if (!isListViewOpened) {
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
                   .then(response => {
                     console.log(response)
+                    wp.data.dispatch('core/editor').editPost({ meta: { build_date: Date.now() } });
                     alert('Build started.')
                   })
                   .catch(err => {
                     console.error(err)
                     alert('Build failed.')
                   });
-
 
               })
 

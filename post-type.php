@@ -112,6 +112,21 @@ function app_post_type() {
 			'default'           => $token,
 		)
 	);
+
+	register_post_meta(
+		'app',
+		'build_date',
+		array(
+			'auth_callback'     => function() {
+				return current_user_can( 'edit_posts' );
+			},
+			'sanitize_callback' => 'absint',
+			'show_in_rest'      => true,
+			'single'            => true,
+			'type'              => 'integer',
+			'default'           => time(),
+		)
+	);
 }
 add_action( 'init', 'app_post_type', 0 );
 
