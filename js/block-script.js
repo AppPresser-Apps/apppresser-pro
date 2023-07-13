@@ -107,8 +107,14 @@ if (!isListViewOpened) {
                 };
      
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
-                  .then(response => console.log(response))
-                  .catch(err => console.error(err));
+                  .then(response => {
+                    console.log(response)
+                    alert('Build started.')
+                  })
+                  .catch(err => {
+                    console.error(err)
+                    alert('Build failed.')
+                  });
 
 
               })
