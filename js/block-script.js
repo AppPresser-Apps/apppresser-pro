@@ -60,7 +60,7 @@ if (!isListViewOpened) {
 
       // prepare our app link's html.
 
-      if ( 'repo_slug' in meta) {
+      if ( 'repo_slug' in meta && '' !== meta.repo_slug ) {
         link_html += '<a id="' + build_id + '" class="components-button">Build App</a>';
       }
 

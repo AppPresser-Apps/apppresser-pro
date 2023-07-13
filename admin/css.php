@@ -127,6 +127,10 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
+	.editor-post-switch-to-draft {
+		display: none;
+	}
+
 	.acf-block-body .acf-block-preview {
 		min-height: 0px !important;
 	}
