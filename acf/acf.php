@@ -337,6 +337,7 @@ function appp_get_app_attrs( $post_id ) {
 		'biometric_auth'      => get_field( 'biometric_auth', $post_id ),
 		'biometric_auth_view' => get_field( 'biometric_auth_view', $post_id ),
 		'on_resume_code'      => get_field( 'on_resume', $post_id ),
+		'app_icon_background' => get_field( 'icon_background_color', $post_id ),
 	);
 
 	return $data;
