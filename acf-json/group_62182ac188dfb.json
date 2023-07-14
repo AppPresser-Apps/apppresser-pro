@@ -1446,6 +1446,24 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_64b1b318a1079",
+            "label": "Icon \/ Splashscreen Background Color",
+            "name": "icon_background_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
             "key": "field_63ee60575f2bf",
             "label": "Description",
             "name": "app_description",
@@ -1669,5 +1687,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1689282432
+    "modified": 1689367456
 }
