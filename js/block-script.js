@@ -117,7 +117,7 @@ if (!isListViewOpened) {
                     'X-GitHub-Api-Version': '2022-11-28',
                     Authorization: 'Bearer ' + meta.gh_token
                   },
-                  body: '{"ref":"' + meta.build_type +'","inputs":{"message":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'"}}'
+                  body: '{"ref":"' + meta.build_type +'","inputs":{"app_url":"https://my.apppresser.com/apppresser/wp-json/apppresser/v1/app-assets/' + post.id +'", "resources": "true"}}'
                 };
      
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
