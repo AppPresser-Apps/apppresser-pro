@@ -45,7 +45,7 @@ export class AppRoot implements ComponentInterface {
               <ion-icon name="logo-apple" color={this.selected('ios')}></ion-icon>
             </ion-button>
             <ion-button onClick={()=> this.switchMode('md')}>
-              <ion-icon name="logo-android" color={this.selected('android')}></ion-icon>
+              <ion-icon name="logo-android" color={this.selected('md')}></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
