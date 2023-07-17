@@ -109,8 +109,6 @@ if (!isListViewOpened) {
                   return;
                 }
 
-                console.log( site_data['siteUrl'] );
-
                 const options = {
                   method: 'POST',
                   headers: {
@@ -121,6 +119,8 @@ if (!isListViewOpened) {
                   },
                   body: '{"ref":"' + meta.build_type +'","inputs":{"app_url":"' + site_data['siteUrl'] + '/wp-json/apppresser/v1/app-assets/' + post.id +'", "resources": "true"}}'
                 };
+
+                console.log(options);
      
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
                   .then(response => {
