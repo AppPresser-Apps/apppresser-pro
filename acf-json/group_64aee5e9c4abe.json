@@ -27,7 +27,7 @@
             "label": "Build Type",
             "name": "build_type",
             "aria-label": "",
-            "type": "select",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,17 +36,11 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "development": "Development",
-                "release": "Release"
-            },
-            "default_value": "development",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -55,6 +49,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "app"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "super_admin"
             }
         ]
     ],
@@ -67,5 +66,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1689265812
+    "modified": 1689624522
 }
