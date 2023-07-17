@@ -127,6 +127,15 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
+	.components-toolbar-group .block-editor-block-settings-menu {
+		display: none;
+	}
+
+	.components-panel__header ul :nth-child(2) {
+		display: none;
+	}
+
+
 	.editor-post-switch-to-draft {
 		display: none;
 	}
