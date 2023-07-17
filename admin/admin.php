@@ -45,7 +45,6 @@ function appp_wp_dashboard_setup() {
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_site_health', 'dashboard', 'normal' );
-
 }
 add_action( 'wp_dashboard_setup', 'appp_wp_dashboard_setup' );
 
@@ -66,7 +65,6 @@ function appp_remove_menu_items() {
 		remove_submenu_page( 'options-general.php', 'akismet-key-config' );
 
 		remove_submenu_page( 'index.php', 'update-core.php' );
-
 }
 add_action( 'admin_menu', 'appp_remove_menu_items', 999 );
 
@@ -136,7 +134,6 @@ if ( ! function_exists( 'appp_remove_personal_options' ) ) {
 		if ( 'profile' === $screen->id ) {
 			ob_start( 'appp_remove_personal_options' );
 		}
-
 	}
 	add_action( 'admin_head', 'appp_profile_subject_start' );
 
@@ -152,7 +149,6 @@ if ( ! function_exists( 'appp_remove_personal_options' ) ) {
 		if ( 'profile' === $screen->id ) {
 			ob_end_flush();
 		}
-
 	}
 	add_action( 'admin_footer', 'appp_profile_subject_end' );
 }
@@ -226,7 +222,7 @@ add_action(
 
 function filter_media_comment_status( $open, $post_id ) {
 	$post = get_post( $post_id );
-	if ( $post->post_type == 'attachment' ) {
+	if ( $post->post_type === 'attachment' ) {
 		return false;
 	}
 	return $open;

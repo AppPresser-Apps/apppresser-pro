@@ -126,6 +126,14 @@ function appp_acf_admin_enqueue_scripts() {
 	wp_enqueue_script( 'beautify-html', 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-html.min.js', array(), '1.0.0', false );
 
 	wp_enqueue_script( 'acf-admin-js', APPPRESSER_URL . '/js/acf.js', array( 'lodash', 'jquery' ), '1.1.0', true );
+
+	wp_localize_script(
+		'acf-admin-js',
+		'site_data',
+		array(
+			'siteUrl' => get_site_url(),
+		)
+	);
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts', 99 );
 

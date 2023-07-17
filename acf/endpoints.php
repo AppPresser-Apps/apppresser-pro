@@ -73,6 +73,15 @@ function appp_app_endpoints() {
 add_action( 'rest_api_init', 'appp_app_endpoints' );
 
 /**
+ * Run github action to build app.
+ *
+ * @param WP_Rest_Request $request
+ * @return boolean
+ */
+function appp_build( $request ) {
+}
+
+/**
  * Returns app data endpoints.
  *
  * @param WP_Rest_Request $request
@@ -376,7 +385,6 @@ function appp_array_walk( &$block, $build ) {
  * @return array
  */
 function appp_format_block_data( $block, $build = false ) {
-
 
 	if ( ! isset( $block['blockName'] ) ) {
 		return $block;
@@ -704,9 +712,8 @@ function appp_format_block_data( $block, $build = false ) {
 			break;
 
 		case 'acf/form':
+			// error_log(print_r($block['attrs']['data'], true));
 
-			//error_log(print_r($block['attrs']['data'], true));
-	
 			$sinputs  = range( 0, ( $block['attrs']['data']['hidden_inputs'] - 1 ) );
 			$sheaders = range( 0, ( $block['attrs']['data']['headers'] - 1 ) );
 			$sparams  = range( 0, ( $block['attrs']['data']['parameters'] - 1 ) );
@@ -964,8 +971,8 @@ function appp_get_app_assets( $request ) {
 	foreach ( $medias as $media ) {
 		$meta = wp_get_attachment_metadata( $media->ID );
 
-		$fullsize_path = get_attached_file( $media->ID ); // Full path
-		$file = basename( get_attached_file( $media->ID ) ); // Just the file name
+		$fullsize_path = get_attached_file( $media->ID ); // Full path.
+		$file          = basename( get_attached_file( $media->ID ) ); // Just the file name.
 
 		copy( $fullsize_path, $appp_dir . '/assets/' . $file );
 	}
