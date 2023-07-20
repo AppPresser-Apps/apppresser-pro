@@ -54,9 +54,6 @@ add_action( 'wp_dashboard_setup', 'appp_wp_dashboard_setup' );
  * @return void
  */
 function appp_remove_menu_items() {
-	global $menu;
-
-	error_log( print_r( $menu, true ) );
 
 	remove_menu_page( 'index.php' );
 
