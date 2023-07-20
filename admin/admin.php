@@ -56,6 +56,10 @@ add_action( 'wp_dashboard_setup', 'appp_wp_dashboard_setup' );
 function appp_remove_menu_items() {
 	global $menu;
 
+	error_log( print_r( $menu, true ) );
+
+	remove_menu_page( 'index.php' );
+
 	remove_menu_page( 'edit.php' );
 	remove_menu_page( 'edit.php?post_type=page' );
 	remove_menu_page( 'edit-comments.php' );
@@ -74,6 +78,16 @@ function appp_remove_menu_items() {
 	remove_submenu_page( 'index.php', 'update-core.php' );
 }
 add_action( 'admin_menu', 'appp_remove_menu_items', 999 );
+
+/**
+ * Redirect from dashboard to app post type.
+ *
+ * @return void
+ */
+function appp_dashboard_redirect() {
+	wp_redirect( admin_url( 'edit.php?post_type=app' ) );
+}
+add_action( 'load-index.php', 'appp_dashboard_redirect' );
 
 /**
  * Remove the ability for admininistrator to change a user to an administrator.
