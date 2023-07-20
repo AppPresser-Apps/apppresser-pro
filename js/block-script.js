@@ -19,16 +19,15 @@ if (!isfixedToolbar) {
 
 const isEditorSidebarOpened = wp.data.select("core/edit-post").isEditorSidebarOpened();
 if (!isEditorSidebarOpened) {
-  console.log("open sidebar", isEditorSidebarOpened);
   wp.data.dispatch("core/edit-post").openGeneralSidebar("edit-post/document");
   wp.data.dispatch("core/edit-post").openGeneralSidebar("edit-post/block");
 }
 
 const isListViewOpened = wp.data.select("core/edit-post").isListViewOpened();
 if (!isListViewOpened) {
-  console.log("open list view", wp.data.dispatch("core/edit-post"));
   wp.data.dispatch("core/edit-post").setIsListViewOpened(true);
 }
+
 
  /**
   * Add custom links to right toolbar to preview / build app.
@@ -120,11 +119,8 @@ if (!isListViewOpened) {
                   body: '{"ref":"' + meta.build_type +'","inputs":{"app_url":"' + site_data['siteUrl'] + '/wp-json/apppresser/v1/app-assets/' + post.id +'", "resources": "true"}}'
                 };
 
-                console.log(options);
-     
                 fetch('https://api.github.com/repos/AppPresser-Apps/' + meta.repo_slug + '/actions/workflows/copy.yml/dispatches', options)
                   .then(response => {
-                    console.log(response)
                     wp.data.dispatch('core/editor').editPost({ meta: { build_date: Date.now() } });
                     alert('Build started.')
                   })

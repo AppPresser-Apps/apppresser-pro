@@ -69,19 +69,12 @@ add_action(
  */
 function appp_gutenberg_register_files() {
 
-	wp_register_script(
+	wp_enqueue_script(
 		'appp-block-script',
 		APPPRESSER_URL . '/js/block-script.js',
-		array( 'wp-blocks', 'wp-edit-post' ),
+		array( 'wp-element' ),
 		'1.1.9',
 		true,
-	);
-
-	register_block_type(
-		'appp/app-block-files',
-		array(
-			'editor_script' => 'appp-block-script',
-		)
 	);
 
 	wp_localize_script(
@@ -93,7 +86,7 @@ function appp_gutenberg_register_files() {
 	);
 
 }
-add_action( 'init', 'appp_gutenberg_register_files' );
+add_action( 'enqueue_block_editor_assets', 'appp_gutenberg_register_files' );
 
 /**
  * Loads up admin scripts

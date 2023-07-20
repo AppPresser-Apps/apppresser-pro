@@ -179,6 +179,69 @@ function setListViewTitle(blocks) {
 
 }
 
+/**
+ * Flatten js object to dot notaion path.
+ * @param {*} o obj. 
+ * @returns 
+ */
+function flattenObject(o, prefix = '', result = {}, keepNull = true) {
+    if (lodash.isString(o) || lodash.isNumber(o) || lodash.isBoolean(o) || (keepNull && lodash.isNull(o))) {
+        result[prefix] = o;
+        return result;
+    }
+    
+    if (lodash.isArray(o) || lodash.isPlainObject(o)) {
+        for (let i in o) {
+        let pref = prefix;
+        if (lodash.isArray(o)) {
+            pref = pref + `[]`;
+            //pref = pref + `[${i}]`;
+        } else {
+            if (lodash.isEmpty(prefix)) {
+            pref = i;
+            } else {
+            pref = prefix + '.' + i;
+            }
+        }
+        flattenObject(o[i], pref, result, keepNull);
+        }
+        return result;
+    }
+    return result;
+}
+
+/**
+ * Get data_source url and create data tokens html from object.
+ * @param {*} field 
+ */
+async function displayTokens(data) {
+
+    const field = jQuery('[data-name="data_source"]');
+
+    let html = '<div id="data-tokens-wrap" style="padding: 16px;">';
+
+    if (data) {
+
+        html += '<h2 class="block-editor-block-card__title" style="margin-top: 10px;">Data Tokens</h2>';
+
+        const obj = lodash.isArray(data) ? data.shift() : data;
+ 
+        const result = flattenObject(obj);
+
+        Object.keys(result).map(item => {
+            
+            html += `<span style="background:#efefef; padding: 4px 8px; border-radius: 4px; margin: 5px; display: inline-block;">{{${item}}}</span>`;
+        });
+
+        html += '</div>';
+
+        field.append(html);
+
+    }
+
+}
+
+
 acf.addAction('ready_field/name=light_mode', function(field){
 
     const fields = acf.findFields({parent:field.$el});
@@ -194,7 +257,135 @@ acf.addAction('ready_field/name=light_mode', function(field){
    
 });
 
+/**
+ * Loads up a test button for API data for each base_url endpoint field.
+ */
+acf.addAction('ready_field/name=data_response', function(field){
 
+    var d = document.createElement("div");
+    d.addEventListener('click', async (e)=> { 
+
+    
+        const url_value = jQuery("[data-name=rest_url]").find('input').val();
+        let url = new URL(url_value);
+        const parameters = jQuery("[data-name=parameters]").find('.acf-table').find('.acf-row:not(.acf-clone)').find('.acf-fields');
+
+        [...parameters].forEach( item => {
+
+            const key = jQuery(item).find('[data-name=key]').find('input').val();
+            const value = jQuery(item).find('[data-name=value]').find('input').val();
+
+            url.searchParams.append(key, value);
+
+        });
+
+        
+        let data = {};
+
+        try {
+
+            const response = await fetch( url, {
+                headers: {
+                    //'content-type': 'application/json'
+                  },
+                method: 'GET'
+            });
+
+            data = await response.json();
+
+        } catch (error) {
+            data = {error: error};
+        }
+ 
+        document.querySelector('.CodeMirror').CodeMirror.setValue(js_beautify(JSON.stringify(data), {brace_style: 'expand'}))
+
+
+    }, false);
+
+    d.innerHTML = "Fetch";
+    d.className = 'button button-primary';
+    d.style.height = '20px';
+    d.style.lineHeight = '27px';
+    d.style.position = 'absolute';
+    d.style.right = '0px';
+    d.style.top = '-9px';
+
+    jQuery("[data-name=data_response]").find('.acf-label').append(d);
+    
+});
+
+
+acf.addAction('append_field/name=data_source', async (field)=> {
+
+
+    const post_id = field.val();
+    const selected = wp.data.select( 'core/block-editor' ).getSelectedBlock();
+
+    const data = await appp_get_endpoints_select(post_id);
+
+    let json;
+  
+    if ( 'none' !== post_id ) {
+
+        if( 'external' === data['type'] ) {
+            const rsp = await fetch(data['url']);
+            json = await rsp.json();
+        }
+
+        if( 'local' === data['type'] ) {
+            json = data['items'];
+        }
+        displayTokens( json );
+    }
+
+    jQuery('[data-name=data_source]').find('select').on( 'change', async (e) => {
+
+        jQuery('#data-tokens-wrap').remove();
+        if ( 'none' !== e.target.value ) {
+
+            const data = await appp_get_endpoints_select(e.target.value);
+
+            if( 'external' === data['type'] ) {
+                const rsp = await fetch(data['url']);
+                json = await rsp.json();
+            }
+       
+            if( 'local' === data['type'] ) {
+                json = data['items'];
+            }
+
+
+            displayTokens( json );
+        }
+        
+    });
+});
+
+async function appp_set_endpoints_select(data, selected) {
+
+    const $el = jQuery('[data-name=rest_api_endpoints]').find('select');
+  
+    $el.empty(); // remove old options
+
+    $el.append(jQuery('<option></option>').attr('value', 'none').text('None'));
+
+    jQuery.each(data, function(key, value) {
+        const $option = jQuery('<option></option>');
+
+        $option.attr('value', value.endpoint_path).text(value.endpoint_name);
+        if ( selected == value.endpoint_path ) {
+            $option.attr('selected', 'selected')
+        }
+
+        $el.append($option);
+    });
+
+}
+
+async function appp_get_endpoints_select(post_id) {
+    const data = await wp.apiFetch( { path: `/apppresser/v1/fields/datatable?post_id=${post_id}` });
+    return data;
+}
 
 function appp_api_colors(name, hex) {
 
@@ -269,6 +460,97 @@ async function appp_load_repeater() {
 
 
     }
+
+
+}
+
+function appp_update_repeater(id, data, _tokens) {
+
+    const repeater = document.querySelector('#repeater-' + id);
+    const items = document.querySelector('.items-repeat-' + id);
+
+    items.innerHTML = '';
+
+	setTimeout(() => {
+
+        if ( !Array.isArray(data) ) {
+            data = [data];
+        }
+
+        data.forEach(function(post){
+
+            const clonedTarget = repeater.cloneNode(true);
+
+            const tokens = clonedTarget.innerHTML.match(/\{.*?\}/g);
+
+            tokens.forEach(function(token){
+
+                let value = lodash.get(post, token.slice(1,-1));
+
+                if (typeof value === 'string' || value instanceof String) {
+                   
+                } else {
+                    //value = value ? `{${token}=true}` : `{${token}=false}`;
+                }
+
+                clonedTarget.innerHTML = clonedTarget.innerHTML.replace(token, value);
+                
+            });
+
+            const preview = clonedTarget.querySelector('.block-editor-inner-blocks');
+            const children = preview.querySelectorAll('.acf-block-preview');
+
+            children.forEach(node => {
+                node.classList.remove('acf-block-preview');
+
+                const src = node.querySelectorAll('[data-src]');
+                if (src.length) {
+
+                    [...src].forEach( el => {
+                        const data_src = el.getAttribute('data-src');
+                        el.setAttribute('src', data_src.trim() );
+                    });
+           
+                }
+
+                const href = node.querySelectorAll('[data-href]');
+                if (href.length) {
+
+                    [...href].forEach( el => {
+                        const data_href = el.getAttribute('data-href');
+                        el.setAttribute('src', data_href.trim() );
+                    });
+           
+                }
+
+                const image = node.querySelectorAll('[data-bg-image]');
+                if (image.length) {
+
+                    [...image].forEach( async el => {
+                        const data_bg_image = el.getAttribute('data-bg-image');
+                        //el.setAttribute('src', data_bg_image.trim() );
+
+                        const url = isValidHttpUrl(data_bg_image);
+
+                        if ( url ) {
+                            el.style.backgroundImage = `url(${data_bg_image.trim()})`;
+                        }
+                    });
+           
+                }
+
+                items.appendChild(node);
+            });
+
+        });
+
+        jQuery.event.trigger({
+			type: "stopSpinner",
+			message: 'ffff',
+			time: new Date()
+		});
+
+	}, 100);
 
 
 }

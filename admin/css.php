@@ -131,7 +131,7 @@ function appp_custom_editor_css() {
 		display: none;
 	}
 
-	.components-panel__header ul :nth-child(2) {
+	.edit-post-editor__document-overview-panel .components-panel__header ul :nth-child(2) {
 		display: none;
 	}
 

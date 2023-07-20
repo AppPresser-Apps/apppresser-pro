@@ -46,8 +46,6 @@ $color_button = get_field( 'color_button' );
 setTimeout(() => {
 	const view = document.querySelector("#<?php echo esc_attr( $block_id ); ?>");
 
-	console.log(view);
-
 	var btns = view.querySelectorAll("ion-button"),
 		i;
 

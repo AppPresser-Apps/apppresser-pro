@@ -230,7 +230,6 @@ $comma = $background_img && 'none' !== $background_gradient['type'] ? ', ' : ' '
 	function containerSetHeight() {
 		const height = jQuery('ion-content').height();
 		const percent = ( parseInt('<?php echo $height_amount; ?>') / 100) * height;
-		console.log(percent);
 		jQuery('#<?php echo esc_attr( $id ); ?>').height( percent );
 		jQuery('#<?php echo esc_attr( $id ); ?> .block-editor-block-list__layout').height( percent );
 	}
