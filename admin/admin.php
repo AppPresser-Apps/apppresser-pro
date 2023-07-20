@@ -56,8 +56,6 @@ add_action( 'wp_dashboard_setup', 'appp_wp_dashboard_setup' );
 function appp_remove_menu_items() {
 	global $menu;
 
-	error_log( print_r( $menu, true ) );
-
 	remove_menu_page( 'edit.php' );
 	remove_menu_page( 'edit.php?post_type=page' );
 	remove_menu_page( 'edit-comments.php' );
