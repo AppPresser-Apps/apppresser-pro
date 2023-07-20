@@ -59,12 +59,14 @@ function appp_remove_menu_items() {
 	remove_menu_page( 'edit.php?post_type=page' );
 	remove_menu_page( 'edit-comments.php' );
 
-	remove_menu_page( 'themes.php' );
-		remove_submenu_page( 'options-general.php', 'options-media.php' );
-		remove_submenu_page( 'options-general.php', 'options-discussion.php' );
-		remove_submenu_page( 'options-general.php', 'akismet-key-config' );
+	remove_menu_page( 'plugins.php' );
 
-		remove_submenu_page( 'index.php', 'update-core.php' );
+	remove_menu_page( 'themes.php' );
+	remove_submenu_page( 'options-general.php', 'options-media.php' );
+	remove_submenu_page( 'options-general.php', 'options-discussion.php' );
+	remove_submenu_page( 'options-general.php', 'akismet-key-config' );
+
+	remove_submenu_page( 'index.php', 'update-core.php' );
 }
 add_action( 'admin_menu', 'appp_remove_menu_items', 999 );
 
