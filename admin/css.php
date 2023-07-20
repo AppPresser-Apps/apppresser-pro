@@ -12,8 +12,8 @@
  */
 function appp_custom_editor_css() {
 
-	echo "
-    <style type='text/css'>
+	echo '
+    <style type="text/css">
 	div.editor-template-validation-notice.components-notice.is-warning,
 	div.block-editor-block-inspector__advanced,
 	div.block-editor-post-preview__dropdown,
@@ -144,6 +144,28 @@ function appp_custom_editor_css() {
 		min-height: 0px !important;
 	}
 
+	.edit-post-fullscreen-mode-close svg {
+		display: none;
+	}
+
+	.edit-post-fullscreen-mode-close.components-button {
+		background: #000000;
+	}
+
+	.edit-post-fullscreen-mode-close.components-button:before,
+	.edit-post-fullscreen-mode-close.components-button:hover:before {
+		box-shadow: none;
+	}
+
+	.edit-post-fullscreen-mode-close.components-button:before {
+		padding: 0 7px;
+		background-image: url(' . esc_url( APPPRESSER_URL . '/images/appp-icon.png' ) . ') !important;
+		background-size: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		opacity: 0.8;
+	}
+
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;
@@ -178,7 +200,7 @@ function appp_custom_editor_css() {
 		--ion-color-tint: var(--ion-color-black-tint);
 	}
     </style>
-    ";
+    ';
 }
 add_action( 'admin_footer', 'appp_custom_editor_css', 999 );
 
