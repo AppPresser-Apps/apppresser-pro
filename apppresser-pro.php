@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       AppPresser Pro
+ * Plugin Name:       AppPresser Pro Beta
  * Description:       Functionality for AppPresser Pro.
  * Requires at least: 5.9
  * Requires PHP:      7.0
@@ -20,23 +20,23 @@ define( 'APPPRESSER_URL', plugins_url( basename( __DIR__ ) ) );
 define( 'APPPRESSER_SLUG', plugin_basename( __FILE__ ) );
 define( 'APPPRESSER_FILE', __FILE__ );
 
-require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-pro/acf.php';
-require dirname( __FILE__ ) . '/vendors/acf-code-field/acf-code-field.php';
-require dirname( __FILE__ ) . '/vendors/advanced-custom-fields-table-field/acf-table.php';
-require dirname( __FILE__ ) . '/vendors/acf-unique-id-field/acf-unique-id-field.php';
+require __DIR__ . '/vendors/advanced-custom-fields-pro/acf.php';
+require __DIR__ . '/vendors/acf-code-field/acf-code-field.php';
+require __DIR__ . '/vendors/advanced-custom-fields-table-field/acf-table.php';
+require __DIR__ . '/vendors/acf-unique-id-field/acf-unique-id-field.php';
 
-require dirname( __FILE__ ) . '/post-type.php';
-require dirname( __FILE__ ) . '/admin/admin.php';
-require dirname( __FILE__ ) . '/admin/css.php';
-require dirname( __FILE__ ) . '/admin/media.php';
-require dirname( __FILE__ ) . '/helpers/colors.php';
-require dirname( __FILE__ ) . '/block-loader.php';
-require dirname( __FILE__ ) . '/gutenberg.php';
+require __DIR__ . '/post-type.php';
+require __DIR__ . '/admin/admin.php';
+require __DIR__ . '/admin/css.php';
+require __DIR__ . '/admin/media.php';
+require __DIR__ . '/helpers/colors.php';
+require __DIR__ . '/block-loader.php';
+require __DIR__ . '/gutenberg.php';
 
-require dirname( __FILE__ ) . '/acf/icons.php';
-require dirname( __FILE__ ) . '/acf/endpoints.php';
-require dirname( __FILE__ ) . '/acf/acf.php';
-require dirname( __FILE__ ) . '/acf/filters.php';
+require __DIR__ . '/acf/icons.php';
+require __DIR__ . '/acf/endpoints.php';
+require __DIR__ . '/acf/acf.php';
+require __DIR__ . '/acf/filters.php';
 
 
 /**
@@ -84,7 +84,6 @@ function appp_gutenberg_register_files() {
 			'siteURL' => get_site_url(),
 		)
 	);
-
 }
 add_action( 'enqueue_block_editor_assets', 'appp_gutenberg_register_files' );
 

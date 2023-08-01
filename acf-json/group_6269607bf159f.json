@@ -3306,6 +3306,46 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_64c923431734f",
+                    "label": "Checked",
+                    "name": "checked",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_64c915386eb71",
+                    "label": "onChange",
+                    "name": "onChange",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Call back function to run when toggle is changed.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -4486,5 +4526,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682009710
+    "modified": 1690903382
 }
