@@ -41,6 +41,26 @@
             "placeholder": "",
             "mode": "javascript",
             "theme": "blackboard"
+        },
+        {
+            "key": "field_64d11b03d6454",
+            "label": "On Background",
+            "name": "on_background",
+            "aria-label": "",
+            "type": "acf_code_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "description": "Code will run when app goes into background.",
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
+            "theme": "blackboard"
         }
     ],
     "location": [
@@ -61,5 +81,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1686947503
+    "modified": 1691425580
 }
