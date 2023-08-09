@@ -153,7 +153,7 @@ function setListViewTitle(blocks) {
             //jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-contents').addClass('no-auth');
         }
 
-        jQuery('#list-view-block-' + block.clientId).find('.block-editor-list-view-block-select-button__title span').append(' - ' + title + icon );
+        jQuery('[data-block=' + block.clientId  + ']').find('.block-editor-list-view-block-select-button__title span').append(' - ' + title + icon );
 
         setTimeout(() => {
             jQuery("span.tooltip-icon").on({
