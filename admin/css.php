@@ -166,6 +166,21 @@ function appp_custom_editor_css() {
 		opacity: 0.8;
 	}
 
+	#tab-panel-0-outline {
+		display: none;
+	}
+
+	.edit-post-header__settings a {
+		display: none;
+	}
+
+	@media (min-width:960px) {
+		.is-fullscreen-mode .block-editor-block-contextual-toolbar.is-fixed {
+			width: auto !important;
+			max-width: calc(100% - 536px) !important;
+		}
+	}
+
 	:root {
 		--ion-color-white: #ffffff;
 		--ion-color-white-rgb: 255,255,255;

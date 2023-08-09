@@ -129,7 +129,7 @@ function appp_acf_admin_enqueue_scripts() {
 }
 add_action( 'acf/input/admin_enqueue_scripts', 'appp_acf_admin_enqueue_scripts', 99 );
 
-// Hide ACF in production
+// Hide ACF in production.
 if ( ! defined( 'ACF_MENU' ) ) {
 	add_filter( 'acf/settings/show_admin', '__return_false' );
 }

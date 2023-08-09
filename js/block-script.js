@@ -73,9 +73,9 @@ if (!isListViewOpened) {
 
       setTimeout( function () {
           if ( !document.getElementById( link_id ) ) {
-              var toolbalEl = editorEl.querySelector( '.edit-post-header__toolbar' );
+              var toolbalEl = editorEl.querySelector( '.edit-post-header__settings' );
               if( toolbalEl instanceof HTMLElement ){
-                  toolbalEl.insertAdjacentHTML( 'beforeend', link_html );
+                  toolbalEl.insertAdjacentHTML( 'beforebegin', link_html );
               }
 
               document.getElementById( download_id ).addEventListener( 'click', ()=> {
