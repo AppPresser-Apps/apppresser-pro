@@ -121,16 +121,16 @@ $thumbnail = ! empty( $icon_thumbnail ) ? $icon_thumbnail : APPPRESSER_URL . '/i
 			case 'input':
 				switch ( $input['input_type'] ) {
 					case 'number':
-						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input inputmode="numeric" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) . '" value=""></ion-input>';
 						break;
 					case 'textarea':
-						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . esc_attr( $input['input_value'] ) . '" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
+						echo '<ion-textarea ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) . '" value="" autogrow="' . $input['autogrow'] . '" rows="' . $input['rows'] . '"></ion-textarea>';
 						break;
 					case 'range':
 						echo '<ion-range min=' . $range_min . '  max=' . $range_min . ' step=' . $step_size . ' ></ion-range>';
 						break;
 					default:
-						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) ? $input['input_type'] : 'text' . '" value="' . $input['input_value'] . '"></ion-input>';
+						echo '<ion-input autocomplete="off" inputmode="text" ' . $disabled . ' ' . $required . ' readonly="true" placeholder="' . $input['placeholder'] . '" type="' . isset( $input['input_type'] ) . '" value=""></ion-input>';
 						break;
 				}
 
