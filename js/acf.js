@@ -75,6 +75,15 @@ acf.add_action('load', (e)=> {
 
     appp_create_style_from_properties('clear');
 
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .ion-color-clear {
+            --border-width: 0px !important;
+        }
+    `;
+
+    document.head.appendChild(style);
+
 });
 
 /**
