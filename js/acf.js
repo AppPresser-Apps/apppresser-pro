@@ -59,6 +59,22 @@ acf.add_action('load', (e)=> {
             document.documentElement.style.setProperty(global, globals[global]);
         }
     }
+
+    const clear = {
+        "--ion-color-clear": "transparent",
+        "--ion-color-clear-rgb": "35,35,35",
+        "--ion-color-clear-contrast": "#232323",
+        "--ion-color-clear-contrast-rgb": "255,255,255",
+        "--ion-color-clear-shade": "#1f1f1f",
+        "--ion-color-clear-tint": "#393939"
+    };
+
+    for (const key in clear) {
+        document.documentElement.style.setProperty(key, clear[key]);
+    }
+
+    appp_create_style_from_properties('clear');
+
 });
 
 /**
@@ -197,6 +213,7 @@ acf.addAction('ready_field/name=light_mode', function(field){
 
 
 function appp_api_colors(name, hex) {
+
 
     wp.apiFetch({
         path: 'apppresser/v1/colors/?name=' + name + '&hex=' + encodeURIComponent(hex),
