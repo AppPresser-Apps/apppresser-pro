@@ -264,7 +264,7 @@
             "default_value": "",
             "placeholder": "",
             "mode": "javascript",
-            "theme": "monokai"
+            "theme": "blackboard"
         },
         {
             "key": "field_644ae4c99a3dd",
@@ -435,5 +435,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682630364
+    "modified": 1692030260
 }
