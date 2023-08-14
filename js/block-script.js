@@ -227,7 +227,7 @@ function apppFilterBlockRegister(settings, name) {
       settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/onboard", "acf/popover", 'acf/subrepeater'];
       break;
     case "acf/repeater":
-      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover"];
+      settings.parent = ["acf/view", "acf/modal", "acf/side-menu", "acf/popover", "acf/container"];
       break;
     case "acf/subrepeater":
       settings.parent = ["acf/repeater", "acf/subrepeater"];
