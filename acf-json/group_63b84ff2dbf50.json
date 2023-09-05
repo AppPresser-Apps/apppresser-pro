@@ -115,6 +115,26 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_64f7683626e9f",
+                    "label": "Function",
+                    "name": "function",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Callback function to run when the cancel button is clicked.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -319,5 +339,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676069555
+    "modified": 1693935715
 }
