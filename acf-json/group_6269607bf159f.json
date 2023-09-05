@@ -3,26 +3,6 @@
     "title": "Ion Item",
     "fields": [
         {
-            "key": "field_64db984305ba9",
-            "label": "Required",
-            "name": "required",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_62fd1872aa29a",
             "label": "Settings",
             "name": "",
@@ -3285,26 +3265,6 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_64db986105baa",
-                    "label": "Required",
-                    "name": "required",
-                    "aria-label": "",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
-                },
-                {
                     "key": "field_63064c8bd0f49",
                     "label": "Color",
                     "name": "color",
@@ -3346,6 +3306,62 @@
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                },
+                {
+                    "key": "field_64c923431734f",
+                    "label": "Checked",
+                    "name": "checked",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63064c9ed0f4a",
+                                "operator": "==",
+                                "value": "toggle"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_64c915386eb71",
+                    "label": "onChange",
+                    "name": "onChange",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Call back function to run when toggle is changed.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63064c9ed0f4a",
+                                "operator": "==",
+                                "value": "toggle"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -4526,5 +4542,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692113015
+    "modified": 1693926998
 }
