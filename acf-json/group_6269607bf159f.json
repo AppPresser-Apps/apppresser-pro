@@ -3313,7 +3313,7 @@
                     "name": "checked",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Default state of this toggle. Enter true if you want this toggle checked by default.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -4544,5 +4544,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693931198
+    "modified": 1693931642
 }
