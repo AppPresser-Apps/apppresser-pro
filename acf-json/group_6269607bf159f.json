@@ -3312,7 +3312,7 @@
                     "label": "Checked",
                     "name": "checked",
                     "aria-label": "",
-                    "type": "true_false",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
@@ -3329,11 +3329,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": ""
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_64c915386eb71",
@@ -4544,5 +4544,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1693930482
+    "modified": 1693931198
 }
