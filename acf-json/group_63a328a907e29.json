@@ -135,6 +135,13 @@
                 "operator": "==",
                 "value": "acf\/side-menu"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/modal"
+            }
         ]
     ],
     "menu_order": 99,
@@ -146,5 +153,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1686947459
+    "modified": 1694014666
 }
